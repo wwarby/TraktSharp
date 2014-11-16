@@ -55,7 +55,7 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public async void TestRequest() {
 
-			var result = await Client.Shows.TranslationsAsync("breaking-bad", "es", ExtendedOptions.FullAndImages);
+			var result = await Client.Shows.ProgressWatchedAsync("tt0413573", ExtendedOptions.FullAndImages);
 			Debugger.Break();
 
 		}

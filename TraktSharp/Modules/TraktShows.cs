@@ -57,6 +57,27 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await new TraktShowsCommentsRequest(Client) {
+				Id = id,
+				Extended = extended
+			}.SendAsync();
+		}
+
+		public async Task<TraktShowProgress> ProgressCollectionAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await new TraktShowsProgressCollectionRequest(Client) {
+				Id = id,
+				Extended = extended
+			}.SendAsync();
+		}
+
+		public async Task<TraktShowProgress> ProgressWatchedAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await new TraktShowsProgressWatchedRequest(Client) {
+				Id = id,
+				Extended = extended
+			}.SendAsync();
+		}
+
 	}
 
 }

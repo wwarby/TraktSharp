@@ -46,12 +46,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\EnumInfo.cs" />
+    <Compile Include="Exceptions\TraktServiceUnavailableException.cs" />
+    <Compile Include="Exceptions\TraktConflictException.cs" />
+    <Compile Include="Exceptions\TraktMethodNotFoundException.cs" />
+    <Compile Include="Exceptions\TraktForbiddenException.cs" />
+    <Compile Include="Exceptions\TraktServerErrorException.cs" />
+    <Compile Include="Exceptions\TraktUnauthorizedException.cs" />
+    <Compile Include="Exceptions\TraktBadRequestException.cs" />
+    <Compile Include="Exceptions\TraktNotFoundException.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\TimeZoneHelper.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsPremieresRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsNewRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsMoviesRequest.cs" />
     <Compile Include="Request\OAuth\TraktOAuthTokenRequest.cs" />
+    <Compile Include="Request\Shows\TraktShowsProgressWatchedRequest.cs" />
+    <Compile Include="Request\Shows\TraktShowsProgressCollectionRequest.cs" />
+    <Compile Include="Request\Shows\TraktShowsCommentsRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsSummaryRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsTrendingRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsPopularRequest.cs" />
@@ -60,6 +71,8 @@
     <Compile Include="Response\Calendars\TraktCalendarsMoviesResponse.cs" />
     <Compile Include="Response\Calendars\TraktCalendarsMoviesResponseItem.cs" />
     <Compile Include="Response\Shows\TraktShowsTranslationsResponseItem.cs" />
+    <Compile Include="Response\TraktComment.cs" />
+    <Compile Include="Response\TraktEpisodeProgress.cs" />
     <Compile Include="Response\TraktImage.cs" />
     <Compile Include="Response\TraktImageSet.cs" />
     <Compile Include="Response\TraktSeason.cs" />
@@ -69,6 +82,7 @@
     <Compile Include="Response\TraktEpisodeIds.cs" />
     <Compile Include="Response\TraktMovie.cs" />
     <Compile Include="Response\TraktMovieIds.cs" />
+    <Compile Include="Response\TraktSeasonProgress.cs" />
     <Compile Include="Response\TraktShowAirs.cs" />
     <Compile Include="Response\TraktShowIds.cs" />
     <Compile Include="Response\TraktShow.cs" />
@@ -88,6 +102,8 @@
     <Compile Include="Modules\TraktOAuth.cs" />
     <Compile Include="Modules\TraktCalendars.cs" />
     <Compile Include="Response\TraktShowImages.cs" />
+    <Compile Include="Response\TraktShowProgress.cs" />
+    <Compile Include="Response\TraktUser.cs" />
     <Compile Include="TraktAuthentication.cs" />
     <Compile Include="TraktConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
