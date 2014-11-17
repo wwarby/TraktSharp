@@ -60,6 +60,7 @@
     <Compile Include="Request\Calendars\TraktCalendarsShowsNewRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsMoviesRequest.cs" />
     <Compile Include="Request\OAuth\TraktOAuthTokenRequest.cs" />
+    <Compile Include="Request\Shows\TraktShowsPeopleRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsProgressWatchedRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsProgressCollectionRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsCommentsRequest.cs" />
@@ -70,6 +71,10 @@
     <Compile Include="Request\Shows\TraktShowsUpdatesRequest.cs" />
     <Compile Include="Response\Calendars\TraktCalendarsMoviesResponse.cs" />
     <Compile Include="Response\Calendars\TraktCalendarsMoviesResponseItem.cs" />
+    <Compile Include="Response\TraktCrew.cs" />
+    <Compile Include="Response\TraktCrewMember.cs" />
+    <Compile Include="Response\TraktPeople.cs" />
+    <Compile Include="Response\TraktCastMember.cs" />
     <Compile Include="Response\Shows\TraktShowsTranslationsResponseItem.cs" />
     <Compile Include="Response\TraktComment.cs" />
     <Compile Include="Response\TraktEpisodeProgress.cs" />

@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 
 namespace TraktSharp.Response {
 
+	[Serializable]
 	public class TraktImage {
 
 		[JsonProperty(PropertyName = "full")]

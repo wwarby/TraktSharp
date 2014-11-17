@@ -78,6 +78,13 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
+		public async Task<TraktPeople> PeopleAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await new TraktShowsPeopleRequest(Client) {
+				Id = id,
+				Extended = extended
+			}.SendAsync();
+		}
+
 	}
 
 }

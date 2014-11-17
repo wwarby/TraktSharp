@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using TraktSharp.Examples.Helpers;
 using TraktSharp.Examples.Views;
 using TraktSharp.Helpers;
-using TraktSharp.RequestBody.OAuth;
 using TraktSharp.Response;
 
 namespace TraktSharp.Examples.ViewModels {
@@ -55,7 +54,7 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public async void TestRequest() {
 
-			var result = await Client.Shows.ProgressWatchedAsync("tt0413573", ExtendedOptions.FullAndImages);
+			var result = await Client.Shows.ProgressWatchedAsync("breaking-bad", ExtendedOptions.FullAndImages);
 			Debugger.Break();
 
 		}

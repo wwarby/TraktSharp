@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 
 namespace TraktSharp.Response {
 
+	[Serializable]
 	public class TraktSeasonProgress {
 
 		[JsonProperty(PropertyName = "number")]

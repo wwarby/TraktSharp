@@ -5,6 +5,7 @@ using TraktSharp.Helpers;
 
 namespace TraktSharp.Response {
 
+	[Serializable]
 	public class TraktShowAirs {
 
 		[JsonProperty(PropertyName = "day")]
