@@ -8,6 +8,10 @@ namespace TraktSharp.Response {
 	[Serializable]
 	public class TraktRatings {
 
+		public TraktRatings() {
+			Distribution = new Dictionary<string, int>();
+		}
+
 		[JsonProperty(PropertyName = "rating")]
 		public decimal Rating { get; set; }
 
@@ -15,7 +19,7 @@ namespace TraktSharp.Response {
 		public int Votes { get; set; }
 
 		[JsonProperty(PropertyName = "distribution")]
-		public Dictionary<string,int> Distribution { get; set; }
+		public Dictionary<string, int> Distribution { get; set; }
 
 	}
 

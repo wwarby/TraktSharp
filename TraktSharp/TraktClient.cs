@@ -42,6 +42,24 @@ namespace TraktSharp {
 			set { _calendars = value; }
 		}
 
+		private TraktGenres _genres;
+		public TraktGenres Genres {
+			get {
+				_genres = _genres ?? new TraktGenres(this);
+				return _genres;
+			}
+			set { _genres = value; }
+		}
+
+		private TraktSearch _search;
+		public TraktSearch Search {
+			get {
+				_search = _search ?? new TraktSearch(this);
+				return _search;
+			}
+			set { _search = value; }
+		}
+
 		private TraktShows _shows;
 		public TraktShows Shows {
 			get {

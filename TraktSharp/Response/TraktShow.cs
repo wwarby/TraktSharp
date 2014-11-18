@@ -11,7 +11,9 @@ namespace TraktSharp.Response {
 		public TraktShow() {
 			Airs = new TraktShowAirs();
 			AvailableTranslations = new List<string>();
+			Genres = new List<string>();
 			Ids = new TraktShowIds();
+			Images = new TraktShowImages();
 		}
 
 		[JsonProperty(PropertyName = "airs")]
@@ -30,7 +32,7 @@ namespace TraktSharp.Response {
 		public DateTime? FirstAired { get; set; }
 
 		[JsonProperty(PropertyName = "genres")]
-		public IEnumerable<string> Grenres { get; set; }
+		public IEnumerable<string> Genres { get; set; }
 
 		[JsonProperty(PropertyName = "homepage")]
 		public string Homepage { get; set; }

@@ -54,7 +54,7 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public async void TestRequest() {
 
-			var result = await Client.Seasons.SeasonAsync("breaking-bad", 1, ExtendedOptions.FullAndImages);
+			var result = await Client.Search.IdLookupAsync(IdLookupTypeOptions.Imdb, "tt0120591", ExtendedOptions.FullAndImages);
 			Debugger.Break();
 
 		}

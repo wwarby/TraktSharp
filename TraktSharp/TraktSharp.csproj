@@ -56,11 +56,16 @@
     <Compile Include="Exceptions\TraktNotFoundException.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\TimeZoneHelper.cs" />
+    <Compile Include="Modules\TraktSearch.cs" />
+    <Compile Include="Modules\TraktGenres.cs" />
     <Compile Include="Modules\TraktSeasons.cs" />
     <Compile Include="Modules\TraktEpisodes.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsPremieresRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsNewRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsMoviesRequest.cs" />
+    <Compile Include="Request\Genres\TraktGenresListRequest.cs" />
+    <Compile Include="Request\Search\TraktIdLookupRequest.cs" />
+    <Compile Include="Request\Search\TraktTextQueryRequest.cs" />
     <Compile Include="Request\Seasons\TraktSeasonsSeasonRequest.cs" />
     <Compile Include="Request\Seasons\TraktSeasonsCommentsRequest.cs" />
     <Compile Include="Request\Seasons\TraktSeasonsRatingsRequest.cs" />
@@ -85,6 +90,7 @@
     <Compile Include="Request\Shows\TraktShowsUpdatesRequest.cs" />
     <Compile Include="Response\Calendars\TraktCalendarsMoviesResponse.cs" />
     <Compile Include="Response\Calendars\TraktCalendarsMoviesResponseItem.cs" />
+    <Compile Include="Response\Genres\TraktGenresListResponseItem.cs" />
     <Compile Include="Response\TraktCrew.cs" />
     <Compile Include="Response\TraktCrewMember.cs" />
     <Compile Include="Response\TraktPeople.cs" />
@@ -94,6 +100,8 @@
     <Compile Include="Response\TraktEpisodeProgress.cs" />
     <Compile Include="Response\TraktImage.cs" />
     <Compile Include="Response\TraktImageSet.cs" />
+    <Compile Include="Response\TraktList.cs" />
+    <Compile Include="Response\TraktSearchResult.cs" />
     <Compile Include="Response\TraktRatings.cs" />
     <Compile Include="Response\TraktSeason.cs" />
     <Compile Include="Response\TraktPerson.cs" />
@@ -104,6 +112,7 @@
     <Compile Include="Response\TraktMovieIds.cs" />
     <Compile Include="Response\TraktSeasonProgress.cs" />
     <Compile Include="Response\TraktShowAirs.cs" />
+    <Compile Include="Response\TraktListIds.cs" />
     <Compile Include="Response\TraktShowIds.cs" />
     <Compile Include="Response\TraktShow.cs" />
     <Compile Include="ExtensionMethods\DateTimeExtensions.cs" />

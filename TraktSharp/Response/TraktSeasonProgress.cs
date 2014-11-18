@@ -8,6 +8,10 @@ namespace TraktSharp.Response {
 	[Serializable]
 	public class TraktSeasonProgress {
 
+		public TraktSeasonProgress() {
+			Episodes = new List<TraktEpisodeProgress>();
+		}
+
 		[JsonProperty(PropertyName = "number")]
 		public int? Number { get; set; }
 

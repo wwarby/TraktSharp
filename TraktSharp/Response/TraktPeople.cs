@@ -8,6 +8,11 @@ namespace TraktSharp.Response {
 	[Serializable]
 	public class TraktPeople {
 
+		public TraktPeople() {
+			Cast = new List<TraktCastMember>();
+			Crew = new TraktCrew();
+		}
+
 		[JsonProperty(PropertyName = "cast")]
 		public IEnumerable<TraktCastMember> Cast { get; set; }
 

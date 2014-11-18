@@ -9,8 +9,9 @@ namespace TraktSharp.Response {
 	public class TraktEpisode {
 
 		public TraktEpisode() {
-			Title = string.Empty;
+			AvailableTranslations = new List<string>();
 			Ids = new TraktEpisodeIds();
+			Images = new TraktEpisodeImages();
 		}
 
 		[JsonProperty(PropertyName = "available_translations")]
