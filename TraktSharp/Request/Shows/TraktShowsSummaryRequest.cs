@@ -20,17 +20,16 @@ namespace TraktSharp.Request.Shows {
 
 		public string Id { get; set; }
 
-		protected override IDictionary<string, string> GetPathParameters(IDictionary<string, string> pathParameters) {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
 				{ "id", Id }
 			};
 		}
 
-		protected override bool ValidateParameters() {
+		protected override void ValidateParameters() {
 			if (string.IsNullOrEmpty(Id)) {
 				throw new ArgumentException("Id not set.");
 			}
-			return true;
 		}
 
 	}

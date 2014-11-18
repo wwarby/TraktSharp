@@ -23,21 +23,20 @@ namespace TraktSharp.Request.Shows {
 
 		public string Language { get; set; }
 
-		protected override IDictionary<string, string> GetPathParameters(IDictionary<string, string> pathParameters) {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
 				{ "id", Id },
 				{ "language", Language },
 			};
 		}
 
-		protected override bool ValidateParameters() {
+		protected override void ValidateParameters() {
 			if (string.IsNullOrEmpty(Id)) {
 				throw new ArgumentException("Id not set.");
 			}
 			if (string.IsNullOrEmpty(Language)) {
 				throw new ArgumentException("Language not set.");
 			}
-			return true;
 		}
 
 	}

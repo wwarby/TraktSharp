@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 namespace TraktSharp.Response {
 
 	[Serializable]
-	public class TraktMSeason {
+	public class TraktSeason {
 
-		public TraktMSeason() {
+		public TraktSeason() {
 			Ids = new TraktSeasonIds();
 		}
 

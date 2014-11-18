@@ -19,7 +19,7 @@ namespace TraktSharp.Request.OAuth {
 
 		protected override bool SupportsPagination { get { return false; } }
 
-		protected override bool ValidateParameters() {
+		protected override void ValidateParameters() {
 			var requestBody = RequestBody as TraktOAuthTokenRequestBody;
 			if (requestBody == null) {
 				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof(TraktOAuthTokenRequestBody).Name));
@@ -36,7 +36,6 @@ namespace TraktSharp.Request.OAuth {
 			if (string.IsNullOrEmpty(requestBody.RedirectUri)) {
 				throw new ArgumentException("RedirectUri not set.");
 			}
-			return true;
 		}
 
 	}

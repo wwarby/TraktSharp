@@ -6,13 +6,13 @@ using TraktSharp.Response;
 
 namespace TraktSharp.Request.Shows {
 
-	public class TraktShowsPeopleRequest : TraktRequest<TraktPeople> {
+	public class TraktShowsWatchingRequest : TraktRequest<IEnumerable<TraktUser>> {
 
-		public TraktShowsPeopleRequest(TraktClient client) : base(client) { }
+		public TraktShowsWatchingRequest(TraktClient client) : base(client) { }
 
 		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
-		protected override string PathTemplate { get { return "shows/{id}/people"; } }
+		protected override string PathTemplate { get { return "shows/{id}/watching"; } }
 
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 

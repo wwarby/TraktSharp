@@ -45,10 +45,6 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<object> AliasesAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
-			throw new NotImplementedException("From the Trakt API docs: Currently no data to back this. Will be completed when source data has it available.");
-		}
-
 		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> TranslationsAsync(string id, string language, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktShowsTranslationsRequest(Client) {
 				Id = id,
@@ -80,6 +76,27 @@ namespace TraktSharp.Modules {
 
 		public async Task<TraktPeople> PeopleAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktShowsPeopleRequest(Client) {
+				Id = id,
+				Extended = extended
+			}.SendAsync();
+		}
+
+		public async Task<TraktRatings> RatingsAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await new TraktShowsRatingsRequest(Client) {
+				Id = id,
+				Extended = extended
+			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktShow>> RelatedAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await new TraktShowsRelatedRequest(Client) {
+				Id = id,
+				Extended = extended
+			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktUser>> WatchingAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await new TraktShowsWatchingRequest(Client) {
 				Id = id,
 				Extended = extended
 			}.SendAsync();

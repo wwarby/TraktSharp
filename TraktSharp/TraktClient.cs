@@ -51,6 +51,24 @@ namespace TraktSharp {
 			set { _shows = value; }
 		}
 
+		private TraktSeasons _seasons;
+		public TraktSeasons Seasons {
+			get {
+				_seasons = _seasons ?? new TraktSeasons(this);
+				return _seasons;
+			}
+			set { _seasons = value; }
+		}
+
+		private TraktEpisodes _episodes;
+		public TraktEpisodes Episodes {
+			get {
+				_episodes = _episodes ?? new TraktEpisodes(this);
+				return _episodes;
+			}
+			set { _episodes = value; }
+		}
+
 	}
 
 }

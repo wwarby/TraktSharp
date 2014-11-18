@@ -14,34 +14,38 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktCalendarsShowsResponse> ShowsAsync(DateTime? startDate = null, int? days = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktCalendarsShowsResponse> ShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktCalendarsShowsRequest(Client) {
 				StartDate = startDate,
 				Days = days,
+				Authenticate = authenticate,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktCalendarsShowsResponse> ShowsNewAsync(DateTime? startDate = null, int? days = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktCalendarsShowsResponse> ShowsNewAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktCalendarsShowsNewRequest(Client) {
 				StartDate = startDate,
 				Days = days,
+				Authenticate = authenticate,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktCalendarsShowsResponse> ShowsPremieresAsync(DateTime? startDate = null, int? days = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktCalendarsShowsResponse> ShowsPremieresAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktCalendarsShowsPremieresRequest(Client) {
 				StartDate = startDate,
 				Days = days,
+				Authenticate = authenticate,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktCalendarsMoviesResponse> MoviesAsync(DateTime? startDate = null, int? days = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktCalendarsMoviesResponse> MoviesAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktCalendarsMoviesRequest(Client) {
 				StartDate = startDate,
 				Days = days,
+				Authenticate = authenticate,
 				Extended = extended
 			}.SendAsync();
 		}

@@ -61,9 +61,9 @@ namespace TraktSharp.Request {
 
 		protected abstract bool SupportsPagination { get; }
 
-		protected virtual bool ValidateParameters() { return true; }
+		protected virtual void ValidateParameters() { }
 
-		protected virtual IDictionary<string, string> GetPathParameters(IDictionary<string, string> pathParameters) { return pathParameters; }
+		protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) { return pathParameters; }
 
 		private string Path {
 			get {

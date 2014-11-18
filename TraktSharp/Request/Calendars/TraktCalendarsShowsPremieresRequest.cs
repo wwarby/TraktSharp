@@ -24,7 +24,7 @@ namespace TraktSharp.Request.Calendars {
 
 		public int? Days { get; set; }
 
-		protected override IDictionary<string, string> GetPathParameters(IDictionary<string, string> pathParameters) {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
 				{ "start_date", StartDate.ToTraktApiFormat() },
 				{ "days", Days.ToString() }

@@ -20,7 +20,7 @@ namespace TraktSharp.Request.Shows {
 
 		public DateTime? StartDate { get; set; }
 
-		protected override IDictionary<string, string> GetPathParameters(IDictionary<string, string> pathParameters) {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
 				{ "start_date", StartDate.ToTraktApiFormat() }
 			};

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Net.Http;
 using TraktSharp.Response;
 
-namespace TraktSharp.Request.Shows {
+namespace TraktSharp.Request.Seasons {
 
-	public class TraktShowsPeopleRequest : TraktRequest<TraktPeople> {
+	public class TraktSeasonsSummaryRequest : TraktRequest<TraktSeason> {
 
-		public TraktShowsPeopleRequest(TraktClient client) : base(client) { }
+		public TraktSeasonsSummaryRequest(TraktClient client) : base(client) { }
 
 		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
-		protected override string PathTemplate { get { return "shows/{id}/people"; } }
+		protected override string PathTemplate { get { return "shows/{id}/seasons"; } }
 
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
@@ -27,9 +27,7 @@ namespace TraktSharp.Request.Shows {
 		}
 
 		protected override void ValidateParameters() {
-			if (string.IsNullOrEmpty(Id)) {
-				throw new ArgumentException("Id not set.");
-			}
+			if (string.IsNullOrEmpty(Id)) { throw new ArgumentException("Id not set."); }
 		}
 
 	}
