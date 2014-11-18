@@ -5,7 +5,7 @@ using System.Net.Http;
 using TraktSharp.Helpers;
 using TraktSharp.Response.Genres;
 
-namespace TraktSharp.Request.Episodes {
+namespace TraktSharp.Request.Genres {
 
 	public class TraktGenresListRequest : TraktRequest<IEnumerable<TraktGenresListResponseItem>> {
 
