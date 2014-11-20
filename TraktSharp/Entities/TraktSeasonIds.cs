@@ -16,6 +16,10 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "tvrage")]
 		public int? TvRage { get; set; }
 
+		public bool HasAnyValuesSet() {
+			return Tvdb.HasValue || Tmdb.HasValue || TvRage.HasValue;
+		}
+
 	}
 
 }

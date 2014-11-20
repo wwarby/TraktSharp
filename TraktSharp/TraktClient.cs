@@ -51,6 +51,15 @@ namespace TraktSharp {
 			set { _checkin = value; }
 		}
 
+		private TraktComments _comments;
+		public TraktComments Comments {
+			get {
+				_comments = _comments ?? new TraktComments(this);
+				return _comments;
+			}
+			set { _comments = value; }
+		}
+
 		private TraktGenres _genres;
 		public TraktGenres Genres {
 			get {

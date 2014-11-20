@@ -32,6 +32,9 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "replies")]
 		public int? Replies { get; set; }
 
+		[JsonProperty(PropertyName = "likes")]
+		public int? Likes { get; set; }
+
 		[JsonProperty(PropertyName = "user")]
 		public TraktUser User { get; set; }
 

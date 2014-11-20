@@ -13,6 +13,10 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "slug")]
 		public string Slug { get; set; }
 
+		public bool HasAnyValuesSet() {
+			return Trakt.HasValue || !string.IsNullOrEmpty(Slug);
+		}
+
 	}
 
 }
