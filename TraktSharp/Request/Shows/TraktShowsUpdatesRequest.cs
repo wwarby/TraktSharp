@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using TraktSharp.Entities.Response.Shows;
 using TraktSharp.ExtensionMethods;
-using TraktSharp.Response.Shows;
 
 namespace TraktSharp.Request.Shows {
 
 	[Serializable]
-	public class TraktShowsUpdatesRequest : TraktRequest<IEnumerable<TraktShowsUpdatesResponseItem>> {
+	public class TraktShowsUpdatesRequest : TraktGetRequest<IEnumerable<TraktShowsUpdatesResponseItem>> {
 
 		public TraktShowsUpdatesRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "shows/updates/{start_date}"; } }
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using TraktSharp.Entities.RequestBody.OAuth;
+using TraktSharp.Entities.Response.OAuth;
 using TraktSharp.Request.OAuth;
-using TraktSharp.RequestBody.OAuth;
-using TraktSharp.Response.OAuth;
 
 namespace TraktSharp.Modules {
 

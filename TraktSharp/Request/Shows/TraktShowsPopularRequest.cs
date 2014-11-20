@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using TraktSharp.Response;
+using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Shows {
 
 	[Serializable]
-	public class TraktShowsPopularRequest : TraktRequest<IEnumerable<TraktShow>> {
+	public class TraktShowsPopularRequest : TraktGetRequest<IEnumerable<TraktShow>> {
 
 		public TraktShowsPopularRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "shows/popular"; } }
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TraktSharp.Entities;
+using TraktSharp.Entities.Response.Shows;
 using TraktSharp.Request.Shows;
-using TraktSharp.Response;
-using TraktSharp.Response.Shows;
 
 namespace TraktSharp.Modules {
 

@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using TraktSharp.Response;
+using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Seasons {
 
-	public class TraktSeasonsSummaryRequest : TraktRequest<TraktSeason> {
+	public class TraktSeasonsSummaryRequest : TraktGetRequest<TraktSeason> {
 
 		public TraktSeasonsSummaryRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "shows/{id}/seasons"; } }
 

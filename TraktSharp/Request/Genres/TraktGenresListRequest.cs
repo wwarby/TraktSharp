@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using TraktSharp.Entities.Response.Genres;
 using TraktSharp.Helpers;
-using TraktSharp.Response.Genres;
 
 namespace TraktSharp.Request.Genres {
 
-	public class TraktGenresListRequest : TraktRequest<IEnumerable<TraktGenresListResponseItem>> {
+	public class TraktGenresListRequest : TraktGetRequest<IEnumerable<TraktGenresListResponseItem>> {
 
 		public TraktGenresListRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "genres/{type}"; } }
 

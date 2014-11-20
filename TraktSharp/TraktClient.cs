@@ -42,6 +42,15 @@ namespace TraktSharp {
 			set { _calendars = value; }
 		}
 
+		private TraktCheckin _checkin;
+		public TraktCheckin Checkin {
+			get {
+				_checkin = _checkin ?? new TraktCheckin(this);
+				return _checkin;
+			}
+			set { _checkin = value; }
+		}
+
 		private TraktGenres _genres;
 		public TraktGenres Genres {
 			get {

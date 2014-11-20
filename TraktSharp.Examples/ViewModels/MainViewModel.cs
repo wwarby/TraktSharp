@@ -5,10 +5,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
+using TraktSharp.Entities;
 using TraktSharp.Examples.Helpers;
 using TraktSharp.Examples.Views;
 using TraktSharp.Helpers;
-using TraktSharp.Response;
 
 namespace TraktSharp.Examples.ViewModels {
 
@@ -54,7 +54,7 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public async void TestRequest() {
 
-			var result = await Client.Search.IdLookupAsync(IdLookupTypeOptions.Imdb, "tt0120591", ExtendedOptions.FullAndImages);
+			var result = await Client.Checkin.CheckinItemAsync(new TraktEpisode { Ids = new TraktEpisodeIds { Imdb = "tt2081647" } });
 			Debugger.Break();
 
 		}

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using TraktSharp.Entities.Response.Calendars;
 using TraktSharp.Request.Calendars;
-using TraktSharp.Response.Calendars;
 
 namespace TraktSharp.Modules {
 

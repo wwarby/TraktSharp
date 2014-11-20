@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using TraktSharp.Entities;
 using TraktSharp.Helpers;
-using TraktSharp.Response;
 
 namespace TraktSharp.Request.Search {
 
-	public class TraktIdLookupRequest : TraktRequest<IEnumerable<TraktSearchResult>> {
+	public class TraktIdLookupRequest : TraktGetRequest<IEnumerable<TraktSearchResult>> {
 
 		public TraktIdLookupRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "search"; } }
 

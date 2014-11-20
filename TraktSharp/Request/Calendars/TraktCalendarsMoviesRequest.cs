@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using TraktSharp.Entities.Response.Calendars;
 using TraktSharp.ExtensionMethods;
-using TraktSharp.Response.Calendars;
 
 namespace TraktSharp.Request.Calendars {
 
 	[Serializable]
-	public class TraktCalendarsMoviesRequest : TraktRequest<TraktCalendarsMoviesResponse> {
+	public class TraktCalendarsMoviesRequest : TraktGetRequest<TraktCalendarsMoviesResponse> {
 
 		public TraktCalendarsMoviesRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "calendars/movies/{start_date}/{days}"; } }
 

@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using TraktSharp.Response;
+using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Shows {
 
-	public class TraktShowsProgressWatchedRequest : TraktRequest<TraktShowProgress> {
+	public class TraktShowsProgressWatchedRequest : TraktGetRequest<TraktShowProgress> {
 
 		public TraktShowsProgressWatchedRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "shows/{id}/progress/watched"; } }
 

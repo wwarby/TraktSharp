@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using TraktSharp.Response;
+using TraktSharp.Entities;
 
 namespace TraktSharp.Exceptions {
 
@@ -11,12 +11,15 @@ namespace TraktSharp.Exceptions {
 		public string TraktErrorType { get; set; }
 		public string RequestUrl { get; set; }
 		public string RequestBody { get; set; }
+		public string ResponseBody { get; set; }
 
-		public TraktException(string message, HttpStatusCode statusCode, TraktErrorResponse traktError, string requestUrl, string requestBody = null) : base(message) {
+		public TraktException(string message, HttpStatusCode statusCode, TraktErrorResponse traktError, string requestUrl, string requestBody = null, string responseBody = null)
+			: base(message) {
 			StatusCode = statusCode;
 			TraktErrorType = traktError.Error;
 			RequestUrl = requestUrl;
 			RequestBody = requestBody;
+			ResponseBody = responseBody;
 		}
 
 	}

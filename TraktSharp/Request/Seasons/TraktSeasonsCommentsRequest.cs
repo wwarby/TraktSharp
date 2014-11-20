@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
-using TraktSharp.Response;
+using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Seasons {
 
-	public class TraktSeasonsCommentsRequest : TraktRequest<IEnumerable<TraktComment>> {
+	public class TraktSeasonsCommentsRequest : TraktGetRequest<IEnumerable<TraktComment>> {
 
 		public TraktSeasonsCommentsRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}/comments"; } }
 

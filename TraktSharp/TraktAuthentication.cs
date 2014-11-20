@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using TraktSharp.Entities;
+using TraktSharp.Entities.RequestBody.OAuth;
+using TraktSharp.Entities.Response.OAuth;
 using TraktSharp.Helpers;
-using TraktSharp.RequestBody.OAuth;
-using TraktSharp.Response;
-using TraktSharp.Response.OAuth;
 
 namespace TraktSharp {
 

@@ -1,23 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
-using TraktSharp.RequestBody.OAuth;
-using TraktSharp.Response.OAuth;
+using TraktSharp.Entities.RequestBody.OAuth;
+using TraktSharp.Entities.Response.OAuth;
 
 namespace TraktSharp.Request.OAuth {
 
 	[Serializable]
-	public class TraktOAuthTokenRequest : TraktRequest<TraktOAuthTokenResponse> {
+	public class TraktOAuthTokenRequest : TraktPostRequest<TraktOAuthTokenResponse> {
 
 		public TraktOAuthTokenRequest(TraktClient client) : base(client) { }
 
-		protected override HttpMethod Method { get { return HttpMethod.Post; } }
-
 		protected override string PathTemplate { get { return "oauth/token"; } }
-
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Forbidden; } }
-
-		protected override bool SupportsPagination { get { return false; } }
 
 		protected override void ValidateParameters() {
 			var requestBody = RequestBody as TraktOAuthTokenRequestBody;

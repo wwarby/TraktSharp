@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
-using TraktSharp.Response;
+using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Episodes {
 
-	public class TraktEpisodesRatingsRequest : TraktRequest<TraktRatings> {
+	public class TraktEpisodesRatingsRequest : TraktGetRequest<TraktRatings> {
 
 		public TraktEpisodesRatingsRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}/episodes/{episode}/ratings"; } }
 

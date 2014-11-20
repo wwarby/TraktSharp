@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using TraktSharp.Response.Shows;
+using TraktSharp.Entities.Response.Shows;
 
 namespace TraktSharp.Request.Shows {
 
 	[Serializable]
-	public class TraktShowsTrendingRequest : TraktRequest<IEnumerable<TraktShowsTrendingResponseItem>> {
+	public class TraktShowsTrendingRequest : TraktGetRequest<IEnumerable<TraktShowsTrendingResponseItem>> {
 
 		public TraktShowsTrendingRequest(TraktClient client) : base(client) { }
-
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
 
 		protected override string PathTemplate { get { return "shows/trending"; } }
 

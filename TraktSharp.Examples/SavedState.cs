@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using TraktSharp.Response;
+using TraktSharp.Entities;
 
 namespace TraktSharp.Examples {
 
