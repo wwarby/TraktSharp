@@ -54,7 +54,7 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public async void TestRequest() {
 
-			var result = await Client.Checkin.CheckinItemAsync(new TraktEpisode { Ids = new TraktEpisodeIds { Imdb = "tt2081647" } });
+			var result = await Client.Calendars.MoviesAsync();
 			Debugger.Break();
 
 		}

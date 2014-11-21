@@ -1,10 +1,19 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using TraktSharp.Modules;
 
 namespace TraktSharp {
 
 	public class TraktClient {
+
+		private HttpMessageHandler _handler;
+
+		public TraktClient(HttpMessageHandler handler = null) {
+			_handler = handler;
+		}
+
+		public HttpMessageHandler HttpMessageHandler { get { return _handler;  } }
 
 		private TraktConfiguration _configuration;
 		public TraktConfiguration Configuration {
@@ -67,6 +76,15 @@ namespace TraktSharp {
 				return _genres;
 			}
 			set { _genres = value; }
+		}
+
+		private TraktMovies _movies;
+		public TraktMovies Movies {
+			get {
+				_movies = _movies ?? new TraktMovies(this);
+				return _movies;
+			}
+			set { _movies = value; }
 		}
 
 		private TraktSearch _search;

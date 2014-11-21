@@ -5,7 +5,7 @@ using System.Linq;
 namespace TraktSharp.Entities.Response.Calendars {
 
 	[Serializable]
-	public class TraktCalendarsMoviesResponse : Dictionary<string, TraktCalendarsMoviesResponseItem> {
+	public class TraktCalendarsMoviesResponse : Dictionary<string, IEnumerable<TraktCalendarsMoviesResponseItem>> {
 
 	}
 

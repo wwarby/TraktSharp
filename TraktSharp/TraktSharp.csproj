@@ -48,6 +48,11 @@
     <Compile Include="Entities\EnumInfo.cs" />
     <Compile Include="Entities\RequestBody\Checkin\TraktCheckinEpisodeRequestBody.cs" />
     <Compile Include="Entities\Response\Checkin\TraktCheckinEpisodeResponse.cs" />
+    <Compile Include="Entities\Response\Movies\TraktMoviesReleasesResponseItem.cs" />
+    <Compile Include="Entities\Response\Movies\TraktMoviesTranslationsResponseItem.cs" />
+    <Compile Include="Entities\Response\Movies\TraktMoviesTrendingResponseItem.cs" />
+    <Compile Include="Entities\Response\Movies\TraktMoviesAliasesResponseItem.cs" />
+    <Compile Include="Entities\Response\Movies\TraktMoviesUpdatesResponseItem.cs" />
     <Compile Include="Entities\TraktShowComment.cs" />
     <Compile Include="Entities\TraktEpisodeComment.cs" />
     <Compile Include="Entities\TraktListComment.cs" />
@@ -71,6 +76,7 @@
     <Compile Include="Modules\TraktEpisodes.cs" />
     <Compile Include="Entities\RequestBody\Checkin\TraktCheckinMovieRequestBody.cs" />
     <Compile Include="Entities\TraktSharingOptions.cs" />
+    <Compile Include="Modules\TraktMovies.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsPremieresRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsNewRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsMoviesRequest.cs" />
@@ -82,6 +88,8 @@
     <Compile Include="Request\Comments\TraktCommentsPostShowRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostMovieRequest.cs" />
     <Compile Include="Request\Genres\TraktGenresListRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesAliasesRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesReleasesRequest.cs" />
     <Compile Include="Request\Search\TraktIdLookupRequest.cs" />
     <Compile Include="Request\Search\TraktTextQueryRequest.cs" />
     <Compile Include="Request\Seasons\TraktSeasonsSeasonRequest.cs" />
@@ -94,6 +102,16 @@
     <Compile Include="Request\Episodes\TraktEpisodesCommentsRequest.cs" />
     <Compile Include="Request\Episodes\TraktEpisodesSummaryRequest.cs" />
     <Compile Include="Request\OAuth\TraktOAuthTokenRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesCommentsRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesPeopleRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesPopularRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesRatingsRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesRelatedRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesSummaryRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesTranslationsRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesTrendingRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesUpdatesRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesWatchingRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsWatchingRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsRatingsRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsRelatedRequest.cs" />

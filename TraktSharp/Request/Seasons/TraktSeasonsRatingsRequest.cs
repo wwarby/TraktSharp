@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net.Http;
 using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Seasons {

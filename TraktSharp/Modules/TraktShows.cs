@@ -53,10 +53,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktShowsCommentsRequest(Client) {
 				Id = id,
-				Extended = extended
+				Extended = extended,
+				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 
