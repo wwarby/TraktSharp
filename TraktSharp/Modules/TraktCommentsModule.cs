@@ -6,11 +6,9 @@ using TraktSharp.Request.Comments;
 
 namespace TraktSharp.Modules {
 
-	public class TraktComments {
+	public class TraktCommentsModule {
 
-		public TraktComments(TraktClient client) {
-			Client = client;
-		}
+		public TraktCommentsModule(TraktClient client) { Client = client; }
 
 		public TraktClient Client { get; private set; }
 

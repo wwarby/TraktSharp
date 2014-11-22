@@ -9,14 +9,11 @@ namespace TraktSharp.Examples {
 		private const int FEATURE_DISABLE_NAVIGATION_SOUNDS = 21;
 		private const int SET_FEATURE_ON_PROCESS = 0x00000002;
 
-		[DllImport("urlmon.dll")]
-		[PreserveSig]
+		[DllImport("urlmon.dll"), PreserveSig]
 		[return: MarshalAs(UnmanagedType.Error)]
-		static extern int CoInternetSetFeatureEnabled(int featureEntry, [MarshalAs(UnmanagedType.U4)] int dwFlags, bool fEnable);
+		private static extern int CoInternetSetFeatureEnabled(int featureEntry, [MarshalAs(UnmanagedType.U4)] int dwFlags, bool fEnable);
 
-		public static void DisableInternetExplorerClickSounds() {
-            CoInternetSetFeatureEnabled(FEATURE_DISABLE_NAVIGATION_SOUNDS, SET_FEATURE_ON_PROCESS, true);
-		}
+		public static void DisableInternetExplorerClickSounds() { CoInternetSetFeatureEnabled(FEATURE_DISABLE_NAVIGATION_SOUNDS, SET_FEATURE_ON_PROCESS, true); }
 
 	}
 

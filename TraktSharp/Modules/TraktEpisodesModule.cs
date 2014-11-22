@@ -7,11 +7,9 @@ using TraktSharp.Request.Episodes;
 
 namespace TraktSharp.Modules {
 
-	public class TraktEpisodes {
+	public class TraktEpisodesModule {
 
-		public TraktEpisodes(TraktClient client) {
-			Client = client;
-		}
+		public TraktEpisodesModule(TraktClient client) { Client = client; }
 
 		public TraktClient Client { get; private set; }
 

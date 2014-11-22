@@ -10,11 +10,17 @@ namespace TraktSharp.Request.Search {
 
 		public TraktIdLookupRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "search"; } }
+		protected override string PathTemplate {
+			get { return "search"; }
+		}
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirementOptions OAuthRequirement {
+			get { return OAuthRequirementOptions.NotRequired; }
+		}
 
-		protected override bool SupportsPagination { get { return true; } }
+		protected override bool SupportsPagination {
+			get { return true; }
+		}
 
 		public string Id { get; set; }
 
@@ -28,7 +34,9 @@ namespace TraktSharp.Request.Search {
 		}
 
 		protected override void ValidateParameters() {
-			if (string.IsNullOrEmpty(Id)) { throw new ArgumentException("Id not set."); }
+			if (string.IsNullOrEmpty(Id)) {
+				throw new ArgumentException("Id not set.");
+			}
 		}
 
 	}

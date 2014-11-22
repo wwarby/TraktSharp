@@ -12,7 +12,7 @@ namespace TraktSharp.Entities {
 
 		[JsonProperty(PropertyName = "medium")]
 		public string Medium { get; set; }
-		
+
 		[JsonProperty(PropertyName = "thumb")]
 		public string Thumb { get; set; }
 

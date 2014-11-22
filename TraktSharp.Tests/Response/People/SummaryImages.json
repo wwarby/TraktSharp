@@ -1,0 +1,17 @@
+﻿{
+	"name": "Bryan Cranston",
+	"ids": {
+		"trakt": 1,
+		"slug": "bryan-cranston",
+		"imdb": "nm0186505",
+		"tmdb": 17419,
+		"tvrage": 1797
+	},
+	"images": {
+		"headshot": {
+			"full": "https://walter.trakt.us/images/people/000/000/001/headshots/original/47aebaace9.jpg?1413409177",
+			"medium": "https://walter.trakt.us/images/people/000/000/001/headshots/medium/47aebaace9.jpg?1413409177",
+			"thumb": "https://walter.trakt.us/images/people/000/000/001/headshots/thumb/47aebaace9.jpg?1413409177"
+		}
+	}
+}

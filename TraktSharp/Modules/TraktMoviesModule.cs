@@ -9,11 +9,9 @@ using TraktSharp.Request.Shows;
 
 namespace TraktSharp.Modules {
 
-	public class TraktMovies {
+	public class TraktMoviesModule {
 
-		public TraktMovies(TraktClient client) {
-			Client = client;
-		}
+		public TraktMoviesModule(TraktClient client) { Client = client; }
 
 		public TraktClient Client { get; private set; }
 

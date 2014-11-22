@@ -10,12 +10,14 @@ namespace TraktSharp.Request.Checkin {
 
 		public TraktCheckinEpisodeRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "checkin"; } }
+		protected override string PathTemplate {
+			get { return "checkin"; }
+		}
 
 		protected override void ValidateParameters() {
 			var requestBody = RequestBody as TraktCheckinEpisodeRequestBody;
 			if (requestBody == null) {
-				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof(TraktCheckinEpisodeRequestBody).Name));
+				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof (TraktCheckinEpisodeRequestBody).Name));
 			}
 			if (requestBody.Episode == null) {
 				throw new ArgumentException("Episode not set");

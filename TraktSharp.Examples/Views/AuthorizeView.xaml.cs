@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Navigation;
 using TraktSharp.Examples.ViewModels;
 
 namespace TraktSharp.Examples.Views {
@@ -15,13 +16,9 @@ namespace TraktSharp.Examples.Views {
 			Load();
 		}
 
-		public void Load() {
-			AuthorizeBrowser.Navigate(ViewModel.Client.Authentication.AuthorizationUrl);
-		}
+		public void Load() { AuthorizeBrowser.Navigate(ViewModel.Client.Authentication.AuthorizationUrl); }
 
-		private void AuthorizeBrowser_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e) {
-			ViewModel.Navigating(this, e);
-		}
+		private void AuthorizeBrowser_Navigating(object sender, NavigatingCancelEventArgs e) { ViewModel.Navigating(this, e); }
 
 	}
 

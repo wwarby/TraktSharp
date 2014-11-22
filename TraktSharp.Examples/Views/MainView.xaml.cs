@@ -15,13 +15,9 @@ namespace TraktSharp.Examples.Views {
 			DataContext = ViewModel;
 		}
 
-		private void Authorize_Click(object sender, RoutedEventArgs e) {
-			ViewModel.Authorize();
-		}
+		private void Authorize_Click(object sender, RoutedEventArgs e) { ViewModel.Authorize(); }
 
-		private void TestRequest_Click(object sender, RoutedEventArgs e) {
-			ViewModel.TestRequest();
-		}
+		private void TestRequest_Click(object sender, RoutedEventArgs e) { ViewModel.TestRequest(); }
 
 	}
 

@@ -21,7 +21,7 @@ namespace TraktSharp.Entities {
 
 		[JsonProperty(PropertyName = "seasons")]
 		public IEnumerable<TraktSeasonProgress> Seasons { get; set; }
-		
+
 		[JsonProperty(PropertyName = "next_episode")]
 		public TraktEpisode NextEpisode { get; set; }
 

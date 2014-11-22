@@ -8,11 +8,9 @@ using TraktSharp.Request.Checkin;
 
 namespace TraktSharp.Modules {
 
-	public class TraktCheckin {
+	public class TraktCheckinModule {
 
-		public TraktCheckin(TraktClient client) {
-			Client = client;
-		}
+		public TraktCheckinModule(TraktClient client) { Client = client; }
 
 		public TraktClient Client { get; private set; }
 
@@ -49,8 +47,8 @@ namespace TraktSharp.Modules {
 		public async Task<TraktCheckinEpisodeResponse> CheckinItemAsync(string showTitle, int season, int episode, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktCheckinEpisodeRequest(Client) {
 				RequestBody = new TraktCheckinEpisodeRequestBody {
-					Show = new TraktShow { Title = showTitle },
-					Episode = new TraktEpisode { Season = season, Number = episode },
+					Show = new TraktShow {Title = showTitle},
+					Episode = new TraktEpisode {Season = season, Number = episode},
 					Sharing = sharing,
 					Message = message,
 					AppVersion = appVersion,
@@ -62,9 +60,7 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task DeleteAsync() {
-			await new TraktCheckinDeleteRequest(Client).SendAsync();
-		}
+		public async Task DeleteAsync() { await new TraktCheckinDeleteRequest(Client).SendAsync(); }
 
 	}
 

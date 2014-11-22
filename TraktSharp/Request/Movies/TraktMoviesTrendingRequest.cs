@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TraktSharp.Entities.Response.Movies;
-using TraktSharp.Entities.Response.Shows;
 
 namespace TraktSharp.Request.Movies {
 
@@ -11,11 +10,17 @@ namespace TraktSharp.Request.Movies {
 
 		public TraktMoviesTrendingRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/trending"; } }
+		protected override string PathTemplate {
+			get { return "movies/trending"; }
+		}
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirementOptions OAuthRequirement {
+			get { return OAuthRequirementOptions.NotRequired; }
+		}
 
-		protected override bool SupportsPagination { get { return true; } }
+		protected override bool SupportsPagination {
+			get { return true; }
+		}
 
 	}
 

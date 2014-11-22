@@ -7,11 +7,9 @@ using TraktSharp.Request.Search;
 
 namespace TraktSharp.Modules {
 
-	public class TraktSearch {
+	public class TraktSearchModule {
 
-		public TraktSearch(TraktClient client) {
-			Client = client;
-		}
+		public TraktSearchModule(TraktClient client) { Client = client; }
 
 		public TraktClient Client { get; private set; }
 

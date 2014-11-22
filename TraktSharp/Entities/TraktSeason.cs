@@ -7,9 +7,7 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktSeason {
 
-		public TraktSeason() {
-			Ids = new TraktSeasonIds();
-		}
+		public TraktSeason() { Ids = new TraktSeasonIds(); }
 
 		[JsonProperty(PropertyName = "number")]
 		public int? Number { get; set; }

@@ -23,6 +23,9 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "ids")]
 		public TraktMovieIds Ids { get; set; }
 
+		[JsonProperty(PropertyName = "images")]
+		public TraktMovieImages Images { get; set; }
+
 		[JsonProperty(PropertyName = "tagline")]
 		public string Tagline { get; set; }
 
@@ -56,9 +59,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "genres")]
 		public IEnumerable<string> Genres { get; set; }
 
-		public bool IsPostable() {
-			return (!string.IsNullOrEmpty(Title) && Year.HasValue) || (Ids != null && Ids.HasAnyValuesSet());
-		}
+		public bool IsPostable() { return (!string.IsNullOrEmpty(Title) && Year.HasValue) || (Ids != null && Ids.HasAnyValuesSet()); }
 
 	}
 

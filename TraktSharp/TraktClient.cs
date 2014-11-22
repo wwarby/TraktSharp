@@ -9,13 +9,14 @@ namespace TraktSharp {
 
 		private HttpMessageHandler _handler;
 
-		public TraktClient(HttpMessageHandler handler = null) {
-			_handler = handler;
+		public TraktClient(HttpMessageHandler handler = null) { _handler = handler; }
+
+		public HttpMessageHandler HttpMessageHandler {
+			get { return _handler; }
 		}
 
-		public HttpMessageHandler HttpMessageHandler { get { return _handler;  } }
-
 		private TraktConfiguration _configuration;
+
 		public TraktConfiguration Configuration {
 			get {
 				_configuration = _configuration ?? new TraktConfiguration(this);
@@ -25,6 +26,7 @@ namespace TraktSharp {
 		}
 
 		private TraktAuthentication _authentication;
+
 		public TraktAuthentication Authentication {
 			get {
 				_authentication = _authentication ?? new TraktAuthentication(this);
@@ -33,91 +35,111 @@ namespace TraktSharp {
 			set { _authentication = value; }
 		}
 
-		private TraktOAuth _oauth;
-		public TraktOAuth OAuth {
+		private TraktOAuthModule _oauth;
+
+		public TraktOAuthModule OAuth {
 			get {
-				_oauth = _oauth ?? new TraktOAuth(this);
+				_oauth = _oauth ?? new TraktOAuthModule(this);
 				return _oauth;
 			}
 			set { _oauth = value; }
 		}
 
-		private TraktCalendars _calendars;
-		public TraktCalendars Calendars {
+		private TraktCalendarsModule _calendars;
+
+		public TraktCalendarsModule Calendars {
 			get {
-				_calendars = _calendars ?? new TraktCalendars(this);
+				_calendars = _calendars ?? new TraktCalendarsModule(this);
 				return _calendars;
 			}
 			set { _calendars = value; }
 		}
 
-		private TraktCheckin _checkin;
-		public TraktCheckin Checkin {
+		private TraktCheckinModule _checkin;
+
+		public TraktCheckinModule Checkin {
 			get {
-				_checkin = _checkin ?? new TraktCheckin(this);
+				_checkin = _checkin ?? new TraktCheckinModule(this);
 				return _checkin;
 			}
 			set { _checkin = value; }
 		}
 
-		private TraktComments _comments;
-		public TraktComments Comments {
+		private TraktCommentsModule _comments;
+
+		public TraktCommentsModule Comments {
 			get {
-				_comments = _comments ?? new TraktComments(this);
+				_comments = _comments ?? new TraktCommentsModule(this);
 				return _comments;
 			}
 			set { _comments = value; }
 		}
 
-		private TraktGenres _genres;
-		public TraktGenres Genres {
+		private TraktGenresModule _genres;
+
+		public TraktGenresModule Genres {
 			get {
-				_genres = _genres ?? new TraktGenres(this);
+				_genres = _genres ?? new TraktGenresModule(this);
 				return _genres;
 			}
 			set { _genres = value; }
 		}
 
-		private TraktMovies _movies;
-		public TraktMovies Movies {
+		private TraktMoviesModule _movies;
+
+		public TraktMoviesModule Movies {
 			get {
-				_movies = _movies ?? new TraktMovies(this);
+				_movies = _movies ?? new TraktMoviesModule(this);
 				return _movies;
 			}
 			set { _movies = value; }
 		}
 
-		private TraktSearch _search;
-		public TraktSearch Search {
+		private TraktPeopleModule _people;
+
+		public TraktPeopleModule People {
 			get {
-				_search = _search ?? new TraktSearch(this);
+				_people = _people ?? new TraktPeopleModule(this);
+				return _people;
+			}
+			set { _people = value; }
+		}
+
+		private TraktSearchModule _search;
+
+		public TraktSearchModule Search {
+			get {
+				_search = _search ?? new TraktSearchModule(this);
 				return _search;
 			}
 			set { _search = value; }
 		}
 
-		private TraktShows _shows;
-		public TraktShows Shows {
+		private TraktShowsModule _shows;
+
+		public TraktShowsModule Shows {
 			get {
-				_shows = _shows ?? new TraktShows(this);
+				_shows = _shows ?? new TraktShowsModule(this);
 				return _shows;
 			}
 			set { _shows = value; }
 		}
 
-		private TraktSeasons _seasons;
-		public TraktSeasons Seasons {
+		private TraktSeasonsModule _seasons;
+
+		public TraktSeasonsModule Seasons {
 			get {
-				_seasons = _seasons ?? new TraktSeasons(this);
+				_seasons = _seasons ?? new TraktSeasonsModule(this);
 				return _seasons;
 			}
 			set { _seasons = value; }
 		}
 
-		private TraktEpisodes _episodes;
-		public TraktEpisodes Episodes {
+		private TraktEpisodesModule _episodes;
+
+		public TraktEpisodesModule Episodes {
 			get {
-				_episodes = _episodes ?? new TraktEpisodes(this);
+				_episodes = _episodes ?? new TraktEpisodesModule(this);
 				return _episodes;
 			}
 			set { _episodes = value; }

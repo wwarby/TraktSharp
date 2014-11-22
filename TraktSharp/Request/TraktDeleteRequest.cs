@@ -9,11 +9,17 @@ namespace TraktSharp.Request {
 
 		protected TraktDeleteRequest(TraktClient client) : base(client) { }
 
-		protected override HttpMethod Method { get { return HttpMethod.Delete; } }
+		protected override HttpMethod Method {
+			get { return HttpMethod.Delete; }
+		}
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Required; } }
+		protected override OAuthRequirementOptions OAuthRequirement {
+			get { return OAuthRequirementOptions.Required; }
+		}
 
-		protected override bool SupportsPagination { get { return false; } }
+		protected override bool SupportsPagination {
+			get { return false; }
+		}
 
 	}
 

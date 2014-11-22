@@ -7,11 +7,9 @@ using TraktSharp.Request.Genres;
 
 namespace TraktSharp.Modules {
 
-	public class TraktGenres {
+	public class TraktGenresModule {
 
-		public TraktGenres(TraktClient client) {
-			Client = client;
-		}
+		public TraktGenresModule(TraktClient client) { Client = client; }
 
 		public TraktClient Client { get; private set; }
 

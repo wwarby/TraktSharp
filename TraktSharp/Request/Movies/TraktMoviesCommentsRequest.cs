@@ -9,17 +9,23 @@ namespace TraktSharp.Request.Movies {
 
 		public TraktMoviesCommentsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/{id}/comments"; } }
+		protected override string PathTemplate {
+			get { return "movies/{id}/comments"; }
+		}
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirementOptions OAuthRequirement {
+			get { return OAuthRequirementOptions.NotRequired; }
+		}
 
-		protected override bool SupportsPagination { get { return true; } }
+		protected override bool SupportsPagination {
+			get { return true; }
+		}
 
 		public string Id { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
-				{ "id", Id }
+				{"id", Id}
 			};
 		}
 

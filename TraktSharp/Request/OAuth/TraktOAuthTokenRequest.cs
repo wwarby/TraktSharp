@@ -10,12 +10,14 @@ namespace TraktSharp.Request.OAuth {
 
 		public TraktOAuthTokenRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "oauth/token"; } }
+		protected override string PathTemplate {
+			get { return "oauth/token"; }
+		}
 
 		protected override void ValidateParameters() {
 			var requestBody = RequestBody as TraktOAuthTokenRequestBody;
 			if (requestBody == null) {
-				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof(TraktOAuthTokenRequestBody).Name));
+				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof (TraktOAuthTokenRequestBody).Name));
 			}
 			if (string.IsNullOrEmpty(requestBody.Code)) {
 				throw new ArgumentException("AuthorizationCode not set. This is usually set by calling ParseAuthorizationResponse().");

@@ -13,13 +13,21 @@ namespace TraktSharp.Helpers {
 		/// <param name="path">The path to the directory to be emptied</param>
 		public static void EmptyDirectory(string path) {
 			EnsureDirectoryExists(path);
-			foreach (var p in Directory.GetDirectories(path)) { Directory.Delete(p, true); }
-			foreach (var p in Directory.GetFiles(path)) { File.Delete(p); }
+			foreach (var p in Directory.GetDirectories(path)) {
+				Directory.Delete(p, true);
+			}
+			foreach (var p in Directory.GetFiles(path)) {
+				File.Delete(p);
+			}
 		}
 
 		/// <summary>Creates a directory (and any intermediate directories in the path) if it doesn't already exist</summary>
 		/// <param name="path">The path to a folder that must be created if it doesn't exist</param>
-		public static void EnsureDirectoryExists(string path) { if (!Directory.Exists(path)) { Directory.CreateDirectory(path); } }
+		public static void EnsureDirectoryExists(string path) {
+			if (!Directory.Exists(path)) {
+				Directory.CreateDirectory(path);
+			}
+		}
 
 		/// <summary>
 		/// Creates a directory (and any intermediate directories in the path) if it doesn't already exist by taking the
@@ -37,7 +45,7 @@ namespace TraktSharp.Helpers {
 		public static bool DirectoryExists(string path) {
 			try {
 				return Directory.Exists(path);
-			} catch { }
+			} catch {}
 			return false;
 		}
 
@@ -50,9 +58,10 @@ namespace TraktSharp.Helpers {
 		public static bool FileExists(string path) {
 			try {
 				return File.Exists(path);
-			} catch { }
+			} catch {}
 			return false;
 		}
+
 	}
 
 }

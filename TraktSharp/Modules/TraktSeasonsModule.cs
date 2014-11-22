@@ -7,11 +7,9 @@ using TraktSharp.Request.Seasons;
 
 namespace TraktSharp.Modules {
 
-	public class TraktSeasons {
+	public class TraktSeasonsModule {
 
-		public TraktSeasons(TraktClient client) {
-			Client = client;
-		}
+		public TraktSeasonsModule(TraktClient client) { Client = client; }
 
 		public TraktClient Client { get; private set; }
 

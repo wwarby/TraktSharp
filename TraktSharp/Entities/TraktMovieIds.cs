@@ -19,9 +19,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "tmdb")]
 		public int? Tmdb { get; set; }
 
-		public bool HasAnyValuesSet() {
-			return Trakt.HasValue || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb.HasValue;
-		}
+		public bool HasAnyValuesSet() { return Trakt.HasValue || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb.HasValue; }
 
 	}
 

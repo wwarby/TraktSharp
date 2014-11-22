@@ -1,0 +1,36 @@
+﻿{
+	"title": "Game of Thrones",
+	"year": 2011,
+	"ids": {
+		"trakt": 353,
+		"slug": "game-of-thrones",
+		"tvdb": 121361,
+		"imdb": "tt0944947",
+		"tmdb": 1399,
+		"tvrage": 24493
+	},
+	"images": {
+		"fanart": {
+			"full": "https://walter.trakt.us/images/shows/000/000/353/fanarts/original/5a13b51164.jpg?1409353811",
+			"medium": "https://walter.trakt.us/images/shows/000/000/353/fanarts/medium/5a13b51164.jpg?1409353811",
+			"thumb": "https://walter.trakt.us/images/shows/000/000/353/fanarts/thumb/5a13b51164.jpg?1409353811"
+		},
+		"poster": {
+			"full": "https://walter.trakt.us/images/shows/000/000/353/posters/original/46cafaec1f.jpg?1409353810",
+			"medium": "https://walter.trakt.us/images/shows/000/000/353/posters/medium/46cafaec1f.jpg?1409353810",
+			"thumb": "https://walter.trakt.us/images/shows/000/000/353/posters/thumb/46cafaec1f.jpg?1409353810"
+		},
+		"logo": {
+			"full": "https://walter.trakt.us/images/shows/000/000/353/logos/original/13b614ad43.png?1409353812"
+		},
+		"clearart": {
+			"full": "https://walter.trakt.us/images/shows/000/000/353/cleararts/original/5cbde9e647.png?1409353813"
+		},
+		"banner": {
+			"full": "https://walter.trakt.us/images/shows/000/000/353/banners/original/9fefff703d.jpg?1409353813"
+		},
+		"thumb": {
+			"full": "https://walter.trakt.us/images/shows/000/000/353/thumbs/original/607f27fade.jpg?1409353814"
+		}
+	}
+}

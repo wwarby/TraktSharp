@@ -1,0 +1,38 @@
+﻿{
+	"cast": [
+		{
+			"character": "Walter White",
+			"show": {
+				"title": "Breaking Bad",
+				"year": 2008,
+				"ids": {
+					"trakt": 1,
+					"slug": "breaking-bad",
+					"tvdb": 81189,
+					"imdb": "tt0903747",
+					"tmdb": 1396,
+					"tvrage": 18164
+				}
+			}
+		}
+	],
+	"crew": {
+		"production": [
+			{
+				"job": "Producer",
+				"show": {
+					"title": "Breaking Bad",
+					"year": 2008,
+					"ids": {
+						"trakt": 1,
+						"slug": "breaking-bad",
+						"tvdb": 81189,
+						"imdb": "tt0903747",
+						"tmdb": 1396,
+						"tvrage": 18164
+					}
+				}
+			}
+		]
+	}
+}

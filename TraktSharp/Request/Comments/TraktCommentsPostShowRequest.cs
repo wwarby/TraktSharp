@@ -9,12 +9,14 @@ namespace TraktSharp.Request.Comments {
 
 		public TraktCommentsPostShowRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "comments"; } }
+		protected override string PathTemplate {
+			get { return "comments"; }
+		}
 
 		protected override void ValidateParameters() {
 			var requestBody = RequestBody as TraktShowComment;
 			if (requestBody == null) {
-				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof(TraktShowComment).Name));
+				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof (TraktShowComment).Name));
 			}
 			if (string.IsNullOrEmpty(requestBody.Comment)) {
 				throw new ArgumentException("Comment not set");

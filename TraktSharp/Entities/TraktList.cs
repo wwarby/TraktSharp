@@ -7,9 +7,7 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktList {
 
-		public TraktList() {
-			Ids = new TraktListIds();
-		}
+		public TraktList() { Ids = new TraktListIds(); }
 
 		[JsonProperty(PropertyName = "name")]
 		public string Name { get; set; }
@@ -38,9 +36,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "ids")]
 		public TraktListIds Ids { get; set; }
 
-		public bool IsPostable(TraktShow show = null) {
-			return Ids != null && Ids.HasAnyValuesSet();
-		}
+		public bool IsPostable(TraktShow show = null) { return Ids != null && Ids.HasAnyValuesSet(); }
 
 	}
 

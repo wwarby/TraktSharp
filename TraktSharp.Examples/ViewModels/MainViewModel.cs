@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -24,24 +25,38 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public string Username {
 			get { return Client.Authentication.Username; }
-			set { Client.Authentication.Username = value; NotifyPropertyChanged(); }
+			set {
+				Client.Authentication.Username = value;
+				NotifyPropertyChanged();
+			}
 		}
 
 		public string ClientId {
 			get { return Client.Authentication.ClientId; }
-			set { Client.Authentication.ClientId = value; NotifyPropertyChanged(); }
+			set {
+				Client.Authentication.ClientId = value;
+				NotifyPropertyChanged();
+			}
 		}
 
 		public string ClientSecret {
 			get { return Client.Authentication.ClientSecret; }
-			set { Client.Authentication.ClientSecret = value; NotifyPropertyChanged(); }
+			set {
+				Client.Authentication.ClientSecret = value;
+				NotifyPropertyChanged();
+			}
 		}
 
-		public string AuthorizationCode { get { return Client.Authentication.AuthorizationCode; } }
+		public string AuthorizationCode {
+			get { return Client.Authentication.AuthorizationCode; }
+		}
 
 		public TraktAccessToken AccessToken {
 			get { return Client.Authentication.CurrentAccessToken; }
-			set { Client.Authentication.CurrentAccessToken = value; NotifyPropertyChanged(); }
+			set {
+				Client.Authentication.CurrentAccessToken = value;
+				NotifyPropertyChanged();
+			}
 		}
 
 		public void Authorize() {
@@ -53,15 +68,11 @@ namespace TraktSharp.Examples.ViewModels {
 		}
 
 		public async void TestRequest() {
-
 			var result = await Client.Calendars.MoviesAsync();
 			Debugger.Break();
-
 		}
 
-		private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
-			TrySaveState();
-		}
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs e) { TrySaveState(); }
 
 		public static string StateSerializationPath {
 			get {
@@ -77,7 +88,7 @@ namespace TraktSharp.Examples.ViewModels {
 				Username = result.Username;
 				ClientId = result.ClientId;
 				ClientSecret = result.ClientSecret;
-			} catch { }
+			} catch {}
 		}
 
 		public void TrySaveState() {
@@ -89,7 +100,7 @@ namespace TraktSharp.Examples.ViewModels {
 					ClientId = ClientId,
 					ClientSecret = ClientSecret
 				}, Formatting.Indented), Encoding.UTF8);
-			} catch { }
+			} catch {}
 		}
 
 	}

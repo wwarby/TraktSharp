@@ -6,11 +6,9 @@ using TraktSharp.Request.Calendars;
 
 namespace TraktSharp.Modules {
 
-	public class TraktCalendars {
+	public class TraktCalendarsModule {
 
-		public TraktCalendars(TraktClient client) {
-			Client = client;
-		}
+		public TraktCalendarsModule(TraktClient client) { Client = client; }
 
 		public TraktClient Client { get; private set; }
 

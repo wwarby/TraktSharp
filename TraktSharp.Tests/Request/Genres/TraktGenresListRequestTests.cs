@@ -15,24 +15,22 @@ namespace TraktSharp.Tests.Request.Genres {
 
 		[TestMethod]
 		public async Task TestTraktGenresListRequest() {
-
 			var request = new TraktGenresListRequest(Client);
 			FakeResponseHandler.AddFakeResponse(request.Url, HttpStatusCode.OK, @"Genres\List.json");
-			
+
 			var showsResult = (await request.SendAsync()).ToList();
 			request.Type = GenreTypeOptions.Shows;
 
 			var moviesResult = (await request.SendAsync()).ToList();
 			request.Type = GenreTypeOptions.Movies;
 
-			showsResult.Should().BeOfType(typeof(List<TraktGenresListResponseItem>));
+			showsResult.Should().BeOfType(typeof (List<TraktGenresListResponseItem>));
 			showsResult.Should().HaveCount(32);
 			showsResult.First().Name.Should().Be("action");
 			showsResult.First().Slug.Should().Be("action");
 
-			moviesResult.Should().BeOfType(typeof(List<TraktGenresListResponseItem>));
+			moviesResult.Should().BeOfType(typeof (List<TraktGenresListResponseItem>));
 			moviesResult.ShouldBeEquivalentTo(showsResult);
-
 		}
 
 	}

@@ -10,11 +10,17 @@ namespace TraktSharp.Request.Seasons {
 
 		public TraktSeasonsSeasonRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}"; } }
+		protected override string PathTemplate {
+			get { return "shows/{id}/seasons/{season}"; }
+		}
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirementOptions OAuthRequirement {
+			get { return OAuthRequirementOptions.NotRequired; }
+		}
 
-		protected override bool SupportsPagination { get { return false; } }
+		protected override bool SupportsPagination {
+			get { return false; }
+		}
 
 		public string Id { get; set; }
 
@@ -22,14 +28,18 @@ namespace TraktSharp.Request.Seasons {
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
-				{ "id", Id },
-				{ "season", Season.ToString(CultureInfo.InvariantCulture) }
+				{"id", Id},
+				{"season", Season.ToString(CultureInfo.InvariantCulture)}
 			};
 		}
 
 		protected override void ValidateParameters() {
-			if (string.IsNullOrEmpty(Id)) { throw new ArgumentException("Id not set."); }
-			if (Season <= 0) { throw new ArgumentException("Season must be a positive integer."); }
+			if (string.IsNullOrEmpty(Id)) {
+				throw new ArgumentException("Id not set.");
+			}
+			if (Season <= 0) {
+				throw new ArgumentException("Season must be a positive integer.");
+			}
 		}
 
 	}

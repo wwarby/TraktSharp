@@ -20,6 +20,7 @@ namespace TraktSharp {
 		public TraktClient Client { get; private set; }
 
 		private TraktAccessToken _currentAccessToken;
+
 		public TraktAccessToken CurrentAccessToken {
 			get { return _currentAccessToken = _currentAccessToken ?? new TraktAccessToken(); }
 			set { _currentAccessToken = value; }
@@ -63,7 +64,6 @@ namespace TraktSharp {
 				GrantType = EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode)
 			});
 		}
-
 
 	}
 

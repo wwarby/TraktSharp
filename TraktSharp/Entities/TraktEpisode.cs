@@ -47,9 +47,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "updated_at")]
 		public DateTime? UpdatedAt { get; set; }
 
-		public bool IsPostable(TraktShow show = null) {
-			return (Ids != null && Ids.HasAnyValuesSet()) || (show != null && !string.IsNullOrEmpty(show.Title) && Season.HasValue && Number.HasValue);
-		}
+		public bool IsPostable(TraktShow show = null) { return (Ids != null && Ids.HasAnyValuesSet()) || (show != null && !string.IsNullOrEmpty(show.Title) && Season.HasValue && Number.HasValue); }
 
 	}
 

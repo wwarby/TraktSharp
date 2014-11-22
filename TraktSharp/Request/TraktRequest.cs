@@ -115,7 +115,9 @@ namespace TraktSharp.Request {
 
 		protected string RequestBodyJson {
 			get {
-				if (RequestBody == null) { return null; }
+				if (RequestBody == null) {
+					return null;
+				}
 				return JsonConvert.SerializeObject(RequestBody, new JsonSerializerSettings {
 					Formatting = Formatting.Indented,
 					NullValueHandling = NullValueHandling.Ignore,
@@ -137,7 +139,6 @@ namespace TraktSharp.Request {
 		}
 
 		public async Task<TResponse> SendAsync() {
-			
 			ValidateParameters(); //Expected to throw an exception on invalid parameters.
 
 			HttpClient cl;
@@ -180,10 +181,10 @@ namespace TraktSharp.Request {
 						} catch {}
 						traktConflictErrorResponse = traktConflictErrorResponse ?? new TraktConflictErrorResponse();
 						throw new TraktConflictException(traktErrorResponse, Url, RequestBodyJson, responseText, traktConflictErrorResponse.ExpiresAt);
-					//case HttpStatusCode.UnprocessableEntity: //TODO: No such enumeration member. Must decide what to do about this
-					//	throw new TraktUnprocessableEntityException(traktError, Url, RequestBodyJson, responseText);
-					//case HttpStatusCode.RateLimitExceeded: //TODO: No such enumeration member. Must decide what to do about this
-					//	throw new TraktRateLimitExceededException(traktError, Url, RequestBodyJson, responseText);
+						//case HttpStatusCode.UnprocessableEntity: //TODO: No such enumeration member. Must decide what to do about this
+						//	throw new TraktUnprocessableEntityException(traktError, Url, RequestBodyJson, responseText);
+						//case HttpStatusCode.RateLimitExceeded: //TODO: No such enumeration member. Must decide what to do about this
+						//	throw new TraktRateLimitExceededException(traktError, Url, RequestBodyJson, responseText);
 					case HttpStatusCode.InternalServerError:
 						throw new TraktServerErrorException(traktErrorResponse, Url, RequestBodyJson, responseText);
 					case HttpStatusCode.ServiceUnavailable:
@@ -192,9 +193,10 @@ namespace TraktSharp.Request {
 				throw new TraktException(message, response.StatusCode, traktErrorResponse, Url, RequestBodyJson, responseText);
 			}
 
-			if (string.IsNullOrEmpty(responseText)) { return default(TResponse); }
+			if (string.IsNullOrEmpty(responseText)) {
+				return default(TResponse);
+			}
 			return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TResponse>(responseText));
-
 		}
 
 	}

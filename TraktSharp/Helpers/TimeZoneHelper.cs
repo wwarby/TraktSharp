@@ -7,6 +7,7 @@ namespace TraktSharp.Helpers {
 	public static class TimeZoneHelper {
 
 		private static Dictionary<string, string> _olsonTimeZoneMappings;
+
 		private static Dictionary<string, string> OlsonTimeZoneMappings {
 			get {
 				return _olsonTimeZoneMappings = _olsonTimeZoneMappings ?? new Dictionary<string, string> {
@@ -140,14 +141,18 @@ namespace TraktSharp.Helpers {
 		/// <returns>The TimeZoneInfo corresponding to the Olson time zone ID, or <c>null</c> if <paramref name="olsonTimeZoneId"/> in invalid</returns>
 		/// <remarks>Adapted from http://stackoverflow.com/questions/5996320/net-timezoneinfo-from-olson-time-zone </remarks>
 		public static TimeZoneInfo OlsonTimeZoneToTimeZoneInfo(string olsonTimeZoneId) {
-			if (string.IsNullOrEmpty("olsonTimeZoneId")) { throw new ArgumentNullException("olsonTimeZoneId", "Olson time zone not specified"); }
-			if (!OlsonTimeZoneMappings.ContainsKey(olsonTimeZoneId)) { throw new ArgumentException("Invalid Olson time zone specified", "olsonTimeZoneId"); }
+			if (string.IsNullOrEmpty("olsonTimeZoneId")) {
+				throw new ArgumentNullException("olsonTimeZoneId", "Olson time zone not specified");
+			}
+			if (!OlsonTimeZoneMappings.ContainsKey(olsonTimeZoneId)) {
+				throw new ArgumentException("Invalid Olson time zone specified", "olsonTimeZoneId");
+			}
 			string windowsTimeZoneId;
 			TimeZoneInfo windowsTimeZone = null;
 			if (OlsonTimeZoneMappings.TryGetValue(olsonTimeZoneId, out windowsTimeZoneId)) {
 				try {
 					windowsTimeZone = TimeZoneInfo.FindSystemTimeZoneById(windowsTimeZoneId);
-				} catch (TimeZoneNotFoundException) { } catch (InvalidTimeZoneException) { }
+				} catch (TimeZoneNotFoundException) {} catch (InvalidTimeZoneException) {}
 			}
 			return windowsTimeZone;
 		}

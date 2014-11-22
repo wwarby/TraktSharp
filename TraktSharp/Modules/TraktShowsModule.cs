@@ -8,11 +8,9 @@ using TraktSharp.Request.Shows;
 
 namespace TraktSharp.Modules {
 
-	public class TraktShows {
+	public class TraktShowsModule {
 
-		public TraktShows(TraktClient client) {
-			Client = client;
-		}
+		public TraktShowsModule(TraktClient client) { Client = client; }
 
 		public TraktClient Client { get; private set; }
 

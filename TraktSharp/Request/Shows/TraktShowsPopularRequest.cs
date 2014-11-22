@@ -10,11 +10,17 @@ namespace TraktSharp.Request.Shows {
 
 		public TraktShowsPopularRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/popular"; } }
+		protected override string PathTemplate {
+			get { return "shows/popular"; }
+		}
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirementOptions OAuthRequirement {
+			get { return OAuthRequirementOptions.NotRequired; }
+		}
 
-		protected override bool SupportsPagination { get { return true; } }
+		protected override bool SupportsPagination {
+			get { return true; }
+		}
 
 	}
 

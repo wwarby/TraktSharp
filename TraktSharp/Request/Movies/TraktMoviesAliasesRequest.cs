@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TraktSharp.Entities;
 using TraktSharp.Entities.Response.Movies;
 
 namespace TraktSharp.Request.Movies {
@@ -10,17 +9,23 @@ namespace TraktSharp.Request.Movies {
 
 		public TraktMoviesAliasesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/{id}/aliases"; } }
+		protected override string PathTemplate {
+			get { return "movies/{id}/aliases"; }
+		}
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirementOptions OAuthRequirement {
+			get { return OAuthRequirementOptions.NotRequired; }
+		}
 
-		protected override bool SupportsPagination { get { return false; } }
+		protected override bool SupportsPagination {
+			get { return false; }
+		}
 
 		public string Id { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
-				{ "id", Id }
+				{"id", Id}
 			};
 		}
 

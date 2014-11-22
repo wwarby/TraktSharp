@@ -8,9 +8,7 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktRatings {
 
-		public TraktRatings() {
-			Distribution = new Dictionary<string, int>();
-		}
+		public TraktRatings() { Distribution = new Dictionary<string, int>(); }
 
 		[JsonProperty(PropertyName = "rating")]
 		public decimal Rating { get; set; }

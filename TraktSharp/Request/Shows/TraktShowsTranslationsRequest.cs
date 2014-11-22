@@ -10,11 +10,17 @@ namespace TraktSharp.Request.Shows {
 
 		public TraktShowsTranslationsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/translations/{language}"; } }
+		protected override string PathTemplate {
+			get { return "shows/{id}/translations/{language}"; }
+		}
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirementOptions OAuthRequirement {
+			get { return OAuthRequirementOptions.NotRequired; }
+		}
 
-		protected override bool SupportsPagination { get { return false; } }
+		protected override bool SupportsPagination {
+			get { return false; }
+		}
 
 		public string Id { get; set; }
 
@@ -22,8 +28,8 @@ namespace TraktSharp.Request.Shows {
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
-				{ "id", Id },
-				{ "language", Language },
+				{"id", Id},
+				{"language", Language},
 			};
 		}
 
