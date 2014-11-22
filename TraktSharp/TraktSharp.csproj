@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\EnumInfo.cs" />
+    <Compile Include="Entities\RequestBody\Auth\TraktAuthLoginRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Checkin\TraktCheckinEpisodeRequestBody.cs" />
+    <Compile Include="Entities\Response\Auth\TraktAuthLoginResponse.cs" />
     <Compile Include="Entities\Response\Checkin\TraktCheckinEpisodeResponse.cs" />
     <Compile Include="Entities\Response\Movies\TraktMoviesReleasesResponseItem.cs" />
     <Compile Include="Entities\Response\Movies\TraktMoviesTranslationsResponseItem.cs" />
@@ -82,6 +84,10 @@
     <Compile Include="Factories\TraktMovieFactory.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\TimeZoneHelper.cs" />
+    <Compile Include="Modules\TraktAuthModule.cs" />
+    <Compile Include="Modules\TraktUsersModule.cs" />
+    <Compile Include="Modules\TraktSyncModule.cs" />
+    <Compile Include="Modules\TraktScrobbleModule.cs" />
     <Compile Include="Modules\TraktRecommendationsModule.cs" />
     <Compile Include="Modules\TraktCommentsModule.cs" />
     <Compile Include="Modules\TraktCheckinModule.cs" />
@@ -93,6 +99,8 @@
     <Compile Include="Entities\TraktSharingOptions.cs" />
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktPeopleModule.cs" />
+    <Compile Include="Request\Auth\TraktAuthLogoutRequest.cs" />
+    <Compile Include="Request\Auth\TraktAuthLoginRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsPremieresRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsNewRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsMoviesRequest.cs" />
