@@ -76,6 +76,9 @@
     <Compile Include="Exceptions\TraktUnauthorizedException.cs" />
     <Compile Include="Exceptions\TraktBadRequestException.cs" />
     <Compile Include="Exceptions\TraktNotFoundException.cs" />
+    <Compile Include="Factories\TraktShowFactory.cs" />
+    <Compile Include="Factories\TraktEpisodeFactory.cs" />
+    <Compile Include="Factories\TraktMovieFactory.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\TimeZoneHelper.cs" />
     <Compile Include="Modules\TraktCommentsModule.cs" />
@@ -94,10 +97,13 @@
     <Compile Include="Request\Checkin\TraktCheckinDeleteRequest.cs" />
     <Compile Include="Request\Checkin\TraktCheckinEpisodeRequest.cs" />
     <Compile Include="Request\Checkin\TraktCheckinMovieRequest.cs" />
+    <Compile Include="Request\Comments\TraktCommentsDeleteRequest.cs" />
+    <Compile Include="Request\Comments\TraktCommentsUpdateRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostListRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostEpisodeRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostShowRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostMovieRequest.cs" />
+    <Compile Include="Request\Comments\TraktCommentsGetRequest.cs" />
     <Compile Include="Request\Genres\TraktGenresListRequest.cs" />
     <Compile Include="Request\Movies\TraktMoviesAliasesRequest.cs" />
     <Compile Include="Request\Movies\TraktMoviesReleasesRequest.cs" />
@@ -185,7 +191,11 @@
     <Compile Include="Entities\TraktShowImages.cs" />
     <Compile Include="Entities\TraktShowProgress.cs" />
     <Compile Include="Entities\TraktUser.cs" />
+    <Compile Include="Request\TraktDeleteByIdRequest.cs" />
+    <Compile Include="Request\TraktPutByIdRequest.cs" />
+    <Compile Include="Request\TraktGetByIdRequest.cs" />
     <Compile Include="Request\TraktGetRequest.cs" />
+    <Compile Include="Request\TraktPutRequest.cs" />
     <Compile Include="Request\TraktPostRequest.cs" />
     <Compile Include="Request\TraktDeleteRequest.cs" />
     <Compile Include="TraktAuthentication.cs" />

@@ -6,7 +6,7 @@ using TraktSharp.Helpers;
 
 namespace TraktSharp.Request.Search {
 
-	public class TraktIdLookupRequest : TraktGetRequest<IEnumerable<TraktSearchResult>> {
+	public class TraktIdLookupRequest : TraktGetByIdRequest<IEnumerable<TraktSearchResult>> {
 
 		public TraktIdLookupRequest(TraktClient client) : base(client) { }
 
@@ -16,21 +16,12 @@ namespace TraktSharp.Request.Search {
 
 		protected override bool SupportsPagination { get { return true; } }
 
-		public string Id { get; set; }
-
 		public IdLookupTypeOptions IdType { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
-			var ret = base.GetQueryStringParameters(queryStringParameters).ToDictionary(o => o.Key, o => o.Value);
-			ret["id_type"] = EnumsHelper.GetDescription(IdType);
-			ret["id"] = Id;
-			return ret;
-		}
-
-		protected override void ValidateParameters() {
-			if (string.IsNullOrEmpty(Id)) {
-				throw new ArgumentException("Id not set.");
-			}
+			return base.GetPathParameters(queryStringParameters).Union(new Dictionary<string, string> {
+				{"id_type", EnumsHelper.GetDescription(IdType)}
+			});
 		}
 
 	}

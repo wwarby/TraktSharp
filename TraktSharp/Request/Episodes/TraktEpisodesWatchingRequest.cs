@@ -6,7 +6,7 @@ using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Episodes {
 
-	public class TraktEpisodesWatchingRequest : TraktGetRequest<IEnumerable<TraktUser>> {
+	public class TraktEpisodesWatchingRequest : TraktGetByIdRequest<IEnumerable<TraktUser>> {
 
 		public TraktEpisodesWatchingRequest(TraktClient client) : base(client) { }
 
@@ -14,26 +14,19 @@ namespace TraktSharp.Request.Episodes {
 
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
-		protected override bool SupportsPagination { get { return false; } }
-
-		public string Id { get; set; }
-
 		public int Season { get; set; }
 
 		public int Episode { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
-				{"id", Id},
+			return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
 				{"season", Season.ToString(CultureInfo.InvariantCulture)},
 				{"episode", Episode.ToString(CultureInfo.InvariantCulture)}
-			};
+			});
 		}
 
 		protected override void ValidateParameters() {
-			if (string.IsNullOrEmpty(Id)) {
-				throw new ArgumentException("Id not set.");
-			}
+			base.ValidateParameters();
 			if (Season <= 0) {
 				throw new ArgumentException("Season must be a positive integer.");
 			}

@@ -22,7 +22,7 @@ namespace TraktSharp.Request.Comments {
 			if (requestBody.Show == null) {
 				throw new ArgumentException("Show not set");
 			}
-			if (requestBody.Show.IsPostable()) {
+			if (!requestBody.Show.IsPostable()) {
 				throw new ArgumentException("Either show title or at least one id value must be set");
 			}
 		}

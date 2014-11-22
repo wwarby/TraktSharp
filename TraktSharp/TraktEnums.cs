@@ -99,4 +99,52 @@ namespace TraktSharp {
 
 	}
 
+	public enum StringMovieIdType {
+
+		Auto,
+		Slug,
+		Imdb
+
+	}
+
+	public enum IntMovieIdType {
+
+		Trakt,
+		Tmdb
+
+	}
+
+	public enum StringEpisodeIdType {
+
+		Auto,
+		Imdb
+
+	}
+
+	public enum IntEpisodeIdType {
+
+		Trakt,
+		Tvdb,
+		Tmdb,
+		TvRage
+
+	}
+
+	public enum StringShowIdType {
+
+		Auto,
+		Slug,
+		Imdb
+
+	}
+
+	public enum IntShowIdType {
+
+		Trakt,
+		Tvdb,
+		Tmdb,
+		TvRage
+
+	}
+
 }

@@ -6,7 +6,7 @@ using TraktSharp.Entities.Response.Movies;
 namespace TraktSharp.Request.Movies {
 
 	[Serializable]
-	public class TraktMoviesReleasesRequest : TraktGetRequest<IEnumerable<TraktMoviesReleasesResponseItem>> {
+	public class TraktMoviesReleasesRequest : TraktGetByIdRequest<IEnumerable<TraktMoviesReleasesResponseItem>> {
 
 		public TraktMoviesReleasesRequest(TraktClient client) : base(client) { }
 
@@ -14,23 +14,16 @@ namespace TraktSharp.Request.Movies {
 
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
-		protected override bool SupportsPagination { get { return false; } }
-
-		public string Id { get; set; }
-
 		public string Language { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
-				{"id", Id},
-				{"language", Language},
-			};
+			return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
+				{"language", Language}
+			});
 		}
 
 		protected override void ValidateParameters() {
-			if (string.IsNullOrEmpty(Id)) {
-				throw new ArgumentException("Id not set.");
-			}
+			base.ValidateParameters();
 			if (string.IsNullOrEmpty(Language)) {
 				throw new ArgumentException("Language not set.");
 			}

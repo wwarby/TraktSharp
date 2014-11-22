@@ -20,7 +20,7 @@ namespace TraktSharp.Request.Checkin {
 			if (requestBody.Movie == null) {
 				throw new ArgumentException("Movie not set");
 			}
-			if (requestBody.Movie.IsPostable()) {
+			if (!requestBody.Movie.IsPostable()) {
 				throw new ArgumentException("Either movie title and year or at least one id value must be set");
 			}
 		}

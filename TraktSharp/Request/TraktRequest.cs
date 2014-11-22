@@ -59,7 +59,7 @@ namespace TraktSharp.Request {
 
 		protected abstract OAuthRequirementOptions OAuthRequirement { get; }
 
-		protected abstract bool SupportsPagination { get; }
+		protected virtual bool SupportsPagination { get { return false; } }
 
 		protected virtual void ValidateParameters() { }
 
