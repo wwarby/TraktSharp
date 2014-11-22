@@ -25,16 +25,13 @@
 			        HorizontalAlignment="Left" />
 			<WrapPanel Margin="5">
 				<Label Width="120" HorizontalContentAlignment="Right" Content="Authorization Code:" />
-				<TextBox Width="500" VerticalContentAlignment="Center" Margin="10,0,0,0"
-				         Text="{Binding AuthorizationCode, Mode=OneWay}" IsReadOnly="True" />
+				<TextBox Width="500" VerticalContentAlignment="Center" Margin="10,0,0,0" Text="{Binding AuthorizationCode, Mode=OneWay}" IsReadOnly="True" />
 			</WrapPanel>
 			<WrapPanel Margin="5">
 				<Label Width="120" HorizontalContentAlignment="Right" Content="Access Token:" />
-				<TextBox Width="500" VerticalContentAlignment="Center" Margin="10,0,0,0"
-				         Text="{Binding AccessToken.AccessToken, Mode=OneWay}" IsReadOnly="True" />
+				<TextBox Width="500" VerticalContentAlignment="Center" Margin="10,0,0,0" Text="{Binding AccessToken.AccessToken, Mode=OneWay}" IsReadOnly="True" />
 			</WrapPanel>
-			<Button Content="Test Request" Width="Auto" Height="30" Padding="20 0" Click="TestRequest_Click" Margin="135,5,0,5"
-			        HorizontalAlignment="Left" />
+			<Button Content="Test Request" Width="Auto" Height="30" Padding="20 0" Click="TestRequest_Click" Margin="135,5,0,5" HorizontalAlignment="Left" />
 		</StackPanel>
 	</Grid>
 </Window>

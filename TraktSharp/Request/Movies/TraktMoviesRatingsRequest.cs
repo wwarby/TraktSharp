@@ -2,7 +2,7 @@
 using System.Linq;
 using TraktSharp.Entities;
 
-namespace TraktSharp.Request.Shows {
+namespace TraktSharp.Request.Movies {
 
 	public class TraktMoviesRatingsRequest : TraktGetByIdRequest<TraktRatings> {
 

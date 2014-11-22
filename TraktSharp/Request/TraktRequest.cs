@@ -14,7 +14,7 @@ using TraktSharp.Helpers;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktRequest<TResponse> {
+	public abstract class TraktRequest<TResponse, TRequestBody> where TRequestBody : class {
 
 		private readonly TraktClient _client;
 
@@ -31,24 +31,14 @@ namespace TraktSharp.Request {
 
 		public bool Authenticate {
 			get {
-				if (_client.Configuration.ForceAuthentication && OAuthRequirement != OAuthRequirementOptions.Forbidden) {
-					return true;
-				}
-				if (OAuthRequirement == OAuthRequirementOptions.Required) {
-					return true;
-				}
-				if (OAuthRequirement == OAuthRequirementOptions.Forbidden) {
-					return false;
-				}
+				if (_client.Configuration.ForceAuthentication && OAuthRequirement != OAuthRequirementOptions.Forbidden) { return true; }
+				if (OAuthRequirement == OAuthRequirementOptions.Required) { return true; }
+				if (OAuthRequirement == OAuthRequirementOptions.Forbidden) { return false; }
 				return _authenticate;
 			}
 			set {
-				if (!value && OAuthRequirement == OAuthRequirementOptions.Required) {
-					throw new InvalidOperationException("This request type requires authentication");
-				}
-				if (!value && OAuthRequirement == OAuthRequirementOptions.Forbidden) {
-					throw new InvalidOperationException("This request type does not allow authentication");
-				}
+				if (!value && OAuthRequirement == OAuthRequirementOptions.Required) { throw new InvalidOperationException("This request type requires authentication"); }
+				if (!value && OAuthRequirement == OAuthRequirementOptions.Forbidden) { throw new InvalidOperationException("This request type does not allow authentication"); }
 				_authenticate = value;
 			}
 		}
@@ -78,12 +68,8 @@ namespace TraktSharp.Request {
 				queryStringParameters["extended"] = EnumsHelper.GetDescription(Extended);
 			}
 			if (SupportsPagination) {
-				if (Pagination.Page != null) {
-					queryStringParameters["page"] = Pagination.Page.ToString();
-				}
-				if (Pagination.Limit != null) {
-					queryStringParameters["limit"] = Pagination.Limit.ToString();
-				}
+				if (Pagination.Page != null) { queryStringParameters["page"] = Pagination.Page.ToString(); }
+				if (Pagination.Limit != null) { queryStringParameters["limit"] = Pagination.Limit.ToString(); }
 			}
 			return queryStringParameters;
 		}
@@ -92,9 +78,7 @@ namespace TraktSharp.Request {
 			get {
 				using (var content = new FormUrlEncodedContent(GetQueryStringParameters(new Dictionary<string, string>()))) {
 					var ret = content.ReadAsStringAsync().Result;
-					if (!string.IsNullOrEmpty(ret)) {
-						ret = string.Format("?{0}", ret);
-					}
+					if (!string.IsNullOrEmpty(ret)) { ret = string.Format("?{0}", ret); }
 					return ret;
 				}
 			}
@@ -102,7 +86,7 @@ namespace TraktSharp.Request {
 
 		public string Url { get { return string.Format("{0}{1}{2}", _client.Configuration.BaseUrl, Path, QueryString); } }
 
-		public object RequestBody { get; set; }
+		public TRequestBody RequestBody { get; set; }
 
 		protected HttpContent RequestBodyContent {
 			get {
@@ -113,9 +97,7 @@ namespace TraktSharp.Request {
 
 		protected string RequestBodyJson {
 			get {
-				if (RequestBody == null) {
-					return null;
-				}
+				if (RequestBody == null) { return null; }
 				return JsonConvert.SerializeObject(RequestBody, new JsonSerializerSettings {
 					Formatting = Formatting.Indented,
 					NullValueHandling = NullValueHandling.Ignore,
@@ -139,13 +121,7 @@ namespace TraktSharp.Request {
 		public async Task<TResponse> SendAsync() {
 			ValidateParameters(); //Expected to throw an exception on invalid parameters.
 
-			HttpClient cl;
-			if (_client.HttpMessageHandler != null) {
-				cl = new HttpClient(_client.HttpMessageHandler);
-			} else {
-				cl = new HttpClient();
-			}
-
+			var cl = _client.HttpMessageHandler != null ? new HttpClient(_client.HttpMessageHandler) : new HttpClient();
 			var request = new HttpRequestMessage(Method, Url) {Content = RequestBodyContent};
 			SetRequestHeaders(request);
 			var response = await cl.SendAsync(request);

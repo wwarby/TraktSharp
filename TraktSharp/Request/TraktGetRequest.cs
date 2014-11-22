@@ -4,8 +4,7 @@ using System.Net.Http;
 
 namespace TraktSharp.Request {
 
-	[Serializable]
-	public abstract class TraktGetRequest<TResponse> : TraktRequest<TResponse> {
+	public abstract class TraktGetRequest<TResponse> : TraktRequest<TResponse, object> {
 
 		protected TraktGetRequest(TraktClient client) : base(client) { }
 

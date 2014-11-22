@@ -36,7 +36,9 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "ids")]
 		public TraktListIds Ids { get; set; }
 
-		public bool IsPostable(TraktShow show = null) { return Ids != null && Ids.HasAnyValuesSet(); }
+		public bool IsPostable() {
+			return Ids != null && Ids.HasAnyValuesSet();
+		}
 
 	}
 

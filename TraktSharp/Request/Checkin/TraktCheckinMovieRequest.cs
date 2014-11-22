@@ -5,22 +5,18 @@ using TraktSharp.Entities.Response.Checkin;
 
 namespace TraktSharp.Request.Checkin {
 
-	[Serializable]
-	public class TraktCheckinMovieRequest : TraktPostRequest<TraktCheckinMovieResponse> {
+	public class TraktCheckinMovieRequest : TraktPostRequest<TraktCheckinMovieResponse, TraktCheckinMovieRequestBody> {
 
 		public TraktCheckinMovieRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "checkin"; } }
 
 		protected override void ValidateParameters() {
-			var requestBody = RequestBody as TraktCheckinMovieRequestBody;
-			if (requestBody == null) {
-				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof (TraktCheckinMovieRequestBody).Name));
-			}
-			if (requestBody.Movie == null) {
+			base.ValidateParameters();
+			if (RequestBody.Movie == null) {
 				throw new ArgumentException("Movie not set");
 			}
-			if (!requestBody.Movie.IsPostable()) {
+			if (!RequestBody.Movie.IsPostable()) {
 				throw new ArgumentException("Either movie title and year or at least one id value must be set");
 			}
 		}

@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace TraktSharp.Request {
 
-	[Serializable]
 	public abstract class TraktDeleteByIdRequest : TraktDeleteRequest {
 
 		protected TraktDeleteByIdRequest(TraktClient client) : base(client) { }

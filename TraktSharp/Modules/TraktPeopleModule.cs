@@ -12,23 +12,35 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktPerson> SummaryAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktPerson> SummaryAsync(TraktPerson person, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await SummaryAsync(person.Ids.GetBestId(), extended);
+		}
+
+		public async Task<TraktPerson> SummaryAsync(string personId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktPeopleSummaryRequest(Client) {
-				Id = id,
+				Id = personId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktMovieCredits> MoviesAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktMovieCredits> MoviesAsync(TraktPerson person, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await MoviesAsync(person.Ids.GetBestId(), extended);
+		}
+
+		public async Task<TraktMovieCredits> MoviesAsync(string personId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktPeopleMoviesRequest(Client) {
-				Id = id,
+				Id = personId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktShowCredits> ShowsAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShowCredits> ShowsAsync(TraktPerson person, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await ShowsAsync(person.Ids.GetBestId(), extended);
+		}
+
+		public async Task<TraktShowCredits> ShowsAsync(string personId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktPeopleShowsRequest(Client) {
-				Id = id,
+				Id = personId,
 				Extended = extended
 			}.SendAsync();
 		}

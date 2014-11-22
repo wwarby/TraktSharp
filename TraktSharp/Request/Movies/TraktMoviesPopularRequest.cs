@@ -5,7 +5,6 @@ using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Movies {
 
-	[Serializable]
 	public class TraktMoviesPopularRequest : TraktGetRequest<IEnumerable<TraktMovie>> {
 
 		public TraktMoviesPopularRequest(TraktClient client) : base(client) { }

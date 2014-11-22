@@ -13,40 +13,76 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktSeason> SummaryAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktSeason> SummaryAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await SummaryAsync(show.Ids.GetBestId(), extended);
+		}
+
+		public async Task<TraktSeason> SummaryAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktSeasonsSummaryRequest(Client) {
-				Id = id,
+				Id = showId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktEpisode>> SeasonAsync(string id, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktEpisode>> SeasonAsync(TraktShow show, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await SeasonAsync(show.Ids.GetBestId(), season, extended);
+		}
+
+		public async Task<IEnumerable<TraktEpisode>> SeasonAsync(TraktShow show, TraktSeason season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await SeasonAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), extended);
+		}
+
+		public async Task<IEnumerable<TraktEpisode>> SeasonAsync(string showId, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktSeasonsSeasonRequest(Client) {
-				Id = id,
+				Id = showId,
 				Season = season,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(string id, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await CommentsAsync(show.Ids.GetBestId(), season, extended);
+		}
+
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, TraktSeason season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await CommentsAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), extended);
+		}
+
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(string showId, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktSeasonsCommentsRequest(Client) {
-				Id = id,
+				Id = showId,
 				Season = season,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktRatings> RatingsAsync(string id, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktRatings> RatingsAsync(TraktShow show, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await RatingsAsync(show.Ids.GetBestId(), season, extended);
+		}
+
+		public async Task<TraktRatings> RatingsAsync(TraktShow show, TraktSeason season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await RatingsAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), extended);
+		}
+
+		public async Task<TraktRatings> RatingsAsync(string showId, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktSeasonsRatingsRequest(Client) {
-				Id = id,
+				Id = showId,
 				Season = season,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUser>> WatchingAsync(string id, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktUser>> WatchingAsync(TraktShow show, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await WatchingAsync(show.Ids.GetBestId(), season, extended);
+		}
+
+		public async Task<IEnumerable<TraktUser>> WatchingAsync(TraktShow show, TraktSeason season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await WatchingAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), extended);
+		}
+
+		public async Task<IEnumerable<TraktUser>> WatchingAsync(string showId, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktSeasonsWatchingRequest(Client) {
-				Id = id,
+				Id = showId,
 				Season = season,
 				Extended = extended
 			}.SendAsync();

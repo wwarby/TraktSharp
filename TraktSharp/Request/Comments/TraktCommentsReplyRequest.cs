@@ -4,11 +4,11 @@ using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Comments {
 
-	public class TraktCommentsUpdateRequest : TraktPutByIdRequest<TraktComment, TraktComment> {
+	public class TraktCommentsReplyRequest : TraktPostByIdRequest<TraktComment, TraktComment> {
 
-		public TraktCommentsUpdateRequest(TraktClient client) : base(client) { }
+		public TraktCommentsReplyRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "comments/{id}"; } }
+		protected override string PathTemplate { get { return "comments/{id}/replies"; } }
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

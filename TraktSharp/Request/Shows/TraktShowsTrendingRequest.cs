@@ -5,7 +5,6 @@ using TraktSharp.Entities.Response.Shows;
 
 namespace TraktSharp.Request.Shows {
 
-	[Serializable]
 	public class TraktShowsTrendingRequest : TraktGetRequest<IEnumerable<TraktShowsTrendingResponseItem>> {
 
 		public TraktShowsTrendingRequest(TraktClient client) : base(client) { }

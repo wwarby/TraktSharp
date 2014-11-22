@@ -15,11 +15,17 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktCheckinMovieResponse> MovieAsync(string id, StringMovieIdType type = StringMovieIdType.Auto, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) { return await MovieAsync(TraktMovieFactory.FromId(id, type), sharing, message, venueId, venueName, appVersion, appDate, extended); }
+		public async Task<TraktCheckinMovieResponse> MovieAsync(string id, StringMovieIdType type, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await MovieAsync(TraktMovieFactory.FromId(id, type), sharing, message, venueId, venueName, appVersion, appDate, extended);
+		}
 
-		public async Task<TraktCheckinMovieResponse> MovieAsync(int id, IntMovieIdType type, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) { return await MovieAsync(TraktMovieFactory.FromId(id, type), sharing, message, venueId, venueName, appVersion, appDate, extended); }
+		public async Task<TraktCheckinMovieResponse> MovieAsync(int id, IntMovieIdType type, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await MovieAsync(TraktMovieFactory.FromId(id, type), sharing, message, venueId, venueName, appVersion, appDate, extended);
+		}
 
-		public async Task<TraktCheckinMovieResponse> MovieAsync(string title, int? year, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) { return await MovieAsync(TraktMovieFactory.FromTitleAndYear(title, year), sharing, message, venueId, venueName, appVersion, appDate, extended); }
+		public async Task<TraktCheckinMovieResponse> MovieAsync(string title, int? year, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await MovieAsync(TraktMovieFactory.FromTitleAndYear(title, year), sharing, message, venueId, venueName, appVersion, appDate, extended);
+		}
 
 		public async Task<TraktCheckinMovieResponse> MovieAsync(TraktMovie movie, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktCheckinMovieRequest(Client) {
@@ -36,11 +42,17 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktCheckinEpisodeResponse> EpisodeAsync(string id, StringEpisodeIdType type = StringEpisodeIdType.Auto, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) { return await EpisodeAsync(TraktEpisodeFactory.FromId(id, type), null, sharing, message, venueId, venueName, appVersion, appDate, extended); }
+		public async Task<TraktCheckinEpisodeResponse> EpisodeAsync(string id, StringEpisodeIdType type, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await EpisodeAsync(TraktEpisodeFactory.FromId(id, type), null, sharing, message, venueId, venueName, appVersion, appDate, extended);
+		}
 
-		public async Task<TraktCheckinEpisodeResponse> EpisodeAsync(int id, IntEpisodeIdType type, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) { return await EpisodeAsync(TraktEpisodeFactory.FromId(id, type), null, sharing, message, venueId, venueName, appVersion, appDate, extended); }
+		public async Task<TraktCheckinEpisodeResponse> EpisodeAsync(int id, IntEpisodeIdType type, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await EpisodeAsync(TraktEpisodeFactory.FromId(id, type), null, sharing, message, venueId, venueName, appVersion, appDate, extended);
+		}
 
-		public async Task<TraktCheckinEpisodeResponse> EpisodeAsync(string showTitle, int? showYear, int season, int episode, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) { return await EpisodeAsync(TraktEpisodeFactory.FromSeasonAndNumber(season, episode), TraktShowFactory.FromTitleAndYear(showTitle, showYear), sharing, message, venueId, venueName, appVersion, appDate, extended); }
+		public async Task<TraktCheckinEpisodeResponse> EpisodeAsync(string showTitle, int? showYear, int season, int episode, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await EpisodeAsync(TraktEpisodeFactory.FromSeasonAndNumber(season, episode), TraktShowFactory.FromTitleAndYear(showTitle, showYear), sharing, message, venueId, venueName, appVersion, appDate, extended);
+		}
 
 		public async Task<TraktCheckinEpisodeResponse> EpisodeAsync(TraktEpisode episode, TraktShow show = null, TraktSharingOptions sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktCheckinEpisodeRequest(Client) {

@@ -22,7 +22,7 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktSearchResult>> IdLookupAsync(IdLookupTypeOptions idType, string id, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktSearchResult>> IdLookupAsync(string id, IdLookupTypeOptions idType, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktIdLookupRequest(Client) {
 				IdType = idType,
 				Id = id,

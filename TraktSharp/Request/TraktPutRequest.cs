@@ -4,8 +4,7 @@ using System.Net.Http;
 
 namespace TraktSharp.Request {
 
-	[Serializable]
-	public abstract class TraktPutRequest<TResponse> : TraktRequest<TResponse> {
+	public abstract class TraktPutRequest<TResponse, TRequestBody> : TraktRequest<TResponse, TRequestBody> where TRequestBody : class {
 
 		protected TraktPutRequest(TraktClient client) : base(client) { }
 
@@ -14,6 +13,12 @@ namespace TraktSharp.Request {
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Required; } }
 
 		protected override bool SupportsPagination { get { return false; } }
+
+		protected override void ValidateParameters() {
+			if (RequestBody == null) {
+				throw new ArgumentException("Request body not set");
+			}
+		}
 
 	}
 

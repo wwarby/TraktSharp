@@ -5,7 +5,6 @@ using TraktSharp.Entities.Response.Shows;
 
 namespace TraktSharp.Request.Shows {
 
-	[Serializable]
 	public class TraktShowsTranslationsRequest : TraktGetByIdRequest<IEnumerable<TraktShowsTranslationsResponseItem>> {
 
 		public TraktShowsTranslationsRequest(TraktClient client) : base(client) { }

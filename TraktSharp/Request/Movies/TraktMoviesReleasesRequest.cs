@@ -5,7 +5,6 @@ using TraktSharp.Entities.Response.Movies;
 
 namespace TraktSharp.Request.Movies {
 
-	[Serializable]
 	public class TraktMoviesReleasesRequest : TraktGetByIdRequest<IEnumerable<TraktMoviesReleasesResponseItem>> {
 
 		public TraktMoviesReleasesRequest(TraktClient client) : base(client) { }

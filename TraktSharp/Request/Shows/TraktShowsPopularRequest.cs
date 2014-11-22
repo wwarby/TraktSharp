@@ -5,7 +5,6 @@ using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Shows {
 
-	[Serializable]
 	public class TraktShowsPopularRequest : TraktGetRequest<IEnumerable<TraktShow>> {
 
 		public TraktShowsPopularRequest(TraktClient client) : base(client) { }

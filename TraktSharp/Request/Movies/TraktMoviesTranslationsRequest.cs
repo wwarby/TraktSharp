@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TraktSharp.Entities.Response.Movies;
 
-namespace TraktSharp.Request.Shows {
+namespace TraktSharp.Request.Movies {
 
-	[Serializable]
 	public class TraktMoviesTranslationsRequest : TraktGetByIdRequest<IEnumerable<TraktMoviesTranslationsResponseItem>> {
 
 		public TraktMoviesTranslationsRequest(TraktClient client) : base(client) { }

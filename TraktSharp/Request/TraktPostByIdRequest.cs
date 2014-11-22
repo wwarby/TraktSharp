@@ -4,11 +4,9 @@ using System.Linq;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktGetByIdRequest<TResponse> : TraktGetRequest<TResponse> {
+	public abstract class TraktPostByIdRequest<TResponse, TRequestBody> : TraktPutRequest<TResponse, TRequestBody> where TRequestBody : class {
 
-		protected TraktGetByIdRequest(TraktClient client) : base(client) { }
-
-		protected override bool SupportsPagination { get { return false; } }
+		protected TraktPostByIdRequest(TraktClient client) : base(client) { }
 
 		public string Id { get; set; }
 

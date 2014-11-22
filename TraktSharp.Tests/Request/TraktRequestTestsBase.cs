@@ -8,12 +8,15 @@ namespace TraktSharp.Tests.Request {
 	[TestClass]
 	public abstract class TraktRequestTestsBase {
 
-		public TraktRequestTestsBase() {
+		protected TraktRequestTestsBase() {
 			FakeResponseHandler = new FakeResponseHandler();
-			Client = new TraktClient(FakeResponseHandler);
-			Client.Authentication.CurrentAccessToken = new TraktAccessToken {
-				AccessToken = "abcdef",
-				AccessTokenExpires = DateTime.Now.AddYears(1)
+			Client = new TraktClient(FakeResponseHandler) {
+				Authentication = {
+					CurrentAccessToken = new TraktAccessToken {
+						AccessToken = "abcdef",
+						AccessTokenExpires = DateTime.Now.AddYears(1)
+					}
+				}
 			};
 		}
 

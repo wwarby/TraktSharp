@@ -73,7 +73,9 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "year")]
 		public int? Year { get; set; }
 
-		public bool IsPostable() { return !string.IsNullOrEmpty(Title) || (Ids != null && Ids.HasAnyValuesSet()); }
+		public bool IsPostable() {
+			return !string.IsNullOrEmpty(Title) || (Ids != null && Ids.HasAnyValuesSet());
+		}
 
 	}
 

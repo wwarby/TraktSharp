@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using TraktSharp.Entities;
-using TraktSharp.Entities.RequestBody.OAuth;
 using TraktSharp.Entities.Response.OAuth;
 using TraktSharp.Helpers;
 
@@ -52,14 +51,8 @@ namespace TraktSharp {
 
 		public void ParseAuthorizationResponse(string url) { ParseAuthorizationResponse(new Uri(url)); }
 
-		public async Task<TraktOAuthTokenResponse> GetAccessToken() {
-			return await Client.OAuth.TokenAsync(new TraktOAuthTokenRequestBody {
-				Code = AuthorizationCode,
-				ClientId = ClientId,
-				ClientSecret = ClientSecret,
-				RedirectUri = RedirectUri,
-				GrantType = EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode)
-			});
+		public async Task<TraktOAuthTokenResponse> GetAccessToken() { 
+			return await Client.OAuth.TokenAsync(AuthorizationCode, ClientId, ClientSecret, RedirectUri, EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode));
 		}
 
 	}

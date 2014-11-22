@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 
-namespace TraktSharp.Request.Checkin {
+namespace TraktSharp.Request.Comments {
 
-	[Serializable]
 	public class TraktCommentsDeleteRequest : TraktDeleteByIdRequest {
 
 		public TraktCommentsDeleteRequest(TraktClient client) : base(client) { }

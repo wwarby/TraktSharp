@@ -5,7 +5,6 @@ using TraktSharp.Entities.Response.Movies;
 
 namespace TraktSharp.Request.Movies {
 
-	[Serializable]
 	public class TraktMoviesTrendingRequest : TraktGetRequest<IEnumerable<TraktMoviesTrendingResponseItem>> {
 
 		public TraktMoviesTrendingRequest(TraktClient client) : base(client) { }

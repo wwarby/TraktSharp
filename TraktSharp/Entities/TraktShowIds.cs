@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -25,7 +26,19 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "tvrage")]
 		public int? TvRage { get; set; }
 
-		public bool HasAnyValuesSet() { return Trakt.HasValue || !string.IsNullOrEmpty(Slug) || Tvdb.HasValue || !string.IsNullOrEmpty(Imdb) || Tmdb.HasValue || TvRage.HasValue; }
+		public bool HasAnyValuesSet() {
+			return Trakt.HasValue || !string.IsNullOrEmpty(Slug) || Tvdb.HasValue || !string.IsNullOrEmpty(Imdb) || Tmdb.HasValue || TvRage.HasValue;
+		}
+
+		public string GetBestId() {
+			if (Trakt.GetValueOrDefault() > 0) { return Trakt.GetValueOrDefault().ToString(CultureInfo.InvariantCulture); }
+			if (!string.IsNullOrEmpty(Slug)) { return Slug; }
+			if (!string.IsNullOrEmpty(Imdb)) { return Imdb; }
+			if (Tvdb.GetValueOrDefault() > 0) { return Tvdb.GetValueOrDefault().ToString(CultureInfo.InvariantCulture); }
+			if (Tmdb.GetValueOrDefault() > 0) { return Tmdb.GetValueOrDefault().ToString(CultureInfo.InvariantCulture); }
+			if (TvRage.GetValueOrDefault() > 0) { return TvRage.GetValueOrDefault().ToString(CultureInfo.InvariantCulture); }
+			return string.Empty;
+		}
 
 	}
 

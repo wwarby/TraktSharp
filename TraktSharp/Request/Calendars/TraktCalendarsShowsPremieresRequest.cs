@@ -6,7 +6,6 @@ using TraktSharp.ExtensionMethods;
 
 namespace TraktSharp.Request.Calendars {
 
-	[Serializable]
 	public class TraktCalendarsShowsPremieresRequest : TraktGetRequest<TraktCalendarsShowsResponse> {
 
 		public TraktCalendarsShowsPremieresRequest(TraktClient client) : base(client) { }

@@ -59,7 +59,9 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "genres")]
 		public IEnumerable<string> Genres { get; set; }
 
-		public bool IsPostable() { return (!string.IsNullOrEmpty(Title) && Year.HasValue) || (Ids != null && Ids.HasAnyValuesSet()); }
+		public bool IsPostable() {
+			return (!string.IsNullOrEmpty(Title) && Year.HasValue) || (Ids != null && Ids.HasAnyValuesSet());
+		}
 
 	}
 

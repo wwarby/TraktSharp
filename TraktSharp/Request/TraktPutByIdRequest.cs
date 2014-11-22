@@ -4,8 +4,7 @@ using System.Linq;
 
 namespace TraktSharp.Request {
 
-	[Serializable]
-	public abstract class TraktPutByIdRequest<TResponse> : TraktPutRequest<TResponse> {
+	public abstract class TraktPutByIdRequest<TResponse, TRequestBody> : TraktPutRequest<TResponse, TRequestBody> where TRequestBody : class {
 
 		protected TraktPutByIdRequest(TraktClient client) : base(client) { }
 

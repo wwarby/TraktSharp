@@ -36,68 +36,101 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktShow> SummaryAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShow> SummaryAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await SummaryAsync(show.Ids.GetBestId(), extended);
+		}
+
+		public async Task<TraktShow> SummaryAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktShowsSummaryRequest(Client) {
-				Id = id,
+				Id = showId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> TranslationsAsync(string id, string language, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> TranslationsAsync(TraktShow show, string language) {
+			return await TranslationsAsync(show.Ids.GetBestId(), language);
+		}
+
+		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> TranslationsAsync(string showId, string language, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktShowsTranslationsRequest(Client) {
-				Id = id,
+				Id = showId,
 				Language = language,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, int? page = null, int? limit = null) {
+			return await CommentsAsync(show.Ids.GetBestId(), page, limit);
+		}
+
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(string showId, int? page = null, int? limit = null) {
 			return await new TraktShowsCommentsRequest(Client) {
-				Id = id,
-				Extended = extended,
+				Id = showId,
 				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 
-		public async Task<TraktShowProgress> ProgressCollectionAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShowProgress> ProgressCollectionAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await ProgressCollectionAsync(show.Ids.GetBestId(), extended);
+		}
+
+		public async Task<TraktShowProgress> ProgressCollectionAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktShowsProgressCollectionRequest(Client) {
-				Id = id,
+				Id = showId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktShowProgress> ProgressWatchedAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShowProgress> ProgressWatchedAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await ProgressWatchedAsync(show.Ids.GetBestId(), extended);
+		}
+
+		public async Task<TraktShowProgress> ProgressWatchedAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktShowsProgressWatchedRequest(Client) {
-				Id = id,
+				Id = showId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktPeople> PeopleAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktPeople> PeopleAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await PeopleAsync(show.Ids.GetBestId(), extended);
+		}
+
+		public async Task<TraktPeople> PeopleAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktShowsPeopleRequest(Client) {
-				Id = id,
+				Id = showId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktRatings> RatingsAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktRatings> RatingsAsync(TraktShow show) {
+			return await RatingsAsync(show.Ids.GetBestId());
+		}
+
+		public async Task<TraktRatings> RatingsAsync(string showId) {
 			return await new TraktShowsRatingsRequest(Client) {
-				Id = id,
-				Extended = extended
+				Id = showId
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktShow>> RelatedAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktShow>> RelatedAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+			return await RelatedAsync(show.Ids.GetBestId(), extended);
+		}
+
+		public async Task<IEnumerable<TraktShow>> RelatedAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
 			return await new TraktShowsRelatedRequest(Client) {
-				Id = id,
+				Id = showId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUser>> WatchingAsync(string id, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktUser>> WatchingAsync(TraktShow show) {
+			return await WatchingAsync(show.Ids.GetBestId());
+		}
+
+		public async Task<IEnumerable<TraktUser>> WatchingAsync(string showId) {
 			return await new TraktShowsWatchingRequest(Client) {
-				Id = id,
-				Extended = extended
+				Id = showId
 			}.SendAsync();
 		}
 

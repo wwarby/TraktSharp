@@ -6,7 +6,6 @@ using TraktSharp.ExtensionMethods;
 
 namespace TraktSharp.Request.Shows {
 
-	[Serializable]
 	public class TraktShowsUpdatesRequest : TraktGetRequest<IEnumerable<TraktShowsUpdatesResponseItem>> {
 
 		public TraktShowsUpdatesRequest(TraktClient client) : base(client) { }

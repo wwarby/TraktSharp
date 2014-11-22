@@ -4,8 +4,7 @@ using System.Net.Http;
 
 namespace TraktSharp.Request {
 
-	[Serializable]
-	public abstract class TraktDeleteRequest : TraktRequest<object> {
+	public abstract class TraktDeleteRequest : TraktRequest<object, object> {
 
 		protected TraktDeleteRequest(TraktClient client) : base(client) { }
 

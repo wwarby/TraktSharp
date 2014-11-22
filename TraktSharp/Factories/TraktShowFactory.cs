@@ -12,11 +12,7 @@ namespace TraktSharp.Factories {
 			}
 
 			if (type == StringShowIdType.Auto) {
-				if (id.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase)) {
-					type = StringShowIdType.Imdb;
-				} else {
-					type = StringShowIdType.Slug;
-				}
+				type = id.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase) ? StringShowIdType.Imdb : StringShowIdType.Slug;
 			}
 
 			var ret = new TraktShow();

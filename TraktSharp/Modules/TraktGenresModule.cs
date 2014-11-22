@@ -13,10 +13,9 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<IEnumerable<TraktGenresListResponseItem>> ListAsync(GenreTypeOptions type, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktGenresListResponseItem>> ListAsync(GenreTypeOptions type) {
 			return await new TraktGenresListRequest(Client) {
-				Type = type,
-				Extended = extended
+				Type = type
 			}.SendAsync();
 		}
 

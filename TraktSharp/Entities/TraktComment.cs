@@ -22,10 +22,10 @@ namespace TraktSharp.Entities {
 		public string Comment { get; set; }
 
 		[JsonProperty(PropertyName = "spoiler")]
-		public bool Spoiler { get; set; }
+		public bool? Spoiler { get; set; }
 
 		[JsonProperty(PropertyName = "review")]
-		public bool Review { get; set; }
+		public bool? Review { get; set; }
 
 		[JsonProperty(PropertyName = "replies")]
 		public int? Replies { get; set; }

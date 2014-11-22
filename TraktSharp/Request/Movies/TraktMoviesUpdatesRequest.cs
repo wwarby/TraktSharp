@@ -6,7 +6,6 @@ using TraktSharp.ExtensionMethods;
 
 namespace TraktSharp.Request.Movies {
 
-	[Serializable]
 	public class TraktMoviesUpdatesRequest : TraktGetRequest<IEnumerable<TraktMoviesUpdatesResponseItem>> {
 
 		public TraktMoviesUpdatesRequest(TraktClient client) : base(client) { }

@@ -25,12 +25,12 @@ namespace TraktSharp.Tests {
 		}
 
 		protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
-			return _fakeResponses.ContainsKey(request.RequestUri.AbsoluteUri)
+			return await Task.Factory.StartNew(() => _fakeResponses.ContainsKey(request.RequestUri.AbsoluteUri)
 				? _fakeResponses[request.RequestUri.AbsoluteUri]
 				: new HttpResponseMessage(HttpStatusCode.NotFound) {
 					RequestMessage = request,
 					Content = new StringContent(string.Empty)
-				};
+				}, cancellationToken);
 		}
 
 	}

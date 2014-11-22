@@ -76,6 +76,7 @@
     <Compile Include="Exceptions\TraktUnauthorizedException.cs" />
     <Compile Include="Exceptions\TraktBadRequestException.cs" />
     <Compile Include="Exceptions\TraktNotFoundException.cs" />
+    <Compile Include="Factories\TraktListFactory.cs" />
     <Compile Include="Factories\TraktShowFactory.cs" />
     <Compile Include="Factories\TraktEpisodeFactory.cs" />
     <Compile Include="Factories\TraktMovieFactory.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Request\Checkin\TraktCheckinMovieRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsDeleteRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsRepliesRequest.cs" />
+    <Compile Include="Request\Comments\TraktCommentsReplyRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsUpdateRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostListRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostEpisodeRequest.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="Entities\TraktShowProgress.cs" />
     <Compile Include="Entities\TraktUser.cs" />
     <Compile Include="Request\TraktDeleteByIdRequest.cs" />
+    <Compile Include="Request\TraktPostByIdRequest.cs" />
     <Compile Include="Request\TraktPutByIdRequest.cs" />
     <Compile Include="Request\TraktGetByIdRequest.cs" />
     <Compile Include="Request\TraktGetRequest.cs" />
