@@ -8,12 +8,6 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktEpisode {
 
-		public TraktEpisode() {
-			AvailableTranslations = new List<string>();
-			Ids = new TraktEpisodeIds();
-			Images = new TraktEpisodeImages();
-		}
-
 		[JsonProperty(PropertyName = "available_translations")]
 		public IEnumerable<string> AvailableTranslations { get; set; }
 

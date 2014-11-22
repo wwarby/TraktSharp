@@ -7,7 +7,9 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktList {
 
-		public TraktList() { Ids = new TraktListIds(); }
+		public TraktList() {
+			Ids = new TraktListIds();
+		}
 
 		[JsonProperty(PropertyName = "name")]
 		public string Name { get; set; }

@@ -7,8 +7,6 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktCastMember {
 
-		public TraktCastMember() { Person = new TraktPerson(); }
-
 		[JsonProperty(PropertyName = "character")]
 		public string Character { get; set; }
 

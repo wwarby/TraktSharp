@@ -8,17 +8,6 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktCrew {
 
-		public TraktCrew() {
-			Production = new List<TraktCrewMember>();
-			Art = new List<TraktCrewMember>();
-			Crew = new List<TraktCrewMember>();
-			CostumeAndMakeUp = new List<TraktCrewMember>();
-			Directing = new List<TraktCrewMember>();
-			Writing = new List<TraktCrewMember>();
-			Sound = new List<TraktCrewMember>();
-			Camera = new List<TraktCrewMember>();
-		}
-
 		[JsonProperty(PropertyName = "production")]
 		public IEnumerable<TraktCrewMember> Production { get; set; }
 

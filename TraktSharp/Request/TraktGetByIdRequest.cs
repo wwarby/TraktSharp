@@ -8,8 +8,6 @@ namespace TraktSharp.Request {
 
 		protected TraktGetByIdRequest(TraktClient client) : base(client) { }
 
-		protected override bool SupportsPagination { get { return false; } }
-
 		public string Id { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {

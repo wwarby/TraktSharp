@@ -19,7 +19,7 @@ namespace TraktSharp.Factories {
 				}
 			}
 
-			var ret = new TraktEpisode();
+			var ret = new TraktEpisode { Ids = new TraktEpisodeIds() };
 
 			switch (type) {
 				case StringEpisodeIdType.Imdb:
@@ -33,7 +33,7 @@ namespace TraktSharp.Factories {
 		}
 
 		public static TraktEpisode FromId(int id, IntEpisodeIdType type) {
-			var ret = new TraktEpisode();
+			var ret = new TraktEpisode { Ids = new TraktEpisodeIds() };
 
 			switch (type) {
 				case IntEpisodeIdType.Trakt:

@@ -10,12 +10,12 @@ namespace TraktSharp.Factories {
 			if (string.IsNullOrEmpty(id)) {
 				throw new ArgumentException("Id not set", "id");
 			}
-			var ret = new TraktList { Ids = { Slug = id } };
+			var ret = new TraktList { Ids = new TraktListIds{ Slug = id } };
 			return ret;
 		}
 
 		public static TraktList FromId(int id) {
-			var ret = new TraktList { Ids = { Trakt = id } };
+			var ret = new TraktList { Ids = new TraktListIds{ Trakt = id } };
 			return ret;
 		}
 

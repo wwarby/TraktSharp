@@ -7,8 +7,6 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktComment {
 
-		public TraktComment() { User = new TraktUser(); }
-
 		[JsonProperty(PropertyName = "id")]
 		public int? Id { get; set; }
 

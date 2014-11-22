@@ -12,8 +12,6 @@ namespace TraktSharp.Request {
 
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Required; } }
 
-		protected override bool SupportsPagination { get { return false; } }
-
 		protected override void ValidateParameters() {
 			if (RequestBody == null) {
 				throw new ArgumentException("Request body not set");

@@ -14,8 +14,6 @@ namespace TraktSharp.Request.Calendars {
 
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Optional; } }
 
-		protected override bool SupportsPagination { get { return false; } }
-
 		public DateTime? StartDate { get; set; }
 
 		public int? Days { get; set; }

@@ -15,7 +15,7 @@ namespace TraktSharp.Factories {
 				type = id.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase) ? StringMovieIdType.Imdb : StringMovieIdType.Slug;
 			}
 
-			var ret = new TraktMovie();
+			var ret = new TraktMovie { Ids = new TraktMovieIds() };
 
 			switch (type) {
 				case StringMovieIdType.Slug:
@@ -32,7 +32,7 @@ namespace TraktSharp.Factories {
 		}
 
 		public static TraktMovie FromId(int id, IntMovieIdType type) {
-			var ret = new TraktMovie();
+			var ret = new TraktMovie { Ids = new TraktMovieIds() };
 
 			switch (type) {
 				case IntMovieIdType.Trakt:

@@ -8,8 +8,6 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktSeasonProgress {
 
-		public TraktSeasonProgress() { Episodes = new List<TraktEpisodeProgress>(); }
-
 		[JsonProperty(PropertyName = "number")]
 		public int? Number { get; set; }
 

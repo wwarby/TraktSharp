@@ -7,15 +7,6 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktShowImages {
 
-		public TraktShowImages() {
-			Banner = new TraktImage();
-			ClearArt = new TraktImage();
-			FanArt = new TraktImageSet();
-			Logo = new TraktImage();
-			Poster = new TraktImageSet();
-			Thumb = new TraktImage();
-		}
-
 		[JsonProperty(PropertyName = "banner")]
 		public TraktImage Banner { get; set; }
 

@@ -15,7 +15,7 @@ namespace TraktSharp.Factories {
 				type = id.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase) ? StringShowIdType.Imdb : StringShowIdType.Slug;
 			}
 
-			var ret = new TraktShow();
+			var ret = new TraktShow { Ids = new TraktShowIds() };
 
 			switch (type) {
 				case StringShowIdType.Slug:
@@ -32,7 +32,7 @@ namespace TraktSharp.Factories {
 		}
 
 		public static TraktShow FromId(int id, IntShowIdType type) {
-			var ret = new TraktShow();
+			var ret = new TraktShow { Ids = new TraktShowIds() };
 
 			switch (type) {
 				case IntShowIdType.Trakt:
