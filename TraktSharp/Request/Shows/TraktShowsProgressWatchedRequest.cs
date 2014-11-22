@@ -9,17 +9,11 @@ namespace TraktSharp.Request.Shows {
 
 		public TraktShowsProgressCollectionRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "shows/{id}/progress/collection"; }
-		}
+		protected override string PathTemplate { get { return "shows/{id}/progress/collection"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement {
-			get { return OAuthRequirementOptions.Required; }
-		}
+		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Required; } }
 
-		protected override bool SupportsPagination {
-			get { return false; }
-		}
+		protected override bool SupportsPagination { get { return false; } }
 
 		public string Id { get; set; }
 

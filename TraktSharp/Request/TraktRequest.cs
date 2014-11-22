@@ -100,9 +100,7 @@ namespace TraktSharp.Request {
 			}
 		}
 
-		public string Url {
-			get { return string.Format("{0}{1}{2}", _client.Configuration.BaseUrl, Path, QueryString); }
-		}
+		public string Url { get { return string.Format("{0}{1}{2}", _client.Configuration.BaseUrl, Path, QueryString); } }
 
 		public object RequestBody { get; set; }
 

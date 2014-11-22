@@ -10,9 +10,7 @@ namespace TraktSharp.Request.OAuth {
 
 		public TraktOAuthTokenRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "oauth/token"; }
-		}
+		protected override string PathTemplate { get { return "oauth/token"; } }
 
 		protected override void ValidateParameters() {
 			var requestBody = RequestBody as TraktOAuthTokenRequestBody;

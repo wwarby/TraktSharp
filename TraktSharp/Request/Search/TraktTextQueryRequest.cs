@@ -10,17 +10,11 @@ namespace TraktSharp.Request.Search {
 
 		public TraktTextQueryRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "search"; }
-		}
+		protected override string PathTemplate { get { return "search"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement {
-			get { return OAuthRequirementOptions.NotRequired; }
-		}
+		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
-		protected override bool SupportsPagination {
-			get { return true; }
-		}
+		protected override bool SupportsPagination { get { return true; } }
 
 		public string Query { get; set; }
 

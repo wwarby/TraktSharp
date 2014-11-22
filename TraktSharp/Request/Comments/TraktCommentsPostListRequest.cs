@@ -9,9 +9,7 @@ namespace TraktSharp.Request.Comments {
 
 		public TraktCommentsPostListRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "comments"; }
-		}
+		protected override string PathTemplate { get { return "comments"; } }
 
 		protected override void ValidateParameters() {
 			var requestBody = RequestBody as TraktListComment;

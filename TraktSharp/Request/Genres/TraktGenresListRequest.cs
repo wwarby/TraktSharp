@@ -10,17 +10,11 @@ namespace TraktSharp.Request.Genres {
 
 		public TraktGenresListRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "genres/{type}"; }
-		}
+		protected override string PathTemplate { get { return "genres/{type}"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement {
-			get { return OAuthRequirementOptions.NotRequired; }
-		}
+		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
-		protected override bool SupportsPagination {
-			get { return false; }
-		}
+		protected override bool SupportsPagination { get { return false; } }
 
 		public GenreTypeOptions Type { get; set; }
 

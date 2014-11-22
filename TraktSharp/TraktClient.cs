@@ -11,9 +11,7 @@ namespace TraktSharp {
 
 		public TraktClient(HttpMessageHandler handler = null) { _handler = handler; }
 
-		public HttpMessageHandler HttpMessageHandler {
-			get { return _handler; }
-		}
+		public HttpMessageHandler HttpMessageHandler { get { return _handler; } }
 
 		private TraktConfiguration _configuration;
 

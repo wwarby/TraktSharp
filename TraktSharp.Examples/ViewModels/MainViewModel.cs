@@ -47,9 +47,7 @@ namespace TraktSharp.Examples.ViewModels {
 			}
 		}
 
-		public string AuthorizationCode {
-			get { return Client.Authentication.AuthorizationCode; }
-		}
+		public string AuthorizationCode { get { return Client.Authentication.AuthorizationCode; } }
 
 		public TraktAccessToken AccessToken {
 			get { return Client.Authentication.CurrentAccessToken; }

@@ -18,14 +18,10 @@ namespace TraktSharp.Entities {
 		public string OlsonTimeZone { get; set; }
 
 		[JsonIgnore]
-		public TimeZoneInfo TimeZone {
-			get { return string.IsNullOrEmpty(OlsonTimeZone) ? default(TimeZoneInfo) : TimeZoneHelper.OlsonTimeZoneToTimeZoneInfo(OlsonTimeZone); }
-		}
+		public TimeZoneInfo TimeZone { get { return string.IsNullOrEmpty(OlsonTimeZone) ? default(TimeZoneInfo) : TimeZoneHelper.OlsonTimeZoneToTimeZoneInfo(OlsonTimeZone); } }
 
 		[JsonIgnore]
-		public DateTime NextAirDate {
-			get { return !string.IsNullOrEmpty(Day) && !string.IsNullOrEmpty(Time) ? DateTimeHelper.NextOccurrenceOf(Day, Time, TimeZone) : DateTime.MinValue; }
-		}
+		public DateTime NextAirDate { get { return !string.IsNullOrEmpty(Day) && !string.IsNullOrEmpty(Time) ? DateTimeHelper.NextOccurrenceOf(Day, Time, TimeZone) : DateTime.MinValue; } }
 
 		[JsonIgnore]
 		public DateTime NextAirDateLocal {

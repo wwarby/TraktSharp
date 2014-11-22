@@ -11,13 +11,9 @@ namespace TraktSharp.Request.Shows {
 
 		public TraktShowsUpdatesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "shows/updates/{start_date}"; }
-		}
+		protected override string PathTemplate { get { return "shows/updates/{start_date}"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement {
-			get { return OAuthRequirementOptions.NotRequired; }
-		}
+		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
 		public DateTime? StartDate { get; set; }
 
@@ -27,9 +23,7 @@ namespace TraktSharp.Request.Shows {
 			};
 		}
 
-		protected override bool SupportsPagination {
-			get { return true; }
-		}
+		protected override bool SupportsPagination { get { return true; } }
 
 	}
 

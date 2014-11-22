@@ -21,10 +21,7 @@ namespace TraktSharp {
 
 		private TraktAccessToken _currentAccessToken;
 
-		public TraktAccessToken CurrentAccessToken {
-			get { return _currentAccessToken = _currentAccessToken ?? new TraktAccessToken(); }
-			set { _currentAccessToken = value; }
-		}
+		public TraktAccessToken CurrentAccessToken { get { return _currentAccessToken = _currentAccessToken ?? new TraktAccessToken(); } set { _currentAccessToken = value; } }
 
 		public string AuthorizationCode { get; internal set; }
 

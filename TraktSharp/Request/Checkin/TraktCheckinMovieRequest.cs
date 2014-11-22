@@ -10,9 +10,7 @@ namespace TraktSharp.Request.Checkin {
 
 		public TraktCheckinMovieRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "checkin"; }
-		}
+		protected override string PathTemplate { get { return "checkin"; } }
 
 		protected override void ValidateParameters() {
 			var requestBody = RequestBody as TraktCheckinMovieRequestBody;

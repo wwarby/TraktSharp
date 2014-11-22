@@ -9,17 +9,11 @@ namespace TraktSharp.Request.People {
 
 		public TraktPeopleMoviesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "people/{id}/movies"; }
-		}
+		protected override string PathTemplate { get { return "people/{id}/movies"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement {
-			get { return OAuthRequirementOptions.NotRequired; }
-		}
+		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
-		protected override bool SupportsPagination {
-			get { return false; }
-		}
+		protected override bool SupportsPagination { get { return false; } }
 
 		public string Id { get; set; }
 

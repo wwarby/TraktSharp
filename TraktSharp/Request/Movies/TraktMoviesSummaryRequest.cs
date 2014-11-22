@@ -9,17 +9,11 @@ namespace TraktSharp.Request.Movies {
 
 		public TraktMoviesSummaryRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "movies/{id}"; }
-		}
+		protected override string PathTemplate { get { return "movies/{id}"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement {
-			get { return OAuthRequirementOptions.NotRequired; }
-		}
+		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
-		protected override bool SupportsPagination {
-			get { return false; }
-		}
+		protected override bool SupportsPagination { get { return false; } }
 
 		public string Id { get; set; }
 

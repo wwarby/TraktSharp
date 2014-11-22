@@ -11,17 +11,11 @@ namespace TraktSharp.Request.Calendars {
 
 		public TraktCalendarsShowsNewRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "calendars/shows/new/{start_date}/{days}"; }
-		}
+		protected override string PathTemplate { get { return "calendars/shows/new/{start_date}/{days}"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement {
-			get { return OAuthRequirementOptions.Optional; }
-		}
+		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Optional; } }
 
-		protected override bool SupportsPagination {
-			get { return false; }
-		}
+		protected override bool SupportsPagination { get { return false; } }
 
 		public DateTime? StartDate { get; set; }
 

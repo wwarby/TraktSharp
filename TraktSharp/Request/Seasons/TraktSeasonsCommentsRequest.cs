@@ -10,17 +10,11 @@ namespace TraktSharp.Request.Seasons {
 
 		public TraktSeasonsCommentsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate {
-			get { return "shows/{id}/seasons/{season}/comments"; }
-		}
+		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}/comments"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement {
-			get { return OAuthRequirementOptions.NotRequired; }
-		}
+		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
-		protected override bool SupportsPagination {
-			get { return false; }
-		}
+		protected override bool SupportsPagination { get { return false; } }
 
 		public string Id { get; set; }
 

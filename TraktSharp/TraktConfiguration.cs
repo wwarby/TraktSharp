@@ -17,9 +17,7 @@ namespace TraktSharp {
 
 		public bool ForceAuthentication { get; set; }
 
-		public string BaseUrl {
-			get { return string.Format("http://api.v{0}.trakt.tv/", ApiVersion); }
-		}
+		public string BaseUrl { get { return string.Format("http://api.v{0}.trakt.tv/", ApiVersion); } }
 
 	}
 
