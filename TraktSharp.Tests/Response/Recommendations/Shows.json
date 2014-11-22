@@ -1,0 +1,122 @@
+﻿[
+	{
+		"title": "The Biggest Loser",
+		"year": 2004,
+		"ids": {
+			"trakt": 9,
+			"slug": "the-biggest-loser",
+			"tvdb": 75166,
+			"imdb": "tt0429318",
+			"tmdb": 579,
+			"tvrage": null
+		}
+	},
+	{
+		"title": "Shark Tank",
+		"year": 2009,
+		"ids": {
+			"trakt": 36,
+			"slug": "shark-tank",
+			"tvdb": 100981,
+			"imdb": "tt1442550",
+			"tmdb": 30703,
+			"tvrage": 22610
+		}
+	},
+	{
+		"title": "Hell's Kitchen",
+		"year": 2005,
+		"ids": {
+			"trakt": 40,
+			"slug": "hell-s-kitchen",
+			"tvdb": 74897,
+			"imdb": "tt0437005",
+			"tmdb": 2370,
+			"tvrage": null
+		}
+	},
+	{
+		"title": "The Big C",
+		"year": 2010,
+		"ids": {
+			"trakt": 51,
+			"slug": "the-big-c",
+			"tvdb": 161501,
+			"imdb": "tt1515193",
+			"tmdb": 32406,
+			"tvrage": null
+		}
+	},
+	{
+		"title": "United States of Tara",
+		"year": 2009,
+		"ids": {
+			"trakt": 69,
+			"slug": "united-states-of-tara",
+			"tvdb": 83463,
+			"imdb": "tt1001482",
+			"tmdb": 7097,
+			"tvrage": 20601
+		}
+	},
+	{
+		"title": "Hung",
+		"year": 2009,
+		"ids": {
+			"trakt": 168,
+			"slug": "hung",
+			"tvdb": 82091,
+			"imdb": "tt1229413",
+			"tmdb": 18614,
+			"tvrage": 21942
+		}
+	},
+	{
+		"title": "Big Love",
+		"year": 2006,
+		"ids": {
+			"trakt": 272,
+			"slug": "big-love",
+			"tvdb": 74156,
+			"imdb": "tt0421030",
+			"tmdb": 4392,
+			"tvrage": 2797
+		}
+	},
+	{
+		"title": "Brooklyn Nine-Nine",
+		"year": 2013,
+		"ids": {
+			"trakt": 599,
+			"slug": "brooklyn-nine-nine",
+			"tvdb": 269586,
+			"imdb": "tt2467372",
+			"tmdb": 48891,
+			"tvrage": 35774
+		}
+	},
+	{
+		"title": "FlashForward",
+		"year": 2009,
+		"ids": {
+			"trakt": 677,
+			"slug": "flashforward",
+			"tvdb": 84024,
+			"imdb": "tt1441135",
+			"tmdb": 19092,
+			"tvrage": null
+		}
+	},
+	{
+		"title": "Roswell",
+		"year": 1999,
+		"ids": {
+			"trakt": 717,
+			"slug": "roswell",
+			"tvdb": 73965,
+			"imdb": "tt0201391",
+			"tmdb": 4624,
+			"tvrage": null
+		}
+	}
+]

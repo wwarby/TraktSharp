@@ -103,6 +103,16 @@ namespace TraktSharp {
 			set { _people = value; }
 		}
 
+		private TraktRecommendationsModule _recommendations;
+
+		public TraktRecommendationsModule Recommendations {
+			get {
+				_recommendations = _recommendations ?? new TraktRecommendationsModule(this);
+				return _recommendations;
+			}
+			set { _recommendations = value; }
+		}
+
 		private TraktSearchModule _search;
 
 		public TraktSearchModule Search {

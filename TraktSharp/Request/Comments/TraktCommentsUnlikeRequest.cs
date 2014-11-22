@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace TraktSharp.Request.Comments {
 
-	public class TraktCommentsDeleteRequest : TraktDeleteByIdRequest {
+	public class TraktCommentsUnlikeRequest : TraktDeleteByIdRequest {
 
-		public TraktCommentsDeleteRequest(TraktClient client) : base(client) { }
+		public TraktCommentsUnlikeRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "comments/{id}"; } }
+		protected override string PathTemplate { get { return "comments/{id}/like"; } }
 
 	}
 

@@ -70,7 +70,9 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task DeleteAsync() { await new TraktCheckinDeleteRequest(Client).SendAsync(); }
+		public async Task DeleteAsync() {
+			await new TraktCheckinDeleteRequest(Client).SendAsync();
+		}
 
 	}
 

@@ -9,7 +9,7 @@ namespace TraktSharp.Request.Movies {
 
 		public TraktMoviesReleasesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/{id}/translations/{language}"; } }
+		protected override string PathTemplate { get { return "movies/{id}/releases/{language}"; } }
 
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 

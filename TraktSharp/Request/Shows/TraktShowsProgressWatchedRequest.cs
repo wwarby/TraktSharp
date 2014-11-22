@@ -4,11 +4,11 @@ using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Shows {
 
-	public class TraktShowsProgressCollectionRequest : TraktGetByIdRequest<TraktShowProgress> {
+	public class TraktShowsProgressWatchedRequest : TraktGetByIdRequest<TraktShowProgress> {
 
-		public TraktShowsProgressCollectionRequest(TraktClient client) : base(client) { }
+		public TraktShowsProgressWatchedRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/progress/collection"; } }
+		protected override string PathTemplate { get { return "shows/{id}/progress/watched"; } }
 
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Required; } }
 
