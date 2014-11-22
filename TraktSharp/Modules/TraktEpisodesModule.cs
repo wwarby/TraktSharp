@@ -26,15 +26,16 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, TraktEpisode episode) {
-			return await CommentsAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault());
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, TraktEpisode episode, int? page = null, int? limit = null) {
+			return await CommentsAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault(), page, limit);
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(string id, int season, int episode) {
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(string id, int season, int episode, int? page = null, int? limit = null) {
 			return await new TraktEpisodesCommentsRequest(Client) {
 				Id = id,
 				Season = season,
-				Episode = episode
+				Episode = episode,
+				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 

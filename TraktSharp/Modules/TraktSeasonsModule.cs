@@ -40,19 +40,19 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
-			return await CommentsAsync(show.Ids.GetBestId(), season, extended);
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, int season, int? page = null, int? limit = null) {
+			return await CommentsAsync(show.Ids.GetBestId(), season, page, limit);
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, TraktSeason season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
-			return await CommentsAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), extended);
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, TraktSeason season, int? page = null, int? limit = null) {
+			return await CommentsAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), page, limit);
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(string showId, int season, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(string showId, int season, int? page = null, int? limit = null) {
 			return await new TraktSeasonsCommentsRequest(Client) {
 				Id = showId,
 				Season = season,
-				Extended = extended
+				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 

@@ -12,6 +12,8 @@ namespace TraktSharp.Request.Seasons {
 
 		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}/comments"; } }
 
+		protected override bool SupportsPagination { get { return true; } }
+
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
 		public int Season { get; set; }
