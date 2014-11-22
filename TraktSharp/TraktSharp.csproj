@@ -98,8 +98,10 @@
     <Compile Include="Request\Checkin\TraktCheckinDeleteRequest.cs" />
     <Compile Include="Request\Checkin\TraktCheckinEpisodeRequest.cs" />
     <Compile Include="Request\Checkin\TraktCheckinMovieRequest.cs" />
+    <Compile Include="Request\Comments\TraktCommentsUnlikeRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsDeleteRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsRepliesRequest.cs" />
+    <Compile Include="Request\Comments\TraktCommentsLikeRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsReplyRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsUpdateRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostListRequest.cs" />
@@ -195,7 +197,9 @@
     <Compile Include="Entities\TraktShowProgress.cs" />
     <Compile Include="Entities\TraktUser.cs" />
     <Compile Include="Request\TraktDeleteByIdRequest.cs" />
+    <Compile Include="Request\TraktBodylessPostByIdRequest.cs" />
     <Compile Include="Request\TraktPostByIdRequest.cs" />
+    <Compile Include="Request\TraktBodylessPostRequest.cs" />
     <Compile Include="Request\TraktPutByIdRequest.cs" />
     <Compile Include="Request\TraktGetByIdRequest.cs" />
     <Compile Include="Request\TraktGetRequest.cs" />

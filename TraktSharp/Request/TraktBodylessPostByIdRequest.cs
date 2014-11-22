@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktPutByIdRequest<TResponse, TRequestBody> : TraktPutRequest<TResponse, TRequestBody> where TRequestBody : class {
+	public abstract class TraktBodylessPostByIdRequest<TResponse> : TraktBodylessPostRequest<TResponse> {
 
-		protected TraktPutByIdRequest(TraktClient client) : base(client) { }
+		protected TraktBodylessPostByIdRequest(TraktClient client) : base(client) { }
 
 		public string Id { get; set; }
 
@@ -17,7 +17,6 @@ namespace TraktSharp.Request {
 		}
 
 		protected override void ValidateParameters() {
-			base.ValidateParameters();
 			if (string.IsNullOrEmpty(Id)) {
 				throw new ArgumentException("Id not set.");
 			}
