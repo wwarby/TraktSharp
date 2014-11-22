@@ -14,7 +14,7 @@ namespace TraktSharp.Request.Comments {
 			base.ValidateParameters();
 			var requestBody = RequestBody as TraktComment;
 			if (requestBody == null) {
-				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof(TraktComment).Name));
+				throw new ArgumentException(string.Format("Request body not set or not an instance of {0}", typeof (TraktComment).Name));
 			}
 			if (string.IsNullOrEmpty(requestBody.Comment)) {
 				throw new ArgumentException("Comment not set");

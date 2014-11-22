@@ -15,6 +15,8 @@ namespace TraktSharp.Request.Movies {
 
 		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
 
+		protected override bool SupportsPagination { get { return true; } }
+
 		public DateTime? StartDate { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
@@ -22,8 +24,6 @@ namespace TraktSharp.Request.Movies {
 				{"start_date", StartDate.ToTraktApiFormat()}
 			};
 		}
-
-		protected override bool SupportsPagination { get { return true; } }
 
 	}
 

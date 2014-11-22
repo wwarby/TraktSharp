@@ -98,6 +98,7 @@
     <Compile Include="Request\Checkin\TraktCheckinEpisodeRequest.cs" />
     <Compile Include="Request\Checkin\TraktCheckinMovieRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsDeleteRequest.cs" />
+    <Compile Include="Request\Comments\TraktCommentsRepliesRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsUpdateRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostListRequest.cs" />
     <Compile Include="Request\Comments\TraktCommentsPostEpisodeRequest.cs" />

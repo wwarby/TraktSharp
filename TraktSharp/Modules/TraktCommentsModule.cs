@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
@@ -73,8 +74,12 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task DeleteAsync(string id) {
-			await new TraktCommentsDeleteRequest(Client) { Id = id }.SendAsync();
+		public async Task DeleteAsync(string id) { await new TraktCommentsDeleteRequest(Client) {Id = id}.SendAsync(); }
+
+		public async Task<IEnumerable<TraktComment>> RepliesAsync(string id) {
+			return await new TraktCommentsRepliesRequest(Client) {
+				Id = id
+			}.SendAsync();
 		}
 
 	}

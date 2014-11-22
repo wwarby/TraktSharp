@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using TraktSharp.Entities;
 
-namespace TraktSharp.Request.Movies {
+namespace TraktSharp.Request.Comments {
 
-	[Serializable]
-	public class TraktMoviesPopularRequest : TraktGetRequest<IEnumerable<TraktMovie>> {
+	public class TraktCommentsRepliesRequest : TraktGetByIdRequest<IEnumerable<TraktComment>> {
 
-		public TraktMoviesPopularRequest(TraktClient client) : base(client) { }
+		public TraktCommentsRepliesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/popular"; } }
+		protected override string PathTemplate { get { return "comments/{id}/replies"; } }
 
 		protected override bool SupportsPagination { get { return true; } }
 
