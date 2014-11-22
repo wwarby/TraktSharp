@@ -13,10 +13,10 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TextQueryTypeOptions type = TextQueryTypeOptions.Unspecified, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TextQueryTypeOptions queryType = TextQueryTypeOptions.Unspecified, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktTextQueryRequest(Client) {
 				Query = query,
-				Type = type,
+				Type = queryType,
 				Extended = extended,
 				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();

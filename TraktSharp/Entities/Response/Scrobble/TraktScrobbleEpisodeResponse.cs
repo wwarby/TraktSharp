@@ -2,13 +2,16 @@
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace TraktSharp.Entities.Response.Checkin {
+namespace TraktSharp.Entities.Response.Scrobble {
 
 	[Serializable]
-	public class TraktCheckinEpisodeResponse {
+	public class TraktScrobbleEpisodeResponse {
 
-		[JsonProperty(PropertyName = "watched_at")]
-		public DateTime? WatchedAt { get; set; }
+		[JsonProperty(PropertyName = "action")]
+		public string Action { get; set; }
+
+		[JsonProperty(PropertyName = "progress")]
+		public float Progress { get; set; }
 
 		[JsonProperty(PropertyName = "sharing")]
 		public TraktSharing Sharing { get; set; }

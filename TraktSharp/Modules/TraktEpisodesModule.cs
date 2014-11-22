@@ -30,9 +30,9 @@ namespace TraktSharp.Modules {
 			return await CommentsAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault(), page, limit);
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(string id, int season, int episode, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktComment>> CommentsAsync(string showId, int season, int episode, int? page = null, int? limit = null) {
 			return await new TraktEpisodesCommentsRequest(Client) {
-				Id = id,
+				Id = showId,
 				Season = season,
 				Episode = episode,
 				Pagination = new PaginationOptions(page, limit)
@@ -43,9 +43,9 @@ namespace TraktSharp.Modules {
 			return await RatingsAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault());
 		}
 
-		public async Task<TraktRatings> RatingsAsync(string id, int season, int episode) {
+		public async Task<TraktRatings> RatingsAsync(string showId, int season, int episode) {
 			return await new TraktEpisodesRatingsRequest(Client) {
-				Id = id,
+				Id = showId,
 				Season = season,
 				Episode = episode
 			}.SendAsync();
@@ -55,9 +55,9 @@ namespace TraktSharp.Modules {
 			return await WatchingAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault());
 		}
 
-		public async Task<IEnumerable<TraktUser>> WatchingAsync(string id, int season, int episode) {
+		public async Task<IEnumerable<TraktUser>> WatchingAsync(string showId, int season, int episode) {
 			return await new TraktEpisodesWatchingRequest(Client) {
-				Id = id,
+				Id = showId,
 				Season = season,
 				Episode = episode
 			}.SendAsync();

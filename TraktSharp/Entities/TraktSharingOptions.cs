@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace TraktSharp.Entities {
 
 	[Serializable]
-	public class TraktSharingOptions {
+	public class TraktSharing {
 
 		[JsonProperty(PropertyName = "facebook")]
 		public bool? Facebook { get; set; }

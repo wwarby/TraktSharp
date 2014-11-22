@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
-using TraktSharp.Request.Checkin;
-using TraktSharp.Request.Movies;
+using TraktSharp.Request.Recommendations;
 
 namespace TraktSharp.Modules {
 

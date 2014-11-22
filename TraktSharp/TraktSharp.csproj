@@ -22,7 +22,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\TraktSharp.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,8 +48,12 @@
   <ItemGroup>
     <Compile Include="Entities\EnumInfo.cs" />
     <Compile Include="Entities\RequestBody\Auth\TraktAuthLoginRequestBody.cs" />
+    <Compile Include="Entities\RequestBody\Scrobble\TraktScrobbleEpisodeRequestBody.cs" />
+    <Compile Include="Entities\RequestBody\Scrobble\TraktScrobbleMovieRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Checkin\TraktCheckinEpisodeRequestBody.cs" />
     <Compile Include="Entities\Response\Auth\TraktAuthLoginResponse.cs" />
+    <Compile Include="Entities\Response\Scrobble\TraktScrobbleEpisodeResponse.cs" />
+    <Compile Include="Entities\Response\Scrobble\TraktScrobbleMovieResponse.cs" />
     <Compile Include="Entities\Response\Checkin\TraktCheckinEpisodeResponse.cs" />
     <Compile Include="Entities\Response\Movies\TraktMoviesReleasesResponseItem.cs" />
     <Compile Include="Entities\Response\Movies\TraktMoviesTranslationsResponseItem.cs" />
@@ -104,6 +109,12 @@
     <Compile Include="Request\Calendars\TraktCalendarsShowsPremieresRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsNewRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsMoviesRequest.cs" />
+    <Compile Include="Request\Scrobble\TraktScrobbleStopMovieRequest.cs" />
+    <Compile Include="Request\Scrobble\TraktScrobbleStopEpisodeRequest.cs" />
+    <Compile Include="Request\Scrobble\TraktScrobblePauseEpisodeRequest.cs" />
+    <Compile Include="Request\Scrobble\TraktScrobbleStartEpisodeRequest.cs" />
+    <Compile Include="Request\Scrobble\TraktScrobblePauseMovieRequest.cs" />
+    <Compile Include="Request\Scrobble\TraktScrobbleStartMovieRequest.cs" />
     <Compile Include="Request\Checkin\TraktCheckinDeleteRequest.cs" />
     <Compile Include="Request\Checkin\TraktCheckinEpisodeRequest.cs" />
     <Compile Include="Request\Checkin\TraktCheckinMovieRequest.cs" />

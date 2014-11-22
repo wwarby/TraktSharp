@@ -15,12 +15,12 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktComment> PostMovieCommentAsync(string movieId, StringMovieIdType type, string comment, bool spoiler = false, bool review = false) {
-			return await PostMovieCommentAsync(TraktMovieFactory.FromId(movieId, type), comment, spoiler, review);
+		public async Task<TraktComment> PostMovieCommentAsync(string movieId, StringMovieIdType movieIdType, string comment, bool spoiler = false, bool review = false) {
+			return await PostMovieCommentAsync(TraktMovieFactory.FromId(movieId, movieIdType), comment, spoiler, review);
 		}
 
-		public async Task<TraktComment> PostMovieCommentAsync(int movieId, IntMovieIdType type, string comment, bool spoiler = false, bool review = false) {
-			return await PostMovieCommentAsync(TraktMovieFactory.FromId(movieId, type), comment, spoiler, review);
+		public async Task<TraktComment> PostMovieCommentAsync(int movieId, IntMovieIdType movieIdType, string comment, bool spoiler = false, bool review = false) {
+			return await PostMovieCommentAsync(TraktMovieFactory.FromId(movieId, movieIdType), comment, spoiler, review);
 		}
 
 		public async Task<TraktComment> PostMovieCommentAsync(string movieTitle, int? movieYear, string comment, bool spoiler = false, bool review = false) {
@@ -38,12 +38,12 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktComment> PostShowCommentAsync(string showId, StringShowIdType type, string comment, bool spoiler = false, bool review = false) {
-			return await PostShowCommentAsync(TraktShowFactory.FromId(showId, type), comment, spoiler, review);
+		public async Task<TraktComment> PostShowCommentAsync(string showId, StringShowIdType showIdType, string comment, bool spoiler = false, bool review = false) {
+			return await PostShowCommentAsync(TraktShowFactory.FromId(showId, showIdType), comment, spoiler, review);
 		}
 
-		public async Task<TraktComment> PostShowCommentAsync(int showId, IntShowIdType type, string comment, bool spoiler = false, bool review = false) {
-			return await PostShowCommentAsync(TraktShowFactory.FromId(showId, type), comment, spoiler, review);
+		public async Task<TraktComment> PostShowCommentAsync(int showId, IntShowIdType showIdType, string comment, bool spoiler = false, bool review = false) {
+			return await PostShowCommentAsync(TraktShowFactory.FromId(showId, showIdType), comment, spoiler, review);
 		}
 
 		public async Task<TraktComment> PostShowCommentAsync(string showTitle, int? showYear, string comment, bool spoiler = false, bool review = false) {
@@ -61,12 +61,12 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktComment> PostEpisodeCommentAsync(string episodeId, StringEpisodeIdType type, string comment, bool spoiler = false, bool review = false) {
-			return await PostEpisodeCommentAsync(TraktEpisodeFactory.FromId(episodeId, type), comment, spoiler, review);
+		public async Task<TraktComment> PostEpisodeCommentAsync(string episodeId, StringEpisodeIdType episodeIdType, string comment, bool spoiler = false, bool review = false) {
+			return await PostEpisodeCommentAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), comment, spoiler, review);
 		}
 
-		public async Task<TraktComment> PostEpisodeCommentAsync(int episodeId, IntEpisodeIdType type, string comment, bool spoiler = false, bool review = false) {
-			return await PostEpisodeCommentAsync(TraktEpisodeFactory.FromId(episodeId, type), comment, spoiler, review);
+		public async Task<TraktComment> PostEpisodeCommentAsync(int episodeId, IntEpisodeIdType episodeIdType, string comment, bool spoiler = false, bool review = false) {
+			return await PostEpisodeCommentAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), comment, spoiler, review);
 		}
 
 		public async Task<TraktComment> PostEpisodeCommentAsync(TraktEpisode episode, string comment, bool spoiler = false, bool review = false) {

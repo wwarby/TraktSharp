@@ -11,7 +11,7 @@ namespace TraktSharp.Entities.Response.Checkin {
 		public DateTime? WatchedAt { get; set; }
 
 		[JsonProperty(PropertyName = "sharing")]
-		public TraktSharingOptions Sharing { get; set; }
+		public TraktSharing Sharing { get; set; }
 
 		[JsonProperty(PropertyName = "movie")]
 		public TraktMovie Movie { get; set; }

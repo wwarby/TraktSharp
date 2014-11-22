@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TraktSharp.Request.Checkin {
+namespace TraktSharp.Request.Recommendations {
 
 	public class TraktRecommendationsShowsDismissRequest : TraktDeleteByIdRequest {
 

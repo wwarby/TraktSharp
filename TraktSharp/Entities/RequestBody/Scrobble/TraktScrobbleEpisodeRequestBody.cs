@@ -3,10 +3,10 @@ using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.ExtensionMethods;
 
-namespace TraktSharp.Entities.RequestBody.Checkin {
+namespace TraktSharp.Entities.RequestBody.Scrobble {
 
 	[Serializable]
-	public class TraktCheckinEpisodeRequestBody {
+	public class TraktScrobbleEpisodeRequestBody {
 
 		[JsonProperty(PropertyName = "show")]
 		public TraktShow Show { get; set; }
@@ -14,11 +14,8 @@ namespace TraktSharp.Entities.RequestBody.Checkin {
 		[JsonProperty(PropertyName = "episode")]
 		public TraktEpisode Episode { get; set; }
 
-		[JsonProperty(PropertyName = "sharing")]
-		public TraktSharing Sharing { get; set; }
-
-		[JsonProperty(PropertyName = "message")]
-		public string Message { get; set; }
+		[JsonProperty(PropertyName = "progress")]
+		public float Progress { get; set; }
 
 		[JsonProperty(PropertyName = "app_version")]
 		public string AppVersion { get; set; }
@@ -28,12 +25,6 @@ namespace TraktSharp.Entities.RequestBody.Checkin {
 
 		[JsonIgnore]
 		public DateTime? AppDate { get; set; }
-
-		[JsonProperty(PropertyName = "venue_id")]
-		public string VenueId { get; set; }
-
-		[JsonProperty(PropertyName = "venue_name")]
-		public string VenueName { get; set; }
 
 	}
 
