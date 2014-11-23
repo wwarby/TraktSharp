@@ -10,7 +10,7 @@ namespace TraktSharp.Request.Comments {
 
 		protected override string PathTemplate { get { return "comments/{id}"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
 
 	}
 

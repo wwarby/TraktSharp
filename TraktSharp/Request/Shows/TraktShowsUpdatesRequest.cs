@@ -12,7 +12,7 @@ namespace TraktSharp.Request.Shows {
 
 		protected override string PathTemplate { get { return "shows/updates/{start_date}"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
 
 		public DateTime? StartDate { get; set; }
 

@@ -51,6 +51,7 @@
     <Compile Include="Entities\RequestBody\Scrobble\TraktScrobbleEpisodeRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Scrobble\TraktScrobbleMovieRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Checkin\TraktCheckinEpisodeRequestBody.cs" />
+    <Compile Include="Entities\RequestBody\Sync\TraktSyncCollectionRemoveRequestBody.cs" />
     <Compile Include="Entities\Response\Auth\TraktAuthLoginResponse.cs" />
     <Compile Include="Entities\Response\Scrobble\TraktScrobbleEpisodeResponse.cs" />
     <Compile Include="Entities\Response\Scrobble\TraktScrobbleMovieResponse.cs" />
@@ -60,10 +61,14 @@
     <Compile Include="Entities\Response\Movies\TraktMoviesTrendingResponseItem.cs" />
     <Compile Include="Entities\Response\Movies\TraktMoviesAliasesResponseItem.cs" />
     <Compile Include="Entities\Response\Movies\TraktMoviesUpdatesResponseItem.cs" />
+    <Compile Include="Entities\Response\Sync\TraktSyncRemoveResponse.cs" />
+    <Compile Include="Entities\Response\Sync\TraktSyncResponseNotFound.cs" />
+    <Compile Include="Entities\Response\Sync\TraktSyncResponseCounts.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncCollectionShowsResponseItemEpisode.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncCollectionShowsResponseItemSeason.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncCollectionShowsResponseItem.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncCollectionMoviesResponseItem.cs" />
+    <Compile Include="Entities\Response\Sync\TraktSyncAddResponse.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncPlaybackResponse.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponseLists.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponseComments.cs" />
@@ -78,6 +83,10 @@
     <Compile Include="Entities\TraktCrewShowCredit.cs" />
     <Compile Include="Entities\TraktCrewMovieCredit.cs" />
     <Compile Include="Entities\TraktCrewMovieCredits.cs" />
+    <Compile Include="Entities\RequestBody\Sync\TraktSyncCollectionAddRequestBody.cs" />
+    <Compile Include="Entities\TraktMovieWithCollectionMetadata.cs" />
+    <Compile Include="Entities\TraktEpisodeWithCollectionMetadata.cs" />
+    <Compile Include="Entities\TraktShowWithCollectionMetadata.cs" />
     <Compile Include="Entities\TraktShowCredits.cs" />
     <Compile Include="Entities\TraktMovieCredits.cs" />
     <Compile Include="Entities\TraktShowComment.cs" />
@@ -232,8 +241,10 @@
     <Compile Include="Entities\TraktShowImages.cs" />
     <Compile Include="Entities\TraktShowProgress.cs" />
     <Compile Include="Entities\TraktUser.cs" />
+    <Compile Include="Request\Sync\TraktSyncCollectionRemoveRequest.cs" />
     <Compile Include="Request\Sync\TraktSyncCollectionShowsRequest.cs" />
     <Compile Include="Request\Sync\TraktSyncCollectionMoviesRequest.cs" />
+    <Compile Include="Request\Sync\TraktSyncCollectionAddRequest.cs" />
     <Compile Include="Request\Sync\TraktSyncPlaybackRequest.cs" />
     <Compile Include="Request\Sync\TraktSyncLastActivitiesRequest.cs" />
     <Compile Include="Request\TraktDeleteByIdRequest.cs" />

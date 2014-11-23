@@ -13,7 +13,7 @@ namespace TraktSharp.Request.Movies {
 
 		protected override bool SupportsPagination { get { return true; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
 
 	}
 

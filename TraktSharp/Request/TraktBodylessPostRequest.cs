@@ -10,7 +10,7 @@ namespace TraktSharp.Request {
 
 		protected override HttpMethod Method { get { return HttpMethod.Post; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Required; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Required; } }
 
 	}
 

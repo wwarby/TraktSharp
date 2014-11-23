@@ -23,7 +23,7 @@ namespace TraktSharp.Request {
 			Pagination = new PaginationOptions();
 		}
 
-		public ExtendedOptions Extended { get; set; }
+		public ExtendedOption Extended { get; set; }
 
 		public PaginationOptions Pagination { get; set; }
 
@@ -31,14 +31,14 @@ namespace TraktSharp.Request {
 
 		public bool Authenticate {
 			get {
-				if (_client.Configuration.ForceAuthentication && OAuthRequirement != OAuthRequirementOptions.Forbidden) { return true; }
-				if (OAuthRequirement == OAuthRequirementOptions.Required) { return true; }
-				if (OAuthRequirement == OAuthRequirementOptions.Forbidden) { return false; }
+				if (_client.Configuration.ForceAuthentication && OAuthRequirement != OAuthRequirement.Forbidden) { return true; }
+				if (OAuthRequirement == OAuthRequirement.Required) { return true; }
+				if (OAuthRequirement == OAuthRequirement.Forbidden) { return false; }
 				return _authenticate;
 			}
 			set {
-				if (!value && OAuthRequirement == OAuthRequirementOptions.Required) { throw new InvalidOperationException("This request type requires authentication"); }
-				if (!value && OAuthRequirement == OAuthRequirementOptions.Forbidden) { throw new InvalidOperationException("This request type does not allow authentication"); }
+				if (!value && OAuthRequirement == OAuthRequirement.Required) { throw new InvalidOperationException("This request type requires authentication"); }
+				if (!value && OAuthRequirement == OAuthRequirement.Forbidden) { throw new InvalidOperationException("This request type does not allow authentication"); }
 				_authenticate = value;
 			}
 		}
@@ -47,7 +47,7 @@ namespace TraktSharp.Request {
 
 		protected abstract string PathTemplate { get; }
 
-		protected abstract OAuthRequirementOptions OAuthRequirement { get; }
+		protected abstract OAuthRequirement OAuthRequirement { get; }
 
 		protected virtual bool SupportsPagination { get { return false; } }
 
@@ -64,7 +64,7 @@ namespace TraktSharp.Request {
 		}
 
 		protected virtual IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
-			if (Extended != ExtendedOptions.Unspecified) {
+			if (Extended != ExtendedOption.Unspecified) {
 				queryStringParameters["extended"] = EnumsHelper.GetDescription(Extended);
 			}
 			if (SupportsPagination) {

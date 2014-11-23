@@ -14,7 +14,7 @@ namespace TraktSharp.Request.Episodes {
 
 		protected override bool SupportsPagination { get { return true; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
 
 		public int Season { get; set; }
 

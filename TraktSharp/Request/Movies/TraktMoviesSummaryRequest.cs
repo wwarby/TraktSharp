@@ -10,7 +10,7 @@ namespace TraktSharp.Request.Movies {
 
 		protected override string PathTemplate { get { return "movies/{id}"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
 
 	}
 

@@ -11,8 +11,7 @@ namespace TraktSharp.Request.Sync {
 
 		protected override string PathTemplate { get { return "sync/collection/movies"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Required; } }
-
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Required; } }
 
 	}
 

@@ -12,7 +12,7 @@ namespace TraktSharp.Request.Calendars {
 
 		protected override string PathTemplate { get { return "calendars/shows/premieres/{start_date}/{days}"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Optional; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Optional; } }
 
 		public DateTime? StartDate { get; set; }
 

@@ -65,6 +65,9 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "year")]
 		public int? Year { get; set; }
 
+		[JsonProperty(PropertyName = "seasons")]
+		public IEnumerable<TraktSeason> Seasons { get; set; }
+
 		public bool IsPostable() {
 			return !string.IsNullOrEmpty(Title) || (Ids != null && Ids.HasAnyValuesSet());
 		}

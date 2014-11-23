@@ -12,18 +12,18 @@ namespace TraktSharp.Request.Search {
 
 		protected override string PathTemplate { get { return "search"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
 
 		protected override bool SupportsPagination { get { return true; } }
 
 		public string Query { get; set; }
 
-		public TextQueryTypeOptions Type { get; set; }
+		public TextQueryType Type { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
 			var ret = base.GetQueryStringParameters(queryStringParameters).ToDictionary(o => o.Key, o => o.Value);
 			ret["query"] = Query;
-			if (Type != TextQueryTypeOptions.Unspecified) {
+			if (Type != TextQueryType.Unspecified) {
 				ret["type"] = EnumsHelper.GetDescription(Type);
 			}
 			return ret;

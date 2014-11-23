@@ -11,7 +11,7 @@ namespace TraktSharp.Request.Recommendations {
 
 		protected override string PathTemplate { get { return "recommendations/movies"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Required; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Required; } }
 
 	}
 

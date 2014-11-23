@@ -14,21 +14,21 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<IEnumerable<TraktMovie>> PopularAsync(ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktMovie>> PopularAsync(ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktMoviesPopularRequest(Client) {
 				Extended = extended,
 				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktMoviesTrendingResponseItem>> TrendingAsync(ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktMoviesTrendingResponseItem>> TrendingAsync(ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktMoviesTrendingRequest(Client) {
 				Extended = extended,
 				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktMoviesUpdatesResponseItem>> UpdatesAsync(DateTime? startDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktMoviesUpdatesResponseItem>> UpdatesAsync(DateTime? startDate = null, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktMoviesUpdatesRequest(Client) {
 				StartDate = startDate,
 				Extended = extended,
@@ -36,11 +36,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktMovie> SummaryAsync(TraktMovie movie, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktMovie> SummaryAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await SummaryAsync(movie.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktMovie> SummaryAsync(string movieId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktMovie> SummaryAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktMoviesSummaryRequest(Client) {
 				Id = movieId,
 				Extended = extended
@@ -90,11 +90,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktPeople> PeopleAsync(TraktMovie movie, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktPeople> PeopleAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await PeopleAsync(movie.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktPeople> PeopleAsync(string movieId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktPeople> PeopleAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktMoviesPeopleRequest(Client) {
 				Id = movieId,
 				Extended = extended
@@ -111,11 +111,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktMovie>> RelatedAsync(TraktMovie movie, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktMovie>> RelatedAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await RelatedAsync(movie.Ids.GetBestId(), extended);
 		}
 
-		public async Task<IEnumerable<TraktMovie>> RelatedAsync(string movieId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktMovie>> RelatedAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktMoviesRelatedRequest(Client) {
 				Id = movieId,
 				Extended = extended

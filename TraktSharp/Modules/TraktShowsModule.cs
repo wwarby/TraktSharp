@@ -14,21 +14,21 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<IEnumerable<TraktShow>> PopularAsync(ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktShow>> PopularAsync(ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktShowsPopularRequest(Client) {
 				Extended = extended,
 				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktShowsTrendingResponseItem>> TrendingAsync(ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktShowsTrendingResponseItem>> TrendingAsync(ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktShowsTrendingRequest(Client) {
 				Extended = extended,
 				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktShowsUpdatesResponseItem>> UpdatesAsync(DateTime? startDate = null, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktShowsUpdatesResponseItem>> UpdatesAsync(DateTime? startDate = null, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktShowsUpdatesRequest(Client) {
 				StartDate = startDate,
 				Extended = extended,
@@ -36,11 +36,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktShow> SummaryAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShow> SummaryAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await SummaryAsync(show.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktShow> SummaryAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShow> SummaryAsync(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktShowsSummaryRequest(Client) {
 				Id = showId,
 				Extended = extended
@@ -51,7 +51,7 @@ namespace TraktSharp.Modules {
 			return await TranslationsAsync(show.Ids.GetBestId(), language);
 		}
 
-		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> TranslationsAsync(string showId, string language, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> TranslationsAsync(string showId, string language, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktShowsTranslationsRequest(Client) {
 				Id = showId,
 				Language = language,
@@ -70,33 +70,33 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktShowProgress> ProgressCollectionAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShowProgress> ProgressCollectionAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await ProgressCollectionAsync(show.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktShowProgress> ProgressCollectionAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShowProgress> ProgressCollectionAsync(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktShowsProgressCollectionRequest(Client) {
 				Id = showId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktShowProgress> ProgressWatchedAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShowProgress> ProgressWatchedAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await ProgressWatchedAsync(show.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktShowProgress> ProgressWatchedAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktShowProgress> ProgressWatchedAsync(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktShowsProgressWatchedRequest(Client) {
 				Id = showId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktPeople> PeopleAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktPeople> PeopleAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await PeopleAsync(show.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktPeople> PeopleAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktPeople> PeopleAsync(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktShowsPeopleRequest(Client) {
 				Id = showId,
 				Extended = extended
@@ -113,11 +113,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktShow>> RelatedAsync(TraktShow show, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktShow>> RelatedAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await RelatedAsync(show.Ids.GetBestId(), extended);
 		}
 
-		public async Task<IEnumerable<TraktShow>> RelatedAsync(string showId, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<IEnumerable<TraktShow>> RelatedAsync(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktShowsRelatedRequest(Client) {
 				Id = showId,
 				Extended = extended

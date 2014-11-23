@@ -11,7 +11,7 @@ namespace TraktSharp {
 		RefreshToken
 	}
 
-	public enum ExtendedOptions {
+	public enum ExtendedOption {
 		[Description("")]
 		Unspecified,
 		[Description("min")]
@@ -24,7 +24,7 @@ namespace TraktSharp {
 		FullAndImages
 	}
 
-	public enum OAuthRequirementOptions { NotRequired, Optional, Required, Forbidden }
+	public enum OAuthRequirement { NotRequired, Optional, Required, Forbidden }
 
 	public enum GenreTypeOptions {
 		[Description("shows")]
@@ -33,7 +33,7 @@ namespace TraktSharp {
 		Movies
 	}
 
-	public enum TextQueryTypeOptions {
+	public enum TextQueryType {
 		[Description("")]
 		Unspecified,
 		[Description("movie")]
@@ -48,7 +48,7 @@ namespace TraktSharp {
 		List
 	}
 
-	public enum IdLookupTypeOptions {
+	public enum IdLookupType {
 		[Description("trakt-movie")]
 		TraktMovie,
 		[Description("trakt-show")]
@@ -63,6 +63,82 @@ namespace TraktSharp {
 		Tvdb,
 		[Description("tvrage")]
 		TvRage
+	}
+
+	public enum MediaType {
+		[Description("digital")]
+		Digital,
+		[Description("bluray")]
+		BluRay,
+		[Description("hddvd")]
+		HdDvd,
+		[Description("dvd")]
+		Dvd,
+		[Description("vcd")]
+		Vcd,
+		[Description("vhs")]
+		Vhs,
+		[Description("Betamax")]
+		Betamax,
+		[Description("Laserdisc")]
+		Laserdisc
+	}
+
+	public enum Resolution {
+		[Description("uhd_4k")]
+		Uhd4k,
+		[Description("hd_1080p")]
+		Hd1080p,
+		[Description("hd_1080i")]
+		Hd1080i,
+		[Description("hd_720p")]
+		Hd720p,
+		[Description("sd_480p")]
+		Sd480p,
+		[Description("sd_480i")]
+		Sd480i,
+		[Description("sd_576p")]
+		Sd576p,
+		[Description("sd_576i")]
+		Sd576i
+	}
+
+	public enum AudioFormat {
+		[Description("lpcm")]
+		Lpcm,
+		[Description("mp3")]
+		Mp3,
+		[Description("acc")]
+		Acc,
+		[Description("ogg")]
+		Ogg,
+		[Description("wma")]
+		Wma,
+		[Description("dts")]
+		Dts,
+		[Description("dts_ma")]
+		DtsMa,
+		[Description("dolby_prologic")]
+		DolbyProLogic,
+		[Description("dolby_digital")]
+		DolbyDigital,
+		[Description("dolby_digital_plus")]
+		DolbyDigitalPlus,
+		[Description("dolby_truehd")]
+		DolbyTrueHd
+	}
+
+	public enum AudioChannels {
+		[Description("1.0")]
+		Channels10,
+		[Description("2.0")]
+		Channels20,
+		[Description("5.1")]
+		Channels51,
+		[Description("6.1")]
+		Channels61,
+		[Description("7.1")]
+		Channels71
 	}
 
 	public enum StringMovieIdType { Auto, Slug, Imdb }

@@ -66,7 +66,7 @@ namespace TraktSharp.Examples.ViewModels {
 		}
 
 		public async void TestRequest() {
-			var result = await Client.Checkin.MovieAsync(new TraktMovie {Ids = new TraktMovieIds {Imdb = "tt0099871"}}, extended: ExtendedOptions.FullAndImages);
+			var result = await Client.Checkin.MovieAsync(new TraktMovie {Ids = new TraktMovieIds {Imdb = "tt0099871"}}, extended: ExtendedOption.FullAndImages);
 			Debug.WriteLine(result);
 			Debugger.Break();
 		}

@@ -13,7 +13,7 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TextQueryTypeOptions queryType = TextQueryTypeOptions.Unspecified, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TextQueryType queryType = TextQueryType.Unspecified, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktTextQueryRequest(Client) {
 				Query = query,
 				Type = queryType,
@@ -22,7 +22,7 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktSearchResult>> IdLookupAsync(string id, IdLookupTypeOptions idType, ExtendedOptions extended = ExtendedOptions.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktSearchResult>> IdLookupAsync(string id, IdLookupType idType, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktIdLookupRequest(Client) {
 				IdType = idType,
 				Id = id,

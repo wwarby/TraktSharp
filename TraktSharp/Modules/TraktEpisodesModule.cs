@@ -13,11 +13,11 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktEpisode> SummaryAsync(TraktShow show, TraktEpisode episode, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktEpisode> SummaryAsync(TraktShow show, TraktEpisode episode, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await SummaryAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault(), extended);
 		}
 
-		public async Task<TraktEpisode> SummaryAsync(string showId, int season, int episode, ExtendedOptions extended = ExtendedOptions.Unspecified) {
+		public async Task<TraktEpisode> SummaryAsync(string showId, int season, int episode, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktEpisodesSummaryRequest(Client) {
 				Id = showId,
 				Season = season,

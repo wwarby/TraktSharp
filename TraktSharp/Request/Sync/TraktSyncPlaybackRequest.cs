@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using TraktSharp.Entities;
 using TraktSharp.Entities.Response.Sync;
 
 namespace TraktSharp.Request.Sync {
@@ -11,7 +10,7 @@ namespace TraktSharp.Request.Sync {
 
 		protected override string PathTemplate { get { return "sync/playback"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.Required; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Required; } }
 
 	}
 

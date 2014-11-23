@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -12,6 +13,9 @@ namespace TraktSharp.Entities {
 
 		[JsonProperty(PropertyName = "ids")]
 		public TraktSeasonIds Ids { get; set; }
+
+		[JsonProperty(PropertyName = "episodes")]
+		public IEnumerable<TraktEpisode> Episodes { get; set; }
 
 	}
 

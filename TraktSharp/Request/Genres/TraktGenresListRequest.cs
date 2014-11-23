@@ -12,7 +12,7 @@ namespace TraktSharp.Request.Genres {
 
 		protected override string PathTemplate { get { return "genres/{type}"; } }
 
-		protected override OAuthRequirementOptions OAuthRequirement { get { return OAuthRequirementOptions.NotRequired; } }
+		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
 
 		public GenreTypeOptions Type { get; set; }
 
