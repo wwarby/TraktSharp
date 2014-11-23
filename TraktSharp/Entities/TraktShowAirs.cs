@@ -15,13 +15,13 @@ namespace TraktSharp.Entities {
 		public string Time { get; set; }
 
 		[JsonProperty(PropertyName = "timezone")]
-		public string OlsonTimeZone { get; set; }
+		public string OlsonTimeZoneId { get; set; }
 
 		//TODO: This implementation is a bit muddled and doesn't work properly. Revisit.
 		[JsonIgnore]
 		public TimeZoneInfo TimeZone {
 			get {
-				return string.IsNullOrEmpty(OlsonTimeZone) ? default(TimeZoneInfo) : TimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZone);
+				return string.IsNullOrEmpty(OlsonTimeZoneId) ? default(TimeZoneInfo) : TimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId);
 			}
 		}
 

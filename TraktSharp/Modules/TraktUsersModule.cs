@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using TraktSharp.Entities;
+using TraktSharp.Request.Users;
 
 namespace TraktSharp.Modules {
 
@@ -9,7 +13,13 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
+		public async Task<TraktUserSettings> GetSettings() {
+			return await new TraktUsersSettingsRequest(Client).SendAsync();
+		}
 
+		public async Task<IEnumerable<TraktFollowRequest>> GetFollowRequests() {
+			return await new TraktUsersRequestsRequest(Client).SendAsync();
+		}
 
 	}
 
