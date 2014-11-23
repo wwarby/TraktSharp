@@ -13,11 +13,11 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktEpisode> SummaryAsync(TraktShow show, TraktEpisode episode, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await SummaryAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault(), extended);
+		public async Task<TraktEpisode> GetEpisodeAsync(TraktShow show, TraktEpisode episode, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetEpisodeAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault(), extended);
 		}
 
-		public async Task<TraktEpisode> SummaryAsync(string showId, int season, int episode, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktEpisode> GetEpisodeAsync(string showId, int season, int episode, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktEpisodesSummaryRequest(Client) {
 				Id = showId,
 				Season = season,
@@ -26,11 +26,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktShow show, TraktEpisode episode, int? page = null, int? limit = null) {
-			return await CommentsAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault(), page, limit);
+		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(TraktShow show, TraktEpisode episode, int? page = null, int? limit = null) {
+			return await GetCommentsAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault(), page, limit);
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(string showId, int season, int episode, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(string showId, int season, int episode, int? page = null, int? limit = null) {
 			return await new TraktEpisodesCommentsRequest(Client) {
 				Id = showId,
 				Season = season,
@@ -39,11 +39,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktRatings> RatingsAsync(TraktShow show, TraktEpisode episode) {
-			return await RatingsAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault());
+		public async Task<TraktRatings> GetRatingsAsync(TraktShow show, TraktEpisode episode) {
+			return await GetRatingsAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault());
 		}
 
-		public async Task<TraktRatings> RatingsAsync(string showId, int season, int episode) {
+		public async Task<TraktRatings> GetRatingsAsync(string showId, int season, int episode) {
 			return await new TraktEpisodesRatingsRequest(Client) {
 				Id = showId,
 				Season = season,
@@ -51,11 +51,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUser>> WatchingAsync(TraktShow show, TraktEpisode episode) {
-			return await WatchingAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault());
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingEpisodeAsync(TraktShow show, TraktEpisode episode) {
+			return await GetUsersWatchingEpisodeAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault());
 		}
 
-		public async Task<IEnumerable<TraktUser>> WatchingAsync(string showId, int season, int episode) {
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingEpisodeAsync(string showId, int season, int episode) {
 			return await new TraktEpisodesWatchingRequest(Client) {
 				Id = showId,
 				Season = season,

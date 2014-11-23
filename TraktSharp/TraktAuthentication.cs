@@ -52,7 +52,7 @@ namespace TraktSharp {
 		public void ParseAuthorizationResponse(string url) { ParseAuthorizationResponse(new Uri(url)); }
 
 		public async Task<TraktOAuthTokenResponse> GetAccessToken() { 
-			return await Client.OAuth.TokenAsync(AuthorizationCode, ClientId, ClientSecret, RedirectUri, EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode));
+			return await Client.OAuth.GetOAuthTokenAsync(AuthorizationCode, ClientId, ClientSecret, RedirectUri, EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode));
 		}
 
 	}

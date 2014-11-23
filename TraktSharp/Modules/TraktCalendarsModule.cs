@@ -12,7 +12,7 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktCalendarsShowsResponse> ShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCalendarsShowsResponse> GetShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktCalendarsShowsRequest(Client) {
 				StartDate = startDate,
 				Days = days,
@@ -21,7 +21,7 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktCalendarsShowsResponse> ShowsNewAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCalendarsShowsResponse> GetNewShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktCalendarsShowsNewRequest(Client) {
 				StartDate = startDate,
 				Days = days,
@@ -30,7 +30,7 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktCalendarsShowsResponse> ShowsPremieresAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCalendarsShowsResponse> GetPremiereShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktCalendarsShowsPremieresRequest(Client) {
 				StartDate = startDate,
 				Days = days,
@@ -39,7 +39,7 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktCalendarsMoviesResponse> MoviesAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCalendarsMoviesResponse> GetMoviesAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktCalendarsMoviesRequest(Client) {
 				StartDate = startDate,
 				Days = days,

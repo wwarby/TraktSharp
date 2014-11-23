@@ -14,11 +14,11 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktOAuthTokenResponse> TokenAsync() {
-			return await TokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.RedirectUri, EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode));
+		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync() {
+			return await GetOAuthTokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.RedirectUri, EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode));
 		}
 
-		public async Task<TraktOAuthTokenResponse> TokenAsync(string code, string clientId, string clientSecret, string redirectUri, string grantType) {
+		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync(string code, string clientId, string clientSecret, string redirectUri, string grantType) {
 			return await new TraktOAuthTokenRequest(Client) {
 				RequestBody = new TraktOAuthTokenRequestBody {
 					Code = code,

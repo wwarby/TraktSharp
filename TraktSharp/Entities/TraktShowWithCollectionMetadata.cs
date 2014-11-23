@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -24,6 +25,9 @@ namespace TraktSharp.Entities {
 
 		[JsonProperty(PropertyName = "3d")]
 		public bool? Is3d { get; set; }
+
+		[JsonProperty(PropertyName = "seasons")]
+		public new IEnumerable<TraktSeasonWithCollectionMetadata> Seasons { get; set; }
 
 	}
 

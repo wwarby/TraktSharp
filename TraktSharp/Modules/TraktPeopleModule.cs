@@ -12,33 +12,33 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktPerson> SummaryAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await SummaryAsync(person.Ids.GetBestId(), extended);
+		public async Task<TraktPerson> GetPersonAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetPersonAsync(person.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktPerson> SummaryAsync(string personId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktPerson> GetPersonAsync(string personId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktPeopleSummaryRequest(Client) {
 				Id = personId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktMovieCredits> MoviesAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await MoviesAsync(person.Ids.GetBestId(), extended);
+		public async Task<TraktMovieCredits> GetMoviesForPersonAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetMoviesForPersonAsync(person.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktMovieCredits> MoviesAsync(string personId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktMovieCredits> GetMoviesForPersonAsync(string personId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktPeopleMoviesRequest(Client) {
 				Id = personId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktShowCredits> ShowsAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await ShowsAsync(person.Ids.GetBestId(), extended);
+		public async Task<TraktShowCredits> GetShowsForPersonAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetShowsForPersonAsync(person.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktShowCredits> ShowsAsync(string personId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktShowCredits> GetShowsForPersonAsync(string personId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktPeopleShowsRequest(Client) {
 				Id = personId,
 				Extended = extended

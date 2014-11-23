@@ -14,21 +14,21 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<IEnumerable<TraktMovie>> PopularAsync(ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktMovie>> GetPopularMoviesAsync(ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktMoviesPopularRequest(Client) {
 				Extended = extended,
 				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktMoviesTrendingResponseItem>> TrendingAsync(ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktMoviesTrendingResponseItem>> GetTrendingMoviesAsync(ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktMoviesTrendingRequest(Client) {
 				Extended = extended,
 				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktMoviesUpdatesResponseItem>> UpdatesAsync(DateTime? startDate = null, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktMoviesUpdatesResponseItem>> GetUpdatedMoviesAsync(DateTime? startDate = null, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await new TraktMoviesUpdatesRequest(Client) {
 				StartDate = startDate,
 				Extended = extended,
@@ -36,97 +36,97 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktMovie> SummaryAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await SummaryAsync(movie.Ids.GetBestId(), extended);
+		public async Task<TraktMovie> GetMovieAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetMovieAsync(movie.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktMovie> SummaryAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktMovie> GetMovieAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktMoviesSummaryRequest(Client) {
 				Id = movieId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktMoviesAliasesResponseItem>> AliasesAsync(TraktMovie movie) {
-			return await AliasesAsync(movie.Ids.GetBestId());
+		public async Task<IEnumerable<TraktMoviesAliasesResponseItem>> GetAliasesAsync(TraktMovie movie) {
+			return await GetAliasesAsync(movie.Ids.GetBestId());
 		}
 
-		public async Task<IEnumerable<TraktMoviesAliasesResponseItem>> AliasesAsync(string movieId) {
+		public async Task<IEnumerable<TraktMoviesAliasesResponseItem>> GetAliasesAsync(string movieId) {
 			return await new TraktMoviesAliasesRequest(Client) {
 				Id = movieId
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktMoviesReleasesResponseItem>> ReleasesAsync(TraktMovie movie, string language) {
-			return await ReleasesAsync(movie.Ids.GetBestId(), language);
+		public async Task<IEnumerable<TraktMoviesReleasesResponseItem>> GetReleasesAsync(TraktMovie movie, string language) {
+			return await GetReleasesAsync(movie.Ids.GetBestId(), language);
 		}
 
-		public async Task<IEnumerable<TraktMoviesReleasesResponseItem>> ReleasesAsync(string movieId, string language) {
+		public async Task<IEnumerable<TraktMoviesReleasesResponseItem>> GetReleasesAsync(string movieId, string language) {
 			return await new TraktMoviesReleasesRequest(Client) {
 				Id = movieId,
 				Language = language
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktMoviesTranslationsResponseItem>> TranslationsAsync(TraktMovie movie, string language) {
-			return await TranslationsAsync(movie.Ids.GetBestId(), language);
+		public async Task<IEnumerable<TraktMoviesTranslationsResponseItem>> GetTranslationsAsync(TraktMovie movie, string language) {
+			return await GetTranslationsAsync(movie.Ids.GetBestId(), language);
 		}
 
-		public async Task<IEnumerable<TraktMoviesTranslationsResponseItem>> TranslationsAsync(string movieId, string language) {
+		public async Task<IEnumerable<TraktMoviesTranslationsResponseItem>> GetTranslationsAsync(string movieId, string language) {
 			return await new TraktMoviesTranslationsRequest(Client) {
 				Id = movieId,
 				Language = language
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(TraktMovie movie, int? page = null, int? limit = null) {
-			return await CommentsAsync(movie.Ids.GetBestId(), page, limit);
+		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(TraktMovie movie, int? page = null, int? limit = null) {
+			return await GetCommentsAsync(movie.Ids.GetBestId(), page, limit);
 		}
 
-		public async Task<IEnumerable<TraktComment>> CommentsAsync(string movieId, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(string movieId, int? page = null, int? limit = null) {
 			return await new TraktMoviesCommentsRequest(Client) {
 				Id = movieId,
 				Pagination = new PaginationOptions(page, limit)
 			}.SendAsync();
 		}
 
-		public async Task<TraktPeople> PeopleAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await PeopleAsync(movie.Ids.GetBestId(), extended);
+		public async Task<TraktPeople> GetCastAndCrewAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetCastAndCrewAsync(movie.Ids.GetBestId(), extended);
 		}
 
-		public async Task<TraktPeople> PeopleAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktPeople> GetCastAndCrewAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktMoviesPeopleRequest(Client) {
 				Id = movieId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<TraktRatings> RatingsAsync(TraktMovie movie) {
-			return await RatingsAsync(movie.Ids.GetBestId());
+		public async Task<TraktRatings> GetRatingsAsync(TraktMovie movie) {
+			return await GetRatingsAsync(movie.Ids.GetBestId());
 		}
 
-		public async Task<TraktRatings> RatingsAsync(string movieId) {
+		public async Task<TraktRatings> GetRatingsAsync(string movieId) {
 			return await new TraktMoviesRatingsRequest(Client) {
 				Id = movieId
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktMovie>> RelatedAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await RelatedAsync(movie.Ids.GetBestId(), extended);
+		public async Task<IEnumerable<TraktMovie>> GetRelatedMoviesAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetRelatedMoviesAsync(movie.Ids.GetBestId(), extended);
 		}
 
-		public async Task<IEnumerable<TraktMovie>> RelatedAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktMovie>> GetRelatedMoviesAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktMoviesRelatedRequest(Client) {
 				Id = movieId,
 				Extended = extended
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUser>> WatchingAsync(TraktMovie movie) {
-			return await WatchingAsync(movie.Ids.GetBestId());
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingMovieAsync(TraktMovie movie) {
+			return await GetUsersWatchingMovieAsync(movie.Ids.GetBestId());
 		}
 
-		public async Task<IEnumerable<TraktUser>> WatchingAsync(string movieId) {
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingMovieAsync(string movieId) {
 			return await new TraktMoviesWatchingRequest(Client) {
 				Id = movieId
 			}.SendAsync();

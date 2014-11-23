@@ -99,19 +99,19 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktComment> GetAsync(TraktComment comment) {
-			return await GetAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture));
+		public async Task<TraktComment> GetCommentAsync(TraktComment comment) {
+			return await GetCommentAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture));
 		}
 
-		public async Task<TraktComment> GetAsync(string commentId) {
+		public async Task<TraktComment> GetCommentAsync(string commentId) {
 			return await new TraktCommentsGetRequest(Client) { Id = commentId }.SendAsync();
 		}
 
-		public async Task<TraktComment> UpdateAsync(TraktComment comment) {
-			return await UpdateAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture), comment.Comment, comment.Spoiler.GetValueOrDefault(false), comment.Review.GetValueOrDefault(false));
+		public async Task<TraktComment> UpdateCommentAsync(TraktComment comment) {
+			return await UpdateCommentAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture), comment.Comment, comment.Spoiler.GetValueOrDefault(false), comment.Review.GetValueOrDefault(false));
 		}
 
-		public async Task<TraktComment> UpdateAsync(string commentId, string comment, bool spoiler = false, bool review = false) {
+		public async Task<TraktComment> UpdateCommentAsync(string commentId, string comment, bool spoiler = false, bool review = false) {
 			return await new TraktCommentsUpdateRequest(Client) {
 				Id = commentId,
 				RequestBody = new TraktComment {
@@ -122,11 +122,11 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task DeleteAsync(TraktComment comment) {
-			await DeleteAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture));
+		public async Task DeleteCommentAsync(TraktComment comment) {
+			await DeleteCommentAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture));
 		}
 
-		public async Task DeleteAsync(string commentId) {
+		public async Task DeleteCommentAsync(string commentId) {
 			await new TraktCommentsDeleteRequest(Client) { Id = commentId }.SendAsync();
 		}
 
@@ -134,7 +134,7 @@ namespace TraktSharp.Modules {
 			return await new TraktCommentsRepliesRequest(Client) { Id = commentId }.SendAsync();
 		}
 
-		public async Task<TraktComment> ReplyAsync(string commentId, string comment, bool spoiler = false) {
+		public async Task<TraktComment> ReplyToCommentAsync(string commentId, string comment, bool spoiler = false) {
 			return await new TraktCommentsReplyRequest(Client) {
 				Id = commentId,
 				RequestBody = new TraktComment {
@@ -144,19 +144,19 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktComment> LikeAsync(TraktComment comment) {
-			return await LikeAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture));
+		public async Task<TraktComment> LikeCommentAsync(TraktComment comment) {
+			return await LikeCommentAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture));
 		}
 
-		public async Task<TraktComment> LikeAsync(string commentId) {
+		public async Task<TraktComment> LikeCommentAsync(string commentId) {
 			return await new TraktCommentsLikeRequest(Client) { Id = commentId }.SendAsync();
 		}
 
-		public async Task UnlikeAsync(TraktComment comment) {
-			await UnlikeAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture));
+		public async Task UnlikeCommentAsync(TraktComment comment) {
+			await UnlikeCommentAsync(comment.Id.GetValueOrDefault().ToString(CultureInfo.InvariantCulture));
 		}
 
-		public async Task UnlikeAsync(string commentId) {
+		public async Task UnlikeCommentAsync(string commentId) {
 			await new TraktCommentsUnlikeRequest(Client) { Id = commentId }.SendAsync();
 		}
 

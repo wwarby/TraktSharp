@@ -6,13 +6,13 @@ using Newtonsoft.Json;
 namespace TraktSharp.Entities {
 
 	[Serializable]
-	public class TraktShowWithWatchedMetadata : TraktShow {
+	public class TraktSeasonWithWatchedMetadata : TraktSeason {
 
 		[JsonProperty(PropertyName = "watched_at")]
 		public DateTime? WatchedAt { get; set; }
 
-		[JsonProperty(PropertyName = "seasons")]
-		public new IEnumerable<TraktSeasonWithWatchedMetadata> Seasons { get; set; }
+		[JsonProperty(PropertyName = "episodes")]
+		public new IEnumerable<TraktEpisodeWithWatchedMetadata> Episodes { get; set; }
 
 	}
 
