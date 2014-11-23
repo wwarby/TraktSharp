@@ -24,6 +24,20 @@ namespace TraktSharp {
 		FullAndImages
 	}
 
+	public enum Rating {
+		RatingUnspecified = 0,
+		Rating1 = 1,
+		Rating2 = 2,
+		Rating3 = 3,
+		Rating4 = 4,
+		Rating5 = 5,
+		Rating6 = 6,
+		Rating7 = 7,
+		Rating8 = 8,
+		Rating9 = 9,
+		Rating10 = 10
+	}
+
 	public enum OAuthRequirement { NotRequired, Optional, Required, Forbidden }
 
 	public enum GenreTypeOptions {

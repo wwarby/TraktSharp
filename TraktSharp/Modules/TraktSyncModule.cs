@@ -82,12 +82,94 @@ namespace TraktSharp.Modules {
 
 		public async Task<TraktSyncRemoveResponse> CollectionRemoveAsync(IEnumerable<TraktMovie> movies, IEnumerable<TraktShow> shows, IEnumerable<TraktEpisode> episodes) {
 			return await new TraktSyncCollectionRemoveRequest(Client) {
-				RequestBody = new TraktSyncCollectionRemoveRequestBody {
+				RequestBody = new TraktSyncRemoveRequestBody {
 					Movies = movies,
 					Shows = shows,
 					Episodes = episodes
 				}
 			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktSyncWatchedMoviesResponseItem>> WatchedMoviesAsync() {
+			return await new TraktSyncWatchedMoviesRequest(Client).SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktSyncWatchedShowsResponseItem>> WatchedShowsAsync() {
+			return await new TraktSyncWatchedShowsRequest(Client).SendAsync();
+		}
+
+		public async Task<TraktSyncAddResponse> WatchedAddAsync(IEnumerable<TraktMovieWithWatchedMetadata> movies) {
+			return await WatchedAddAsync(movies, null, null);
+		}
+
+		public async Task<TraktSyncAddResponse> WatchedAddAsync(IEnumerable<TraktShowWithWatchedMetadata> shows) {
+			return await WatchedAddAsync(null, shows, null);
+		}
+
+		public async Task<TraktSyncAddResponse> WatchedAddAsync(IEnumerable<TraktEpisodeWithWatchedMetadata> episodes) {
+			return await WatchedAddAsync(null, null, episodes);
+		}
+
+		public async Task<TraktSyncAddResponse> WatchedAddAsync(IEnumerable<string> movieIds, IEnumerable<string> showIds, IEnumerable<string> episodeIds) {
+			return await WatchedAddAsync(
+				TraktMovieFactory.FromIds<TraktMovieWithWatchedMetadata>(movieIds),
+				TraktShowFactory.FromIds<TraktShowWithWatchedMetadata>(showIds),
+				TraktEpisodeFactory.FromIds<TraktEpisodeWithWatchedMetadata>(episodeIds));
+		}
+
+		public async Task<TraktSyncAddResponse> WatchedAddAsync(IEnumerable<TraktMovieWithWatchedMetadata> movies, IEnumerable<TraktShowWithWatchedMetadata> shows, IEnumerable<TraktEpisodeWithWatchedMetadata> episodes) {
+			return await new TraktSyncWatchedAddRequest(Client) {
+				RequestBody = new TraktSyncWatchedAddRequestBody {
+					Movies = movies,
+					Shows = shows,
+					Episodes = episodes
+				}
+			}.SendAsync();
+		}
+
+		public async Task<TraktSyncRemoveResponse> WatchedRemoveAsync(IEnumerable<TraktMovie> movies) {
+			return await WatchedRemoveAsync(movies, null, null);
+		}
+
+		public async Task<TraktSyncRemoveResponse> WatchedRemoveAsync(IEnumerable<TraktShow> shows) {
+			return await WatchedRemoveAsync(null, shows, null);
+		}
+
+		public async Task<TraktSyncRemoveResponse> WatchedRemoveAsync(IEnumerable<TraktEpisode> episodes) {
+			return await WatchedRemoveAsync(null, null, episodes);
+		}
+
+		public async Task<TraktSyncRemoveResponse> WatchedRemoveAsync(IEnumerable<string> movieIds, IEnumerable<string> showIds, IEnumerable<string> episodeIds) {
+			return await WatchedRemoveAsync(
+				TraktMovieFactory.FromIds(movieIds),
+				TraktShowFactory.FromIds(showIds),
+				TraktEpisodeFactory.FromIds(episodeIds));
+		}
+
+		public async Task<TraktSyncRemoveResponse> WatchedRemoveAsync(IEnumerable<TraktMovie> movies, IEnumerable<TraktShow> shows, IEnumerable<TraktEpisode> episodes) {
+			return await new TraktSyncWatchedRemoveRequest(Client) {
+				RequestBody = new TraktSyncRemoveRequestBody {
+					Movies = movies,
+					Shows = shows,
+					Episodes = episodes
+				}
+			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktSyncRatingsMoviesResponseItem>> RatingsMoviesAsync(Rating rating = Rating.RatingUnspecified) {
+			return await new TraktSyncRatingsMoviesRequest(Client) { Rating = rating }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktSyncRatingsShowsResponseItem>> RatingsShowsAsync(Rating rating = Rating.RatingUnspecified) {
+			return await new TraktSyncRatingsShowsRequest(Client) { Rating = rating }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktSyncRatingsSeasonsResponseItem>> RatingsSeasonsAsync(Rating rating = Rating.RatingUnspecified) {
+			return await new TraktSyncRatingsSeasonsRequest(Client) { Rating = rating }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktSyncRatingsEpisodesResponseItem>> RatingsEpisodesAsync(Rating rating = Rating.RatingUnspecified) {
+			return await new TraktSyncRatingsEpisodesRequest(Client) { Rating = rating }.SendAsync();
 		}
 
 	}

@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace TraktSharp.Entities.RequestBody.Sync {
 
 	[Serializable]
-	public class TraktSyncCollectionRemoveRequestBody {
+	public class TraktSyncRemoveRequestBody {
 
 		[JsonProperty(PropertyName = "movies")]
 		public IEnumerable<TraktMovie> Movies { get; set; }

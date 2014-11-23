@@ -5,11 +5,11 @@ using TraktSharp.Entities.Response.Sync;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncCollectionRemoveRequest : TraktPostRequest<TraktSyncRemoveResponse, TraktSyncRemoveRequestBody> {
+	public class TraktSyncWatchedRemoveRequest : TraktPostRequest<TraktSyncRemoveResponse, TraktSyncRemoveRequestBody> {
 
-		public TraktSyncCollectionRemoveRequest(TraktClient client) : base(client) { }
+		public TraktSyncWatchedRemoveRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "sync/collection/remove"; } }
+		protected override string PathTemplate { get { return "sync/history/remove"; } }
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

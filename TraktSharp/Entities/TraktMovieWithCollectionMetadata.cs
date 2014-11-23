@@ -25,7 +25,6 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "3d")]
 		public bool? Is3d { get; set; }
 
-
 	}
 
 }
