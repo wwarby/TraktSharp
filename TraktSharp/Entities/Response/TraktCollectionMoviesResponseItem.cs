@@ -2,10 +2,10 @@
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace TraktSharp.Entities.Response.Sync {
+namespace TraktSharp.Entities.Response {
 
 	[Serializable]
-	public class TraktSyncCollectionMoviesResponseItem {
+	public class TraktCollectionMoviesResponseItem {
 
 		[JsonProperty(PropertyName = "collected_at")]
 		public DateTime? CollectedAt { get; set; }

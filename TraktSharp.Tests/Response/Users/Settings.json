@@ -1,0 +1,31 @@
+﻿{
+	"user": {
+		"username": "justin",
+		"private": false,
+		"name": "Justin Nemeth",
+		"vip": true,
+		"joined_at": "2010-09-25T17:49:25.000Z",
+		"location": "San Diego, CA",
+		"about": "Co-founder of trakt.",
+		"gender": "male",
+		"age": 32,
+		"images": {
+			"avatar": {
+				"full": "https://secure.gravatar.com/avatar/30c2f0dfbc39e48656f40498aa871e33?r=pg&s=256"
+			}
+		}
+	},
+	"account": {
+		"timezone": null,
+		"cover_image": null
+	},
+	"connections": {
+		"facebook": false,
+		"twitter": false,
+		"tumblr": false
+	},
+	"sharing_text": {
+		"watching": "I'm watching [item]",
+		"watched": "I just watched [item]"
+	}
+}

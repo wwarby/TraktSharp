@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using TraktSharp.Entities.Response.Sync;
+using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncRatingsShowsRequest : TraktGetRequest<IEnumerable<TraktSyncRatingsShowsResponseItem>> {
+	public class TraktSyncRatingsShowsRequest : TraktGetRequest<IEnumerable<TraktRatingsShowsResponseItem>> {
 
 		public TraktSyncRatingsShowsRequest(TraktClient client) : base(client) { }
 

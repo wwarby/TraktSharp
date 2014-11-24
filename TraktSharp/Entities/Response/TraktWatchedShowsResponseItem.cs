@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace TraktSharp.Entities.Response.Sync {
+namespace TraktSharp.Entities.Response {
 
 	[Serializable]
-	public class TraktSyncWatchedShowsResponseItem {
+	public class TraktWatchedShowsResponseItem {
 
 		[JsonProperty(PropertyName = "plays")]
 		public int? Plays { get; set; }
@@ -15,7 +15,7 @@ namespace TraktSharp.Entities.Response.Sync {
 		public DateTime? LastWatchedAt { get; set; }
 
 		[JsonProperty(PropertyName = "seasons")]
-		public IEnumerable<TraktSyncWatchedShowsResponseItemSeason> Seasons { get; set; }
+		public IEnumerable<TraktWatchedShowsResponseItemSeason> Seasons { get; set; }
 
 	}
 

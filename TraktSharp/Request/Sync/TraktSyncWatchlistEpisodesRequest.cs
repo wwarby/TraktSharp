@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TraktSharp.Entities.Response.Sync;
+using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncWatchlistEpisodesRequest : TraktGetRequest<IEnumerable<TraktSyncWatchlistEpisodesResponseItem>> {
+	public class TraktSyncWatchlistEpisodesRequest : TraktGetRequest<IEnumerable<TraktWatchlistEpisodesResponseItem>> {
 
 		public TraktSyncWatchlistEpisodesRequest(TraktClient client) : base(client) { }
 

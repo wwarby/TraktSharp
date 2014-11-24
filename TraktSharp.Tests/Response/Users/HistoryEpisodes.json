@@ -1,0 +1,86 @@
+﻿[
+	{
+		"watched_at": "2014-03-31T09:28:53.000Z",
+		"action": "scrobble",
+		"episode": {
+			"season": 2,
+			"number": 1,
+			"title": "Pawnee Zoo",
+			"ids": {
+				"trakt": 251,
+				"tvdb": 797571,
+				"imdb": null,
+				"tmdb": 397629,
+				"tvrage": null
+			}
+		},
+		"show": {
+			"title": "Parks and Recreation",
+			"year": 2009,
+			"ids": {
+				"trakt": 4,
+				"slug": "parks-and-recreation",
+				"tvdb": 84912,
+				"imdb": "tt1266020",
+				"tmdb": 8592,
+				"tvrage": 21686
+			}
+		}
+	},
+	{
+		"watched_at": "2014-03-31T09:28:53.000Z",
+		"action": "checkin",
+		"episode": {
+			"season": 2,
+			"number": 2,
+			"title": "The Stakeout",
+			"ids": {
+				"trakt": 252,
+				"tvdb": 1088031,
+				"imdb": null,
+				"tmdb": 397627,
+				"tvrage": null
+			}
+		},
+		"show": {
+			"title": "Parks and Recreation",
+			"year": 2009,
+			"ids": {
+				"trakt": 4,
+				"slug": "parks-and-recreation",
+				"tvdb": 84912,
+				"imdb": "tt1266020",
+				"tmdb": 8592,
+				"tvrage": 21686
+			}
+		}
+	},
+	{
+		"watched_at": "2014-03-31T09:28:53.000Z",
+		"action": "watch",
+		"episode": {
+			"season": 2,
+			"number": 3,
+			"title": "Beauty Pageant",
+			"ids": {
+				"trakt": 253,
+				"tvdb": 1088041,
+				"imdb": null,
+				"tmdb": 397642,
+				"tvrage": null
+			}
+		},
+		"show": {
+			"title": "Parks and Recreation",
+			"year": 2009,
+			"ids": {
+				"trakt": 4,
+				"slug": "parks-and-recreation",
+				"tvdb": 84912,
+				"imdb": "tt1266020",
+				"tmdb": 8592,
+				"tvrage": 21686
+			}
+		}
+	}
+]

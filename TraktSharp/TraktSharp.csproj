@@ -64,25 +64,25 @@
     <Compile Include="Entities\Response\Movies\TraktMoviesTrendingResponseItem.cs" />
     <Compile Include="Entities\Response\Movies\TraktMoviesAliasesResponseItem.cs" />
     <Compile Include="Entities\Response\Movies\TraktMoviesUpdatesResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncWatchlistSeasonsResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncWatchlistEpisodesResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncWatchlistShowsResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncWatchlistMoviesResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncRatingsMoviesResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncRatingsEpisodesResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncRatingsSeasonsResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncRatingsShowsResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncWatchedShowsResponseItemEpisode.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncWatchedShowsResponseItemSeason.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncWatchedShowsResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncWatchedMoviesResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktWatchlistSeasonsResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktWatchlistEpisodesResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktWatchlistShowsResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktWatchlistMoviesResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktRatingsMoviesResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktRatingsEpisodesResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktRatingsSeasonsResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktRatingsShowsResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktWatchedShowsResponseItemEpisode.cs" />
+    <Compile Include="Entities\Response\TraktWatchedShowsResponseItemSeason.cs" />
+    <Compile Include="Entities\Response\TraktWatchedShowsResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktWatchedMoviesResponseItem.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncRemoveResponse.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncResponseNotFound.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncResponseCounts.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncCollectionShowsResponseItemEpisode.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncCollectionShowsResponseItemSeason.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncCollectionShowsResponseItem.cs" />
-    <Compile Include="Entities\Response\Sync\TraktSyncCollectionMoviesResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktCollectionShowsResponseItemEpisode.cs" />
+    <Compile Include="Entities\Response\TraktCollectionShowsResponseItemSeason.cs" />
+    <Compile Include="Entities\Response\TraktCollectionShowsResponseItem.cs" />
+    <Compile Include="Entities\Response\TraktCollectionMoviesResponseItem.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncAddResponse.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncPlaybackResponse.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponseLists.cs" />
@@ -92,6 +92,7 @@
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponseEpisodes.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponseMovies.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponse.cs" />
+    <Compile Include="Entities\Response\Users\TraktUsersRequestsApproveResponse.cs" />
     <Compile Include="Entities\TraktCastShowCredit.cs" />
     <Compile Include="Entities\TraktCastMovieCredit.cs" />
     <Compile Include="Entities\TraktAccount.cs" />
@@ -267,8 +268,8 @@
     <Compile Include="Entities\RequestBody\OAuth\TraktOAuthTokenRequestBody.cs" />
     <Compile Include="Entities\Response\Calendars\TraktCalendarsShowsResponseItem.cs" />
     <Compile Include="Entities\TraktEpisode.cs" />
-    <Compile Include="Entities\Response\Shows\TraktShowsUpdatesResponseItem.cs" />
     <Compile Include="Entities\Response\Shows\TraktShowsTrendingResponseItem.cs" />
+    <Compile Include="Entities\Response\Shows\TraktShowsUpdatesResponseItem.cs" />
     <Compile Include="Entities\TraktErrorResponse.cs" />
     <Compile Include="Entities\Response\Calendars\TraktCalendarsShowsResponse.cs" />
     <Compile Include="Entities\Response\OAuth\TraktOAuthTokenResponse.cs" />
@@ -303,6 +304,7 @@
     <Compile Include="Request\Sync\TraktSyncLastActivitiesRequest.cs" />
     <Compile Include="Request\TraktDeleteByIdRequest.cs" />
     <Compile Include="Request\TraktBodylessPostByIdRequest.cs" />
+    <Compile Include="Request\TraktGetByUsernameRequest.cs" />
     <Compile Include="Request\TraktPostByIdRequest.cs" />
     <Compile Include="Request\TraktBodylessPostRequest.cs" />
     <Compile Include="Request\TraktPutByIdRequest.cs" />
@@ -311,7 +313,12 @@
     <Compile Include="Request\TraktPutRequest.cs" />
     <Compile Include="Request\TraktPostRequest.cs" />
     <Compile Include="Request\TraktDeleteRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersCollectionMoviesRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersCollectionShowsRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersRequestsDenyRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersRequestsApproveRequest.cs" />
     <Compile Include="Request\Users\TraktUsersRequestsRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersProfileRequest.cs" />
     <Compile Include="Request\Users\TraktUsersSettingsRequest.cs" />
     <Compile Include="TraktAuthentication.cs" />
     <Compile Include="TraktConfiguration.cs" />
@@ -326,7 +333,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Entities\RequestBody\Users\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

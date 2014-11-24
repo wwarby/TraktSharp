@@ -2,10 +2,10 @@
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace TraktSharp.Entities.Response.Sync {
+namespace TraktSharp.Entities.Response {
 
 	[Serializable]
-	public class TraktSyncRatingsShowsResponseItem {
+	public class TraktRatingsShowsResponseItem {
 
 		[JsonProperty(PropertyName = "rating")]
 		public Rating Rating { get; set; }

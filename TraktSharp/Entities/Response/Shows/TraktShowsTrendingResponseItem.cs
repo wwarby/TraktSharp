@@ -5,10 +5,10 @@ using Newtonsoft.Json;
 namespace TraktSharp.Entities.Response.Shows {
 
 	[Serializable]
-	public class TraktShowsUpdatesResponseItem {
+	public class TraktShowsTrendingResponseItem {
 
-		[JsonProperty(PropertyName = "watchers")]
-		public int? Watchers { get; set; }
+		[JsonProperty(PropertyName = "updated_at")]
+		public DateTime UpdatedAt { get; set; }
 
 		[JsonProperty(PropertyName = "show")]
 		public TraktShow Show { get; set; }

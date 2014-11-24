@@ -2,10 +2,10 @@
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace TraktSharp.Entities.Response.Sync {
+namespace TraktSharp.Entities.Response {
 
 	[Serializable]
-	public class TraktSyncWatchlistShowsResponseItem {
+	public class TraktWatchlistMoviesResponseItem {
 
 		[JsonProperty(PropertyName = "listed_at")]
 		public DateTime? RatedAt { get; set; }
@@ -13,8 +13,8 @@ namespace TraktSharp.Entities.Response.Sync {
 		[JsonProperty(PropertyName = "type")]
 		public string Type { get; set; }
 
-		[JsonProperty(PropertyName = "show")]
-		public TraktShow Show { get; set; }
+		[JsonProperty(PropertyName = "movie")]
+		public TraktMovie Movie { get; set; }
 
 	}
 
