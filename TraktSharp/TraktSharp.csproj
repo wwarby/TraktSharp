@@ -303,6 +303,7 @@
     <Compile Include="Request\Sync\TraktSyncCollectionAddRequest.cs" />
     <Compile Include="Request\Sync\TraktSyncPlaybackRequest.cs" />
     <Compile Include="Request\Sync\TraktSyncLastActivitiesRequest.cs" />
+    <Compile Include="Request\TraktBodylessPostByUsernameAndIdRequest.cs" />
     <Compile Include="Request\TraktDeleteByUsernameAndIdRequest.cs" />
     <Compile Include="Request\TraktDeleteByIdRequest.cs" />
     <Compile Include="Request\TraktBodylessPostByIdRequest.cs" />
@@ -318,6 +319,8 @@
     <Compile Include="Request\TraktPutRequest.cs" />
     <Compile Include="Request\TraktPostRequest.cs" />
     <Compile Include="Request\TraktDeleteRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersListLikeDeleteRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersListLikeRequest.cs" />
     <Compile Include="Request\Users\TraktUsersListDeleteRequest.cs" />
     <Compile Include="Request\Users\TraktUsersListsUpdateRequest.cs" />
     <Compile Include="Request\Users\TraktUsersListsAddRequest.cs" />

@@ -113,6 +113,22 @@ namespace TraktSharp.Modules {
 			await new TraktUsersListDeleteRequest(Client) { Id = listId, Username = username }.SendAsync();
 		}
 
+		public async Task LikeListAsync(TraktList list, string username = _me) {
+			await LikeListAsync(list.Ids.GetBestId(), username);
+		}
+
+		public async Task LikeListAsync(int listId, string username = _me) {
+			await LikeListAsync(listId.ToString(CultureInfo.InvariantCulture), username);
+		}
+
+		public async Task LikeListAsync(string listId, string username = _me) {
+			await new TraktUsersListLikeRequest(Client) { Id = listId, Username = username }.SendAsync();
+		}
+
+		public async Task UnlikeListAsync(string listId, string username = _me) {
+			await new TraktUsersListLikeDeleteRequest(Client) { Id = listId, Username = username }.SendAsync();
+		}
+
 	}
 
 }
