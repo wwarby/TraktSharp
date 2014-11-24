@@ -1,4 +1,4 @@
-traktsharp
+TraktSharp
 =========
 
 A C# wrapper around the v2 Trakt API. Not affiliated in any way with the devs over at Trakt - please do not contact them for support with this library.
