@@ -24,6 +24,17 @@ namespace TraktSharp {
 		FullAndImages
 	}
 
+	public enum PrivacyOption {
+		[Description("")]
+		Unspecified,
+		[Description("private")]
+		Private,
+		[Description("friends")]
+		Friends,
+		[Description("public")]
+		Public
+	}
+
 	public enum Rating {
 		RatingUnspecified = 0,
 		Rating1 = 1,

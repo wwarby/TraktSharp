@@ -3,10 +3,10 @@ using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.Helpers;
 
-namespace TraktSharp.Entities {
+namespace TraktSharp.Entities.RequestBody.Users {
 
 	[Serializable]
-	public class TraktList {
+	public class TraktListRequestBody {
 
 		[JsonProperty(PropertyName = "name")]
 		public string Name { get; set; }
@@ -28,22 +28,6 @@ namespace TraktSharp.Entities {
 
 		[JsonProperty(PropertyName = "allow_comments")]
 		public bool? AllowComments { get; set; }
-
-		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime? UpdatedAt { get; set; }
-
-		[JsonProperty(PropertyName = "item_count")]
-		public int? ItemCount { get; set; }
-
-		[JsonProperty(PropertyName = "likes")]
-		public int? Likes { get; set; }
-
-		[JsonProperty(PropertyName = "ids")]
-		public TraktListIds Ids { get; set; }
-
-		public bool IsPostable() {
-			return Ids != null && Ids.HasAnyValuesSet();
-		}
 
 	}
 

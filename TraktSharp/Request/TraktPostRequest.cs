@@ -14,7 +14,7 @@ namespace TraktSharp.Request {
 
 		protected override void ValidateParameters() {
 			if (RequestBody == null) {
-				throw new ArgumentException("Request body not set");
+				throw new ArgumentException("Request body not set.");
 			}
 		}
 

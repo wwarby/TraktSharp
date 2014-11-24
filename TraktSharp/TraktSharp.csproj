@@ -55,6 +55,7 @@
     <Compile Include="Entities\RequestBody\Sync\TraktSyncWatchlistAddRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Sync\TraktSyncWatchedAddRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Sync\TraktSyncRemoveRequestBody.cs" />
+    <Compile Include="Entities\RequestBody\Users\TraktListRequestBody.cs" />
     <Compile Include="Entities\Response\Auth\TraktAuthLoginResponse.cs" />
     <Compile Include="Entities\Response\Scrobble\TraktScrobbleEpisodeResponse.cs" />
     <Compile Include="Entities\Response\Scrobble\TraktScrobbleMovieResponse.cs" />
@@ -302,17 +303,26 @@
     <Compile Include="Request\Sync\TraktSyncCollectionAddRequest.cs" />
     <Compile Include="Request\Sync\TraktSyncPlaybackRequest.cs" />
     <Compile Include="Request\Sync\TraktSyncLastActivitiesRequest.cs" />
+    <Compile Include="Request\TraktDeleteByUsernameAndIdRequest.cs" />
     <Compile Include="Request\TraktDeleteByIdRequest.cs" />
     <Compile Include="Request\TraktBodylessPostByIdRequest.cs" />
+    <Compile Include="Request\TraktGetByUsernameAndIdRequest.cs" />
     <Compile Include="Request\TraktGetByUsernameRequest.cs" />
+    <Compile Include="Request\TraktPostByUsernameRequest.cs" />
     <Compile Include="Request\TraktPostByIdRequest.cs" />
     <Compile Include="Request\TraktBodylessPostRequest.cs" />
+    <Compile Include="Request\TraktPutByUsernameAndIdRequest.cs" />
     <Compile Include="Request\TraktPutByIdRequest.cs" />
     <Compile Include="Request\TraktGetByIdRequest.cs" />
     <Compile Include="Request\TraktGetRequest.cs" />
     <Compile Include="Request\TraktPutRequest.cs" />
     <Compile Include="Request\TraktPostRequest.cs" />
     <Compile Include="Request\TraktDeleteRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersListDeleteRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersListsUpdateRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersListsAddRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersListRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersListsRequest.cs" />
     <Compile Include="Request\Users\TraktUsersCollectionMoviesRequest.cs" />
     <Compile Include="Request\Users\TraktUsersCollectionShowsRequest.cs" />
     <Compile Include="Request\Users\TraktUsersRequestsDenyRequest.cs" />
@@ -333,9 +343,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\RequestBody\Users\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
