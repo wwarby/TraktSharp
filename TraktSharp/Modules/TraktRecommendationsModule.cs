@@ -13,8 +13,8 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<IEnumerable<TraktMovie>> GetRecommendedMoviesAsync() {
-			return await new TraktRecommendationsMoviesRequest(Client).SendAsync();
+		public async Task<IEnumerable<TraktMovie>> GetRecommendedMoviesAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktRecommendationsMoviesRequest(Client) { Extended = extended }.SendAsync();
 		}
 
 		public async Task DismissMovieRecommendationAsync(TraktMovie movie) {
@@ -25,8 +25,8 @@ namespace TraktSharp.Modules {
 			await new TraktRecommendationsShowsDismissRequest(Client) { Id = movieId }.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktShow>> GetRecommendedShowsAsync() {
-			return await new TraktRecommendationsShowsRequest(Client).SendAsync();
+		public async Task<IEnumerable<TraktShow>> GetRecommendedShowsAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktRecommendationsShowsRequest(Client) { Extended = extended }.SendAsync();
 		}
 
 		public async Task DismissShowRecommendationAsync(TraktShow show) {

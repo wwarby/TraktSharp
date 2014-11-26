@@ -19,35 +19,47 @@ namespace TraktSharp.Modules {
 
 		public TraktClient Client { get; private set; }
 
-		public async Task<TraktUserSettings> GetSettingsAsync() {
-			return await new TraktUsersSettingsRequest(Client).SendAsync();
+		public async Task<TraktUserSettings> GetSettingsAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersSettingsRequest(Client) { Extended = extended }.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktFollowRequest>> GetFollowRequestsAsync() {
-			return await new TraktUsersRequestsRequest(Client).SendAsync();
+		public async Task<IEnumerable<TraktFollowRequest>> GetFollowRequestsAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersRequestsRequest(Client) { Extended = extended }.SendAsync();
 		}
 
-		public async Task<TraktUsersFollowResponseItem> ApproveFollowRequestAsync(string requestId) {
-			return await new TraktUsersRequestsApproveRequest(Client) { Id = requestId }.SendAsync();
+		public async Task<TraktUsersFollowResponseItem> ApproveFollowRequestAsync(string requestId, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersRequestsApproveRequest(Client) { Id = requestId, Extended = extended }.SendAsync();
 		}
 
 		public async Task DenyFollowRequestAsync(string requestId) {
 			await new TraktUsersRequestsDenyRequest(Client) { Id = requestId }.SendAsync();
 		}
 
-		public async Task<TraktUser> GetUserAsync(string username = _me, bool authenticate = true) {
-			return await new TraktUsersProfileRequest(Client) { Username = username, Authenticate = authenticate }.SendAsync();
+		public async Task<TraktUser> GetUserAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified, bool authenticate = true) {
+			return await new TraktUsersProfileRequest(Client) {
+				Username = username,
+				Extended = extended,
+				Authenticate = authenticate
+			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktCollectionMoviesResponseItem>> GetMoviesCollectionForUserAsync(string username = _me, bool authenticate = true) {
-			return await new TraktUsersCollectionMoviesRequest(Client) { Username = username, Authenticate = authenticate }.SendAsync();
+		public async Task<IEnumerable<TraktCollectionMoviesResponseItem>> GetMoviesCollectionAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified, bool authenticate = true) {
+			return await new TraktUsersCollectionMoviesRequest(Client) {
+				Username = username,
+				Extended = extended,
+				Authenticate = authenticate
+			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktCollectionShowsResponseItem>> GetShowsCollectionForUserAsync(string username = _me, bool authenticate = true) {
-			return await new TraktUsersCollectionShowsRequest(Client) { Username = username, Authenticate = authenticate }.SendAsync();
+		public async Task<IEnumerable<TraktCollectionShowsResponseItem>> GetShowsCollectionAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified, bool authenticate = true) {
+			return await new TraktUsersCollectionShowsRequest(Client) { 
+				Username = username,
+				Extended = extended,
+				Authenticate = authenticate 
+			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktList>> GetListsForUserAsync(string username = _me, bool authenticate = true) {
+		public async Task<IEnumerable<TraktList>> GetListsAsync(string username = _me, bool authenticate = true) {
 			return await new TraktUsersListsRequest(Client) { Username = username, Authenticate = authenticate }.SendAsync();
 		}
 
@@ -137,28 +149,96 @@ namespace TraktSharp.Modules {
 			await new TraktUsersListLikeDeleteRequest(Client) { Id = listId, Username = username }.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktListItemsResponseItem>> GetListItemsAsync(string listId, string username = _me, bool authenticate = true) {
-			return await new TraktUsersListItemsRequest(Client) { Id = listId, Username = username }.SendAsync();
+		public async Task<IEnumerable<TraktListItemsResponseItem>> GetListItemsAsync(string listId, ExtendedOption extended = ExtendedOption.Unspecified, string username = _me, bool authenticate = true) {
+			return await new TraktUsersListItemsRequest(Client) {
+				Id = listId,
+				Username = username,
+				Extended = extended
+			}.SendAsync();
 		}
 
-		public async Task<TraktUsersFollowResponse> FollowAsync(string username) {
-			return await new TraktUsersFollowRequest(Client) { Username = username }.SendAsync();
+		public async Task<TraktUsersFollowResponse> FollowAsync(string username, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersFollowRequest(Client) { Username = username, Extended = extended }.SendAsync();
 		}
 
 		public async Task UnfollowAsync(string username) {
 			await new TraktUsersUnfollowRequest(Client) { Username = username }.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUsersFollowResponseItem>> GetFollowersAsync(string username) {
-			return await new TraktUsersFollowersRequest(Client) { Username = username }.SendAsync();
+		public async Task<IEnumerable<TraktUsersFollowResponseItem>> GetFollowersAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersFollowersRequest(Client) { Username = username, Extended = extended }.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUsersFollowResponseItem>> GetFollowingAsync(string username) {
-			return await new TraktUsersFollowingRequest(Client) { Username = username }.SendAsync();
+		public async Task<IEnumerable<TraktUsersFollowResponseItem>> GetFollowingAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersFollowingRequest(Client) { Username = username, Extended = extended }.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUsersFriendsResponseItem>> GetFriendsAsync(string username) {
-			return await new TraktUsersFriendsRequest(Client) { Username = username }.SendAsync();
+		public async Task<IEnumerable<TraktUsersFriendsResponseItem>> GetFriendsAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersFriendsRequest(Client) { Username = username, Extended = extended }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktUsersHistoryMoviesResponseItem>> GetMoviesHistoryAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
+			return await new TraktUsersHistoryMoviesRequest(Client) {
+				Username = username,
+				Extended = extended,
+				Pagination = new PaginationOptions(page, limit)
+			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktUsersHistoryEpisodesResponseItem>> GetEpisodesHistoryAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
+			return await new TraktUsersHistoryEpisodesRequest(Client) {
+				Username = username,
+				Extended = extended,
+				Pagination = new PaginationOptions(page, limit)
+			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktRatingsMoviesResponseItem>> GetMovieRatingsAsync(string username = _me, Rating rating = Rating.RatingUnspecified, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersRatingsMoviesRequest(Client) {
+				Username = username,
+				Rating = rating,
+				Extended = extended
+			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktRatingsShowsResponseItem>> GetShowRatingsAsync(string username = _me, Rating rating = Rating.RatingUnspecified, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersRatingsShowsRequest(Client) {
+				Username = username,
+				Rating = rating,
+				Extended = extended
+			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktRatingsSeasonsResponseItem>> GetSeasonRatingsAsync(string username = _me, Rating rating = Rating.RatingUnspecified, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersRatingsSeasonsRequest(Client) {
+				Username = username,
+				Rating = rating,
+				Extended = extended
+			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktRatingsEpisodesResponseItem>> GetEpisodeRatingsAsync(string username = _me, Rating rating = Rating.RatingUnspecified, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersRatingsEpisodesRequest(Client) {
+				Username = username,
+				Rating = rating,
+				Extended = extended
+			}.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktWatchlistMoviesResponseItem>> GetWatchlistMoviesAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersWatchlistMoviesRequest(Client) { Username = username, Extended = extended }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktWatchlistShowsResponseItem>> GetWatchlistShowsAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersWatchlistShowsRequest(Client) { Username = username, Extended = extended }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktWatchlistSeasonsResponseItem>> GetWatchlistSeasonsAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersWatchlistSeasonsRequest(Client) { Username = username, Extended = extended }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktWatchlistEpisodesResponseItem>> GetWatchlistEpisodesAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersWatchlistEpisodesRequest(Client) { Username = username, Extended = extended }.SendAsync();
 		}
 
 	}

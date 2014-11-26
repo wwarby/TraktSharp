@@ -51,15 +51,16 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUser>> GetUsersWatchingEpisodeAsync(TraktShow show, TraktEpisode episode) {
-			return await GetUsersWatchingEpisodeAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault());
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingEpisodeAsync(TraktShow show, TraktEpisode episode, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetUsersWatchingEpisodeAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault(), extended);
 		}
 
-		public async Task<IEnumerable<TraktUser>> GetUsersWatchingEpisodeAsync(string showId, int season, int episode) {
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingEpisodeAsync(string showId, int season, int episode, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktEpisodesWatchingRequest(Client) {
 				Id = showId,
 				Season = season,
-				Episode = episode
+				Episode = episode,
+				Extended = extended
 			}.SendAsync();
 		}
 

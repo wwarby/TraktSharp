@@ -122,13 +122,14 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUser>> GetUsersWatchingMovieAsync(TraktMovie movie) {
-			return await GetUsersWatchingMovieAsync(movie.Ids.GetBestId());
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingMovieAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetUsersWatchingMovieAsync(movie.Ids.GetBestId(), extended);
 		}
 
-		public async Task<IEnumerable<TraktUser>> GetUsersWatchingMovieAsync(string movieId) {
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingMovieAsync(string movieId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktMoviesWatchingRequest(Client) {
-				Id = movieId
+				Id = movieId,
+				Extended = extended
 			}.SendAsync();
 		}
 

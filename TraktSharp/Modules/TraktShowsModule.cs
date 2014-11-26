@@ -47,8 +47,8 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> GetTranslationsAsync(TraktShow show, string language) {
-			return await GetTranslationsAsync(show.Ids.GetBestId(), language);
+		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> GetTranslationsAsync(TraktShow show, string language, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetTranslationsAsync(show.Ids.GetBestId(), language, extended);
 		}
 
 		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> GetTranslationsAsync(string showId, string language, ExtendedOption extended = ExtendedOption.Unspecified) {
@@ -124,13 +124,14 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<IEnumerable<TraktUser>> GetUsersWatchingShowAsync(TraktShow show) {
-			return await GetUsersWatchingShowAsync(show.Ids.GetBestId());
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingShowAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetUsersWatchingShowAsync(show.Ids.GetBestId(), extended);
 		}
 
-		public async Task<IEnumerable<TraktUser>> GetUsersWatchingShowAsync(string showId) {
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingShowAsync(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await new TraktShowsWatchingRequest(Client) {
-				Id = showId
+				Id = showId,
+				Extended = extended
 			}.SendAsync();
 		}
 
