@@ -27,7 +27,7 @@ namespace TraktSharp.Modules {
 			return await new TraktUsersRequestsRequest(Client).SendAsync();
 		}
 
-		public async Task<TraktUsersRequestsApproveResponse> ApproveFollowRequestAsync(string requestId) {
+		public async Task<TraktUsersFollowResponseItem> ApproveFollowRequestAsync(string requestId) {
 			return await new TraktUsersRequestsApproveRequest(Client) { Id = requestId }.SendAsync();
 		}
 
@@ -147,6 +147,18 @@ namespace TraktSharp.Modules {
 
 		public async Task UnfollowAsync(string username) {
 			await new TraktUsersUnfollowRequest(Client) { Username = username }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktUsersFollowResponseItem>> GetFollowersAsync(string username) {
+			return await new TraktUsersFollowersRequest(Client) { Username = username }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktUsersFollowResponseItem>> GetFollowingAsync(string username) {
+			return await new TraktUsersFollowingRequest(Client) { Username = username }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktUsersFriendsResponseItem>> GetFriendsAsync(string username) {
+			return await new TraktUsersFriendsRequest(Client) { Username = username }.SendAsync();
 		}
 
 	}

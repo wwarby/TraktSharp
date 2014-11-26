@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 namespace TraktSharp.Entities.Response.Users {
 
 	[Serializable]
-	public class TraktUsersRequestsApproveResponse {
+	public class TraktUsersFriendsResponseItem {
 
-		[JsonProperty(PropertyName = "followed_at")]
+		[JsonProperty(PropertyName = "friends_at")]
 		public DateTime? FollowedAt { get; set; }
 
 		[JsonProperty(PropertyName = "user")]

@@ -4,7 +4,7 @@ using TraktSharp.Entities.Response.Users;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersRequestsApproveRequest : TraktBodylessPostByIdRequest<TraktUsersRequestsApproveResponse> {
+	public class TraktUsersRequestsApproveRequest : TraktBodylessPostByIdRequest<TraktUsersFollowResponseItem> {
 
 		public TraktUsersRequestsApproveRequest(TraktClient client) : base(client) { }
 
