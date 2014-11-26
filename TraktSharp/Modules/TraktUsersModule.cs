@@ -11,7 +11,7 @@ using TraktSharp.Request.Users;
 
 namespace TraktSharp.Modules {
 
-	public class TraktUsersModule {
+	public partial class TraktUsersModule {
 
 		private const string _me = "me";
 
@@ -58,13 +58,13 @@ namespace TraktSharp.Modules {
 				Privacy = privacy,
 				DisplayNumbers = displayMembers,
 				AllowComments = allowComments
-			}, username);
+			});
 		}
 
-		public async Task<TraktList> CreateListAsync(TraktListRequestBody list, string username = _me) {
+		public async Task<TraktList> CreateListAsync(TraktListRequestBody list) {
 			return await new TraktUsersListsAddRequest(Client) {
 				RequestBody = list,
-				Username = username
+				Username = _me //From Justin Nemeth: You can only create lists for yourself, for now anyway.
 			}.SendAsync();
 		}
 
@@ -84,49 +84,69 @@ namespace TraktSharp.Modules {
 			}.SendAsync();
 		}
 
-		public async Task<TraktList> UpdateListAsync(string name, string description = "", PrivacyOption privacy = PrivacyOption.Unspecified, bool? displayMembers = null, bool? allowComments = null, string username = _me) {
+		public async Task<TraktList> UpdateListAsync(string name, string description = "", PrivacyOption privacy = PrivacyOption.Unspecified, bool? displayMembers = null, bool? allowComments = null) {
 			return await UpdateListAsync(new TraktListRequestBody {
 				Name = name,
 				Description = description,
 				Privacy = privacy,
 				DisplayNumbers = displayMembers,
 				AllowComments = allowComments
-			}, username);
+			});
 		}
 
-		public async Task<TraktList> UpdateListAsync(TraktListRequestBody list, string username = _me) {
+		public async Task<TraktList> UpdateListAsync(TraktListRequestBody list) {
 			return await new TraktUsersListsUpdateRequest(Client) {
 				RequestBody = list,
-				Username = username
+				Username = _me //From Justin Nemeth: You can only create lists for yourself, for now anyway.
 			}.SendAsync();
 		}
 
-		public async Task DeleteListAsync(TraktList list, string username = _me) {
-			await DeleteListAsync(list.Ids.GetBestId(), username);
+		public async Task DeleteListAsync(TraktList list) {
+			await DeleteListAsync(list.Ids.GetBestId());
 		}
 
-		public async Task DeleteListAsync(int listId, string username = _me) {
-			await DeleteListAsync(listId.ToString(CultureInfo.InvariantCulture), username);
+		public async Task DeleteListAsync(int listId) {
+			await DeleteListAsync(listId.ToString(CultureInfo.InvariantCulture));
 		}
 
-		public async Task DeleteListAsync(string listId, string username = _me) {
-			await new TraktUsersListDeleteRequest(Client) { Id = listId, Username = username }.SendAsync();
+		public async Task DeleteListAsync(string listId) {
+			await new TraktUsersListDeleteRequest(Client) { Id = listId, Username = _me }.SendAsync(); //From Justin Nemeth: You can only create lists for yourself, for now anyway.
 		}
 
-		public async Task LikeListAsync(TraktList list, string username = _me) {
+		public async Task LikeListAsync(TraktList list, string username) {
 			await LikeListAsync(list.Ids.GetBestId(), username);
 		}
 
-		public async Task LikeListAsync(int listId, string username = _me) {
+		public async Task LikeListAsync(int listId, string username) {
 			await LikeListAsync(listId.ToString(CultureInfo.InvariantCulture), username);
 		}
 
-		public async Task LikeListAsync(string listId, string username = _me) {
+		public async Task LikeListAsync(string listId, string username) {
 			await new TraktUsersListLikeRequest(Client) { Id = listId, Username = username }.SendAsync();
 		}
 
-		public async Task UnlikeListAsync(string listId, string username = _me) {
+		public async Task UnlikeListAsync(TraktList list, string username) {
+			await UnlikeListAsync(list.Ids.GetBestId(), username);
+		}
+
+		public async Task UnlikeListAsync(int listId, string username) {
+			await UnlikeListAsync(listId.ToString(CultureInfo.InvariantCulture), username);
+		}
+
+		public async Task UnlikeListAsync(string listId, string username) {
 			await new TraktUsersListLikeDeleteRequest(Client) { Id = listId, Username = username }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktListItemsResponseItem>> GetListItemsAsync(string listId, string username = _me, bool authenticate = true) {
+			return await new TraktUsersListItemsRequest(Client) { Id = listId, Username = username }.SendAsync();
+		}
+
+		public async Task<TraktUsersFollowResponse> FollowAsync(string username) {
+			return await new TraktUsersFollowRequest(Client) { Username = username }.SendAsync();
+		}
+
+		public async Task UnfollowAsync(string username) {
+			await new TraktUsersUnfollowRequest(Client) { Username = username }.SendAsync();
 		}
 
 	}

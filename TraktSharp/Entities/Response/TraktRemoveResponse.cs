@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
+using TraktSharp.Entities.Response.Sync;
 
-namespace TraktSharp.Entities.Response.Sync {
+namespace TraktSharp.Entities.Response {
 
 	[Serializable]
-	public class TraktSyncRemoveResponse {
+	public class TraktRemoveResponse {
 
 		[JsonProperty(PropertyName = "deleted")]
 		public TraktSyncResponseCounts Added { get; set; }

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using TraktSharp.Entities.RequestBody.Sync;
-using TraktSharp.Entities.Response.Sync;
+using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncWatchedRemoveRequest : TraktPostRequest<TraktSyncRemoveResponse, TraktSyncRemoveRequestBody> {
+	public class TraktSyncWatchedRemoveRequest : TraktPostRequest<TraktRemoveResponse, TraktSyncRemoveRequestBody> {
 
 		public TraktSyncWatchedRemoveRequest(TraktClient client) : base(client) { }
 

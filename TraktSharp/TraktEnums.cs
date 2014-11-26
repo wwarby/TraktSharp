@@ -170,13 +170,19 @@ namespace TraktSharp {
 	
 	public enum IntMovieIdType { Trakt, Tmdb }
 
+	public enum StringShowIdType { Auto, Slug, Imdb }
+
+	public enum IntShowIdType { Trakt, Tvdb, Tmdb, TvRage }
+
+	public enum IntSeasonIdType { Tvdb, Tmdb, TvRage }
+
 	public enum StringEpisodeIdType { Auto, Imdb }
 
 	public enum IntEpisodeIdType { Trakt, Tvdb, Tmdb, TvRage }
 
-	public enum StringShowIdType { Auto, Slug, Imdb }
+	public enum StringPersonIdType { Auto, Slug, Imdb }
 
-	public enum IntShowIdType { Trakt, Tvdb, Tmdb, TvRage }
+	public enum IntPersonIdType { Trakt, Tmdb, TvRage }
 
 	public enum StringListIdType { Auto, Slug }
 
