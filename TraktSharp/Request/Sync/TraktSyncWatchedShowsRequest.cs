@@ -9,7 +9,7 @@ namespace TraktSharp.Request.Sync {
 
 		public TraktSyncWatchedShowsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "sync/history/shows"; } }
+		protected override string PathTemplate { get { return "sync/watched/shows"; } }
 
 		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Required; } }
 

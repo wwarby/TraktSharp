@@ -7,7 +7,7 @@ namespace TraktSharp.Entities.Response.Users {
 	[Serializable]
 	public class TraktUsersFollowResponse {
 
-		[JsonProperty(PropertyName = "approved_at")]
+		[JsonProperty(PropertyName = "followed_at")]
 		public DateTime? FollowedAt { get; set; }
 
 		[JsonProperty(PropertyName = "user")]

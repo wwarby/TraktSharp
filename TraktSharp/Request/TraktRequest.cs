@@ -167,7 +167,7 @@ namespace TraktSharp.Request {
 				throw new TraktException(message, response.StatusCode, traktErrorResponse, Url, RequestBodyJson, responseText);
 			}
 
-			if (string.IsNullOrEmpty(responseText)) {
+			if (string.IsNullOrEmpty(responseText) || response.StatusCode == HttpStatusCode.NoContent) {
 				return default(TResponse);
 			}
 			return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TResponse>(responseText));

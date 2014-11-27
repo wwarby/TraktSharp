@@ -8,7 +8,7 @@ namespace TraktSharp.Entities.Response.Users {
 	public class TraktUsersFriendsResponseItem {
 
 		[JsonProperty(PropertyName = "friends_at")]
-		public DateTime? FollowedAt { get; set; }
+		public DateTime? FriendsAt { get; set; }
 
 		[JsonProperty(PropertyName = "user")]
 		public TraktUser User { get; set; }

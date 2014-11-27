@@ -14,6 +14,9 @@ namespace TraktSharp.Entities.Response {
 		[JsonProperty(PropertyName = "last_watched_at")]
 		public DateTime? LastWatchedAt { get; set; }
 
+		[JsonProperty(PropertyName = "show")]
+		public TraktShow Show { get; set; }
+
 		[JsonProperty(PropertyName = "seasons")]
 		public IEnumerable<TraktWatchedShowsResponseItemSeason> Seasons { get; set; }
 

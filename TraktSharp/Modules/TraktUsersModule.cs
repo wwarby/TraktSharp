@@ -241,6 +241,18 @@ namespace TraktSharp.Modules {
 			return await new TraktUsersWatchlistEpisodesRequest(Client) { Username = username, Extended = extended }.SendAsync();
 		}
 
+		public async Task<TraktUsersWatchingResponse> GetCurrentlyWatchingAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersWatchingRequest(Client) { Username = username, Extended = extended }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktWatchedMoviesResponseItem>> GetWatchedMoviesAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersWatchedMoviesRequest(Client) { Username = username, Extended = extended }.SendAsync();
+		}
+
+		public async Task<IEnumerable<TraktWatchedShowsResponseItem>> GetWatchedShowsAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await new TraktUsersWatchedShowsRequest(Client) { Username = username, Extended = extended }.SendAsync();
+		}
+
 	}
 
 }

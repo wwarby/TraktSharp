@@ -96,6 +96,7 @@
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponseEpisodes.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponseMovies.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponse.cs" />
+    <Compile Include="Entities\Response\Users\TraktUsersWatchingResponse.cs" />
     <Compile Include="Entities\Response\Users\TraktUsersFollowResponse.cs" />
     <Compile Include="Entities\Response\Users\TraktUsersFriendsResponseItem.cs" />
     <Compile Include="Entities\Response\Users\TraktUsersFollowResponseItem.cs" />
@@ -332,7 +333,10 @@
     <Compile Include="Request\TraktPutRequest.cs" />
     <Compile Include="Request\TraktPostRequest.cs" />
     <Compile Include="Request\TraktDeleteRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersWatchedMoviesRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersWatchedShowsRequest.cs" />
     <Compile Include="Request\Users\TraktUsersRatingsEpisodesRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersWatchingRequest.cs" />
     <Compile Include="Request\Users\TraktUsersWatchlistMoviesRequest.cs" />
     <Compile Include="Request\Users\TraktUsersWatchlistSeasonsRequest.cs" />
     <Compile Include="Request\Users\TraktUsersWatchlistEpisodesRequest.cs" />
