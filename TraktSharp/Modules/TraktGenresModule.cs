@@ -7,16 +7,14 @@ using TraktSharp.Request.Genres;
 
 namespace TraktSharp.Modules {
 
-	public class TraktGenresModule {
+	public class TraktGenresModule : TraktModuleBase {
 
-		public TraktGenresModule(TraktClient client) { Client = client; }
-
-		public TraktClient Client { get; private set; }
+		public TraktGenresModule(TraktClient client) : base(client) { }
 
 		public async Task<IEnumerable<TraktGenresListResponseItem>> GetGenresAsync(GenreTypeOptions type) {
-			return await new TraktGenresListRequest(Client) {
+			return await SendAsync(new TraktGenresListRequest(Client) {
 				Type = type
-			}.SendAsync();
+			});
 		}
 
 	}

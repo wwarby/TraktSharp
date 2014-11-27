@@ -9,11 +9,9 @@ using TraktSharp.Request.Comments;
 
 namespace TraktSharp.Modules {
 
-	public class TraktCommentsModule {
+	public class TraktCommentsModule : TraktModuleBase {
 
-		public TraktCommentsModule(TraktClient client) { Client = client; }
-
-		public TraktClient Client { get; private set; }
+		public TraktCommentsModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktComment> PostMovieCommentAsync(string movieId, StringMovieIdType movieIdType, string comment, bool? spoiler = null, bool? review = null) {
 			return await PostMovieCommentAsync(TraktMovieFactory.FromId(movieId, movieIdType), comment, spoiler, review);
@@ -28,14 +26,14 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktComment> PostMovieCommentAsync(TraktMovie movie, string comment, bool? spoiler = null, bool? review = null) {
-			return await new TraktCommentsPostMovieRequest(Client) {
+			return await SendAsync(new TraktCommentsPostMovieRequest(Client) {
 				RequestBody = new TraktMovieComment {
 					Movie = movie,
 					Comment = comment,
 					Spoiler = spoiler,
 					Review = review
 				}
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktComment> PostShowCommentAsync(string showId, StringShowIdType showIdType, string comment, bool? spoiler = null, bool? review = null) {
@@ -51,14 +49,14 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktComment> PostShowCommentAsync(TraktShow show, string comment, bool? spoiler = null, bool? review = null) {
-			return await new TraktCommentsPostShowRequest(Client) {
+			return await SendAsync(new TraktCommentsPostShowRequest(Client) {
 				RequestBody = new TraktShowComment {
 					Show = show,
 					Comment = comment,
 					Spoiler = spoiler,
 					Review = review
 				}
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktComment> PostEpisodeCommentAsync(string episodeId, StringEpisodeIdType episodeIdType, string comment, bool? spoiler = null, bool? review = null) {
@@ -70,14 +68,14 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktComment> PostEpisodeCommentAsync(TraktEpisode episode, string comment, bool? spoiler = null, bool? review = null) {
-			return await new TraktCommentsPostEpisodeRequest(Client) {
+			return await SendAsync(new TraktCommentsPostEpisodeRequest(Client) {
 				RequestBody = new TraktEpisodeComment {
 					Episode = episode,
 					Comment = comment,
 					Spoiler = spoiler,
 					Review = review
 				}
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktComment> PostListCommentAsync(string listId, string comment, bool? spoiler = null, bool? review = null) {
@@ -89,14 +87,14 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktComment> PostListCommentAsync(TraktList list, string comment, bool? spoiler = null, bool? review = null) {
-			return await new TraktCommentsPostListRequest(Client) {
+			return await SendAsync(new TraktCommentsPostListRequest(Client) {
 				RequestBody = new TraktListComment {
 					List = list,
 					Comment = comment,
 					Spoiler = spoiler,
 					Review = review
 				}
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktComment> GetCommentAsync(TraktComment comment) {
@@ -104,7 +102,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktComment> GetCommentAsync(string commentId) {
-			return await new TraktCommentsGetRequest(Client) { Id = commentId }.SendAsync();
+			return await SendAsync(new TraktCommentsGetRequest(Client) { Id = commentId });
 		}
 
 		public async Task<TraktComment> UpdateCommentAsync(TraktComment comment) {
@@ -112,14 +110,14 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktComment> UpdateCommentAsync(string commentId, string comment, bool? spoiler = null, bool? review = null) {
-			return await new TraktCommentsUpdateRequest(Client) {
+			return await SendAsync(new TraktCommentsUpdateRequest(Client) {
 				Id = commentId,
 				RequestBody = new TraktComment {
 					Comment = comment,
 					Spoiler = spoiler,
 					Review = review
 				}
-			}.SendAsync();
+			});
 		}
 
 		public async Task DeleteCommentAsync(TraktComment comment) {
@@ -127,21 +125,21 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task DeleteCommentAsync(string commentId) {
-			await new TraktCommentsDeleteRequest(Client) { Id = commentId }.SendAsync();
+			await SendAsync(new TraktCommentsDeleteRequest(Client) { Id = commentId });
 		}
 
 		public async Task<IEnumerable<TraktComment>> GetRepliesAsync(string commentId) {
-			return await new TraktCommentsRepliesRequest(Client) { Id = commentId }.SendAsync();
+			return await SendAsync(new TraktCommentsRepliesRequest(Client) { Id = commentId });
 		}
 
 		public async Task<TraktComment> ReplyToCommentAsync(string commentId, string comment, bool? spoiler = null) {
-			return await new TraktCommentsReplyRequest(Client) {
+			return await SendAsync(new TraktCommentsReplyRequest(Client) {
 				Id = commentId,
 				RequestBody = new TraktComment {
 					Comment = comment,
 					Spoiler = spoiler
 				}
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktComment> LikeCommentAsync(TraktComment comment) {
@@ -149,7 +147,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktComment> LikeCommentAsync(string commentId) {
-			return await new TraktCommentsLikeRequest(Client) { Id = commentId }.SendAsync();
+			return await SendAsync(new TraktCommentsLikeRequest(Client) { Id = commentId });
 		}
 
 		public async Task UnlikeCommentAsync(TraktComment comment) {
@@ -157,7 +155,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task UnlikeCommentAsync(string commentId) {
-			await new TraktCommentsUnlikeRequest(Client) { Id = commentId }.SendAsync();
+			await SendAsync(new TraktCommentsUnlikeRequest(Client) { Id = commentId });
 		}
 
 	}

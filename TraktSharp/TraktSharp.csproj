@@ -136,6 +136,8 @@
     <Compile Include="Entities\TraktConflictErrorResponse.cs" />
     <Compile Include="Entities\TraktPersonImages.cs" />
     <Compile Include="Entities\TraktMovieImages.cs" />
+    <Compile Include="EventArgs\AfterRequestEventArgs.cs" />
+    <Compile Include="EventArgs\BeforeRequestEventArgs.cs" />
     <Compile Include="Exceptions\TraktServiceUnavailableException.cs" />
     <Compile Include="Exceptions\TraktConflictException.cs" />
     <Compile Include="Exceptions\TraktMethodNotFoundException.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\TimeZoneHelper.cs" />
     <Compile Include="Modules\TraktAuthModule.cs" />
+    <Compile Include="Modules\TraktModuleBase.cs" />
     <Compile Include="Modules\TraktSyncModule.RemoveFromWatchlist.cs" />
     <Compile Include="Modules\TraktSyncModule.AddToWatchlist.cs" />
     <Compile Include="Modules\TraktSyncModule.RemoveRatings.cs" />

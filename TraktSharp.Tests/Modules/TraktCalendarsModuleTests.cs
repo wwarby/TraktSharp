@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TraktSharp.Entities.Response.Calendars;
-using TraktSharp.Request.Calendars;
+using TraktSharp.Tests.Request;
 
-namespace TraktSharp.Tests.Request.Calendars {
+namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
 	public class TraktCalendarsShowsRequestTests : TraktRequestTestsBase {
 
 		[TestMethod]
-		public async Task TestTraktCalendarsShowsRequest() {
-			var request = new TraktCalendarsShowsRequest(Client);
-			FakeResponseHandler.AddFakeResponse(request.Url, HttpStatusCode.OK, @"Calendars\Shows.json");
+		public async Task TestCalendarsGetShowsAsync() {
 
-			var result = await request.SendAsync();
+			FakeResponsePath = @"Calendars\Shows.json";
+			var result = await Client.Calendars.GetShowsAsync();
 
-			result.Should().BeOfType(typeof (TraktCalendarsShowsResponse));
+			result.Should().BeOfType(typeof(TraktCalendarsShowsResponse));
 			result.Should().HaveCount(2);
 			result.First().Key.Should().Be("2014-07-14");
 			result.First().Value.First().AirsAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z", null, DateTimeStyles.RoundtripKind));
@@ -33,6 +31,7 @@ namespace TraktSharp.Tests.Request.Calendars {
 			result.First().Value.First().Episode.Ids.Tmdb.Should().Be(988123);
 			result.First().Value.First().Episode.Ids.TvRage.Should().NotHaveValue();
 			result.First().Value.First().Episode.Rating.Should().NotHaveValue();
+
 		}
 
 	}

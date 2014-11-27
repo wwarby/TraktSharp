@@ -68,13 +68,13 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktAddResponse> AddToCollectionAsync(IEnumerable<TraktMovieWithCollectionMetadata> movies, IEnumerable<TraktShowWithCollectionMetadata> shows, IEnumerable<TraktEpisodeWithCollectionMetadata> episodes) {
-			return await new TraktSyncCollectionAddRequest(Client) {
+			return await SendAsync(new TraktSyncCollectionAddRequest(Client) {
 				RequestBody = new TraktSyncCollectionAddRequestBody {
 					Movies = movies,
 					Shows = shows,
 					Episodes = episodes
 				}
-			}.SendAsync();
+			});
 		}
 
 	}

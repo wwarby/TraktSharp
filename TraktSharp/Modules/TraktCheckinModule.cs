@@ -9,11 +9,9 @@ using TraktSharp.Request.Checkin;
 
 namespace TraktSharp.Modules {
 
-	public class TraktCheckinModule {
+	public class TraktCheckinModule : TraktModuleBase {
 
-		public TraktCheckinModule(TraktClient client) { Client = client; }
-
-		public TraktClient Client { get; private set; }
+		public TraktCheckinModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(string movieId, StringMovieIdType movieIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await CheckinMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), sharing, message, venueId, venueName, appVersion, appDate, extended);
@@ -28,7 +26,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(TraktMovie movie, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktCheckinMovieRequest(Client) {
+			return await SendAsync(new TraktCheckinMovieRequest(Client) {
 				RequestBody = new TraktCheckinMovieRequestBody {
 					Movie = movie,
 					Sharing = sharing,
@@ -39,7 +37,7 @@ namespace TraktSharp.Modules {
 					VenueName = venueName
 				},
 				Extended = extended
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(string episodeId, StringEpisodeIdType episodeIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
@@ -55,7 +53,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(TraktEpisode episode, TraktShow show = null, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktCheckinEpisodeRequest(Client) {
+			return await SendAsync(new TraktCheckinEpisodeRequest(Client) {
 				RequestBody = new TraktCheckinEpisodeRequestBody {
 					Episode = episode,
 					Show = show,
@@ -67,11 +65,11 @@ namespace TraktSharp.Modules {
 					VenueName = venueName
 				},
 				Extended = extended
-			}.SendAsync();
+			});
 		}
 
 		public async Task RemoveActiveCheckinAsync() {
-			await new TraktCheckinDeleteRequest(Client).SendAsync();
+			await SendAsync(new TraktCheckinDeleteRequest(Client));
 		}
 
 	}

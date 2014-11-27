@@ -9,11 +9,9 @@ using TraktSharp.Request.Scrobble;
 
 namespace TraktSharp.Modules {
 
-	public class TraktScrobbleModule {
+	public class TraktScrobbleModule : TraktModuleBase {
 
-		public TraktScrobbleModule(TraktClient client) { Client = client; }
-
-		public TraktClient Client { get; private set; }
+		public TraktScrobbleModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(string movieId, StringMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await StartMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), progress, appVersion, appDate, extended);
@@ -28,7 +26,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(TraktMovie movie, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktScrobbleStartMovieRequest(Client) {
+			return await SendAsync(new TraktScrobbleStartMovieRequest(Client) {
 				RequestBody = new TraktScrobbleMovieRequestBody {
 					Movie = movie,
 					Progress = progress,
@@ -36,7 +34,7 @@ namespace TraktSharp.Modules {
 					AppDate = appDate
 				},
 				Extended = extended
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(string episodeId, StringEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
@@ -52,7 +50,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(TraktEpisode episode, TraktShow show, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktScrobbleStartEpisodeRequest(Client) {
+			return await SendAsync(new TraktScrobbleStartEpisodeRequest(Client) {
 				RequestBody = new TraktScrobbleEpisodeRequestBody {
 					Episode = episode,
 					Show = show,
@@ -61,7 +59,7 @@ namespace TraktSharp.Modules {
 					AppDate = appDate,
 				},
 				Extended = extended
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(string movieId, StringMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
@@ -77,7 +75,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(TraktMovie movie, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktScrobblePauseMovieRequest(Client) {
+			return await SendAsync(new TraktScrobblePauseMovieRequest(Client) {
 				RequestBody = new TraktScrobbleMovieRequestBody {
 					Movie = movie,
 					Progress = progress,
@@ -85,7 +83,7 @@ namespace TraktSharp.Modules {
 					AppDate = appDate
 				},
 				Extended = extended
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(string episodeId, StringEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
@@ -101,7 +99,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(TraktEpisode episode, TraktShow show, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktScrobblePauseEpisodeRequest(Client) {
+			return await SendAsync(new TraktScrobblePauseEpisodeRequest(Client) {
 				RequestBody = new TraktScrobbleEpisodeRequestBody {
 					Episode = episode,
 					Show = show,
@@ -110,7 +108,7 @@ namespace TraktSharp.Modules {
 					AppDate = appDate,
 				},
 				Extended = extended
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(string movieId, StringMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
@@ -126,7 +124,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(TraktMovie movie, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktScrobbleStopMovieRequest(Client) {
+			return await SendAsync(new TraktScrobbleStopMovieRequest(Client) {
 				RequestBody = new TraktScrobbleMovieRequestBody {
 					Movie = movie,
 					Progress = progress,
@@ -134,7 +132,7 @@ namespace TraktSharp.Modules {
 					AppDate = appDate
 				},
 				Extended = extended
-			}.SendAsync();
+			});
 		}
 
 		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(string episodeId, StringEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
@@ -150,7 +148,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(TraktEpisode episode, TraktShow show, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktScrobbleStopEpisodeRequest(Client) {
+			return await SendAsync(new TraktScrobbleStopEpisodeRequest(Client) {
 				RequestBody = new TraktScrobbleEpisodeRequestBody {
 					Episode = episode,
 					Show = show,
@@ -159,7 +157,7 @@ namespace TraktSharp.Modules {
 					AppDate = appDate,
 				},
 				Extended = extended
-			}.SendAsync();
+			});
 		}
 
 	}

@@ -68,13 +68,13 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<TraktMovie> movies, IEnumerable<TraktShow> shows, IEnumerable<TraktEpisode> episodes) {
-			return await new TraktSyncCollectionRemoveRequest(Client) {
+			return await SendAsync(new TraktSyncCollectionRemoveRequest(Client) {
 				RequestBody = new TraktSyncRemoveRequestBody {
 					Movies = movies,
 					Shows = shows,
 					Episodes = episodes
 				}
-			}.SendAsync();
+			});
 		}
 
 	}

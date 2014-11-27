@@ -7,14 +7,12 @@ using TraktSharp.Request.Recommendations;
 
 namespace TraktSharp.Modules {
 
-	public class TraktRecommendationsModule {
+	public class TraktRecommendationsModule : TraktModuleBase {
 
-		public TraktRecommendationsModule(TraktClient client) { Client = client; }
-
-		public TraktClient Client { get; private set; }
+		public TraktRecommendationsModule(TraktClient client) : base(client) { }
 
 		public async Task<IEnumerable<TraktMovie>> GetRecommendedMoviesAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktRecommendationsMoviesRequest(Client) { Extended = extended }.SendAsync();
+			return await SendAsync(new TraktRecommendationsMoviesRequest(Client) { Extended = extended });
 		}
 
 		public async Task DismissMovieRecommendationAsync(TraktMovie movie) {
@@ -22,11 +20,11 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task DismissMovieRecommendationAsync(string movieId) {
-			await new TraktRecommendationsShowsDismissRequest(Client) { Id = movieId }.SendAsync();
+			await SendAsync(new TraktRecommendationsShowsDismissRequest(Client) { Id = movieId });
 		}
 
 		public async Task<IEnumerable<TraktShow>> GetRecommendedShowsAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await new TraktRecommendationsShowsRequest(Client) { Extended = extended }.SendAsync();
+			return await SendAsync(new TraktRecommendationsShowsRequest(Client) { Extended = extended });
 		}
 
 		public async Task DismissShowRecommendationAsync(TraktShow show) {
@@ -34,7 +32,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task DismissShowRecommendationAsync(string showId) {
-			await new TraktRecommendationsShowsDismissRequest(Client) { Id = showId }.SendAsync();
+			await SendAsync(new TraktRecommendationsShowsDismissRequest(Client) { Id = showId });
 		}
 
 	}

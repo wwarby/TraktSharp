@@ -87,7 +87,7 @@ namespace TraktSharp.Modules {
 		}
 
 		public async Task<TraktRemoveResponse> RemoveFromListAsync(string listId, IEnumerable<TraktMovie> movies, IEnumerable<TraktShow> shows, IEnumerable<TraktSeason> seasons, IEnumerable<TraktEpisode> episodes, IEnumerable<TraktPerson> people) {
-			return await new TraktUsersListItemsRemoveRequest(Client) {
+			return await SendAsync(new TraktUsersListItemsRemoveRequest(Client) {
 				RequestBody = new TraktUsersListItemsRemoveRequestBody {
 					Movies = movies,
 					Shows = shows,
@@ -97,7 +97,7 @@ namespace TraktSharp.Modules {
 				},
 				Id = listId,
 				Username = _me //From Justin Nemeth: You can only create lists for yourself, for now anyway.
-			}.SendAsync();
+			});
 		}
 
 	}

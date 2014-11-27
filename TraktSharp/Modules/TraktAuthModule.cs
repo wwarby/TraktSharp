@@ -7,23 +7,21 @@ using TraktSharp.Request.Auth;
 
 namespace TraktSharp.Modules {
 
-	public class TraktAuthModule {
+	public class TraktAuthModule : TraktModuleBase {
 
-		public TraktAuthModule(TraktClient client) { Client = client; }
-
-		public TraktClient Client { get; private set; }
+		public TraktAuthModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktAuthLoginResponse> LoginAsync(string login, string password) {
-			return await new TraktAuthLoginRequest(Client) {
+			return await SendAsync(new TraktAuthLoginRequest(Client) {
 				RequestBody = new TraktAuthLoginRequestBody {
 					Login = login,
 					Password = password
 				}
-			}.SendAsync();
+			});
 		}
 
 		public async Task LogoutAsync() {
-			await new TraktAuthLogoutRequest(Client).SendAsync();
+			await SendAsync(new TraktAuthLogoutRequest(Client));
 		}
 
 	}

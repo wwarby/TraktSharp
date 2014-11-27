@@ -9,12 +9,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TraktSharp.Entities;
+using TraktSharp.EventArgs;
 using TraktSharp.Exceptions;
 using TraktSharp.Helpers;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktRequest<TResponse, TRequestBody> where TRequestBody : class {
+	public delegate void BeforeRequestEventHandler(object sender, BeforeRequestEventArgs e);
+	public delegate void AfterRequestEventHandler(object sender, AfterRequestEventArgs e);
+
+	public interface ITraktRequest<TResponse> {
+		event BeforeRequestEventHandler BeforeRequest;
+		event AfterRequestEventHandler AfterRequest;
+		Task<TResponse> SendAsync();
+	}
+
+	public abstract class TraktRequest<TResponse, TRequestBody> : ITraktRequest<TResponse> where TRequestBody : class {
+
+		public event BeforeRequestEventHandler BeforeRequest;
+		public event AfterRequestEventHandler AfterRequest;
 
 		private readonly TraktClient _client;
 
@@ -122,10 +135,17 @@ namespace TraktSharp.Request {
 			ValidateParameters(); //Expected to throw an exception on invalid parameters.
 
 			var cl = _client.HttpMessageHandler != null ? new HttpClient(_client.HttpMessageHandler) : new HttpClient();
-			var request = new HttpRequestMessage(Method, Url) {Content = RequestBodyContent};
+			var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent };
 			SetRequestHeaders(request);
+
+			if (BeforeRequest != null) { //Raise event before request, and offer subscribers the opportunity to abort the request
+				var eventArgs = new BeforeRequestEventArgs(request, cl);
+				BeforeRequest(this, eventArgs);
+				if (eventArgs.Cancel) { return default(TResponse); }
+			}
 			var response = await cl.SendAsync(request);
 			var responseText = await response.Content.ReadAsStringAsync();
+			if (AfterRequest != null) { AfterRequest(this, new AfterRequestEventArgs(response, responseText, request, cl)); } //Raise event after request
 			cl.Dispose();
 
 			if (!response.IsSuccessStatusCode) {

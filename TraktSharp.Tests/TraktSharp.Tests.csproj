@@ -64,9 +64,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="FakeResponseHandler.cs" />
-    <Compile Include="Request\Calendars\TraktCalendarsShowsRequestTests.cs" />
-    <Compile Include="Request\Genres\TraktGenresListRequestTests.cs" />
-    <Compile Include="Request\TraktRequestTestsBase.cs" />
+    <Compile Include="Modules\TraktCalendarsModuleTests.cs" />
+    <Compile Include="Modules\TraktGenresModuleTests.cs" />
+    <Compile Include="Modules\TraktRequestTestsBase.cs" />
     <Compile Include="TraktClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Response\Genres\List.json">
+    <Content Include="Response\Genres\Movies.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Response\Calendars\Shows.json">
@@ -427,6 +427,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Response\Users\WatchedMovies.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Response\Genres\Shows.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

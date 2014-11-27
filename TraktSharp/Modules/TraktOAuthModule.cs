@@ -8,18 +8,16 @@ using TraktSharp.Request.OAuth;
 
 namespace TraktSharp.Modules {
 
-	public class TraktOAuthModule {
+	public class TraktOAuthModule : TraktModuleBase {
 
-		public TraktOAuthModule(TraktClient client) { Client = client; }
-
-		public TraktClient Client { get; private set; }
+		public TraktOAuthModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync() {
 			return await GetOAuthTokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.RedirectUri, EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode));
 		}
 
 		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync(string code, string clientId, string clientSecret, string redirectUri, string grantType) {
-			return await new TraktOAuthTokenRequest(Client) {
+			return await SendAsync(new TraktOAuthTokenRequest(Client) {
 				RequestBody = new TraktOAuthTokenRequestBody {
 					Code = code,
 					ClientId = clientId,
@@ -27,7 +25,7 @@ namespace TraktSharp.Modules {
 					RedirectUri = redirectUri,
 					GrantType = grantType
 				}
-			}.SendAsync();
+			});
 		}
 
 	}

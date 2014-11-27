@@ -1,130 +1,130 @@
 ﻿[
 	{
-		"name": "action",
+		"name": "Action",
 		"slug": "action"
 	},
 	{
-		"name": "adventure",
+		"name": "Adventure",
 		"slug": "adventure"
 	},
 	{
-		"name": "animation",
+		"name": "Animation",
 		"slug": "animation"
 	},
 	{
-		"name": "comedy",
+		"name": "Comedy",
 		"slug": "comedy"
 	},
 	{
-		"name": "crime",
+		"name": "Crime",
 		"slug": "crime"
 	},
 	{
-		"name": "disaster",
+		"name": "Disaster",
 		"slug": "disaster"
 	},
 	{
-		"name": "documentary",
+		"name": "Documentary",
 		"slug": "documentary"
 	},
 	{
-		"name": "drama",
+		"name": "Drama",
 		"slug": "drama"
 	},
 	{
-		"name": "eastern",
+		"name": "Eastern",
 		"slug": "eastern"
 	},
 	{
-		"name": "family",
+		"name": "Family",
 		"slug": "family"
 	},
 	{
-		"name": "fan film",
+		"name": "Fan Film",
 		"slug": "fan-film"
 	},
 	{
-		"name": "fantasy",
+		"name": "Fantasy",
 		"slug": "fantasy"
 	},
 	{
-		"name": "film noir",
+		"name": "Film Noir",
 		"slug": "film-noir"
 	},
 	{
-		"name": "history",
+		"name": "History",
 		"slug": "history"
 	},
 	{
-		"name": "holiday",
+		"name": "Holiday",
 		"slug": "holiday"
 	},
 	{
-		"name": "horror",
+		"name": "Horror",
 		"slug": "horror"
 	},
 	{
-		"name": "indie",
+		"name": "Indie",
 		"slug": "indie"
 	},
 	{
-		"name": "music",
+		"name": "Music",
 		"slug": "music"
 	},
 	{
-		"name": "musical",
+		"name": "Musical",
 		"slug": "musical"
 	},
 	{
-		"name": "mystery",
+		"name": "Mystery",
 		"slug": "mystery"
 	},
 	{
-		"name": "none",
+		"name": "None",
 		"slug": "none"
 	},
 	{
-		"name": "road",
+		"name": "Road",
 		"slug": "road"
 	},
 	{
-		"name": "romance",
+		"name": "Romance",
 		"slug": "romance"
 	},
 	{
-		"name": "science fiction",
+		"name": "Science Fiction",
 		"slug": "science-fiction"
 	},
 	{
-		"name": "short",
+		"name": "Short",
 		"slug": "short"
 	},
 	{
-		"name": "sports",
+		"name": "Sports",
 		"slug": "sports"
 	},
 	{
-		"name": "sporting event",
+		"name": "Sporting Event",
 		"slug": "sporting-event"
 	},
 	{
-		"name": "suspense",
+		"name": "Suspense",
 		"slug": "suspense"
 	},
 	{
-		"name": "thriller",
+		"name": "Thriller",
 		"slug": "thriller"
 	},
 	{
-		"name": "tv movie",
+		"name": "Tv Movie",
 		"slug": "tv-movie"
 	},
 	{
-		"name": "war",
+		"name": "War",
 		"slug": "war"
 	},
 	{
-		"name": "western",
+		"name": "Western",
 		"slug": "western"
 	}
 ]

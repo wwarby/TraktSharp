@@ -7,28 +7,26 @@ using TraktSharp.Request.Search;
 
 namespace TraktSharp.Modules {
 
-	public class TraktSearchModule {
+	public class TraktSearchModule : TraktModuleBase {
 
-		public TraktSearchModule(TraktClient client) { Client = client; }
-
-		public TraktClient Client { get; private set; }
+		public TraktSearchModule(TraktClient client) : base(client) { }
 
 		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TextQueryType queryType = TextQueryType.Unspecified, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
-			return await new TraktTextQueryRequest(Client) {
+			return await SendAsync(new TraktTextQueryRequest(Client) {
 				Query = query,
 				Type = queryType,
 				Extended = extended,
 				Pagination = new PaginationOptions(page, limit)
-			}.SendAsync();
+			});
 		}
 
 		public async Task<IEnumerable<TraktSearchResult>> IdLookupAsync(string id, IdLookupType idType, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
-			return await new TraktIdLookupRequest(Client) {
+			return await SendAsync(new TraktIdLookupRequest(Client) {
 				IdType = idType,
 				Id = id,
 				Extended = extended,
 				Pagination = new PaginationOptions(page, limit)
-			}.SendAsync();
+			});
 		}
 
 	}
