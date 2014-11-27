@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="FakeResponseHandler.cs" />
     <Compile Include="Modules\TraktCalendarsModuleTests.cs" />
+    <Compile Include="Modules\TraktAuthModuleTests.cs" />
     <Compile Include="Modules\TraktGenresModuleTests.cs" />
     <Compile Include="Modules\TraktRequestTestsBase.cs" />
     <Compile Include="TraktClientTests.cs" />
@@ -430,6 +431,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Response\Genres\Shows.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Response\Auth\Login.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -15,12 +15,18 @@ namespace TraktSharp.Tests {
 		private readonly Dictionary<string, HttpResponseMessage> _fakeResponses = new Dictionary<string, HttpResponseMessage>();
 		private string _responseFilename = "";
 
-		private string ResponseFilePath { get { return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Response", _responseFilename); } }
+		private string ResponseFilePath {
+			get {
+				return string.IsNullOrEmpty(_responseFilename)
+					? string.Empty
+					: Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Response", _responseFilename);
+			}
+		}
 
 		public void AddFakeResponse(string url, HttpStatusCode statusCode, string responseFilename) {
 			_responseFilename = responseFilename;
 			_fakeResponses.Add(url, new HttpResponseMessage(statusCode) {
-				Content = new StringContent(File.ReadAllText(ResponseFilePath))
+				Content = new StringContent(string.IsNullOrEmpty(ResponseFilePath) ? string.Empty : File.ReadAllText(ResponseFilePath))
 			});
 		}
 
