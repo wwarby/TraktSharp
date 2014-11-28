@@ -76,7 +76,6 @@
     </Compile>
     <Compile Include="NativeMethods.cs" />
     <Compile Include="SavedState.cs" />
-    <Compile Include="Helpers\StaticReflectionHelper.cs" />
     <Compile Include="ViewModels\AuthorizeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

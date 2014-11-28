@@ -139,13 +139,13 @@ namespace TraktSharp.Request {
 			SetRequestHeaders(request);
 
 			if (BeforeRequest != null) { //Raise event before request, and offer subscribers the opportunity to abort the request
-				var eventArgs = new BeforeRequestEventArgs(request, cl);
+				var eventArgs = new BeforeRequestEventArgs(request, RequestBodyJson ?? string.Empty, cl);
 				BeforeRequest(this, eventArgs);
 				if (eventArgs.Cancel) { return default(TResponse); }
 			}
 			var response = await cl.SendAsync(request);
 			var responseText = await response.Content.ReadAsStringAsync();
-			if (AfterRequest != null) { AfterRequest(this, new AfterRequestEventArgs(response, responseText, request, cl)); } //Raise event after request
+			if (AfterRequest != null) { AfterRequest(this, new AfterRequestEventArgs(response, responseText, request, RequestBodyJson ?? string.Empty, cl)); } //Raise event after request
 			cl.Dispose();
 
 			if (!response.IsSuccessStatusCode) {
