@@ -21,6 +21,11 @@ namespace TraktSharp.Modules {
 			return await SendAsync(new TraktUsersSettingsRequest(Client) { Extended = extended });
 		}
 
+		public async Task<object> UpdateSettingsAsync() {
+			await Task.Run(() => { throw new NotImplementedException("Feature under development at Trakt"); });
+			return null;
+		}
+
 		public async Task<IEnumerable<TraktFollowRequest>> GetFollowRequestsAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await SendAsync(new TraktUsersRequestsRequest(Client) { Extended = extended });
 		}
@@ -249,6 +254,16 @@ namespace TraktSharp.Modules {
 
 		public async Task<IEnumerable<TraktWatchedShowsResponseItem>> GetWatchedShowsAsync(string username = _me, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await SendAsync(new TraktUsersWatchedShowsRequest(Client) { Username = username, Extended = extended });
+		}
+
+		public async Task<object> GetActivitiesAsync(string username = _me) {
+			await Task.Run(() => { throw new NotImplementedException("Feature under development at Trakt"); });
+			return null;
+		}
+
+		public async Task<object> GetFriendActivitiesAsync(string username = _me) {
+			await Task.Run(() => { throw new NotImplementedException("Feature under development at Trakt"); });
+			return null;
 		}
 
 	}

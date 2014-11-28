@@ -66,6 +66,7 @@
     <Compile Include="FakeResponseHandler.cs" />
     <Compile Include="Modules\TraktCalendarsModuleTests.cs" />
     <Compile Include="Modules\TraktAuthModuleTests.cs" />
+    <Compile Include="Modules\TraktCheckinModuleTests.cs" />
     <Compile Include="Modules\TraktGenresModuleTests.cs" />
     <Compile Include="Modules\TraktRequestTestsBase.cs" />
     <Compile Include="TraktClientTests.cs" />

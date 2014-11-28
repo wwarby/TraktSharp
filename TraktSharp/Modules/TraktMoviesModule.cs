@@ -120,6 +120,15 @@ namespace TraktSharp.Modules {
 			});
 		}
 
+		public async Task<object> GetStatsAsync(TraktMovie movie) {
+			return await GetStatsAsync(movie.Ids.GetBestId());
+		}
+
+		public async Task<object> GetStatsAsync(string movieId) {
+			await Task.Run(() => { throw new NotImplementedException("Feature under development at Trakt"); });
+			return null;
+		}
+
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingMovieAsync(TraktMovie movie, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await GetUsersWatchingMovieAsync(movie.Ids.GetBestId(), extended);
 		}

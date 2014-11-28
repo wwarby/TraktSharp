@@ -15,7 +15,7 @@ namespace TraktSharp.Entities {
 		public string Slug { get; set; }
 
 		public bool HasAnyValuesSet() {
-			return Trakt.HasValue || !string.IsNullOrEmpty(Slug);
+			return Trakt > 0 || !string.IsNullOrEmpty(Slug);
 		}
 
 		public string GetBestId() {

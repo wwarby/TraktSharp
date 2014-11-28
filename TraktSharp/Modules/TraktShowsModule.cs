@@ -45,6 +45,15 @@ namespace TraktSharp.Modules {
 			});
 		}
 
+		public async Task<IEnumerable<object>> GetAliasesAsync(TraktShow show) {
+			return await GetAliasesAsync(show.Ids.GetBestId());
+		}
+
+		public async Task<IEnumerable<object>> GetAliasesAsync(string showId) {
+			await Task.Run(() => { throw new NotImplementedException("Trakt: Currently no data to back this. Will be completed when source data has it available."); });
+			return null;
+		}
+
 		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> GetTranslationsAsync(TraktShow show, string language, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await GetTranslationsAsync(show.Ids.GetBestId(), language, extended);
 		}
@@ -120,6 +129,15 @@ namespace TraktSharp.Modules {
 				Id = showId,
 				Extended = extended
 			});
+		}
+
+		public async Task<object> GetStatsAsync(TraktShow show) {
+			return await GetStatsAsync(show.Ids.GetBestId());
+		}
+
+		public async Task<object> GetStatsAsync(string showId) {
+			await Task.Run(() => { throw new NotImplementedException("Feature under development at Trakt"); });
+			return null;
 		}
 
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingShowAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {

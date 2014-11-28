@@ -49,6 +49,15 @@ namespace TraktSharp.Modules {
 			});
 		}
 
+		public async Task<object> GetStatsAsync(TraktEpisode episode) {
+			return await GetStatsAsync(episode.Ids.GetBestId());
+		}
+
+		public async Task<object> GetStatsAsync(string episodeId) {
+			await Task.Run(() => { throw new NotImplementedException("Feature under development at Trakt"); });
+			return null;
+		}
+
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingEpisodeAsync(TraktShow show, TraktEpisode episode, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await GetUsersWatchingEpisodeAsync(show.Ids.GetBestId(), episode.Season.GetValueOrDefault(), episode.Number.GetValueOrDefault(), extended);
 		}

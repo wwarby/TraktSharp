@@ -12,6 +12,8 @@ namespace TraktSharp.Tests.Modules {
 
 		protected TraktRequestTestsBase() {
 			FakeResponseHandler = new FakeResponseHandler();
+			FakeResponsePath = "";
+			FakeResponseCode = HttpStatusCode.OK;
 			Client = new TraktClient(FakeResponseHandler) {
 				Authentication = {
 					CurrentAccessToken = new TraktAccessToken {
@@ -20,7 +22,7 @@ namespace TraktSharp.Tests.Modules {
 					}
 				}
 			};
-			Client.BeforeRequest += (sender, e) => FakeResponseHandler.AddFakeResponse(e.Request.RequestUri.AbsoluteUri, HttpStatusCode.OK, FakeResponsePath);
+			Client.BeforeRequest += (sender, e) => FakeResponseHandler.AddFakeResponse(e.Request.RequestUri.AbsoluteUri, FakeResponseCode, FakeResponsePath);
 			Client.AfterRequest += (sender, e) => {
 				LastRequest = e.Request;
 				LastResponse = e.Response;
@@ -30,6 +32,8 @@ namespace TraktSharp.Tests.Modules {
 		}
 
 		public string FakeResponsePath { get; set; }
+
+		public HttpStatusCode FakeResponseCode { get; set; }
 
 		public FakeResponseHandler FakeResponseHandler { get; private set; }
 

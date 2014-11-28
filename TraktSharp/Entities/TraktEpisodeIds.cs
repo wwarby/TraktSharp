@@ -24,7 +24,7 @@ namespace TraktSharp.Entities {
 		public int? TvRage { get; set; }
 
 		public bool HasAnyValuesSet() {
-			return Trakt.HasValue || Tvdb.HasValue || !string.IsNullOrEmpty(Imdb) || Tmdb.HasValue || TvRage.HasValue;
+			return Trakt > 0 || Tvdb > 0 || !string.IsNullOrEmpty(Imdb) || Tmdb > 0 || TvRage > 0;
 		}
 
 		public string GetBestId() {

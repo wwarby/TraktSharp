@@ -9,7 +9,7 @@ using TraktSharp.Entities.Response.Calendars;
 namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
-	public class TraktCalendarsShowsRequestTests : TraktRequestTestsBase {
+	public class TraktCalendarsModuleTests : TraktRequestTestsBase {
 
 		[TestMethod]
 		public async Task TestCalendarsGetMoviesAsync() {

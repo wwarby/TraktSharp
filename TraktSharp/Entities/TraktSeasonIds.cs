@@ -18,7 +18,7 @@ namespace TraktSharp.Entities {
 		public int? TvRage { get; set; }
 
 		public bool HasAnyValuesSet() {
-			return Tvdb.HasValue || Tmdb.HasValue || TvRage.HasValue;
+			return Tvdb > 0 || Tmdb > 0 || TvRage > 0;
 		}
 
 		public string GetBestId() {

@@ -42,7 +42,7 @@ namespace TraktSharp.Entities {
 		public DateTime? UpdatedAt { get; set; }
 
 		public bool IsPostable(TraktShow show = null) {
-			return (Ids != null && Ids.HasAnyValuesSet()) || (show != null && !string.IsNullOrEmpty(show.Title) && Season.HasValue && Number.HasValue);
+			return (Ids != null && Ids.HasAnyValuesSet()) || (show != null && !string.IsNullOrEmpty(show.Title) && Season > 0 && Number > 0);
 		}
 
 	}

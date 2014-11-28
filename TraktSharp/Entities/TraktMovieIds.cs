@@ -21,7 +21,7 @@ namespace TraktSharp.Entities {
 		public int? Tmdb { get; set; }
 
 		public bool HasAnyValuesSet() {
-			return Trakt.HasValue || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb.HasValue;
+			return Trakt > 0 || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb > 0;
 		}
 
 		public string GetBestId() {

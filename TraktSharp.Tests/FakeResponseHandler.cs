@@ -25,9 +25,9 @@ namespace TraktSharp.Tests {
 
 		public void AddFakeResponse(string url, HttpStatusCode statusCode, string responseFilename) {
 			_responseFilename = responseFilename;
-			_fakeResponses.Add(url, new HttpResponseMessage(statusCode) {
+			_fakeResponses[url] = new HttpResponseMessage(statusCode) {
 				Content = new StringContent(string.IsNullOrEmpty(ResponseFilePath) ? string.Empty : File.ReadAllText(ResponseFilePath))
-			});
+			};
 		}
 
 		protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
