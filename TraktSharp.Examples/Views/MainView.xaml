@@ -33,15 +33,15 @@
 					</WrapPanel>
 					<WrapPanel Margin="5">
 						<Label Width="120" HorizontalContentAlignment="Right" Content="Client ID:" />
-						<TextBox Width="500" VerticalContentAlignment="Center" Margin="10,0,0,0" Text="{Binding ClientId}" />
+						<TextBox Width="500" VerticalContentAlignment="Center" Margin="10,0,0,0" Text="{Binding ClientId, UpdateSourceTrigger=PropertyChanged}" />
 					</WrapPanel>
 					<WrapPanel Margin="5">
 						<Label Width="120" HorizontalContentAlignment="Right" Content="Client Secret:" />
-						<TextBox Width="500" VerticalContentAlignment="Center" Margin="10,0,0,0" Text="{Binding ClientSecret}" />
+						<TextBox Width="500" VerticalContentAlignment="Center" Margin="10,0,0,0" Text="{Binding ClientSecret, UpdateSourceTrigger=PropertyChanged}" />
 					</WrapPanel>
 					<WrapPanel  Margin="135,5,5,5">
 						<Button Content="Authorize" Width="Auto" Height="30" Padding="20 0" Click="Authorize_Click" IsEnabled="{Binding CanAuthorize}" />
-						<Label Content="Enter client secret to enable authorization" Visibility="{Binding CanAuthorize, Converter={StaticResource InverseBoolToVisConverter}}" />
+						<Label Content="Enter client ID and client secret to enable authorization" Visibility="{Binding CanAuthorize, Converter={StaticResource InverseBoolToVisConverter}}" />
 					</WrapPanel>
 					<WrapPanel Margin="5">
 						<Label Width="120" HorizontalContentAlignment="Right" Content="Authorization Code:" />

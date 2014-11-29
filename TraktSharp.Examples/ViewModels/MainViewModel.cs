@@ -98,6 +98,7 @@ namespace TraktSharp.Examples.ViewModels {
 			set {
 				Client.Authentication.ClientSecret = value;
 				NotifyPropertyChanged();
+				NotifyPropertyChanged("CanAuthorize");
 			}
 		}
 
@@ -157,7 +158,7 @@ namespace TraktSharp.Examples.ViewModels {
 		}
 
 		public object CanAuthorize {
-			get { return !string.IsNullOrEmpty(ClientId); }
+			get { return !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret); }
 		}
 
 		public async void TestRequest() {
