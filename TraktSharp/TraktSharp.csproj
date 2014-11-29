@@ -372,6 +372,7 @@
     <Compile Include="Request\Users\TraktUsersRequestsRequest.cs" />
     <Compile Include="Request\Users\TraktUsersProfileRequest.cs" />
     <Compile Include="Request\Users\TraktUsersSettingsRequest.cs" />
+    <Compile Include="Serialization\OriginalPropertyNamesContractResolver.cs" />
     <Compile Include="Serialization\SkipDefaultPropertyValuesContractResolver.cs" />
     <Compile Include="TraktAuthentication.cs" />
     <Compile Include="TraktConfiguration.cs" />

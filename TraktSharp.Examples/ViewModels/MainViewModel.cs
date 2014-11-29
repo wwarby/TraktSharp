@@ -7,10 +7,11 @@ using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using TraktSharp.Entities;
 using TraktSharp.Examples.Views;
+using TraktSharp.Exceptions;
 using TraktSharp.Helpers;
+using TraktSharp.Serialization;
 
 namespace TraktSharp.Examples.ViewModels {
 
@@ -21,7 +22,7 @@ namespace TraktSharp.Examples.ViewModels {
 		public MainViewModel() { }
 
 		public MainViewModel(MainView view) {
-			
+
 			_view = view;
 
 			Client = new TraktClient();
@@ -37,8 +38,8 @@ namespace TraktSharp.Examples.ViewModels {
 				LastResponseJson = "Waiting...";
 				NotifyPropertyChanged("LastResponseJson");
 
-				LastReturnedObject = "Waiting...";
-				NotifyPropertyChanged("LastReturnedObject");
+				LastReturnedValue = "Waiting...";
+				NotifyPropertyChanged("LastReturnedValue");
 
 				var sb = new StringBuilder();
 				sb.AppendLine(string.Format("{0} {1} HTTP/{2}", e.Request.Method.ToString().ToUpper(), e.Request.RequestUri.AbsoluteUri, e.Request.Version));
@@ -53,10 +54,9 @@ namespace TraktSharp.Examples.ViewModels {
 			Client.AfterRequest += (sender, e) => {
 
 				var sb = new StringBuilder();
-				sb.AppendLine(string.Format("HTTP/{0} {1} {2}",
+				sb.AppendLine(string.Format("HTTP/{0} {1}",
 					e.Response.Version,
-					((int)e.Response.StatusCode).ToString(CultureInfo.InvariantCulture),
-					e.Response.StatusCode.ToString().ToUpper()));
+					e.Response.Headers.First(h => h.Key.Equals("Status", StringComparison.InvariantCultureIgnoreCase)).Value.First().ToUpper()));
 				e.Response.Headers.Select(h => string.Format("{0}: {1}", h.Key, string.Join(",", h.Value))).ToList().ForEach(l => sb.AppendLine(l));
 				sb.AppendLine();
 				sb.AppendLine(e.ResponseText);
@@ -64,7 +64,7 @@ namespace TraktSharp.Examples.ViewModels {
 				NotifyPropertyChanged("LastResponse");
 
 				if (!string.IsNullOrEmpty(e.ResponseText)) {
-					LastResponseJson = PrettyPrintJson(e.ResponseText);
+					LastResponseJson = PrettyPrint(e.ResponseText);
 				} else {
 					LastResponseJson = "The response did not include a body";
 				}
@@ -89,6 +89,7 @@ namespace TraktSharp.Examples.ViewModels {
 			set {
 				Client.Authentication.ClientId = value;
 				NotifyPropertyChanged();
+				NotifyPropertyChanged("CanAuthorize");
 			}
 		}
 
@@ -108,7 +109,7 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public string LastResponseJson { get; private set; }
 
-		public string LastReturnedObject { get; private set; }
+		public string LastReturnedValue { get; private set; }
 
 		public ObservableCollection<string> TestRequestTypes { get; set; }
 
@@ -155,6 +156,10 @@ namespace TraktSharp.Examples.ViewModels {
 			NotifyPropertyChanged("AccessToken");
 		}
 
+		public object CanAuthorize {
+			get { return !string.IsNullOrEmpty(ClientId); }
+		}
+
 		public async void TestRequest() {
 			object result;
 			try {
@@ -166,12 +171,12 @@ namespace TraktSharp.Examples.ViewModels {
 			if (result != null) {
 				sb.AppendLine(result.GetType().ToString());
 				sb.AppendLine();
-				sb.AppendLine(PrettyPrintJson(result));
+				sb.AppendLine(PrettyPrint(result));
 			} else {
 				sb.AppendLine("This method does not have a return value");
 			}
-			LastReturnedObject = sb.ToString();
-			NotifyPropertyChanged("LastReturnedObject");
+			LastReturnedValue = sb.ToString();
+			NotifyPropertyChanged("LastReturnedValue");
 		}
 
 		public void Closing() {
@@ -225,27 +230,41 @@ namespace TraktSharp.Examples.ViewModels {
 			} catch { }
 		}
 
-		private string PrettyPrintJson(object obj) {
-			try {
-				return JsonConvert.SerializeObject(obj, new JsonSerializerSettings {
-					Formatting = Formatting.Indented,
-					ContractResolver = new DefaultContractResolver { IgnoreSerializableInterface = true }
-				});
-			} catch { }
+		private string PrettyPrint(string json) {
+			try { return PrettyPrint(JArray.Parse(json)); } catch { }
+			try { return PrettyPrint(JObject.Parse(json)); } catch { }
 			return string.Empty;
 		}
 
-		private string PrettyPrintJson(string json) {
+		private string PrettyPrint(object obj) {
 			try {
-				return JsonConvert.SerializeObject(JArray.Parse(json), new JsonSerializerSettings {
+				var ex = obj as Exception;
+				if (ex != null) {
+					var sb = new StringBuilder();
+					sb.AppendLine(string.Format("Message: {0}", ex.Message));
+					sb.AppendLine(string.Format("Source: {0}", ex.Source));
+					var traktEx = ex as TraktException;
+					if (traktEx != null) {
+						sb.AppendLine(string.Format("Trakt Error Type: {0}", traktEx.TraktErrorType));
+						var traktConflictEx = ex as TraktConflictException;
+						if (traktConflictEx != null) {
+							sb.AppendLine(string.Format("Expires At: {0}", traktConflictEx.ExpiresAt));
+						}
+					}
+					sb.AppendLine();
+					sb.AppendLine(string.Format("Stack Trace:\r\n\r\n{0}", ex.StackTrace));
+					if (ex.InnerException != null) {
+						sb.AppendLine(string.Format("Inner Exception Message: {0}", ex.InnerException.Message));
+						sb.AppendLine(string.Format("Inner Exception Source: {0}", ex.InnerException.Source));
+						sb.AppendLine();
+						sb.AppendLine(string.Format("Inner Exception Stack Trace:\r\n\r\n{0}", ex.InnerException.StackTrace));
+					}
+					return sb.ToString();
+				}
+				return JsonConvert.SerializeObject(obj, new JsonSerializerSettings {
 					Formatting = Formatting.Indented,
-					ContractResolver = new DefaultContractResolver { IgnoreSerializableInterface = true }
-				});
-			} catch { }
-			try {
-				return JsonConvert.SerializeObject(JObject.Parse(json), new JsonSerializerSettings {
-					Formatting = Formatting.Indented,
-					ContractResolver = new DefaultContractResolver { IgnoreSerializableInterface = true }
+					ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+					ContractResolver = new OriginalPropertyNamesContractResolver() { IgnoreSerializableInterface = true, IgnoreSerializableAttribute = true }
 				});
 			} catch { }
 			return string.Empty;

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using TraktSharp.Helpers;
 
 namespace TraktSharp.Examples {
 
@@ -32,6 +33,26 @@ namespace TraktSharp.Examples {
 			CheckinCheckinEpisodeAsync,
 			[Description("TraktClient.Checkin.RemoveActiveCheckinAsync()")]
 			CheckinRemoveActiveCheckinAsync,
+
+			// Comments module
+			[Description("TraktClient.Comments.PostMovieCommentAsync()")]
+			CommentsPostMovieCommentAsync,
+			[Description("TraktClient.Comments.PostShowCommentAsync()")]
+			CommentsPostShowCommentAsync,
+			[Description("TraktClient.Comments.PostEpisodeCommentAsync()")]
+			CommentsPostEpisodeCommentAsync,
+			[Description("TraktClient.Comments.PostListCommentAsync()")]
+			CommentsPostListCommentAsync,
+			[Description("TraktClient.Comments.GetCommentAsync()")]
+			CommentsGetCommentAsync,
+			[Description("TraktClient.Comments.UpdateCommentAsync()")]
+			CommentsUpdateCommentAsync,
+			[Description("TraktClient.Comments.DeleteCommentAsync()")]
+			CommentsDeleteCommentAsync,
+			[Description("TraktClient.Comments.LikeCommentAsync()")]
+			CommentsLikeCommentAsync,
+			[Description("TraktClient.Comments.UnlikeCommentAsync()")]
+			CommentsUnlikeCommentAsync,
 
 			// Genres module
 			[Description("TraktClient.Genres.GetGenresAsync(Movies)")]
@@ -71,6 +92,28 @@ namespace TraktSharp.Examples {
 					await client.Checkin.RemoveActiveCheckinAsync();
 					return null;
 
+				// Comments module
+				case TestRequestType.CommentsPostMovieCommentAsync:
+					return await client.Comments.PostMovieCommentAsync("tt0120591", StringMovieIdType.Auto, "TraktSharp test comment");
+				case TestRequestType.CommentsPostShowCommentAsync:
+					return await client.Comments.PostShowCommentAsync("tt0903747", StringShowIdType.Auto, "TraktSharp test comment");
+				case TestRequestType.CommentsPostEpisodeCommentAsync:
+					return await client.Comments.PostEpisodeCommentAsync("tt0959621", StringEpisodeIdType.Auto, "TraktSharp test comment");
+				case TestRequestType.CommentsPostListCommentAsync:
+					return await client.Comments.PostListCommentAsync("[list id]", "TraktSharp test comment");
+				case TestRequestType.CommentsGetCommentAsync:
+					return await client.Comments.GetCommentAsync("[comment id]");
+				case TestRequestType.CommentsUpdateCommentAsync:
+					return await client.Comments.UpdateCommentAsync("[comment id]", "TraktSharp test comment");
+				case TestRequestType.CommentsDeleteCommentAsync:
+					await client.Comments.DeleteCommentAsync("[comment id]");
+					return null;
+				case TestRequestType.CommentsLikeCommentAsync:
+					return await client.Comments.LikeCommentAsync("[comment id]");
+				case TestRequestType.CommentsUnlikeCommentAsync:
+					await client.Comments.UnlikeCommentAsync("[comment id]");
+					return null;
+
 				// Genres module
 				case TestRequestType.GenresGetGenresAsyncMovies:
 					return await client.Genres.GetGenresAsync(GenreTypeOptions.Movies);
@@ -79,7 +122,8 @@ namespace TraktSharp.Examples {
 
 				// Invalid request type
 				default:
-					throw new ArgumentOutOfRangeException("requestType");
+					throw new ArgumentOutOfRangeException("requestType",
+						string.Format("A test case has not been implemented for the requested method type: {0}", EnumsHelper.GetDescription(requestType)));
 			}
 
 		}
