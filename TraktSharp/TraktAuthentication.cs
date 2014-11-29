@@ -51,8 +51,14 @@ namespace TraktSharp {
 
 		public void ParseAuthorizationResponse(string url) { ParseAuthorizationResponse(new Uri(url)); }
 
-		public async Task<TraktOAuthTokenResponse> GetAccessToken() { 
-			return await Client.OAuth.GetOAuthTokenAsync(AuthorizationCode, ClientId, ClientSecret, RedirectUri, EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode));
+		public async Task<TraktAccessToken> GetAccessToken() { 
+			var result = await Client.OAuth.GetOAuthTokenAsync(AuthorizationCode, ClientId, ClientSecret, RedirectUri, EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode));
+			CurrentAccessToken = new TraktAccessToken {
+				AccessToken = result.AccessToken,
+				AccessTokenExpires = DateTime.Now.AddSeconds(result.ExpiresIn),
+				AccessScope = result.Scope
+			};
+			return CurrentAccessToken;
 		}
 
 	}

@@ -24,15 +24,14 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public TraktClient Client { get; private set; }
 
-		public async void Navigating(AuthorizeView sender, NavigatingCancelEventArgs e) {
+		public void Navigating(AuthorizeView sender, NavigatingCancelEventArgs e) {
 			if (!e.Uri.AbsoluteUri.StartsWith(Client.Authentication.RedirectUri, StringComparison.CurrentCultureIgnoreCase)) {
 				return;
 			}
+			Client.Authentication.ParseAuthorizationResponse(e.Uri);
 			e.Cancel = true;
 			sender.DialogResult = true;
 			sender.Close();
-			Client.Authentication.ParseAuthorizationResponse(e.Uri);
-			await Client.Authentication.GetAccessToken();
 		}
 
 	}

@@ -149,12 +149,12 @@ namespace TraktSharp.Examples.ViewModels {
 			}
 		}
 
-		public void Authorize() {
+		public async void Authorize() {
 			var authorizeViewModel = new AuthorizeViewModel(Client);
 			var window = new AuthorizeView(authorizeViewModel);
 			window.ShowDialog();
 			NotifyPropertyChanged("AuthorizationCode");
-			NotifyPropertyChanged("AccessToken");
+			AccessToken = await Client.Authentication.GetAccessToken();
 		}
 
 		public object CanAuthorize {
