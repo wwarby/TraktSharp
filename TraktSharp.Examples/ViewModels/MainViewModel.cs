@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using TraktSharp.Entities;
 using TraktSharp.Examples.Views;
 using TraktSharp.Helpers;
@@ -15,14 +16,21 @@ namespace TraktSharp.Examples.ViewModels {
 
 	public class MainViewModel : ViewModelBase {
 
-		public MainViewModel() {
+		private MainView _view;
+
+		public MainViewModel() { }
+
+		public MainViewModel(MainView view) {
 			
+			_view = view;
+
 			Client = new TraktClient();
+			TestRequestTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
 			TryLoadState();
 			PropertyChanged += (sender, e) => TrySaveState();
 
 			Client.BeforeRequest += (sender, e) => {
-				
+
 				LastResponse = "Waiting...";
 				NotifyPropertyChanged("LastResponse");
 
@@ -43,7 +51,7 @@ namespace TraktSharp.Examples.ViewModels {
 			};
 
 			Client.AfterRequest += (sender, e) => {
-				
+
 				var sb = new StringBuilder();
 				sb.AppendLine(string.Format("HTTP/{0} {1} {2}",
 					e.Response.Version,
@@ -55,7 +63,11 @@ namespace TraktSharp.Examples.ViewModels {
 				LastResponse = sb.ToString();
 				NotifyPropertyChanged("LastResponse");
 
-				LastResponseJson = PrettyPrintJson(e.ResponseText);
+				if (!string.IsNullOrEmpty(e.ResponseText)) {
+					LastResponseJson = PrettyPrintJson(e.ResponseText);
+				} else {
+					LastResponseJson = "The response did not include a body";
+				}
 				NotifyPropertyChanged("LastResponseJson");
 
 			};
@@ -98,6 +110,35 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public string LastReturnedObject { get; private set; }
 
+		public ObservableCollection<string> TestRequestTypes { get; set; }
+
+		private TestRequests.TestRequestType _selectedTestRequestType;
+		public string SelectedTestRequestType {
+			get { return EnumsHelper.GetDescription(_selectedTestRequestType); }
+			set {
+				_selectedTestRequestType = EnumsHelper.FromDescription<TestRequests.TestRequestType>(value);
+				NotifyPropertyChanged();
+			}
+		}
+
+		private int _selectedResponseTab;
+		public int SelectedResponseTab {
+			get { return _selectedResponseTab; }
+			set {
+				_selectedResponseTab = value;
+				NotifyPropertyChanged();
+			}
+		}
+
+		private int _selectedMainTab;
+		public int SelectedMainTab {
+			get { return _selectedMainTab; }
+			set {
+				_selectedMainTab = value;
+				NotifyPropertyChanged();
+			}
+		}
+
 		public TraktAccessToken AccessToken {
 			get { return Client.Authentication.CurrentAccessToken; }
 			set {
@@ -115,9 +156,26 @@ namespace TraktSharp.Examples.ViewModels {
 		}
 
 		public async void TestRequest() {
-			var result = await RunTestRequest();
-			LastReturnedObject = PrettyPrintJson(result);
+			object result;
+			try {
+				result = await TestRequests.ExecuteTestRequest(Client, _selectedTestRequestType);
+			} catch (Exception ex) {
+				result = ex;
+			}
+			var sb = new StringBuilder();
+			if (result != null) {
+				sb.AppendLine(result.GetType().ToString());
+				sb.AppendLine();
+				sb.AppendLine(PrettyPrintJson(result));
+			} else {
+				sb.AppendLine("This method does not have a return value");
+			}
+			LastReturnedObject = sb.ToString();
 			NotifyPropertyChanged("LastReturnedObject");
+		}
+
+		public void Closing() {
+			TrySaveState();
 		}
 
 		public static string StateSerializationPath {
@@ -130,38 +188,67 @@ namespace TraktSharp.Examples.ViewModels {
 		public void TryLoadState() {
 			try {
 				var result = JsonConvert.DeserializeObject<SavedState>(File.ReadAllText(StateSerializationPath));
+				if (result.WindowWidth > 0 && result.WindowHeight > 0) {
+					if (result.WindowHeight > _view.MinHeight) { _view.Height = result.WindowHeight; }
+					if (result.WindowWidth > _view.MinWidth) { _view.Width = result.WindowWidth; }
+					_view.Left = result.WindowLeft;
+					_view.Top = result.WindowTop;
+					_view.WindowState = result.WindowState;
+				}
 				AccessToken = result.AccessToken;
 				Username = result.Username;
 				ClientId = result.ClientId;
 				ClientSecret = result.ClientSecret;
-			} catch {}
+				SelectedMainTab = result.SelectedMainTab;
+				SelectedResponseTab = result.SelectedResponseTab;
+				SelectedTestRequestType = result.SelectedTestRequestType;
+			} catch { }
 		}
 
 		public void TrySaveState() {
 			try {
 				FileSystemHelper.EnsureParentDirectoryExists(StateSerializationPath);
 				File.WriteAllText(StateSerializationPath, JsonConvert.SerializeObject(new SavedState {
+					WindowHeight = _view.Height,
+					WindowWidth = _view.Width,
+					WindowLeft = _view.Left,
+					WindowTop = _view.Top,
+					WindowState = _view.WindowState,
 					AccessToken = AccessToken,
 					Username = Username,
 					ClientId = ClientId,
-					ClientSecret = ClientSecret
+					ClientSecret = ClientSecret,
+					SelectedMainTab = SelectedMainTab,
+					SelectedResponseTab = SelectedResponseTab,
+					SelectedTestRequestType = SelectedTestRequestType
 				}, Formatting.Indented), Encoding.UTF8);
-			} catch {}
+			} catch { }
 		}
 
 		private string PrettyPrintJson(object obj) {
-			try { return JsonConvert.SerializeObject(obj, Formatting.Indented); } catch { }
+			try {
+				return JsonConvert.SerializeObject(obj, new JsonSerializerSettings {
+					Formatting = Formatting.Indented,
+					ContractResolver = new DefaultContractResolver { IgnoreSerializableInterface = true }
+				});
+			} catch { }
 			return string.Empty;
 		}
 
 		private string PrettyPrintJson(string json) {
-			try { return JsonConvert.SerializeObject(JArray.Parse(json), Formatting.Indented); } catch { }
-			try { return JsonConvert.SerializeObject(JObject.Parse(json), Formatting.Indented); } catch { }
+			try {
+				return JsonConvert.SerializeObject(JArray.Parse(json), new JsonSerializerSettings {
+					Formatting = Formatting.Indented,
+					ContractResolver = new DefaultContractResolver { IgnoreSerializableInterface = true }
+				});
+			} catch { }
+			try {
+				return JsonConvert.SerializeObject(JObject.Parse(json), new JsonSerializerSettings {
+					Formatting = Formatting.Indented,
+					ContractResolver = new DefaultContractResolver { IgnoreSerializableInterface = true }
+				});
+			} catch { }
 			return string.Empty;
-		}
-
-		private async Task<object> RunTestRequest() {
-			return await Client.Genres.GetGenresAsync(GenreTypeOptions.Movies);
 		}
 
 	}

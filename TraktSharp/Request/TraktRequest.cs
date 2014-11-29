@@ -12,6 +12,7 @@ using TraktSharp.Entities;
 using TraktSharp.EventArgs;
 using TraktSharp.Exceptions;
 using TraktSharp.Helpers;
+using TraktSharp.Serialization;
 
 namespace TraktSharp.Request {
 
@@ -72,7 +73,7 @@ namespace TraktSharp.Request {
 			get {
 				return GetPathParameters(new Dictionary<string, string>())
 					.Aggregate(PathTemplate.ToLower(), (current, parameter) => current.Replace("{" + parameter.Key.ToLower() + "}", parameter.Value.ToLower()))
-					.TrimEnd(new[] {'/'});
+					.TrimEnd(new[] { '/' });
 			}
 		}
 
@@ -114,7 +115,7 @@ namespace TraktSharp.Request {
 				return JsonConvert.SerializeObject(RequestBody, new JsonSerializerSettings {
 					Formatting = Formatting.Indented,
 					NullValueHandling = NullValueHandling.Ignore,
-					DefaultValueHandling = DefaultValueHandling.Ignore
+					ContractResolver = new SkipDefaultPropertyValuesContractResolver()
 				});
 			}
 		}
@@ -152,7 +153,15 @@ namespace TraktSharp.Request {
 				TraktErrorResponse traktErrorResponse = null;
 				try {
 					traktErrorResponse = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TraktErrorResponse>(responseText));
-				} catch {}
+				} catch { }
+				if (traktErrorResponse == null || string.IsNullOrEmpty(traktErrorResponse.Description)) {
+					try {
+						if (response.StatusCode == HttpStatusCode.Unauthorized) {
+							var traktLoginErrorResponse = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TraktLoginErrorResponse>(responseText));
+							traktErrorResponse = new TraktErrorResponse {Description = traktLoginErrorResponse.Message, Error = "login_failed"};
+						}
+					} catch { }
+				}
 				traktErrorResponse = traktErrorResponse ?? new TraktErrorResponse();
 				var message = string.IsNullOrEmpty(traktErrorResponse.Description)
 					? "The Trakt API threw an error with no content. Refer to the StatusCode for an indication of the problem."
@@ -172,13 +181,13 @@ namespace TraktSharp.Request {
 						TraktConflictErrorResponse traktConflictErrorResponse = null;
 						try {
 							traktConflictErrorResponse = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TraktConflictErrorResponse>(responseText));
-						} catch {}
+						} catch { }
 						traktConflictErrorResponse = traktConflictErrorResponse ?? new TraktConflictErrorResponse();
 						throw new TraktConflictException(traktErrorResponse, Url, RequestBodyJson, responseText, traktConflictErrorResponse.ExpiresAt);
-						//case HttpStatusCode.UnprocessableEntity: //TODO: No such enumeration member. Must decide what to do about this
-						//	throw new TraktUnprocessableEntityException(traktError, Url, RequestBodyJson, responseText);
-						//case HttpStatusCode.RateLimitExceeded: //TODO: No such enumeration member. Must decide what to do about this
-						//	throw new TraktRateLimitExceededException(traktError, Url, RequestBodyJson, responseText);
+					//case HttpStatusCode.UnprocessableEntity: //TODO: No such enumeration member. Must decide what to do about this
+					//	throw new TraktUnprocessableEntityException(traktError, Url, RequestBodyJson, responseText);
+					//case HttpStatusCode.RateLimitExceeded: //TODO: No such enumeration member. Must decide what to do about this
+					//	throw new TraktRateLimitExceededException(traktError, Url, RequestBodyJson, responseText);
 					case HttpStatusCode.InternalServerError:
 						throw new TraktServerErrorException(traktErrorResponse, Url, RequestBodyJson, responseText);
 					case HttpStatusCode.ServiceUnavailable:

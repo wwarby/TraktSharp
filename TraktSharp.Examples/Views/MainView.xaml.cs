@@ -11,13 +11,15 @@ namespace TraktSharp.Examples.Views {
 
 		public MainView() {
 			InitializeComponent();
-			ViewModel = new MainViewModel();
+			ViewModel = new MainViewModel(this);
 			DataContext = ViewModel;
 		}
 
 		private void Authorize_Click(object sender, RoutedEventArgs e) { ViewModel.Authorize(); }
 
 		private void TestRequest_Click(object sender, RoutedEventArgs e) { ViewModel.TestRequest(); }
+
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) { ViewModel.Closing(); }
 
 	}
 

@@ -10,6 +10,7 @@ namespace TraktSharp.Examples.ViewModels {
 	public class AuthorizeViewModel : ViewModelBase {
 
 		public AuthorizeViewModel(TraktClient traktClient) {
+
 			// Teach the WebBrowser control some manners
 			NativeMethods.DisableInternetExplorerClickSounds();
 

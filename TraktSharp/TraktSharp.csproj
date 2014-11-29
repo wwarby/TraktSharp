@@ -106,6 +106,7 @@
     <Compile Include="Entities\TraktCastMovieCredit.cs" />
     <Compile Include="Entities\TraktAccount.cs" />
     <Compile Include="Entities\TraktFollowRequest.cs" />
+    <Compile Include="Entities\TraktLoginErrorResponse.cs" />
     <Compile Include="Entities\TraktSharingText.cs" />
     <Compile Include="Entities\TraktConnections.cs" />
     <Compile Include="Entities\TraktUserImages.cs" />
@@ -371,6 +372,7 @@
     <Compile Include="Request\Users\TraktUsersRequestsRequest.cs" />
     <Compile Include="Request\Users\TraktUsersProfileRequest.cs" />
     <Compile Include="Request\Users\TraktUsersSettingsRequest.cs" />
+    <Compile Include="Serialization\SkipDefaultPropertyValuesContractResolver.cs" />
     <Compile Include="TraktAuthentication.cs" />
     <Compile Include="TraktConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
