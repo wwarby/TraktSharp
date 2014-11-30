@@ -10,7 +10,7 @@ namespace TraktSharp.Request.Movies {
 
 		public TraktMoviesUpdatesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/updates/{start_date}"; } }
+		protected override string PathTemplate { get { return "movies/updates/{start_date}"; } }
 
 		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
 

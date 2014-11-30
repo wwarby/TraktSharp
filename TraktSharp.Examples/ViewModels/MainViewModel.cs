@@ -8,6 +8,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TraktSharp.Entities;
+using TraktSharp.Examples.Helpers;
 using TraktSharp.Examples.Views;
 using TraktSharp.Exceptions;
 using TraktSharp.Helpers;
@@ -33,13 +34,13 @@ namespace TraktSharp.Examples.ViewModels {
 			Client.BeforeRequest += (sender, e) => {
 
 				LastResponse = "Waiting...";
-				NotifyPropertyChanged("LastResponse");
+				NotifyPropertyChanged(this.GetMemberName(x => x.LastResponse));
 
 				LastResponseJson = "Waiting...";
-				NotifyPropertyChanged("LastResponseJson");
+				NotifyPropertyChanged(this.GetMemberName(x => x.LastResponseJson));
 
 				LastReturnedValue = "Waiting...";
-				NotifyPropertyChanged("LastReturnedValue");
+				NotifyPropertyChanged(this.GetMemberName(x => x.LastReturnedValue));
 
 				var sb = new StringBuilder();
 				sb.AppendLine(string.Format("{0} {1} HTTP/{2}", e.Request.Method.ToString().ToUpper(), e.Request.RequestUri.AbsoluteUri, e.Request.Version));
@@ -47,7 +48,7 @@ namespace TraktSharp.Examples.ViewModels {
 				sb.AppendLine();
 				sb.AppendLine(e.RequestBody);
 				LastRequest = sb.ToString();
-				NotifyPropertyChanged("LastRequest");
+				NotifyPropertyChanged(this.GetMemberName(x => x.LastRequest));
 
 			};
 
@@ -61,14 +62,14 @@ namespace TraktSharp.Examples.ViewModels {
 				sb.AppendLine();
 				sb.AppendLine(e.ResponseText);
 				LastResponse = sb.ToString();
-				NotifyPropertyChanged("LastResponse");
+				NotifyPropertyChanged(this.GetMemberName(x => x.LastResponse));
 
 				if (!string.IsNullOrEmpty(e.ResponseText)) {
 					LastResponseJson = PrettyPrint(e.ResponseText);
 				} else {
 					LastResponseJson = "The response did not include a body";
 				}
-				NotifyPropertyChanged("LastResponseJson");
+				NotifyPropertyChanged(this.GetMemberName(x => x.LastResponseJson));
 
 			};
 
@@ -89,7 +90,7 @@ namespace TraktSharp.Examples.ViewModels {
 			set {
 				Client.Authentication.ClientId = value;
 				NotifyPropertyChanged();
-				NotifyPropertyChanged("CanAuthorize");
+				NotifyPropertyChanged(this.GetMemberName(x => x.CanAuthorize));
 			}
 		}
 
@@ -98,7 +99,7 @@ namespace TraktSharp.Examples.ViewModels {
 			set {
 				Client.Authentication.ClientSecret = value;
 				NotifyPropertyChanged();
-				NotifyPropertyChanged("CanAuthorize");
+				NotifyPropertyChanged(this.GetMemberName(x => x.CanAuthorize));
 			}
 		}
 
@@ -153,7 +154,7 @@ namespace TraktSharp.Examples.ViewModels {
 			var authorizeViewModel = new AuthorizeViewModel(Client);
 			var window = new AuthorizeView(authorizeViewModel);
 			window.ShowDialog();
-			NotifyPropertyChanged("AuthorizationCode");
+			NotifyPropertyChanged(this.GetMemberName(x => x.AuthorizationCode));
 			AccessToken = await Client.Authentication.GetAccessToken();
 		}
 
@@ -177,7 +178,7 @@ namespace TraktSharp.Examples.ViewModels {
 				sb.AppendLine("This method does not have a return value");
 			}
 			LastReturnedValue = sb.ToString();
-			NotifyPropertyChanged("LastReturnedValue");
+			NotifyPropertyChanged(this.GetMemberName(x => x.LastReturnedValue));
 		}
 
 		public void Closing() {

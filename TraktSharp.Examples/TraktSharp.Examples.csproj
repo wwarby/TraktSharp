@@ -74,6 +74,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helpers\StaticReflectionHelper.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="SavedState.cs" />
     <Compile Include="TestRequests.cs" />
