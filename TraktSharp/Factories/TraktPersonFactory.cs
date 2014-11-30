@@ -72,7 +72,7 @@ namespace TraktSharp.Factories {
 					ret.Ids.TvRage = personId;
 					break;
 				default:
-					throw new ArgumentOutOfRangeException("type");
+					throw new ArgumentOutOfRangeException("personIdType");
 			}
 
 			return ret;

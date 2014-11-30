@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktSharp", "TraktSharp\TraktSharp.csproj", "{80324701-B0E5-49DB-9476-54D3DABB0740}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktSharp.Examples", "TraktSharp.Examples\TraktSharp.Examples.csproj", "{98EE9E37-B135-4C29-83AD-9529CB4D87E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktSharp.Examples.Wpf", "TraktSharp.Examples.Wpf\TraktSharp.Examples.Wpf.csproj", "{98EE9E37-B135-4C29-83AD-9529CB4D87E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktSharp.Tests", "TraktSharp.Tests\TraktSharp.Tests.csproj", "{396089A0-9489-4EEF-A532-F99E95DD6D82}"
 EndProject
