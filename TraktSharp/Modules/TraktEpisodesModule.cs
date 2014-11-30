@@ -9,6 +9,8 @@ namespace TraktSharp.Modules {
 
 	public class TraktEpisodesModule : TraktModuleBase {
 
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktEpisodesModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktEpisode> GetEpisodeAsync(TraktShow show, TraktEpisode episode, ExtendedOption extended = ExtendedOption.Unspecified) {

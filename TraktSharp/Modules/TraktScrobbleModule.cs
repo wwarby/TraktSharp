@@ -11,6 +11,8 @@ namespace TraktSharp.Modules {
 
 	public class TraktScrobbleModule : TraktModuleBase {
 
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktScrobbleModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(string movieId, StringMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {

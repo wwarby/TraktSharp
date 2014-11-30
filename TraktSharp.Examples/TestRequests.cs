@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using TraktSharp.Examples.Helpers;
 using TraktSharp.Helpers;
 
 namespace TraktSharp.Examples {
@@ -136,6 +135,8 @@ namespace TraktSharp.Examples {
 			ScrobbleStopMovieAsync,
 			[Description("TraktClient.Scrobble.StopEpisodeAsync()")]
 			ScrobbleStopEpisodeAsync,
+
+			// Seasons module
 
 		}
 

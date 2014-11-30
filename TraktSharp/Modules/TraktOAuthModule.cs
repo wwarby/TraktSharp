@@ -10,6 +10,8 @@ namespace TraktSharp.Modules {
 
 	public class TraktOAuthModule : TraktModuleBase {
 
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktOAuthModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync() {

@@ -11,6 +11,8 @@ namespace TraktSharp.Modules {
 
 	public class TraktCommentsModule : TraktModuleBase {
 
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktCommentsModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktComment> PostMovieCommentAsync(string movieId, StringMovieIdType movieIdType, string comment, bool? spoiler = null, bool? review = null) {

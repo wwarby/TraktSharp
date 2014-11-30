@@ -9,6 +9,10 @@ namespace TraktSharp.Modules {
 
 	public class TraktSeasonsModule : TraktModuleBase {
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktSeasonsModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktSeason> GetSeasonOverviewAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {

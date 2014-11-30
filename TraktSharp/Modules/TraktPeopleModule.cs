@@ -8,6 +8,8 @@ namespace TraktSharp.Modules {
 
 	public class TraktPeopleModule : TraktModuleBase {
 
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktPeopleModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktPerson> GetPersonAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {

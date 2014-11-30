@@ -10,6 +10,8 @@ namespace TraktSharp.Modules {
 
 	public partial class TraktSyncModule : TraktModuleBase {
 
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktSyncModule(TraktClient client) : base(client) { }
 
 		public async Task<TraktSyncLastActivitiesResponse> GetLastActivitiesAsync() {

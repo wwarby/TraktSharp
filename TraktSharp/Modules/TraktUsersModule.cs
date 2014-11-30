@@ -13,6 +13,8 @@ namespace TraktSharp.Modules {
 
 	public partial class TraktUsersModule : TraktModuleBase {
 
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktUsersModule(TraktClient client) : base(client) { }
 
 		private const string _me = "me";

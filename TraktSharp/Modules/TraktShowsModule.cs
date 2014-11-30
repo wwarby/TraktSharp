@@ -10,6 +10,8 @@ namespace TraktSharp.Modules {
 
 	public class TraktShowsModule : TraktModuleBase {
 
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktShowsModule(TraktClient client) : base(client) { }
 
 		public async Task<IEnumerable<TraktShow>> GetPopularShowsAsync(ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {

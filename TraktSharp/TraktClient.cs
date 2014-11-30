@@ -6,18 +6,26 @@ using TraktSharp.Request;
 
 namespace TraktSharp {
 
+	/// <summary>A client providing all the consumable functionality of this library</summary>
 	public class TraktClient {
-
-		public event BeforeRequestEventHandler BeforeRequest;
-		public event AfterRequestEventHandler AfterRequest;
 
 		private readonly HttpMessageHandler _handler;
 
+		/// <summary>Executes immediately before an HTTP request is issued</summary>
+		public event BeforeRequestEventHandler BeforeRequest;
+
+		/// <summary>Executes immediately after an HTTP response is received</summary>
+		public event AfterRequestEventHandler AfterRequest;
+
+		/// <summary>Default constructor</summary>
+		/// <param name="handler">Used for unit testing to issue fake responses. Do not use otherwise.</param>
 		public TraktClient(HttpMessageHandler handler = null) { _handler = handler; }
 
+		/// <summary> Used for unit testing to issue fake responses. Do not use otherwise.</summary>
 		public HttpMessageHandler HttpMessageHandler { get { return _handler; } }
 
 		private TraktConfiguration _configuration;
+		/// <summary>Configuation settings for the <see cref="TraktClient"/></summary>
 		public TraktConfiguration Configuration {
 			get {
 				_configuration = _configuration ?? new TraktConfiguration(this);
@@ -27,6 +35,7 @@ namespace TraktSharp {
 		}
 
 		private TraktAuthentication _authentication;
+		/// <summary>Encapsulates functionality related to authentication</summary>
 		public TraktAuthentication Authentication {
 			get {
 				_authentication = _authentication ?? new TraktAuthentication(this);
@@ -36,6 +45,7 @@ namespace TraktSharp {
 		}
 
 		private TraktOAuthModule _oauth;
+		/// <summary>Provides API methods in the OAuth namespace</summary>
 		public TraktOAuthModule OAuth {
 			get {
 				_oauth = _oauth ?? (TraktOAuthModule)RegisterModule(new TraktOAuthModule(this));
@@ -45,6 +55,7 @@ namespace TraktSharp {
 		}
 
 		private TraktAuthModule _auth;
+		/// <summary>Provides API methods in the Auth namespace</summary>
 		public TraktAuthModule Auth {
 			get {
 				_auth = _auth ?? (TraktAuthModule)RegisterModule(new TraktAuthModule(this));
@@ -54,6 +65,7 @@ namespace TraktSharp {
 		}
 
 		private TraktCalendarsModule _calendars;
+		/// <summary>Provides API methods in the Calendars namespace</summary>
 		public TraktCalendarsModule Calendars {
 			get {
 				_calendars = _calendars ?? (TraktCalendarsModule)RegisterModule(new TraktCalendarsModule(this));
@@ -63,6 +75,7 @@ namespace TraktSharp {
 		}
 
 		private TraktCheckinModule _checkin;
+		/// <summary>Provides API methods in the Checkin namespace</summary>
 		public TraktCheckinModule Checkin {
 			get {
 				_checkin = _checkin ?? (TraktCheckinModule)RegisterModule(new TraktCheckinModule(this));
@@ -72,6 +85,7 @@ namespace TraktSharp {
 		}
 
 		private TraktCommentsModule _comments;
+		/// <summary>Provides API methods in the Comments namespace</summary>
 		public TraktCommentsModule Comments {
 			get {
 				_comments = _comments ?? (TraktCommentsModule)RegisterModule(new TraktCommentsModule(this));
@@ -81,6 +95,7 @@ namespace TraktSharp {
 		}
 
 		private TraktGenresModule _genres;
+		/// <summary>Provides API methods in the Genres namespace</summary>
 		public TraktGenresModule Genres {
 			get {
 				_genres = _genres ?? (TraktGenresModule)RegisterModule(new TraktGenresModule(this));
@@ -90,6 +105,7 @@ namespace TraktSharp {
 		}
 
 		private TraktMoviesModule _movies;
+		/// <summary>Provides API methods in the Movies namespace</summary>
 		public TraktMoviesModule Movies {
 			get {
 				_movies = _movies ?? (TraktMoviesModule)RegisterModule(new TraktMoviesModule(this));
@@ -99,6 +115,7 @@ namespace TraktSharp {
 		}
 
 		private TraktPeopleModule _people;
+		/// <summary>Provides API methods in the People namespace</summary>
 		public TraktPeopleModule People {
 			get {
 				_people = _people ?? (TraktPeopleModule)RegisterModule(new TraktPeopleModule(this));
@@ -108,6 +125,7 @@ namespace TraktSharp {
 		}
 
 		private TraktRecommendationsModule _recommendations;
+		/// <summary>Provides API methods in the Recommendations namespace</summary>
 		public TraktRecommendationsModule Recommendations {
 			get {
 				_recommendations = _recommendations ?? (TraktRecommendationsModule)RegisterModule(new TraktRecommendationsModule(this));
@@ -117,6 +135,7 @@ namespace TraktSharp {
 		}
 
 		private TraktScrobbleModule _scrobble;
+		/// <summary>Provides API methods in the Scrobble namespace</summary>
 		public TraktScrobbleModule Scrobble {
 			get {
 				_scrobble = _scrobble ?? (TraktScrobbleModule)RegisterModule(new TraktScrobbleModule(this));
@@ -126,6 +145,7 @@ namespace TraktSharp {
 		}
 
 		private TraktSearchModule _search;
+		/// <summary>Provides API methods in the Search namespace</summary>
 		public TraktSearchModule Search {
 			get {
 				_search = _search ?? (TraktSearchModule)RegisterModule(new TraktSearchModule(this));
@@ -135,6 +155,7 @@ namespace TraktSharp {
 		}
 
 		private TraktShowsModule _shows;
+		/// <summary>Provides API methods in the Shows namespace</summary>
 		public TraktShowsModule Shows {
 			get {
 				_shows = _shows ?? (TraktShowsModule)RegisterModule(new TraktShowsModule(this));
@@ -144,6 +165,7 @@ namespace TraktSharp {
 		}
 
 		private TraktSeasonsModule _seasons;
+		/// <summary>Provides API methods in the Seasons namespace</summary>
 		public TraktSeasonsModule Seasons {
 			get {
 				_seasons = _seasons ?? (TraktSeasonsModule)RegisterModule(new TraktSeasonsModule(this));
@@ -153,6 +175,7 @@ namespace TraktSharp {
 		}
 
 		private TraktEpisodesModule _episodes;
+		/// <summary>Provides API methods in the Episodes namespace</summary>
 		public TraktEpisodesModule Episodes {
 			get {
 				_episodes = _episodes ?? (TraktEpisodesModule)RegisterModule(new TraktEpisodesModule(this));
@@ -162,6 +185,7 @@ namespace TraktSharp {
 		}
 
 		private TraktSyncModule _sync;
+		/// <summary>Provides API methods in the Sync namespace</summary>
 		public TraktSyncModule Sync {
 			get {
 				_sync = _sync ?? (TraktSyncModule)RegisterModule(new TraktSyncModule(this));
@@ -171,6 +195,7 @@ namespace TraktSharp {
 		}
 
 		private TraktUsersModule _users;
+		/// <summary>Provides API methods in the Users namespace</summary>
 		public TraktUsersModule Users {
 			get {
 				_users = _users ?? (TraktUsersModule)RegisterModule(new TraktUsersModule(this));

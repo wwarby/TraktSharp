@@ -66,11 +66,7 @@ namespace TraktSharp.Examples.ViewModels {
 				LastResponse = sb.ToString();
 				NotifyPropertyChanged(this.GetMemberName(x => x.LastResponse));
 
-				if (!string.IsNullOrEmpty(e.ResponseText)) {
-					LastResponseJson = PrettyPrint(e.ResponseText);
-				} else {
-					LastResponseJson = "The response did not include a body";
-				}
+				LastResponseJson = !string.IsNullOrEmpty(e.ResponseText) ? PrettyPrint(e.ResponseText) : "The response did not include a body";
 				NotifyPropertyChanged(this.GetMemberName(x => x.LastResponseJson));
 
 			};
@@ -364,7 +360,7 @@ namespace TraktSharp.Examples.ViewModels {
 				return JsonConvert.SerializeObject(obj, new JsonSerializerSettings {
 					Formatting = Formatting.Indented,
 					ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-					ContractResolver = new OriginalPropertyNamesContractResolver() { IgnoreSerializableInterface = true, IgnoreSerializableAttribute = true }
+					ContractResolver = new OriginalPropertyNamesContractResolver { IgnoreSerializableInterface = true, IgnoreSerializableAttribute = true }
 				});
 			} catch { }
 			return string.Empty;
