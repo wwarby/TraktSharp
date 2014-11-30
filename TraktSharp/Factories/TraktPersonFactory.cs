@@ -5,52 +5,71 @@ using TraktSharp.Entities;
 
 namespace TraktSharp.Factories {
 
+	/// <summary>A factory for generating <see cref="TraktPerson"/> instances</summary>
 	public static class TraktPersonFactory {
 
-		public static TraktPerson FromId(string id, StringPersonIdType type = StringPersonIdType.Auto) { return FromId<TraktPerson>(id, type); }
+		/// <summary>Create an instance of <see cref="TraktPerson"/> from an ID</summary>
+		/// <param name="personId">The person ID</param>
+		/// <param name="personIdType">The person ID type</param>
+		/// <returns>See summary</returns>
+		public static TraktPerson FromId(string personId, StringPersonIdType personIdType = StringPersonIdType.Auto) { return FromId<TraktPerson>(personId, personIdType); }
 
-		public static T FromId<T>(string id, StringPersonIdType type = StringPersonIdType.Auto) where T : TraktPerson {
-			if (string.IsNullOrEmpty(id)) {
-				throw new ArgumentException("Id not set", "id");
+		/// <summary>Create an instance of a <see cref="TraktPerson"/> subclass from an ID</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
+		/// <param name="personId">The person ID</param>
+		/// <param name="personIdType">The person ID type</param>
+		/// <returns>See summary</returns>
+		public static T FromId<T>(string personId, StringPersonIdType personIdType = StringPersonIdType.Auto) where T : TraktPerson {
+			if (string.IsNullOrEmpty(personId)) {
+				throw new ArgumentException("personId not set", "personId");
 			}
 
-			if (type == StringPersonIdType.Auto) {
-				if (id.StartsWith("nm", StringComparison.InvariantCultureIgnoreCase)) {
-					type = StringPersonIdType.Imdb;
+			if (personIdType == StringPersonIdType.Auto) {
+				if (personId.StartsWith("nm", StringComparison.InvariantCultureIgnoreCase)) {
+					personIdType = StringPersonIdType.Imdb;
 				} else {
-					throw new ArgumentException("Unable to detect id type", "type");
+					throw new ArgumentException("Unable to detect id type", "personIdType");
 				}
 			}
 
 			var ret = Activator.CreateInstance<T>();
 			ret.Ids = new TraktPersonIds();
 
-			switch (type) {
+			switch (personIdType) {
 				case StringPersonIdType.Imdb:
-					ret.Ids.Imdb = id;
+					ret.Ids.Imdb = personId;
 					break;
 				default:
-					throw new ArgumentOutOfRangeException("type");
+					throw new ArgumentOutOfRangeException("personIdType");
 			}
 
 			return ret;
 		}
 
-		public static TraktPerson FromId(int id, IntPersonIdType type) { return FromId<TraktPerson>(id, type); }
+		/// <summary>Create an instance of <see cref="TraktPerson"/> from an ID</summary>
+		/// <param name="personId">The person ID</param>
+		/// <param name="personIdType">The person ID type</param>
+		/// <returns>See summary</returns>
+		public static TraktPerson FromId(int personId, IntPersonIdType personIdType) { return FromId<TraktPerson>(personId, personIdType); }
 
-		public static T FromId<T>(int id, IntPersonIdType type) where T : TraktPerson {
+		/// <summary>Create an instance of a <see cref="TraktPerson"/> subclass from an ID</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
+		/// <param name="personId">The person ID</param>
+		/// <param name="personIdType">The person ID type</param>
+		/// <returns>See summary</returns>
+		public static T FromId<T>(int personId, IntPersonIdType personIdType) where T : TraktPerson {
 			var ret = Activator.CreateInstance<T>();
 			ret.Ids = new TraktPersonIds();
 
-			switch (type) {
+			switch (personIdType) {
 				case IntPersonIdType.Trakt:
-					ret.Ids.Trakt = id;
+					ret.Ids.Trakt = personId;
 					break;
 				case IntPersonIdType.Tmdb:
-					ret.Ids.Tmdb = id;
+					ret.Ids.Tmdb = personId;
 					break;
 				case IntPersonIdType.TvRage:
-					ret.Ids.TvRage = id;
+					ret.Ids.TvRage = personId;
 					break;
 				default:
 					throw new ArgumentOutOfRangeException("type");
@@ -59,20 +78,38 @@ namespace TraktSharp.Factories {
 			return ret;
 		}
 
-		public static IEnumerable<TraktPerson> FromIds(IEnumerable<string> ids, StringPersonIdType type = StringPersonIdType.Auto) {
-			return ids == null ? null : ids.Select(id => FromId<TraktPerson>(id, type));
+		/// <summary>Create an collection of <see cref="TraktPerson"/> instances from a collecion of IDs</summary>
+		/// <param name="personIds">The person ID</param>
+		/// <param name="personIdType">The person ID type</param>
+		/// <returns>See summary</returns>
+		public static IEnumerable<TraktPerson> FromIds(IEnumerable<string> personIds, StringPersonIdType personIdType = StringPersonIdType.Auto) {
+			return personIds == null ? null : personIds.Select(personId => FromId<TraktPerson>(personId, personIdType));
 		}
 
-		public static IEnumerable<T> FromIds<T>(IEnumerable<string> ids, StringPersonIdType type = StringPersonIdType.Auto) where T : TraktPerson {
-			return ids == null ? null : ids.Select(id => FromId<T>(id, type));
+		/// <summary>Create an collection of <see cref="TraktPerson"/> subclass instances from a collecion of IDs</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
+		/// <param name="personIds">The person ID</param>
+		/// <param name="personIdType">The person ID type</param>
+		/// <returns>See summary</returns>
+		public static IEnumerable<T> FromIds<T>(IEnumerable<string> personIds, StringPersonIdType personIdType = StringPersonIdType.Auto) where T : TraktPerson {
+			return personIds == null ? null : personIds.Select(personId => FromId<T>(personId, personIdType));
 		}
 
-		public static IEnumerable<TraktPerson> FromIds(IEnumerable<int> ids, IntPersonIdType type) {
-			return ids == null ? null : ids.Select(id => FromId<TraktPerson>(id, type));
+		/// <summary>Create an collection of <see cref="TraktPerson"/> instances from a collecion of IDs</summary>
+		/// <param name="personIds">The person ID</param>
+		/// <param name="personIdType">The person ID type</param>
+		/// <returns>See summary</returns>
+		public static IEnumerable<TraktPerson> FromIds(IEnumerable<int> personIds, IntPersonIdType personIdType) {
+			return personIds == null ? null : personIds.Select(personId => FromId<TraktPerson>(personId, personIdType));
 		}
 
-		public static IEnumerable<T> FromIds<T>(IEnumerable<int> ids, IntPersonIdType type) where T : TraktPerson {
-			return ids == null ? null : ids.Select(id => FromId<T>(id, type));
+		/// <summary>Create an collection of <see cref="TraktPerson"/> subclass instances from a collecion of IDs</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
+		/// <param name="personIds">The person ID</param>
+		/// <param name="personIdType">The person ID type</param>
+		/// <returns>See summary</returns>
+		public static IEnumerable<T> FromIds<T>(IEnumerable<int> personIds, IntPersonIdType personIdType) where T : TraktPerson {
+			return personIds == null ? null : personIds.Select(personId => FromId<T>(personId, personIdType));
 		}
 
 	}

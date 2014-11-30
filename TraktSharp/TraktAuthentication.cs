@@ -43,7 +43,12 @@ namespace TraktSharp {
 		/// <summary>The username of the user to be authenticated</summary>
 		public string Username { get; set; }
 
-		/// <summary>This can be changed to any string, but must match the value entered in your app settings. A good default value to use is <c>app://authorized</c>.</summary>
+		/// <summary>The uri to which Trakt should redirect upon successful authentication</summary>
+		/// <remarks>
+		/// For desktop applications in which the authentication session is hosted in a <c>WebBrowser</c> control and the redirection can be caught,
+		/// this can be changed to any string, but must match the value entered in your app settings. A good default value to use is <c>app://authorized</c>.
+		/// For web applications, this must be a valid URL within your application.
+		/// </remarks>
 		public string RedirectUri { get; set; }
 
 		/// <summary>Gets the url that users must be redirected to in order to provide their credentials for OAuth authentication</summary>

@@ -6,6 +6,7 @@ using TraktSharp.Request.Calendars;
 
 namespace TraktSharp.Modules {
 
+	/// <summary>Provides API methods in the Calendars namespace</summary>
 	public class TraktCalendarsModule : TraktModuleBase {
 
 		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>

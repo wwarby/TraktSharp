@@ -5,14 +5,24 @@ using TraktSharp.Request;
 
 namespace TraktSharp.Modules {
 
+	/// <summary>Represents a module containing Trakt API request methods</summary>
 	public interface ITraktModule {
+		
+		/// <summary>Executes immediately before an HTTP request is issued</summary>
 		event BeforeRequestEventHandler BeforeRequest;
+
+		/// <summary>Executes immediately after an HTTP response is received</summary>
 		event AfterRequestEventHandler AfterRequest;
+
 	}
 
-	public class TraktModuleBase : ITraktModule {
+	/// <summary>Base class for module containing Trakt API request methods</summary>
+	public abstract class TraktModuleBase : ITraktModule {
 
+		/// <summary>Executes immediately before an HTTP request is issued</summary>
 		public event BeforeRequestEventHandler BeforeRequest;
+
+		/// <summary>Executes immediately after an HTTP response is received</summary>
 		public event AfterRequestEventHandler AfterRequest;
 
 		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
@@ -22,6 +32,10 @@ namespace TraktSharp.Modules {
 		/// <summary>The owning instance of <see cref="TraktClient"/></summary>
 		public TraktClient Client { get; private set; }
 
+		/// <summary>Send the HTTP request</summary>
+		/// <typeparam name="T">The return type for the request</typeparam>
+		/// <param name="request">The request</param>
+		/// <returns>An instance of <see cref="T"/> containing the payload from the Trakt API</returns>
 		protected async Task<T> SendAsync<T>(ITraktRequest<T> request) {
 			if (BeforeRequest != null) { request.BeforeRequest += (sender, e) => BeforeRequest(sender, e); }
 			if (AfterRequest != null) { request.AfterRequest += (sender, e) => AfterRequest(sender, e); }
