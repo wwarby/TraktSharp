@@ -17,7 +17,7 @@
 		<Style TargetType="TextBox">
 			<Setter Property="Height" Value="{StaticResource ControlHeight}" />
 			<Setter Property="VerticalContentAlignment" Value="Center" />
-			<Setter Property="Padding" Value="5" />
+			<Setter Property="Padding" Value="5,0" />
 		</Style>
 
 		<Style TargetType="ComboBox">
@@ -37,11 +37,6 @@
 			<Setter Property="Padding" Value="0,0,10,0"/>
 			<Setter Property="VerticalContentAlignment" Value="Center" />
 			<Setter Property="HorizontalContentAlignment" Value="Right" />
-		</Style>
-
-		<Style TargetType="CheckBox">
-			<Setter Property="Height" Value="{StaticResource ControlHeight}" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
 		</Style>
 
 		<Style x:Key="OutputTextBoxStyle" TargetType="TextBox">
@@ -78,7 +73,8 @@
 					</WrapPanel>
 					<WrapPanel  Margin="125,5,5,5">
 						<Button Content="Authorize" Width="Auto" Padding="20,0" Click="Authorize_Click" IsEnabled="{Binding CanAuthorize}" />
-						<Label Width="Auto" Content="Enter client ID and client secret to enable authorization" Visibility="{Binding CanAuthorize, Converter={StaticResource InverseBoolToVisConverter}}" />
+						<Label Width="Auto" Margin="10,0,0,0" Content="Enter client ID and client secret to enable authorization"
+							   Visibility="{Binding CanAuthorize, Converter={StaticResource InverseBoolToVisConverter}}" />
 					</WrapPanel>
 					<WrapPanel Margin="5">
 						<Label Width="120" HorizontalContentAlignment="Right" Content="Authorization Code:" />
@@ -107,7 +103,7 @@
 												Visibility="{Binding IdLookup, Converter={StaticResource InverseBoolToVisConverter}}" />
 									<ComboBox ItemsSource="{Binding IdLookupTypes}" SelectedValue="{Binding SelectedIdLookupType}" Margin="0,0,10,0" Width="100"
 												Visibility="{Binding IdLookup, Converter={StaticResource BoolToVisConverter}}" />
-									<CheckBox Content="ID lookup" Margin="0,0,10,0" IsChecked="{Binding IdLookup}" />
+									<CheckBox Content="ID lookup" VerticalAlignment="Center" Margin="0,0,10,0" IsChecked="{Binding IdLookup}" />
 									<Button Content="Search" Width="Auto" Click="Search_Click" HorizontalAlignment="Left" IsEnabled="{Binding CanSearch}" />
 								</WrapPanel>
 							</StackPanel>
