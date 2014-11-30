@@ -11,7 +11,7 @@ namespace TraktSharp.Examples.ValueConverters {
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
 			if (targetType != typeof(Visibility)) { throw new InvalidOperationException("The target must be a Visibility"); }
-			return (bool)value ? Visibility.Hidden : Visibility.Visible;
+			return (bool)value ? Visibility.Collapsed : Visibility.Visible;
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) { throw new NotSupportedException(); }

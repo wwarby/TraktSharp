@@ -11,8 +11,12 @@ namespace TraktSharp.Helpers {
 
 		public static string GetDescription(Enum value) {
 			var fi = value.GetType().GetField(value.ToString());
-			var attributes = (DescriptionAttribute[]) fi.GetCustomAttributes(typeof (DescriptionAttribute), false);
+			var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
 			return attributes.Length > 0 ? attributes[0].Description : value.ToString();
+		}
+
+		public static string GetLabel(Enum value) {
+			return value.ToString();
 		}
 
 		public static Dictionary<string, EnumInfo> GetEnumInfo(Type type) {
@@ -34,11 +38,11 @@ namespace TraktSharp.Helpers {
 			}
 		}
 
-		public static T FromString<T>(string value) { return (T) Enum.Parse(typeof (T), value, true); }
+		public static T FromLabel<T>(string value) { return (T) Enum.Parse(typeof (T), value, true); }
 
-		public static T FromString<T>(string value, T defaultValue) {
+		public static T FromLabel<T>(string value, T defaultValue) {
 			try {
-				return FromString<T>(value);
+				return FromLabel<T>(value);
 			} catch {
 				return defaultValue;
 			}

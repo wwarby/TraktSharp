@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using TraktSharp.Examples.ViewModels;
 
 namespace TraktSharp.Examples.Views {
@@ -19,7 +20,17 @@ namespace TraktSharp.Examples.Views {
 
 		private void TestRequest_Click(object sender, RoutedEventArgs e) { ViewModel.TestRequest(); }
 
+		private void Search_Click(object sender, RoutedEventArgs e) { ViewModel.Search(); }
+
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) { ViewModel.Closing(); }
+
+		private void TestId_KeyDown(object sender, KeyEventArgs e) {
+			if (e.Key == Key.Return) { ViewModel.TestRequest(); }
+		}
+
+		private void Search_KeyDown(object sender, KeyEventArgs e) {
+			if (e.Key == Key.Return) { ViewModel.Search(); }
+		}
 
 	}
 

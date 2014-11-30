@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -27,7 +26,10 @@ namespace TraktSharp.Examples.ViewModels {
 			_view = view;
 
 			Client = new TraktClient();
+			ExtendedOptions = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(ExtendedOption)).Select(v => v.Value.Label));
 			TestRequestTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
+			IdLookupTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(IdLookupType)).Select(v => v.Value.Label));
+			TextQueryTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TextQueryType)).Select(v => v.Value.Label));
 			TryLoadState();
 			PropertyChanged += (sender, e) => TrySaveState();
 
@@ -113,6 +115,17 @@ namespace TraktSharp.Examples.ViewModels {
 
 		public string LastReturnedValue { get; private set; }
 
+		public ObservableCollection<string> ExtendedOptions { get; set; }
+
+		private ExtendedOption _selectedExtendedOption;
+		public string SelectedExtendedOption {
+			get { return EnumsHelper.GetLabel(_selectedExtendedOption); }
+			set {
+				_selectedExtendedOption = EnumsHelper.FromLabel<ExtendedOption>(value);
+				NotifyPropertyChanged();
+			}
+		}
+
 		public ObservableCollection<string> TestRequestTypes { get; set; }
 
 		private TestRequests.TestRequestType _selectedTestRequestType;
@@ -120,6 +133,28 @@ namespace TraktSharp.Examples.ViewModels {
 			get { return EnumsHelper.GetDescription(_selectedTestRequestType); }
 			set {
 				_selectedTestRequestType = EnumsHelper.FromDescription<TestRequests.TestRequestType>(value);
+				NotifyPropertyChanged();
+			}
+		}
+
+		public ObservableCollection<string> TextQueryTypes { get; set; }
+
+		private TextQueryType _selectedTextQueryType;
+		public string SelectedTextQueryType {
+			get { return EnumsHelper.GetLabel(_selectedTextQueryType); }
+			set {
+				_selectedTextQueryType = EnumsHelper.FromLabel<TextQueryType>(value);
+				NotifyPropertyChanged();
+			}
+		}
+
+		public ObservableCollection<string> IdLookupTypes { get; set; }
+
+		private IdLookupType _selectedIdLookupType;
+		public string SelectedIdLookupType {
+			get { return EnumsHelper.GetLabel(_selectedIdLookupType); }
+			set {
+				_selectedIdLookupType = EnumsHelper.FromLabel<IdLookupType>(value);
 				NotifyPropertyChanged();
 			}
 		}
@@ -138,6 +173,35 @@ namespace TraktSharp.Examples.ViewModels {
 			get { return _selectedMainTab; }
 			set {
 				_selectedMainTab = value;
+				NotifyPropertyChanged();
+			}
+		}
+
+		private string _searchText;
+		public string SearchText {
+			get { return _searchText; }
+			set {
+				_searchText = value;
+				NotifyPropertyChanged();
+				NotifyPropertyChanged(this.GetMemberName(x => x.CanSearch));
+			}
+		}
+
+		private bool _idLookup;
+		public bool IdLookup {
+			get { return _idLookup; }
+			set {
+				_idLookup = value;
+				NotifyPropertyChanged();
+				NotifyPropertyChanged(this.GetMemberName(x => x.CanSearch));
+			}
+		}
+
+		private string _testId;
+		public string TestId {
+			get { return _testId; }
+			set {
+				_testId = value;
 				NotifyPropertyChanged();
 			}
 		}
@@ -165,20 +229,29 @@ namespace TraktSharp.Examples.ViewModels {
 		public async void TestRequest() {
 			object result;
 			try {
-				result = await TestRequests.ExecuteTestRequest(Client, _selectedTestRequestType);
+				result = await TestRequests.ExecuteTestRequest(Client, _selectedTestRequestType, _selectedExtendedOption, !string.IsNullOrEmpty(TestId) ? TestId : null);
 			} catch (Exception ex) {
 				result = ex;
 			}
-			var sb = new StringBuilder();
-			if (result != null) {
-				sb.AppendLine(result.GetType().ToString());
-				sb.AppendLine();
-				sb.AppendLine(PrettyPrint(result));
-			} else {
-				sb.AppendLine("This method does not have a return value");
+			UpdateLastReturnValue(result);
+		}
+
+		public async void Search() {
+			object result;
+			try {
+				if (IdLookup) {
+					result = await Client.Search.IdLookupAsync(SearchText, _selectedIdLookupType, ExtendedOption.Min);
+				} else {
+					result = await Client.Search.TextQueryAsync(SearchText, _selectedTextQueryType, ExtendedOption.Min);
+				}
+			} catch (Exception ex) {
+				result = ex;
 			}
-			LastReturnedValue = sb.ToString();
-			NotifyPropertyChanged(this.GetMemberName(x => x.LastReturnedValue));
+			UpdateLastReturnValue(result);
+		}
+
+		public object CanSearch {
+			get { return !string.IsNullOrEmpty(SearchText); }
 		}
 
 		public void Closing() {
@@ -208,7 +281,13 @@ namespace TraktSharp.Examples.ViewModels {
 				ClientSecret = result.ClientSecret;
 				SelectedMainTab = result.SelectedMainTab;
 				SelectedResponseTab = result.SelectedResponseTab;
+				SelectedExtendedOption = result.SelectedExtendedOption;
+				SelectedTextQueryType = result.SelectedTextQueryType;
+				SelectedIdLookupType = result.SelectedIdLookupType;
 				SelectedTestRequestType = result.SelectedTestRequestType;
+				TestId = result.TestId;
+				IdLookup = result.IdLookup;
+				SearchText = result.SearchText;
 			} catch { }
 		}
 
@@ -227,9 +306,28 @@ namespace TraktSharp.Examples.ViewModels {
 					ClientSecret = ClientSecret,
 					SelectedMainTab = SelectedMainTab,
 					SelectedResponseTab = SelectedResponseTab,
-					SelectedTestRequestType = SelectedTestRequestType
+					SelectedExtendedOption = SelectedExtendedOption,
+					SelectedTestRequestType = SelectedTestRequestType,
+					SelectedTextQueryType = SelectedTextQueryType,
+					SelectedIdLookupType = SelectedIdLookupType,
+					TestId = TestId,
+					IdLookup = IdLookup,
+					SearchText = SearchText
 				}, Formatting.Indented), Encoding.UTF8);
 			} catch { }
+		}
+
+		private void UpdateLastReturnValue(object value) {
+			var sb = new StringBuilder();
+			if (value != null) {
+				sb.AppendLine(value.GetType().ToString());
+				sb.AppendLine();
+				sb.AppendLine(PrettyPrint(value));
+			} else {
+				sb.AppendLine("This method does not have a return value");
+			}
+			LastReturnedValue = sb.ToString();
+			NotifyPropertyChanged(this.GetMemberName(x => x.LastReturnedValue));
 		}
 
 		private string PrettyPrint(string json) {

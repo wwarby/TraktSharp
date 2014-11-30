@@ -21,6 +21,18 @@ namespace TraktSharp.Examples {
 
 		public int SelectedMainTab { get; set; }
 
+		public string SelectedExtendedOption { get; set; }
+
+		public string SelectedTextQueryType { get; set; }
+
+		public string SelectedIdLookupType { get; set; }
+
+		public string TestId { get; set; }
+
+		public bool IdLookup { get; set; }
+
+		public string SearchText { get; set; }
+
 		public double WindowHeight { get; set; }
 
 		public double WindowWidth { get; set; }

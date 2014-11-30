@@ -5,6 +5,7 @@
              StartupUri="Views/MainView.xaml">
 	<Application.Resources>
 		<valueConverters:InverseBooleanConverter x:Key="InverseBoolConverter" />
+		<BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
 		<valueConverters:InverseBooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" />
 	</Application.Resources>
 </Application>
