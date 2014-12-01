@@ -5,7 +5,7 @@ using System.Linq;
 namespace TraktSharp.Enums {
 
 	/// <summary>Options for the privacy parameter on supporting request types</summary>
-	public enum PrivacyOption {
+	public enum TraktPrivacyOption {
 		/// <summary>Unspecified</summary>
 		[Description("")]
 		Unspecified,

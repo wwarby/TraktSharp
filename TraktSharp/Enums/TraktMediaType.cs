@@ -5,7 +5,7 @@ using System.Linq;
 namespace TraktSharp.Enums {
 
 	/// <summary>Options for the media type metadata on supporting request types</summary>
-	public enum MediaType {
+	public enum TraktMediaType {
 		/// <summary>Digital</summary>
 		[Description("digital")]
 		Digital,

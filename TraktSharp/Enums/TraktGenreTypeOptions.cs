@@ -5,7 +5,7 @@ using System.Linq;
 namespace TraktSharp.Enums {
 
 	/// <summary>Options for the genre type parameter on supporting request types</summary>
-	public enum GenreTypeOptions {
+	public enum TraktGenreTypeOptions {
 		/// <summary>Shows</summary>
 		[Description("shows")]
 		Shows,

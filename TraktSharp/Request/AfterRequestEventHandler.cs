@@ -4,6 +4,6 @@ using TraktSharp.EventArgs;
 
 namespace TraktSharp.Request {
 
-	public delegate void AfterRequestEventHandler(object sender, AfterRequestEventArgs e);
+	public delegate void AfterRequestEventHandler(object sender, TraktAfterRequestEventArgs e);
 
 }

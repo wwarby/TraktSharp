@@ -17,7 +17,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> MarkWatchedByMovieIdAsync(string movieId, StringMovieIdType movieIdType = StringMovieIdType.Auto) {
+		public async Task<TraktAddResponse> MarkWatchedByMovieIdAsync(string movieId, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) {
 			return await MarkWatchedAsync(TraktMovieFactory.FromId<TraktMovieWithWatchedMetadata>(movieId, movieIdType));
 		}
 
@@ -25,7 +25,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> MarkWatchedByMovieIdAsync(int movieId, IntMovieIdType movieIdType) {
+		public async Task<TraktAddResponse> MarkWatchedByMovieIdAsync(int movieId, TraktNumericMovieIdType movieIdType) {
 			return await MarkWatchedAsync(TraktMovieFactory.FromId<TraktMovieWithWatchedMetadata>(movieId, movieIdType));
 		}
 
@@ -33,7 +33,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> MarkWatchedByShowIdAsync(string showId, StringShowIdType showIdType = StringShowIdType.Auto) {
+		public async Task<TraktAddResponse> MarkWatchedByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) {
 			return await MarkWatchedAsync(TraktShowFactory.FromId<TraktShowWithWatchedMetadata>(showId, showIdType));
 		}
 
@@ -41,7 +41,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> MarkWatchedByShowIdAsync(int showId, IntShowIdType showIdType) {
+		public async Task<TraktAddResponse> MarkWatchedByShowIdAsync(int showId, TraktNumericShowIdType showIdType) {
 			return await MarkWatchedAsync(TraktShowFactory.FromId<TraktShowWithWatchedMetadata>(showId, showIdType));
 		}
 
@@ -49,7 +49,7 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> MarkWatchedByEpisodeIdAsync(string episodeId, StringEpisodeIdType episodeIdType = StringEpisodeIdType.Auto) {
+		public async Task<TraktAddResponse> MarkWatchedByEpisodeIdAsync(string episodeId, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) {
 			return await MarkWatchedAsync(TraktEpisodeFactory.FromId<TraktEpisodeWithWatchedMetadata>(episodeId, episodeIdType));
 		}
 
@@ -57,7 +57,7 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> MarkWatchedByEpisodeIdAsync(int episodeId, IntEpisodeIdType episodeIdType) {
+		public async Task<TraktAddResponse> MarkWatchedByEpisodeIdAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType) {
 			return await MarkWatchedAsync(TraktEpisodeFactory.FromId<TraktEpisodeWithWatchedMetadata>(episodeId, episodeIdType));
 		}
 

@@ -13,30 +13,30 @@ namespace TraktSharp.Factories {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktMovie FromId(string movieId, StringMovieIdType movieIdType = StringMovieIdType.Auto) { return FromId<TraktMovie>(movieId, movieIdType); }
+		public static TraktMovie FromId(string movieId, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) { return FromId<TraktMovie>(movieId, movieIdType); }
 
 		/// <summary>Create an instance of a <see cref="TraktMovie"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public static T FromId<T>(string movieId, StringMovieIdType movieIdType = StringMovieIdType.Auto) where T : TraktMovie {
+		public static T FromId<T>(string movieId, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) where T : TraktMovie {
 			if (string.IsNullOrEmpty(movieId)) {
 				throw new ArgumentException("movieId not set", "movieId");
 			}
 
-			if (movieIdType == StringMovieIdType.Auto) {
-				movieIdType = movieId.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase) ? StringMovieIdType.Imdb : StringMovieIdType.Slug;
+			if (movieIdType == TraktTextMovieIdType.Auto) {
+				movieIdType = movieId.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase) ? TraktTextMovieIdType.Imdb : TraktTextMovieIdType.Slug;
 			}
 
 			var ret = Activator.CreateInstance<T>();
 			ret.Ids = new TraktMovieIds();
 
 			switch (movieIdType) {
-				case StringMovieIdType.Slug:
+				case TraktTextMovieIdType.Slug:
 					ret.Ids.Slug = movieId;
 					break;
-				case StringMovieIdType.Imdb:
+				case TraktTextMovieIdType.Imdb:
 					ret.Ids.Imdb = movieId;
 					break;
 				default:
@@ -50,22 +50,22 @@ namespace TraktSharp.Factories {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktMovie FromId(int movieId, IntMovieIdType movieIdType) { return FromId<TraktMovie>(movieId, movieIdType); }
+		public static TraktMovie FromId(int movieId, TraktNumericMovieIdType movieIdType) { return FromId<TraktMovie>(movieId, movieIdType); }
 
 		/// <summary>Create an instance of a <see cref="TraktMovie"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public static T FromId<T>(int movieId, IntMovieIdType movieIdType) where T : TraktMovie {
+		public static T FromId<T>(int movieId, TraktNumericMovieIdType movieIdType) where T : TraktMovie {
 			var ret = Activator.CreateInstance<T>();
 			ret.Ids = new TraktMovieIds();
 
 			switch (movieIdType) {
-				case IntMovieIdType.Trakt:
+				case TraktNumericMovieIdType.Trakt:
 					ret.Ids.Trakt = movieId;
 					break;
-				case IntMovieIdType.Tmdb:
+				case TraktNumericMovieIdType.Tmdb:
 					ret.Ids.Tmdb = movieId;
 					break;
 				default:
@@ -100,7 +100,7 @@ namespace TraktSharp.Factories {
 		/// <param name="movieIds">A collection of movie IDs</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktMovie> FromIds(IEnumerable<string> movieIds, StringMovieIdType movieIdType = StringMovieIdType.Auto) {
+		public static IEnumerable<TraktMovie> FromIds(IEnumerable<string> movieIds, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) {
 			return movieIds == null ? null : movieIds.Select(movieId => FromId<TraktMovie>(movieId, movieIdType));
 		}
 
@@ -109,7 +109,7 @@ namespace TraktSharp.Factories {
 		/// <param name="movieIds">A collection of movie IDs</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<string> movieIds, StringMovieIdType movieIdType = StringMovieIdType.Auto) where T : TraktMovie {
+		public static IEnumerable<T> FromIds<T>(IEnumerable<string> movieIds, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) where T : TraktMovie {
 			return movieIds == null ? null : movieIds.Select(movieId => FromId<T>(movieId, movieIdType));
 		}
 
@@ -117,7 +117,7 @@ namespace TraktSharp.Factories {
 		/// <param name="movieIds">A collection of movie IDs</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktMovie> FromIds(IEnumerable<int> movieIds, IntMovieIdType movieIdType) {
+		public static IEnumerable<TraktMovie> FromIds(IEnumerable<int> movieIds, TraktNumericMovieIdType movieIdType) {
 			return movieIds == null ? null : movieIds.Select(movieId => FromId<TraktMovie>(movieId, movieIdType));
 		}
 
@@ -126,7 +126,7 @@ namespace TraktSharp.Factories {
 		/// <param name="movieIds">A collection of movie IDs</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<int> movieIds, IntMovieIdType movieIdType) where T : TraktMovie {
+		public static IEnumerable<T> FromIds<T>(IEnumerable<int> movieIds, TraktNumericMovieIdType movieIdType) where T : TraktMovie {
 			return movieIds == null ? null : movieIds.Select(movieId => FromId<T>(movieId, movieIdType));
 		}
 

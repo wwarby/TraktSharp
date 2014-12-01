@@ -13,21 +13,21 @@ namespace TraktSharp.Factories {
 		/// <param name="personId">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktPerson FromId(string personId, StringPersonIdType personIdType = StringPersonIdType.Auto) { return FromId<TraktPerson>(personId, personIdType); }
+		public static TraktPerson FromId(string personId, TraktTextPersonIdType personIdType = TraktTextPersonIdType.Auto) { return FromId<TraktPerson>(personId, personIdType); }
 
 		/// <summary>Create an instance of a <see cref="TraktPerson"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
 		/// <param name="personId">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static T FromId<T>(string personId, StringPersonIdType personIdType = StringPersonIdType.Auto) where T : TraktPerson {
+		public static T FromId<T>(string personId, TraktTextPersonIdType personIdType = TraktTextPersonIdType.Auto) where T : TraktPerson {
 			if (string.IsNullOrEmpty(personId)) {
 				throw new ArgumentException("personId not set", "personId");
 			}
 
-			if (personIdType == StringPersonIdType.Auto) {
+			if (personIdType == TraktTextPersonIdType.Auto) {
 				if (personId.StartsWith("nm", StringComparison.InvariantCultureIgnoreCase)) {
-					personIdType = StringPersonIdType.Imdb;
+					personIdType = TraktTextPersonIdType.Imdb;
 				} else {
 					throw new ArgumentException("Unable to detect id type", "personIdType");
 				}
@@ -37,7 +37,7 @@ namespace TraktSharp.Factories {
 			ret.Ids = new TraktPersonIds();
 
 			switch (personIdType) {
-				case StringPersonIdType.Imdb:
+				case TraktTextPersonIdType.Imdb:
 					ret.Ids.Imdb = personId;
 					break;
 				default:
@@ -51,25 +51,25 @@ namespace TraktSharp.Factories {
 		/// <param name="personId">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktPerson FromId(int personId, IntPersonIdType personIdType) { return FromId<TraktPerson>(personId, personIdType); }
+		public static TraktPerson FromId(int personId, TraktNumericPersonIdType personIdType) { return FromId<TraktPerson>(personId, personIdType); }
 
 		/// <summary>Create an instance of a <see cref="TraktPerson"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
 		/// <param name="personId">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static T FromId<T>(int personId, IntPersonIdType personIdType) where T : TraktPerson {
+		public static T FromId<T>(int personId, TraktNumericPersonIdType personIdType) where T : TraktPerson {
 			var ret = Activator.CreateInstance<T>();
 			ret.Ids = new TraktPersonIds();
 
 			switch (personIdType) {
-				case IntPersonIdType.Trakt:
+				case TraktNumericPersonIdType.Trakt:
 					ret.Ids.Trakt = personId;
 					break;
-				case IntPersonIdType.Tmdb:
+				case TraktNumericPersonIdType.Tmdb:
 					ret.Ids.Tmdb = personId;
 					break;
-				case IntPersonIdType.TvRage:
+				case TraktNumericPersonIdType.TvRage:
 					ret.Ids.TvRage = personId;
 					break;
 				default:
@@ -83,7 +83,7 @@ namespace TraktSharp.Factories {
 		/// <param name="personIds">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktPerson> FromIds(IEnumerable<string> personIds, StringPersonIdType personIdType = StringPersonIdType.Auto) {
+		public static IEnumerable<TraktPerson> FromIds(IEnumerable<string> personIds, TraktTextPersonIdType personIdType = TraktTextPersonIdType.Auto) {
 			return personIds == null ? null : personIds.Select(personId => FromId<TraktPerson>(personId, personIdType));
 		}
 
@@ -92,7 +92,7 @@ namespace TraktSharp.Factories {
 		/// <param name="personIds">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<string> personIds, StringPersonIdType personIdType = StringPersonIdType.Auto) where T : TraktPerson {
+		public static IEnumerable<T> FromIds<T>(IEnumerable<string> personIds, TraktTextPersonIdType personIdType = TraktTextPersonIdType.Auto) where T : TraktPerson {
 			return personIds == null ? null : personIds.Select(personId => FromId<T>(personId, personIdType));
 		}
 
@@ -100,7 +100,7 @@ namespace TraktSharp.Factories {
 		/// <param name="personIds">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktPerson> FromIds(IEnumerable<int> personIds, IntPersonIdType personIdType) {
+		public static IEnumerable<TraktPerson> FromIds(IEnumerable<int> personIds, TraktNumericPersonIdType personIdType) {
 			return personIds == null ? null : personIds.Select(personId => FromId<TraktPerson>(personId, personIdType));
 		}
 
@@ -109,7 +109,7 @@ namespace TraktSharp.Factories {
 		/// <param name="personIds">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<int> personIds, IntPersonIdType personIdType) where T : TraktPerson {
+		public static IEnumerable<T> FromIds<T>(IEnumerable<int> personIds, TraktNumericPersonIdType personIdType) where T : TraktPerson {
 			return personIds == null ? null : personIds.Select(personId => FromId<T>(personId, personIdType));
 		}
 

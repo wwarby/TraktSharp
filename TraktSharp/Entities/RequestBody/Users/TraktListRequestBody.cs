@@ -19,8 +19,8 @@ namespace TraktSharp.Entities.RequestBody.Users {
 		public string PrivacyString { get; set; }
 
 		[JsonIgnore]
-		public PrivacyOption Privacy {
-			get { return EnumsHelper.FromDescription(PrivacyString, PrivacyOption.Unspecified); }
+		public TraktPrivacyOption Privacy {
+			get { return EnumsHelper.FromDescription(PrivacyString, TraktPrivacyOption.Unspecified); }
 			set { PrivacyString = EnumsHelper.GetDescription(value); }
 		}
 

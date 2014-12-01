@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
 
-namespace TraktSharp.Enums {
+namespace TraktSharp.Structs {
 
 	/// <summary>Settings for pagination on supporting request types</summary>
-	public struct PaginationOptions {
+	public struct TraktPaginationOptions {
 
 		/// <summary>Default constructor</summary>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
-		public PaginationOptions(int? page, int? limit) {
+		public TraktPaginationOptions(int? page, int? limit) {
 			Page = page;
 			Limit = limit;
 		}

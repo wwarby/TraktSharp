@@ -12,7 +12,7 @@ namespace TraktSharp.Request.Movies {
 
 		protected override string PathTemplate { get { return "movies/{id}/translations/{language}"; } }
 
-		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
+		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
 		public string Language { get; set; }
 

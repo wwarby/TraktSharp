@@ -25,8 +25,8 @@ namespace TraktSharp.Entities {
 		//TODO: More of this
 		/// <summary>The privacy option for this list in a more usable enum form</summary>
 		[JsonIgnore]
-		public PrivacyOption Privacy {
-			get { return EnumsHelper.FromDescription(PrivacyString, PrivacyOption.Unspecified); }
+		public TraktPrivacyOption Privacy {
+			get { return EnumsHelper.FromDescription(PrivacyString, TraktPrivacyOption.Unspecified); }
 			set { PrivacyString = EnumsHelper.GetDescription(value); }
 		}
 

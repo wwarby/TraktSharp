@@ -17,7 +17,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromWatchlistByMovieIdAsync(string movieId, StringMovieIdType movieIdType = StringMovieIdType.Auto) {
+		public async Task<TraktRemoveResponse> RemoveFromWatchlistByMovieIdAsync(string movieId, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) {
 			return await RemoveFromWatchlistAsync(TraktMovieFactory.FromId(movieId, movieIdType));
 		}
 
@@ -25,7 +25,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromWatchlistByMovieIdAsync(int movieId, IntMovieIdType movieIdType) {
+		public async Task<TraktRemoveResponse> RemoveFromWatchlistByMovieIdAsync(int movieId, TraktNumericMovieIdType movieIdType) {
 			return await RemoveFromWatchlistAsync(TraktMovieFactory.FromId(movieId, movieIdType));
 		}
 
@@ -33,7 +33,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromWatchlistByShowIdAsync(string showId, StringShowIdType showIdType = StringShowIdType.Auto) {
+		public async Task<TraktRemoveResponse> RemoveFromWatchlistByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) {
 			return await RemoveFromWatchlistAsync(TraktShowFactory.FromId(showId, showIdType));
 		}
 
@@ -41,7 +41,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromWatchlistByShowIdAsync(int showId, IntShowIdType showIdType) {
+		public async Task<TraktRemoveResponse> RemoveFromWatchlistByShowIdAsync(int showId, TraktNumericShowIdType showIdType) {
 			return await RemoveFromWatchlistAsync(TraktShowFactory.FromId(showId, showIdType));
 		}
 
@@ -49,7 +49,7 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromWatchlistByEpisodeIdAsync(string episodeId, StringEpisodeIdType episodeIdType = StringEpisodeIdType.Auto) {
+		public async Task<TraktRemoveResponse> RemoveFromWatchlistByEpisodeIdAsync(string episodeId, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) {
 			return await RemoveFromWatchlistAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 		}
 
@@ -57,7 +57,7 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromWatchlistByEpisodeIdAsync(int episodeId, IntEpisodeIdType episodeIdType) {
+		public async Task<TraktRemoveResponse> RemoveFromWatchlistByEpisodeIdAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType) {
 			return await RemoveFromWatchlistAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 		}
 

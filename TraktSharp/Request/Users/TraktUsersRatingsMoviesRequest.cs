@@ -13,11 +13,11 @@ namespace TraktSharp.Request.Users {
 
 		protected override string PathTemplate { get { return "users/{username}/ratings/movies/{rating}"; } }
 
-		public Rating Rating { get; set; }
+		public TraktRating Rating { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
-				{"rating", Rating != Rating.RatingUnspecified ? ((int)Rating).ToString(CultureInfo.InvariantCulture) : string.Empty}
+				{"rating", Rating != TraktRating.RatingUnspecified ? ((int)Rating).ToString(CultureInfo.InvariantCulture) : string.Empty}
 			};
 		}
 

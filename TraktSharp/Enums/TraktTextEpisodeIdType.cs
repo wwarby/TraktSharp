@@ -3,12 +3,10 @@ using System.Linq;
 
 namespace TraktSharp.Enums {
 
-	/// <summary>Options for the text person ID type on supporting request types</summary>
-	public enum StringPersonIdType {
+	/// <summary>Options for thetext  episode ID type on supporting request types</summary>
+	public enum TraktTextEpisodeIdType {
 		/// <summary>Automatically detect ID type</summary>
 		Auto,
-		/// <summary>Trakt URL slug</summary>
-		Slug,
 		/// <summary>Internet Movie Database ID</summary>
 		Imdb
 	}

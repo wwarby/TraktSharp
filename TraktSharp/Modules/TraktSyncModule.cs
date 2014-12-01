@@ -31,35 +31,35 @@ namespace TraktSharp.Modules {
 		/// </summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktSyncPlaybackResponse> GetPlaybackStateAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktSyncPlaybackResponse> GetPlaybackStateAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncPlaybackRequest(Client) { Extended = extended });
 		}
 
 		/// <summary>Get all collected items in a user's collection. A collected item indicates availability to watch digitally or on physical media.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktCollectionMoviesResponseItem>> GetMoviesCollectionAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktCollectionMoviesResponseItem>> GetMoviesCollectionAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncCollectionMoviesRequest(Client) { Extended = extended });
 		}
 
 		/// <summary>Get all collected items in a user's collection. A collected item indicates availability to watch digitally or on physical media.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktCollectionShowsResponseItem>> GetShowsCollectionAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktCollectionShowsResponseItem>> GetShowsCollectionAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncCollectionShowsRequest(Client) { Extended = extended });
 		}
 
 		/// <summary>Returns all movies a user has watched</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktWatchedMoviesResponseItem>> GetWatchedMoviesAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktWatchedMoviesResponseItem>> GetWatchedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncWatchedMoviesRequest(Client) { Extended = extended });
 		}
 
 		/// <summary>Returns all shows a user has watched</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktWatchedShowsResponseItem>> GetWatchedShowsAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktWatchedShowsResponseItem>> GetWatchedShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncWatchedShowsRequest(Client) { Extended = extended });
 		}
 
@@ -67,7 +67,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktRatingsMoviesResponseItem>> GetMovieRatingsAsync(Rating rating = Rating.RatingUnspecified, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktRatingsMoviesResponseItem>> GetMovieRatingsAsync(TraktRating rating = TraktRating.RatingUnspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncRatingsMoviesRequest(Client) { Rating = rating, Extended = extended });
 		}
 
@@ -75,7 +75,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktRatingsShowsResponseItem>> GetShowRatingsAsync(Rating rating = Rating.RatingUnspecified, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktRatingsShowsResponseItem>> GetShowRatingsAsync(TraktRating rating = TraktRating.RatingUnspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncRatingsShowsRequest(Client) { Rating = rating, Extended = extended });
 		}
 
@@ -83,7 +83,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktRatingsSeasonsResponseItem>> GetSeasonRatingsAsync(Rating rating = Rating.RatingUnspecified, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktRatingsSeasonsResponseItem>> GetSeasonRatingsAsync(TraktRating rating = TraktRating.RatingUnspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncRatingsSeasonsRequest(Client) { Rating = rating, Extended = extended });
 		}
 
@@ -91,35 +91,35 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktRatingsEpisodesResponseItem>> GetEpisodeRatingsAsync(Rating rating = Rating.RatingUnspecified, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktRatingsEpisodesResponseItem>> GetEpisodeRatingsAsync(TraktRating rating = TraktRating.RatingUnspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncRatingsEpisodesRequest(Client) { Rating = rating, Extended = extended });
 		}
 
 		/// <summary>Returns all items in a user's watchlist filtered by type. When an item is watched, it will be automatically removed from the watchlist. To track what the user is actively watching, use the progress APIs.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktWatchlistMoviesResponseItem>> GetWatchlistMoviesAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktWatchlistMoviesResponseItem>> GetWatchlistMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncWatchlistMoviesRequest(Client) { Extended = extended });
 		}
 
 		/// <summary>Returns all items in a user's watchlist filtered by type. When an item is watched, it will be automatically removed from the watchlist. To track what the user is actively watching, use the progress APIs.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktWatchlistShowsResponseItem>> GetWatchlistShowsAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktWatchlistShowsResponseItem>> GetWatchlistShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncWatchlistShowsRequest(Client) { Extended = extended });
 		}
 
 		/// <summary>Returns all items in a user's watchlist filtered by type. When an item is watched, it will be automatically removed from the watchlist. To track what the user is actively watching, use the progress APIs.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktWatchlistSeasonsResponseItem>> GetWatchlistSeasonsAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktWatchlistSeasonsResponseItem>> GetWatchlistSeasonsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncWatchlistSeasonsRequest(Client) { Extended = extended });
 		}
 
 		/// <summary>Returns all items in a user's watchlist filtered by type. When an item is watched, it will be automatically removed from the watchlist. To track what the user is actively watching, use the progress APIs.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktWatchlistEpisodesResponseItem>> GetWatchlistEpisodesAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktWatchlistEpisodesResponseItem>> GetWatchlistEpisodesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncWatchlistEpisodesRequest(Client) { Extended = extended });
 		}
 

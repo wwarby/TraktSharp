@@ -18,7 +18,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListByMovieIdAsync(string listId, string movieId, StringMovieIdType movieIdType = StringMovieIdType.Auto) {
+		public async Task<TraktAddResponse> AddToListByMovieIdAsync(string listId, string movieId, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) {
 			return await AddToListAsync(listId, TraktMovieFactory.FromId(movieId, movieIdType));
 		}
 
@@ -27,7 +27,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListByMovieIdAsync(string listId, int movieId, IntMovieIdType movieIdType) {
+		public async Task<TraktAddResponse> AddToListByMovieIdAsync(string listId, int movieId, TraktNumericMovieIdType movieIdType) {
 			return await AddToListAsync(listId, TraktMovieFactory.FromId(movieId, movieIdType));
 		}
 
@@ -36,7 +36,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListByShowIdAsync(string listId, string showId, StringShowIdType showIdType = StringShowIdType.Auto) {
+		public async Task<TraktAddResponse> AddToListByShowIdAsync(string listId, string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) {
 			return await AddToListAsync(listId, TraktShowFactory.FromId(showId, showIdType));
 		}
 
@@ -45,7 +45,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListByShowIdAsync(string listId, int showId, IntShowIdType showIdType) {
+		public async Task<TraktAddResponse> AddToListByShowIdAsync(string listId, int showId, TraktNumericShowIdType showIdType) {
 			return await AddToListAsync(listId, TraktShowFactory.FromId(showId, showIdType));
 		}
 
@@ -54,7 +54,7 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListByEpisodeIdAsync(string listId, string episodeId, StringEpisodeIdType episodeIdType = StringEpisodeIdType.Auto) {
+		public async Task<TraktAddResponse> AddToListByEpisodeIdAsync(string listId, string episodeId, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) {
 			return await AddToListAsync(listId, TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 		}
 
@@ -63,7 +63,7 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListByEpisodeIdAsync(string listId, int episodeId, IntEpisodeIdType episodeIdType) {
+		public async Task<TraktAddResponse> AddToListByEpisodeIdAsync(string listId, int episodeId, TraktNumericEpisodeIdType episodeIdType) {
 			return await AddToListAsync(listId, TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 		}
 

@@ -12,7 +12,7 @@ namespace TraktSharp.Request.Shows {
 
 		protected override string PathTemplate { get { return "shows/{id}/translations/{language}"; } }
 
-		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
+		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
 		public string Language { get; set; }
 

@@ -5,7 +5,7 @@ using System.Linq;
 namespace TraktSharp.Enums {
 
 	/// <summary>OAuth authentication token grant type</summary>
-	public enum OAuthTokenGrantType {
+	public enum TraktOAuthTokenGrantType {
 		/// <summary>OAuth authorization code grant type</summary>
 		[Description("authorization_code")]
 		AuthorizationCode,

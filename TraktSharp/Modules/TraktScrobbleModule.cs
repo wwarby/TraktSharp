@@ -25,7 +25,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(string movieId, StringMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(string movieId, TraktTextMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StartMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), progress, appVersion, appDate, extended);
 		}
 
@@ -37,7 +37,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(int movieId, IntMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(int movieId, TraktNumericMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StartMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), progress, appVersion, appDate, extended);
 		}
 
@@ -49,7 +49,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(string movieTitle, int? movieYear, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(string movieTitle, int? movieYear, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StartMovieAsync(TraktMovieFactory.FromTitleAndYear(movieTitle, movieYear), progress, appVersion, appDate, extended);
 		}
 
@@ -60,7 +60,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(TraktMovie movie, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> StartMovieAsync(TraktMovie movie, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktScrobbleStartMovieRequest(Client) {
 				RequestBody = new TraktScrobbleMovieRequestBody {
 					Movie = movie,
@@ -80,7 +80,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(string episodeId, StringEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(string episodeId, TraktTextEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StartEpisodeAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), null, progress, appVersion, appDate, extended);
 		}
 
@@ -92,7 +92,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(int episodeId, IntEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StartEpisodeAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), null, progress, appVersion, appDate, extended);
 		}
 
@@ -106,7 +106,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(string showTitle, int? showYear, int seasonNumber, int episodeNumber, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(string showTitle, int? showYear, int seasonNumber, int episodeNumber, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StartEpisodeAsync(TraktEpisodeFactory.FromSeasonAndEpisodeNumber(seasonNumber, episodeNumber), TraktShowFactory.FromTitleAndYear(showTitle, showYear), progress, appVersion, appDate, extended);
 		}
 
@@ -118,7 +118,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(TraktEpisode episode, TraktShow show, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> StartEpisodeAsync(TraktEpisode episode, TraktShow show, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktScrobbleStartEpisodeRequest(Client) {
 				RequestBody = new TraktScrobbleEpisodeRequestBody {
 					Episode = episode,
@@ -139,7 +139,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(string movieId, StringMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(string movieId, TraktTextMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await PauseMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), progress, appVersion, appDate, extended);
 		}
 
@@ -151,7 +151,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(int movieId, IntMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(int movieId, TraktNumericMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await PauseMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), progress, appVersion, appDate, extended);
 		}
 
@@ -163,7 +163,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(string movieTitle, int? movieYear, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(string movieTitle, int? movieYear, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await PauseMovieAsync(TraktMovieFactory.FromTitleAndYear(movieTitle, movieYear), progress, appVersion, appDate, extended);
 		}
 
@@ -174,7 +174,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(TraktMovie movie, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> PauseMovieAsync(TraktMovie movie, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktScrobblePauseMovieRequest(Client) {
 				RequestBody = new TraktScrobbleMovieRequestBody {
 					Movie = movie,
@@ -194,7 +194,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(string episodeId, StringEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(string episodeId, TraktTextEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await PauseEpisodeAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), null, progress, appVersion, appDate, extended);
 		}
 
@@ -206,7 +206,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(int episodeId, IntEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await PauseEpisodeAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), null, progress, appVersion, appDate, extended);
 		}
 
@@ -220,7 +220,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(string showTitle, int? showYear, int seasonNumber, int episodeNumber, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(string showTitle, int? showYear, int seasonNumber, int episodeNumber, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await PauseEpisodeAsync(TraktEpisodeFactory.FromSeasonAndEpisodeNumber(seasonNumber, episodeNumber), TraktShowFactory.FromTitleAndYear(showTitle, showYear), progress, appVersion, appDate, extended);
 		}
 
@@ -232,7 +232,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(TraktEpisode episode, TraktShow show, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> PauseEpisodeAsync(TraktEpisode episode, TraktShow show, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktScrobblePauseEpisodeRequest(Client) {
 				RequestBody = new TraktScrobbleEpisodeRequestBody {
 					Episode = episode,
@@ -257,7 +257,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(string movieId, StringMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(string movieId, TraktTextMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StopMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), progress, appVersion, appDate, extended);
 		}
 
@@ -273,7 +273,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(int movieId, IntMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(int movieId, TraktNumericMovieIdType movieIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StopMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), progress, appVersion, appDate, extended);
 		}
 
@@ -289,7 +289,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(string movieTitle, int? movieYear, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(string movieTitle, int? movieYear, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StopMovieAsync(TraktMovieFactory.FromTitleAndYear(movieTitle, movieYear), progress, appVersion, appDate, extended);
 		}
 
@@ -304,7 +304,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(TraktMovie movie, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleMovieResponse> StopMovieAsync(TraktMovie movie, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktScrobbleStopMovieRequest(Client) {
 				RequestBody = new TraktScrobbleMovieRequestBody {
 					Movie = movie,
@@ -328,7 +328,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(string episodeId, StringEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(string episodeId, TraktTextEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StopEpisodeAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), null, progress, appVersion, appDate, extended);
 		}
 
@@ -344,7 +344,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(int episodeId, IntEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StopEpisodeAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), null, progress, appVersion, appDate, extended);
 		}
 
@@ -362,7 +362,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(string showTitle, int? showYear, int seasonNumber, int episodeNumber, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(string showTitle, int? showYear, int seasonNumber, int episodeNumber, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await StopEpisodeAsync(TraktEpisodeFactory.FromSeasonAndEpisodeNumber(seasonNumber, episodeNumber), TraktShowFactory.FromTitleAndYear(showTitle, showYear), progress, appVersion, appDate, extended);
 		}
 
@@ -378,7 +378,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(TraktEpisode episode, TraktShow show, float progress, string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktScrobbleEpisodeResponse> StopEpisodeAsync(TraktEpisode episode, TraktShow show, float progress, string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktScrobbleStopEpisodeRequest(Client) {
 				RequestBody = new TraktScrobbleEpisodeRequestBody {
 					Episode = episode,

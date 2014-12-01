@@ -9,7 +9,7 @@ namespace TraktSharp.Entities.Response {
 	public class TraktRatingsSeasonsResponseItem {
 
 		[JsonProperty(PropertyName = "rating")]
-		public Rating Rating { get; set; }
+		public TraktRating Rating { get; set; }
 
 		[JsonProperty(PropertyName = "rated_at")]
 		public DateTime? RatedAt { get; set; }

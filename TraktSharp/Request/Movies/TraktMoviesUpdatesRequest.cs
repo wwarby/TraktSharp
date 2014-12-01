@@ -13,7 +13,7 @@ namespace TraktSharp.Request.Movies {
 
 		protected override string PathTemplate { get { return "movies/updates/{start_date}"; } }
 
-		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
+		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
 		protected override bool SupportsPagination { get { return true; } }
 

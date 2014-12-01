@@ -16,10 +16,10 @@ namespace TraktSharp.Tests.Modules {
 		public async Task TestGenresGetGenresAsync() {
 
 			FakeResponsePath = @"Genres\Movies.json";
-			var moviesResult = (await Client.Genres.GetGenresAsync(GenreTypeOptions.Movies)).ToList();
+			var moviesResult = (await Client.Genres.GetGenresAsync(TraktGenreTypeOptions.Movies)).ToList();
 
 			FakeResponsePath = @"Genres\Shows.json";
-			var showsResult = (await Client.Genres.GetGenresAsync(GenreTypeOptions.Shows)).ToList();
+			var showsResult = (await Client.Genres.GetGenresAsync(TraktGenreTypeOptions.Shows)).ToList();
 
 			moviesResult.Should().BeOfType(typeof(List<TraktGenresListResponseItem>));
 			moviesResult.First().Name.Should().Be("Action");

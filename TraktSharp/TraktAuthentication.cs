@@ -77,7 +77,7 @@ namespace TraktSharp {
 		/// <summary>Make a call to <see cref="TraktOAuthModule.GetOAuthTokenAsync()"/> and parses the result into <see cref="CurrentAccessToken"/></summary>
 		/// <returns><see cref="CurrentAccessToken"/></returns>
 		public async Task<TraktAccessToken> GetAccessToken() { 
-			var result = await Client.OAuth.GetOAuthTokenAsync(AuthorizationCode, ClientId, ClientSecret, RedirectUri, EnumsHelper.GetDescription(OAuthTokenGrantType.AuthorizationCode));
+			var result = await Client.OAuth.GetOAuthTokenAsync(AuthorizationCode, ClientId, ClientSecret, RedirectUri, EnumsHelper.GetDescription(TraktOAuthTokenGrantType.AuthorizationCode));
 			CurrentAccessToken = new TraktAccessToken {
 				AccessToken = result.AccessToken,
 				AccessTokenExpires = DateTime.Now.AddSeconds(result.ExpiresIn),

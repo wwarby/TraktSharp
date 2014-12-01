@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
 using TraktSharp.Request.Search;
+using TraktSharp.Structs;
 
 namespace TraktSharp.Modules {
 
@@ -22,12 +23,12 @@ namespace TraktSharp.Modules {
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TextQueryType queryType = TextQueryType.Unspecified, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TraktTextQueryType queryType = TraktTextQueryType.Unspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await SendAsync(new TraktTextQueryRequest(Client) {
 				Query = query,
 				Type = queryType,
 				Extended = extended,
-				Pagination = new PaginationOptions(page, limit)
+				Pagination = new TraktPaginationOptions(page, limit)
 			});
 		}
 
@@ -38,12 +39,12 @@ namespace TraktSharp.Modules {
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktSearchResult>> IdLookupAsync(string id, IdLookupType idType, ExtendedOption extended = ExtendedOption.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktSearchResult>> IdLookupAsync(string id, TraktIdLookupType idType, TraktExtendedOption extended = TraktExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await SendAsync(new TraktIdLookupRequest(Client) {
 				IdType = idType,
 				Id = id,
 				Extended = extended,
-				Pagination = new PaginationOptions(page, limit)
+				Pagination = new TraktPaginationOptions(page, limit)
 			});
 		}
 

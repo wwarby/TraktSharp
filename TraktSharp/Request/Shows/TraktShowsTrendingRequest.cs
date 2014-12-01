@@ -12,7 +12,7 @@ namespace TraktSharp.Request.Shows {
 
 		protected override string PathTemplate { get { return "shows/trending"; } }
 
-		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
+		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
 		protected override bool SupportsPagination { get { return true; } }
 

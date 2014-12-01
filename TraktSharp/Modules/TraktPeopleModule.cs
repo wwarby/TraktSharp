@@ -18,7 +18,7 @@ namespace TraktSharp.Modules {
 		/// <param name="person">The person</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktPerson> GetPersonAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktPerson> GetPersonAsync(TraktPerson person, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await GetPersonAsync(person.Ids.GetBestId(), extended);
 		}
 
@@ -26,7 +26,7 @@ namespace TraktSharp.Modules {
 		/// <param name="personId">The person ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktPerson> GetPersonAsync(string personId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktPerson> GetPersonAsync(string personId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktPeopleSummaryRequest(Client) {
 				Id = personId,
 				Extended = extended
@@ -37,7 +37,7 @@ namespace TraktSharp.Modules {
 		/// <param name="person">The person</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktMovieCredits> GetMoviesForPersonAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktMovieCredits> GetMoviesForPersonAsync(TraktPerson person, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await GetMoviesForPersonAsync(person.Ids.GetBestId(), extended);
 		}
 
@@ -45,7 +45,7 @@ namespace TraktSharp.Modules {
 		/// <param name="personId">The person ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktMovieCredits> GetMoviesForPersonAsync(string personId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktMovieCredits> GetMoviesForPersonAsync(string personId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktPeopleMoviesRequest(Client) {
 				Id = personId,
 				Extended = extended
@@ -56,7 +56,7 @@ namespace TraktSharp.Modules {
 		/// <param name="person">The person</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktShowCredits> GetShowsForPersonAsync(TraktPerson person, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktShowCredits> GetShowsForPersonAsync(TraktPerson person, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await GetShowsForPersonAsync(person.Ids.GetBestId(), extended);
 		}
 
@@ -64,7 +64,7 @@ namespace TraktSharp.Modules {
 		/// <param name="personId">The person ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktShowCredits> GetShowsForPersonAsync(string personId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktShowCredits> GetShowsForPersonAsync(string personId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktPeopleShowsRequest(Client) {
 				Id = personId,
 				Extended = extended

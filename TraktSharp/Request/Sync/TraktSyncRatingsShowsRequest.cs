@@ -13,13 +13,13 @@ namespace TraktSharp.Request.Sync {
 
 		protected override string PathTemplate { get { return "sync/ratings/shows/{rating}"; } }
 
-		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Required; } }
+		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Required; } }
 
-		public Rating Rating { get; set; }
+		public TraktRating Rating { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
-				{"rating", Rating != Rating.RatingUnspecified ? ((int)Rating).ToString(CultureInfo.InvariantCulture) : string.Empty}
+				{"rating", Rating != TraktRating.RatingUnspecified ? ((int)Rating).ToString(CultureInfo.InvariantCulture) : string.Empty}
 			};
 		}
 

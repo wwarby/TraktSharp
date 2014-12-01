@@ -181,7 +181,7 @@ namespace TraktSharp.Examples.Wpf {
 
 		}
 
-		public static async Task<object> ExecuteTestRequest(TraktClient client, TestRequestType requestType, ExtendedOption extended = ExtendedOption.Unspecified, string testId = null) {
+		public static async Task<object> ExecuteTestRequest(TraktClient client, TestRequestType requestType, TraktExtendedOption extended = TraktExtendedOption.Unspecified, string testId = null) {
 			
 			//Uncomment if required
 			//int? testIdInt;
@@ -208,7 +208,7 @@ namespace TraktSharp.Examples.Wpf {
 
 				// Checkin module
 				case TestRequestType.CheckinCheckinMovieAsync:
-					return await client.Checkin.CheckinMovieAsync(testId ?? "tt0120591", StringMovieIdType.Auto, extended: extended);
+					return await client.Checkin.CheckinMovieAsync(testId ?? "tt0120591", TraktTextMovieIdType.Auto, extended: extended);
 				case TestRequestType.CheckinCheckinEpisodeAsync:
 					return await client.Checkin.CheckinEpisodeAsync("Breaking Bad", 2008, 1, 1, extended: extended);
 				case TestRequestType.CheckinRemoveActiveCheckinAsync:
@@ -217,11 +217,11 @@ namespace TraktSharp.Examples.Wpf {
 
 				// Comments module
 				case TestRequestType.CommentsPostMovieCommentAsync:
-					return await client.Comments.PostMovieCommentAsync(testId ?? "tt0120591", StringMovieIdType.Auto, "TraktSharp test comment");
+					return await client.Comments.PostMovieCommentAsync(testId ?? "tt0120591", TraktTextMovieIdType.Auto, "TraktSharp test comment");
 				case TestRequestType.CommentsPostShowCommentAsync:
-					return await client.Comments.PostShowCommentAsync(testId ?? "tt0903747", StringShowIdType.Auto, "TraktSharp test comment");
+					return await client.Comments.PostShowCommentAsync(testId ?? "tt0903747", TraktTextShowIdType.Auto, "TraktSharp test comment");
 				case TestRequestType.CommentsPostEpisodeCommentAsync:
-					return await client.Comments.PostEpisodeCommentAsync(testId ?? "tt0959621", StringEpisodeIdType.Auto, "TraktSharp test comment");
+					return await client.Comments.PostEpisodeCommentAsync(testId ?? "tt0959621", TraktTextEpisodeIdType.Auto, "TraktSharp test comment");
 				case TestRequestType.CommentsPostListCommentAsync:
 					return await client.Comments.PostListCommentAsync(testId ?? "[list id]", "TraktSharp test comment");
 				case TestRequestType.CommentsGetCommentAsync:
@@ -251,9 +251,9 @@ namespace TraktSharp.Examples.Wpf {
 
 				// Genres module
 				case TestRequestType.GenresGetGenresAsyncMovies:
-					return await client.Genres.GetGenresAsync(GenreTypeOptions.Movies);
+					return await client.Genres.GetGenresAsync(TraktGenreTypeOptions.Movies);
 				case TestRequestType.GenresGetGenresAsyncShows:
-					return await client.Genres.GetGenresAsync(GenreTypeOptions.Shows);
+					return await client.Genres.GetGenresAsync(TraktGenreTypeOptions.Shows);
 
 				// Movies module
 				case TestRequestType.MoviesGetPopularMoviesAsync:
@@ -305,17 +305,17 @@ namespace TraktSharp.Examples.Wpf {
 
 				// Scrobble module
 				case TestRequestType.ScrobbleStartMovieAsync:
-					return await client.Scrobble.StartMovieAsync(testId ?? "tt0120591", StringMovieIdType.Auto, 1, extended: extended);
+					return await client.Scrobble.StartMovieAsync(testId ?? "tt0120591", TraktTextMovieIdType.Auto, 1, extended: extended);
 				case TestRequestType.ScrobbleStartEpisodeAsync:
-					return await client.Scrobble.StartEpisodeAsync(testId ?? "tt0959621", StringEpisodeIdType.Auto, 1, extended: extended);
+					return await client.Scrobble.StartEpisodeAsync(testId ?? "tt0959621", TraktTextEpisodeIdType.Auto, 1, extended: extended);
 				case TestRequestType.ScrobblePauseMovieAsync:
-					return await client.Scrobble.PauseMovieAsync(testId ?? "tt0120591", StringMovieIdType.Auto, 50, extended: extended);
+					return await client.Scrobble.PauseMovieAsync(testId ?? "tt0120591", TraktTextMovieIdType.Auto, 50, extended: extended);
 				case TestRequestType.ScrobblePauseEpisodeAsync:
-					return await client.Scrobble.PauseEpisodeAsync(testId ?? "tt0959621", StringEpisodeIdType.Auto, 50, extended: extended);
+					return await client.Scrobble.PauseEpisodeAsync(testId ?? "tt0959621", TraktTextEpisodeIdType.Auto, 50, extended: extended);
 				case TestRequestType.ScrobbleStopMovieAsync:
-					return await client.Scrobble.StopMovieAsync(testId ?? "tt0120591", StringMovieIdType.Auto, 99.9F, extended: extended);
+					return await client.Scrobble.StopMovieAsync(testId ?? "tt0120591", TraktTextMovieIdType.Auto, 99.9F, extended: extended);
 				case TestRequestType.ScrobbleStopEpisodeAsync:
-					return await client.Scrobble.StopEpisodeAsync(testId ?? "tt0959621", StringEpisodeIdType.Auto, 99.9F, extended: extended);
+					return await client.Scrobble.StopEpisodeAsync(testId ?? "tt0959621", TraktTextEpisodeIdType.Auto, 99.9F, extended: extended);
 
 				// Seasons module
 				case TestRequestType.SeasonsGetSeasonOverviewAsync:

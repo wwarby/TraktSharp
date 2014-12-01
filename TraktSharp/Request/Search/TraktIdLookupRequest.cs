@@ -13,11 +13,11 @@ namespace TraktSharp.Request.Search {
 
 		protected override string PathTemplate { get { return "search"; } }
 
-		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.NotRequired; } }
+		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
 		protected override bool SupportsPagination { get { return true; } }
 
-		public IdLookupType IdType { get; set; }
+		public TraktIdLookupType IdType { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
 			return base.GetPathParameters(queryStringParameters).Union(new Dictionary<string, string> {

@@ -3,8 +3,8 @@ using System.Linq;
 
 namespace TraktSharp.Enums {
 
-	/// <summary>Options for the numeric episode ID type on supporting request types</summary>
-	public enum IntEpisodeIdType {
+	/// <summary>Options for the numeric season ID type on supporting request types</summary>
+	public enum TraktNumericShowIdType {
 		/// <summary>Trakt numeric ID</summary>
 		Trakt,
 		/// <summary>The TVDb numeric ID</summary>

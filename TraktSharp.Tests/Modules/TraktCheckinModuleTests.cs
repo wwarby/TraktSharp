@@ -21,21 +21,21 @@ namespace TraktSharp.Tests.Modules {
 
 			FakeResponsePath = @"Checkin\Movie.json";
 
-			((Action)(() => Client.Checkin.CheckinMovieAsync(string.Empty, StringMovieIdType.Auto).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinMovieAsync(string.Empty, StringMovieIdType.Imdb).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinMovieAsync(string.Empty, StringMovieIdType.Slug).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinMovieAsync(0, IntMovieIdType.Trakt).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinMovieAsync(0, IntMovieIdType.Tmdb).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinMovieAsync(string.Empty, TraktTextMovieIdType.Auto).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinMovieAsync(string.Empty, TraktTextMovieIdType.Imdb).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinMovieAsync(string.Empty, TraktTextMovieIdType.Slug).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinMovieAsync(0, TraktNumericMovieIdType.Trakt).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinMovieAsync(0, TraktNumericMovieIdType.Tmdb).Wait())).ShouldThrow<ArgumentException>();
 			((Action)(() => Client.Checkin.CheckinMovieAsync(string.Empty, 1).Wait())).ShouldThrow<ArgumentException>();
 			((Action)(() => Client.Checkin.CheckinMovieAsync("foobar", null).Wait())).ShouldThrow<ArgumentException>();
 			((Action)(() => Client.Checkin.CheckinMovieAsync(null).Wait())).ShouldThrow<ArgumentException>();
 			((Action)(() => Client.Checkin.CheckinMovieAsync(new TraktMovie()).Wait())).ShouldThrow<ArgumentException>();
 
-			((Action)(() => Client.Checkin.CheckinMovieAsync("foobar", StringMovieIdType.Auto).Wait())).ShouldNotThrow();
-			((Action)(() => Client.Checkin.CheckinMovieAsync("foobar", StringMovieIdType.Imdb).Wait())).ShouldNotThrow();
-			((Action)(() => Client.Checkin.CheckinMovieAsync("foobar", StringMovieIdType.Slug).Wait())).ShouldNotThrow();
-			((Action)(() => Client.Checkin.CheckinMovieAsync(1, IntMovieIdType.Trakt).Wait())).ShouldNotThrow();
-			((Action)(() => Client.Checkin.CheckinMovieAsync(1, IntMovieIdType.Tmdb).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinMovieAsync("foobar", TraktTextMovieIdType.Auto).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinMovieAsync("foobar", TraktTextMovieIdType.Imdb).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinMovieAsync("foobar", TraktTextMovieIdType.Slug).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinMovieAsync(1, TraktNumericMovieIdType.Trakt).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinMovieAsync(1, TraktNumericMovieIdType.Tmdb).Wait())).ShouldNotThrow();
 			((Action)(() => Client.Checkin.CheckinMovieAsync("foobar", 1).Wait())).ShouldNotThrow();
 			((Action)(() => Client.Checkin.CheckinMovieAsync(TraktMovieFactory.FromId("foobar")).Wait())).ShouldNotThrow();
 
@@ -47,7 +47,7 @@ namespace TraktSharp.Tests.Modules {
 				"foobar",
 				"foobar",
 				DateTime.Now,
-				ExtendedOption.FullAndImages);
+				TraktExtendedOption.FullAndImages);
 
 			result.Should().BeOfType(typeof(TraktCheckinMovieResponse));
 			result.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z", null, DateTimeStyles.RoundtripKind));
@@ -64,7 +64,7 @@ namespace TraktSharp.Tests.Modules {
 
 			FakeResponsePath = @"Checkin\Error.409.json";
 			FakeResponseCode = HttpStatusCode.Conflict;
-			var ex = ((Action) (() => Client.Checkin.CheckinMovieAsync("foobar", StringMovieIdType.Auto).Wait())).ShouldThrow<TraktConflictException>().Which;
+			var ex = ((Action) (() => Client.Checkin.CheckinMovieAsync("foobar", TraktTextMovieIdType.Auto).Wait())).ShouldThrow<TraktConflictException>().Which;
 			ex.ExpiresAt.Should().Be(DateTime.Parse("2014-10-15T22:21:29.000Z", null, DateTimeStyles.RoundtripKind));
 			ex.StatusCode.Should().Be(FakeResponseCode);
 			ex.TraktErrorType.Should().BeNull();
@@ -76,25 +76,25 @@ namespace TraktSharp.Tests.Modules {
 
 			FakeResponsePath = @"Checkin\Episode.json";
 			
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(string.Empty, StringEpisodeIdType.Auto).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(string.Empty, StringEpisodeIdType.Imdb).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync("foobar", StringEpisodeIdType.Auto).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(0, IntEpisodeIdType.Trakt).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(0, IntEpisodeIdType.Tmdb).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(0, IntEpisodeIdType.Tvdb).Wait())).ShouldThrow<ArgumentException>();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(0, IntEpisodeIdType.TvRage).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(string.Empty, TraktTextEpisodeIdType.Auto).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(string.Empty, TraktTextEpisodeIdType.Imdb).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync("foobar", TraktTextEpisodeIdType.Auto).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(0, TraktNumericEpisodeIdType.Trakt).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(0, TraktNumericEpisodeIdType.Tmdb).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(0, TraktNumericEpisodeIdType.Tvdb).Wait())).ShouldThrow<ArgumentException>();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(0, TraktNumericEpisodeIdType.TvRage).Wait())).ShouldThrow<ArgumentException>();
 			((Action)(() => Client.Checkin.CheckinEpisodeAsync(string.Empty, 1, 1, 1).Wait())).ShouldThrow<ArgumentException>();
 			((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", 1, 0, 1).Wait())).ShouldThrow<ArgumentException>();
 			((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", 1, 1, 0).Wait())).ShouldThrow<ArgumentException>();
 			((Action)(() => Client.Checkin.CheckinEpisodeAsync(null).Wait())).ShouldThrow<ArgumentException>();
 			((Action)(() => Client.Checkin.CheckinEpisodeAsync(new TraktEpisode()).Wait())).ShouldThrow<ArgumentException>();
 
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", StringEpisodeIdType.Auto).Wait())).ShouldNotThrow();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", StringEpisodeIdType.Imdb).Wait())).ShouldNotThrow();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(1, IntEpisodeIdType.Trakt).Wait())).ShouldNotThrow();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(1, IntEpisodeIdType.Tmdb).Wait())).ShouldNotThrow();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(1, IntEpisodeIdType.Tvdb).Wait())).ShouldNotThrow();
-			((Action)(() => Client.Checkin.CheckinEpisodeAsync(1, IntEpisodeIdType.TvRage).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", TraktTextEpisodeIdType.Auto).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", TraktTextEpisodeIdType.Imdb).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(1, TraktNumericEpisodeIdType.Trakt).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(1, TraktNumericEpisodeIdType.Tmdb).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(1, TraktNumericEpisodeIdType.Tvdb).Wait())).ShouldNotThrow();
+			((Action)(() => Client.Checkin.CheckinEpisodeAsync(1, TraktNumericEpisodeIdType.TvRage).Wait())).ShouldNotThrow();
 			((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", 1, 1, 1).Wait())).ShouldNotThrow();
 			((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", 0, 1, 1).Wait())).ShouldNotThrow();
 			((Action)(() => Client.Checkin.CheckinEpisodeAsync(TraktEpisodeFactory.FromId("ttfoobar")).Wait())).ShouldNotThrow();
@@ -108,7 +108,7 @@ namespace TraktSharp.Tests.Modules {
 				"foobar",
 				"foobar",
 				DateTime.Now,
-				ExtendedOption.FullAndImages);
+				TraktExtendedOption.FullAndImages);
 
 			result.Should().BeOfType(typeof(TraktCheckinEpisodeResponse));
 			result.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z", null, DateTimeStyles.RoundtripKind));
@@ -136,7 +136,7 @@ namespace TraktSharp.Tests.Modules {
 
 			FakeResponsePath = @"Checkin\Error.409.json";
 			FakeResponseCode = HttpStatusCode.Conflict;
-			var ex = ((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", StringEpisodeIdType.Auto).Wait())).ShouldThrow<TraktConflictException>().Which;
+			var ex = ((Action)(() => Client.Checkin.CheckinEpisodeAsync("ttfoobar", TraktTextEpisodeIdType.Auto).Wait())).ShouldThrow<TraktConflictException>().Which;
 			ex.ExpiresAt.Should().Be(DateTime.Parse("2014-10-15T22:21:29.000Z", null, DateTimeStyles.RoundtripKind));
 			ex.StatusCode.Should().Be(FakeResponseCode);
 			ex.TraktErrorType.Should().BeNull();

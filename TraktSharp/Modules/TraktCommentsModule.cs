@@ -24,7 +24,7 @@ namespace TraktSharp.Modules {
 		/// <param name="spoiler">Set to <c>true</c> if the comment contains spoilers</param>
 		/// <param name="review">Set to <c>true</c> if the comment is a review</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktComment> PostMovieCommentAsync(string movieId, StringMovieIdType movieIdType, string comment, bool? spoiler = null, bool? review = null) {
+		public async Task<TraktComment> PostMovieCommentAsync(string movieId, TraktTextMovieIdType movieIdType, string comment, bool? spoiler = null, bool? review = null) {
 			return await PostMovieCommentAsync(TraktMovieFactory.FromId(movieId, movieIdType), comment, spoiler, review);
 		}
 
@@ -35,7 +35,7 @@ namespace TraktSharp.Modules {
 		/// <param name="spoiler">Set to <c>true</c> if the comment contains spoilers</param>
 		/// <param name="review">Set to <c>true</c> if the comment is a review</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktComment> PostMovieCommentAsync(int movieId, IntMovieIdType movieIdType, string comment, bool? spoiler = null, bool? review = null) {
+		public async Task<TraktComment> PostMovieCommentAsync(int movieId, TraktNumericMovieIdType movieIdType, string comment, bool? spoiler = null, bool? review = null) {
 			return await PostMovieCommentAsync(TraktMovieFactory.FromId(movieId, movieIdType), comment, spoiler, review);
 		}
 
@@ -74,7 +74,7 @@ namespace TraktSharp.Modules {
 		/// <param name="spoiler">Set to <c>true</c> if the comment contains spoilers</param>
 		/// <param name="review">Set to <c>true</c> if the comment is a review</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktComment> PostShowCommentAsync(string showId, StringShowIdType showIdType, string comment, bool? spoiler = null, bool? review = null) {
+		public async Task<TraktComment> PostShowCommentAsync(string showId, TraktTextShowIdType showIdType, string comment, bool? spoiler = null, bool? review = null) {
 			return await PostShowCommentAsync(TraktShowFactory.FromId(showId, showIdType), comment, spoiler, review);
 		}
 
@@ -85,7 +85,7 @@ namespace TraktSharp.Modules {
 		/// <param name="spoiler">Set to <c>true</c> if the comment contains spoilers</param>
 		/// <param name="review">Set to <c>true</c> if the comment is a review</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktComment> PostShowCommentAsync(int showId, IntShowIdType showIdType, string comment, bool? spoiler = null, bool? review = null) {
+		public async Task<TraktComment> PostShowCommentAsync(int showId, TraktNumericShowIdType showIdType, string comment, bool? spoiler = null, bool? review = null) {
 			return await PostShowCommentAsync(TraktShowFactory.FromId(showId, showIdType), comment, spoiler, review);
 		}
 
@@ -124,7 +124,7 @@ namespace TraktSharp.Modules {
 		/// <param name="spoiler">Set to <c>true</c> if the comment contains spoilers</param>
 		/// <param name="review">Set to <c>true</c> if the comment is a review</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktComment> PostEpisodeCommentAsync(string episodeId, StringEpisodeIdType episodeIdType, string comment, bool? spoiler = null, bool? review = null) {
+		public async Task<TraktComment> PostEpisodeCommentAsync(string episodeId, TraktTextEpisodeIdType episodeIdType, string comment, bool? spoiler = null, bool? review = null) {
 			return await PostEpisodeCommentAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), comment, spoiler, review);
 		}
 
@@ -135,7 +135,7 @@ namespace TraktSharp.Modules {
 		/// <param name="spoiler">Set to <c>true</c> if the comment contains spoilers</param>
 		/// <param name="review">Set to <c>true</c> if the comment is a review</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktComment> PostEpisodeCommentAsync(int episodeId, IntEpisodeIdType episodeIdType, string comment, bool? spoiler = null, bool? review = null) {
+		public async Task<TraktComment> PostEpisodeCommentAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType, string comment, bool? spoiler = null, bool? review = null) {
 			return await PostEpisodeCommentAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), comment, spoiler, review);
 		}
 

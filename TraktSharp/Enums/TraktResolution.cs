@@ -6,7 +6,7 @@ namespace TraktSharp.Enums {
 
 	/// <summary>Options for the resolution metadata on supporting request types</summary>
 	// ReSharper disable InconsistentNaming
-	public enum Resolution {
+	public enum TraktResolution {
 		/// <summary>4K (UHD)</summary>
 		[Description("uhd_4k")]
 		Uhd4k,

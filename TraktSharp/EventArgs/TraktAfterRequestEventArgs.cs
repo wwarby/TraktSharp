@@ -4,9 +4,9 @@ using System.Net.Http;
 
 namespace TraktSharp.EventArgs {
 
-	public class AfterRequestEventArgs : System.EventArgs {
+	public class TraktAfterRequestEventArgs : System.EventArgs {
 
-		public AfterRequestEventArgs(HttpResponseMessage response, string responseText, HttpRequestMessage request, string requestBody, HttpClient client) {
+		public TraktAfterRequestEventArgs(HttpResponseMessage response, string responseText, HttpRequestMessage request, string requestBody, HttpClient client) {
 			Response = response;
 			ResponseText = responseText;
 			Request = request;

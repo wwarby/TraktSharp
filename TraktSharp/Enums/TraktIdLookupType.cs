@@ -5,7 +5,7 @@ using System.Linq;
 namespace TraktSharp.Enums {
 
 	/// <summary>Options for the type of ID lookup on supporting request types</summary>
-	public enum IdLookupType {
+	public enum TraktIdLookupType {
 		/// <summary>Trakt numeric movie ID</summary>
 		[Description("trakt-movie")]
 		TraktMovie,

@@ -11,7 +11,7 @@ namespace TraktSharp.Request.Shows {
 
 		protected override string PathTemplate { get { return "shows/{id}/progress/watched"; } }
 
-		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Required; } }
+		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Required; } }
 
 	}
 

@@ -27,10 +27,10 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			_view = view;
 
 			Client = new TraktClient();
-			ExtendedOptions = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(ExtendedOption)).Select(v => v.Value.Label));
+			ExtendedOptions = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TraktExtendedOption)).Select(v => v.Value.Label));
 			TestRequestTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
-			IdLookupTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(IdLookupType)).Select(v => v.Value.Label));
-			TextQueryTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TextQueryType)).Select(v => v.Value.Label));
+			IdLookupTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TraktIdLookupType)).Select(v => v.Value.Label));
+			TextQueryTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TraktTextQueryType)).Select(v => v.Value.Label));
 			TryLoadState();
 			PropertyChanged += (sender, e) => TrySaveState();
 
@@ -114,11 +114,11 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public ObservableCollection<string> ExtendedOptions { get; set; }
 
-		private ExtendedOption _selectedExtendedOption;
+		private TraktExtendedOption _selectedExtendedOption;
 		public string SelectedExtendedOption {
 			get { return EnumsHelper.GetLabel(_selectedExtendedOption); }
 			set {
-				_selectedExtendedOption = EnumsHelper.FromLabel<ExtendedOption>(value);
+				_selectedExtendedOption = EnumsHelper.FromLabel<TraktExtendedOption>(value);
 				NotifyPropertyChanged();
 			}
 		}
@@ -136,22 +136,22 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public ObservableCollection<string> TextQueryTypes { get; set; }
 
-		private TextQueryType _selectedTextQueryType;
+		private TraktTextQueryType _selectedTextQueryType;
 		public string SelectedTextQueryType {
 			get { return EnumsHelper.GetLabel(_selectedTextQueryType); }
 			set {
-				_selectedTextQueryType = EnumsHelper.FromLabel<TextQueryType>(value);
+				_selectedTextQueryType = EnumsHelper.FromLabel<TraktTextQueryType>(value);
 				NotifyPropertyChanged();
 			}
 		}
 
 		public ObservableCollection<string> IdLookupTypes { get; set; }
 
-		private IdLookupType _selectedIdLookupType;
+		private TraktIdLookupType _selectedIdLookupType;
 		public string SelectedIdLookupType {
 			get { return EnumsHelper.GetLabel(_selectedIdLookupType); }
 			set {
-				_selectedIdLookupType = EnumsHelper.FromLabel<IdLookupType>(value);
+				_selectedIdLookupType = EnumsHelper.FromLabel<TraktIdLookupType>(value);
 				NotifyPropertyChanged();
 			}
 		}
@@ -237,9 +237,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			object result;
 			try {
 				if (IdLookup) {
-					result = await Client.Search.IdLookupAsync(SearchText, _selectedIdLookupType, ExtendedOption.Min);
+					result = await Client.Search.IdLookupAsync(SearchText, _selectedIdLookupType, TraktExtendedOption.Min);
 				} else {
-					result = await Client.Search.TextQueryAsync(SearchText, _selectedTextQueryType, ExtendedOption.Min);
+					result = await Client.Search.TextQueryAsync(SearchText, _selectedTextQueryType, TraktExtendedOption.Min);
 				}
 			} catch (Exception ex) {
 				result = ex;

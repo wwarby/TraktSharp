@@ -18,7 +18,7 @@ namespace TraktSharp.Modules {
 		/// <summary>Personalized movie recommendations for a user. Results returned with the top recommendation first.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktMovie>> GetRecommendedMoviesAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktMovie>> GetRecommendedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktRecommendationsMoviesRequest(Client) { Extended = extended });
 		}
 
@@ -39,7 +39,7 @@ namespace TraktSharp.Modules {
 		/// <summary>Personalized show recommendations for a user. Results returned with the top recommendation first.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktShow>> GetRecommendedShowsAsync(ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktShow>> GetRecommendedShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktRecommendationsShowsRequest(Client) { Extended = extended });
 		}
 

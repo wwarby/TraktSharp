@@ -12,7 +12,7 @@ namespace TraktSharp.Request.OAuth {
 
 		protected override string PathTemplate { get { return "oauth/token"; } }
 
-		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Forbidden; } }
+		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Forbidden; } }
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

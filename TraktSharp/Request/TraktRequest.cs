@@ -14,6 +14,7 @@ using TraktSharp.EventArgs;
 using TraktSharp.Exceptions;
 using TraktSharp.Helpers;
 using TraktSharp.Serialization;
+using TraktSharp.Structs;
 
 namespace TraktSharp.Request {
 
@@ -26,25 +27,25 @@ namespace TraktSharp.Request {
 
 		protected TraktRequest(TraktClient client) {
 			_client = client;
-			Pagination = new PaginationOptions();
+			Pagination = new TraktPaginationOptions();
 		}
 
-		public ExtendedOption Extended { get; set; }
+		public TraktExtendedOption Extended { get; set; }
 
-		public PaginationOptions Pagination { get; set; }
+		public TraktPaginationOptions Pagination { get; set; }
 
 		private bool _authenticate;
 
 		public bool Authenticate {
 			get {
-				if (_client.Configuration.ForceAuthentication && OAuthRequirement != OAuthRequirement.Forbidden) { return true; }
-				if (OAuthRequirement == OAuthRequirement.Required) { return true; }
-				if (OAuthRequirement == OAuthRequirement.Forbidden) { return false; }
+				if (_client.Configuration.ForceAuthentication && OAuthRequirement != TraktOAuthRequirement.Forbidden) { return true; }
+				if (OAuthRequirement == TraktOAuthRequirement.Required) { return true; }
+				if (OAuthRequirement == TraktOAuthRequirement.Forbidden) { return false; }
 				return _authenticate;
 			}
 			set {
-				if (!value && OAuthRequirement == OAuthRequirement.Required) { throw new InvalidOperationException("This request type requires authentication"); }
-				if (!value && OAuthRequirement == OAuthRequirement.Forbidden) { throw new InvalidOperationException("This request type does not allow authentication"); }
+				if (!value && OAuthRequirement == TraktOAuthRequirement.Required) { throw new InvalidOperationException("This request type requires authentication"); }
+				if (!value && OAuthRequirement == TraktOAuthRequirement.Forbidden) { throw new InvalidOperationException("This request type does not allow authentication"); }
 				_authenticate = value;
 			}
 		}
@@ -53,7 +54,7 @@ namespace TraktSharp.Request {
 
 		protected abstract string PathTemplate { get; }
 
-		protected abstract OAuthRequirement OAuthRequirement { get; }
+		protected abstract TraktOAuthRequirement OAuthRequirement { get; }
 
 		protected virtual bool SupportsPagination { get { return false; } }
 
@@ -70,7 +71,7 @@ namespace TraktSharp.Request {
 		}
 
 		protected virtual IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
-			if (Extended != ExtendedOption.Unspecified) {
+			if (Extended != TraktExtendedOption.Unspecified) {
 				queryStringParameters["extended"] = EnumsHelper.GetDescription(Extended);
 			}
 			if (SupportsPagination) {
@@ -132,13 +133,13 @@ namespace TraktSharp.Request {
 			SetRequestHeaders(request);
 
 			if (BeforeRequest != null) { //Raise event before request, and offer subscribers the opportunity to abort the request
-				var eventArgs = new BeforeRequestEventArgs(request, RequestBodyJson ?? string.Empty, cl);
+				var eventArgs = new TraktBeforeRequestEventArgs(request, RequestBodyJson ?? string.Empty, cl);
 				BeforeRequest(this, eventArgs);
 				if (eventArgs.Cancel) { return default(TResponse); }
 			}
 			var response = await cl.SendAsync(request);
 			var responseText = await response.Content.ReadAsStringAsync();
-			if (AfterRequest != null) { AfterRequest(this, new AfterRequestEventArgs(response, responseText, request, RequestBodyJson ?? string.Empty, cl)); } //Raise event after request
+			if (AfterRequest != null) { AfterRequest(this, new TraktAfterRequestEventArgs(response, responseText, request, RequestBodyJson ?? string.Empty, cl)); } //Raise event after request
 			cl.Dispose();
 
 			if (!response.IsSuccessStatusCode) {

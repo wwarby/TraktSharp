@@ -29,7 +29,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(string movieId, StringMovieIdType movieIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(string movieId, TraktTextMovieIdType movieIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await CheckinMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), sharing, message, venueId, venueName, appVersion, appDate, extended);
 		}
 
@@ -45,7 +45,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(int movieId, IntMovieIdType movieIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(int movieId, TraktNumericMovieIdType movieIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await CheckinMovieAsync(TraktMovieFactory.FromId(movieId, movieIdType), sharing, message, venueId, venueName, appVersion, appDate, extended);
 		}
 
@@ -63,7 +63,7 @@ namespace TraktSharp.Modules {
 		/// <returns>See summary</returns>
 		/// <remarks>This should be tied to a user action to manually indicate they are watching something.
 		/// The item will display as watching on the site, then automatically switch to watched status once the duration has elapsed.</remarks>
-		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(string movieTitle, int? movieYear, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(string movieTitle, int? movieYear, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await CheckinMovieAsync(TraktMovieFactory.FromTitleAndYear(movieTitle, movieYear), sharing, message, venueId, venueName, appVersion, appDate, extended);
 		}
 
@@ -78,7 +78,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(TraktMovie movie, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCheckinMovieResponse> CheckinMovieAsync(TraktMovie movie, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktCheckinMovieRequest(Client) {
 				RequestBody = new TraktCheckinMovieRequestBody {
 					Movie = movie,
@@ -105,7 +105,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(string episodeId, StringEpisodeIdType episodeIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(string episodeId, TraktTextEpisodeIdType episodeIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await CheckinEpisodeAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), null, sharing, message, venueId, venueName, appVersion, appDate, extended);
 		}
 
@@ -121,7 +121,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(int episodeId, IntEpisodeIdType episodeIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await CheckinEpisodeAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType), null, sharing, message, venueId, venueName, appVersion, appDate, extended);
 		}
 
@@ -139,7 +139,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(string showTitle, int? showYear, int seasonNumber, int episodeNumber, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(string showTitle, int? showYear, int seasonNumber, int episodeNumber, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await CheckinEpisodeAsync(TraktEpisodeFactory.FromSeasonAndEpisodeNumber(seasonNumber, episodeNumber), TraktShowFactory.FromTitleAndYear(showTitle, showYear), sharing, message, venueId, venueName, appVersion, appDate, extended);
 		}
 
@@ -155,7 +155,7 @@ namespace TraktSharp.Modules {
 		/// <param name="appDate">Build date of the app</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(TraktEpisode episode, TraktShow show = null, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCheckinEpisodeResponse> CheckinEpisodeAsync(TraktEpisode episode, TraktShow show = null, TraktSharing sharing = null, string message = "", string venueId = "", string venueName = "", string appVersion = "", DateTime? appDate = null, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktCheckinEpisodeRequest(Client) {
 				RequestBody = new TraktCheckinEpisodeRequestBody {
 					Episode = episode,

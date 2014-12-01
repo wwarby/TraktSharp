@@ -3,8 +3,8 @@ using System.Linq;
 
 namespace TraktSharp.Enums {
 
-	/// <summary>Options for the text show ID type on supporting request types</summary>
-	public enum StringShowIdType {
+	/// <summary>Options for the text movie ID type on supporting request types</summary>
+	public enum TraktTextMovieIdType {
 		/// <summary>Automatically detect ID type</summary>
 		Auto,
 		/// <summary>Trakt URL slug</summary>

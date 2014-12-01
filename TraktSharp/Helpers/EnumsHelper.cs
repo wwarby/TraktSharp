@@ -20,9 +20,9 @@ namespace TraktSharp.Helpers {
 			return value.ToString();
 		}
 
-		public static Dictionary<string, EnumInfo> GetEnumInfo(Type type) {
+		public static Dictionary<string, TraktEnumInfo> GetEnumInfo(Type type) {
 			return type.GetFields().Where(v => v.FieldType == type).Select(v => {
-				var ret = new EnumInfo {Label = v.Name, Value = (int) v.GetRawConstantValue()};
+				var ret = new TraktEnumInfo {Label = v.Name, Value = (int) v.GetRawConstantValue()};
 				var attributes = (DescriptionAttribute[]) v.GetCustomAttributes(typeof (DescriptionAttribute), false);
 				ret.Description = attributes.Length > 0 ? attributes[0].Description : v.Name;
 				return ret;

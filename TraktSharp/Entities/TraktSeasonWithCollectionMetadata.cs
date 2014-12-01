@@ -16,19 +16,19 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The item's media type</summary>
 		[JsonProperty(PropertyName = "media_type")]
-		public MediaType MediaType { get; set; }
+		public TraktMediaType MediaType { get; set; }
 
 		/// <summary>The item's resolution</summary>
 		[JsonProperty(PropertyName = "resolution")]
-		public Resolution Resolution { get; set; }
+		public TraktResolution Resolution { get; set; }
 
 		/// <summary>The item's audio format</summary>
 		[JsonProperty(PropertyName = "audio")]
-		public AudioFormat AudioFormat { get; set; }
+		public TraktAudioFormat AudioFormat { get; set; }
 
 		/// <summary>The number of channels in the item's audio track</summary>
 		[JsonProperty(PropertyName = "audio_channels")]
-		public AudioChannels AudioChannels { get; set; }
+		public TraktAudioChannels AudioChannels { get; set; }
 
 		/// <summary>Indicates if the item is in the 3D format</summary>
 		[JsonProperty(PropertyName = "3d")]

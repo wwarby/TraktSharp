@@ -4,7 +4,7 @@ using System.Linq;
 namespace TraktSharp.Enums {
 
 	/// <summary>Options for the rating parameter on supporting request types</summary>
-	public enum Rating {
+	public enum TraktRating {
 		/// <summary>Rating 0 (unrated)</summary>
 		RatingUnspecified = 0,
 		/// <summary>Rating 1</summary>

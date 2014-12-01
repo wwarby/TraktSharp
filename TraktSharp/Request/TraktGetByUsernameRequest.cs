@@ -9,7 +9,7 @@ namespace TraktSharp.Request {
 
 		protected TraktGetByUsernameRequest(TraktClient client) : base(client) { }
 
-		protected override OAuthRequirement OAuthRequirement { get { return OAuthRequirement.Optional; } }
+		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Optional; } }
 
 		public string Username { get; set; }
 

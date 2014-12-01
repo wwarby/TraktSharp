@@ -20,7 +20,7 @@ namespace TraktSharp.Modules {
 		/// <param name="authenticate">If true, authentication headers will be sent with this request</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCalendarsShowsResponse> GetShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCalendarsShowsResponse> GetShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktCalendarsShowsRequest(Client) {
 				StartDate = startDate,
 				Days = days,
@@ -35,7 +35,7 @@ namespace TraktSharp.Modules {
 		/// <param name="authenticate">If true, authentication headers will be sent with this request</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCalendarsShowsResponse> GetNewShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCalendarsShowsResponse> GetNewShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktCalendarsShowsNewRequest(Client) {
 				StartDate = startDate,
 				Days = days,
@@ -50,7 +50,7 @@ namespace TraktSharp.Modules {
 		/// <param name="authenticate">If true, authentication headers will be sent with this request</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCalendarsShowsResponse> GetPremiereShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCalendarsShowsResponse> GetPremiereShowsAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktCalendarsShowsPremieresRequest(Client) {
 				StartDate = startDate,
 				Days = days,
@@ -65,7 +65,7 @@ namespace TraktSharp.Modules {
 		/// <param name="authenticate">If true, authentication headers will be sent with this request</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCalendarsMoviesResponse> GetMoviesAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktCalendarsMoviesResponse> GetMoviesAsync(DateTime? startDate = null, int? days = null, bool authenticate = true, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktCalendarsMoviesRequest(Client) {
 				StartDate = startDate,
 				Days = days,

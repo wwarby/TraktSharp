@@ -13,21 +13,21 @@ namespace TraktSharp.Factories {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">the episode ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktEpisode FromId(string episodeId, StringEpisodeIdType episodeIdType = StringEpisodeIdType.Auto) { return FromId<TraktEpisode>(episodeId, episodeIdType); }
+		public static TraktEpisode FromId(string episodeId, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) { return FromId<TraktEpisode>(episodeId, episodeIdType); }
 
 		/// <summary>Create an instance of a <see cref="TraktEpisode"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktEpisode"/> to be created</typeparam>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">the episode ID type</param>
 		/// <returns>See summary</returns>
-		public static T FromId<T>(string episodeId, StringEpisodeIdType episodeIdType = StringEpisodeIdType.Auto) where T : TraktEpisode {
+		public static T FromId<T>(string episodeId, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) where T : TraktEpisode {
 			if (string.IsNullOrEmpty(episodeId)) {
 				throw new ArgumentException("episodeId not set", "episodeId");
 			}
 
-			if (episodeIdType == StringEpisodeIdType.Auto) {
+			if (episodeIdType == TraktTextEpisodeIdType.Auto) {
 				if (episodeId.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase)) {
-					episodeIdType = StringEpisodeIdType.Imdb;
+					episodeIdType = TraktTextEpisodeIdType.Imdb;
 				} else {
 					throw new ArgumentException("Unable to detect id type", "episodeIdType");
 				}
@@ -37,7 +37,7 @@ namespace TraktSharp.Factories {
 			ret.Ids = new TraktEpisodeIds();
 
 			switch (episodeIdType) {
-				case StringEpisodeIdType.Imdb:
+				case TraktTextEpisodeIdType.Imdb:
 					ret.Ids.Imdb = episodeId;
 					break;
 				default:
@@ -51,28 +51,28 @@ namespace TraktSharp.Factories {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">the episode ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktEpisode FromId(int episodeId, IntEpisodeIdType episodeIdType) { return FromId<TraktEpisode>(episodeId, episodeIdType); }
+		public static TraktEpisode FromId(int episodeId, TraktNumericEpisodeIdType episodeIdType) { return FromId<TraktEpisode>(episodeId, episodeIdType); }
 
 		/// <summary>Create an instance of a <see cref="TraktEpisode"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktEpisode"/> to be created</typeparam>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">the episode ID type</param>
 		/// <returns>See summary</returns>
-		public static T FromId<T>(int episodeId, IntEpisodeIdType episodeIdType) where T : TraktEpisode {
+		public static T FromId<T>(int episodeId, TraktNumericEpisodeIdType episodeIdType) where T : TraktEpisode {
 			var ret = Activator.CreateInstance<T>();
 			ret.Ids = new TraktEpisodeIds();
 
 			switch (episodeIdType) {
-				case IntEpisodeIdType.Trakt:
+				case TraktNumericEpisodeIdType.Trakt:
 					ret.Ids.Trakt = episodeId;
 					break;
-				case IntEpisodeIdType.Tvdb:
+				case TraktNumericEpisodeIdType.Tvdb:
 					ret.Ids.Tvdb = episodeId;
 					break;
-				case IntEpisodeIdType.Tmdb:
+				case TraktNumericEpisodeIdType.Tmdb:
 					ret.Ids.Tmdb = episodeId;
 					break;
-				case IntEpisodeIdType.TvRage:
+				case TraktNumericEpisodeIdType.TvRage:
 					ret.Ids.TvRage = episodeId;
 					break;
 				default:
@@ -104,7 +104,7 @@ namespace TraktSharp.Factories {
 		/// <param name="episodeIds">A collection of episode IDs</param>
 		/// <param name="episodeIdType">the episode ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktEpisode> FromIds(IEnumerable<string> episodeIds, StringEpisodeIdType episodeIdType = StringEpisodeIdType.Auto) {
+		public static IEnumerable<TraktEpisode> FromIds(IEnumerable<string> episodeIds, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) {
 			return episodeIds == null ? null : episodeIds.Select(episodeId => FromId<TraktEpisode>(episodeId, episodeIdType));
 		}
 
@@ -113,7 +113,7 @@ namespace TraktSharp.Factories {
 		/// <param name="episodeIds">A collection of episode IDs</param>
 		/// <param name="episodeIdType">the episode ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<string> episodeIds, StringEpisodeIdType episodeIdType = StringEpisodeIdType.Auto) where T : TraktEpisode {
+		public static IEnumerable<T> FromIds<T>(IEnumerable<string> episodeIds, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) where T : TraktEpisode {
 			return episodeIds == null ? null : episodeIds.Select(episodeId => FromId<T>(episodeId, episodeIdType));
 		}
 
@@ -121,7 +121,7 @@ namespace TraktSharp.Factories {
 		/// <param name="episodeIds">A collection of episode IDs</param>
 		/// <param name="episodeIdType">the episode ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktEpisode> FromIds(IEnumerable<int> episodeIds, IntEpisodeIdType episodeIdType) {
+		public static IEnumerable<TraktEpisode> FromIds(IEnumerable<int> episodeIds, TraktNumericEpisodeIdType episodeIdType) {
 			return episodeIds == null ? null : episodeIds.Select(episodeId => FromId<TraktEpisode>(episodeId, episodeIdType));
 		}
 
@@ -130,7 +130,7 @@ namespace TraktSharp.Factories {
 		/// <param name="episodeIds">A collection of episode IDs</param>
 		/// <param name="episodeIdType">the episode ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<int> episodeIds, IntEpisodeIdType episodeIdType) where T : TraktEpisode {
+		public static IEnumerable<T> FromIds<T>(IEnumerable<int> episodeIds, TraktNumericEpisodeIdType episodeIdType) where T : TraktEpisode {
 			return episodeIds == null ? null : episodeIds.Select(episodeId => FromId<T>(episodeId, episodeIdType));
 		}
 

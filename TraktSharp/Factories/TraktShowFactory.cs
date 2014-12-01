@@ -13,30 +13,30 @@ namespace TraktSharp.Factories {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktShow FromId(string showId, StringShowIdType showIdType = StringShowIdType.Auto) { return FromId<TraktShow>(showId, showIdType); }
+		public static TraktShow FromId(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) { return FromId<TraktShow>(showId, showIdType); }
 
 		/// <summary>Create an instance of a <see cref="TraktShow"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static T FromId<T>(string showId, StringShowIdType showIdType = StringShowIdType.Auto) where T : TraktShow {
+		public static T FromId<T>(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) where T : TraktShow {
 			if (string.IsNullOrEmpty(showId)) {
 				throw new ArgumentException("showId not set", "showId");
 			}
 
-			if (showIdType == StringShowIdType.Auto) {
-				showIdType = showId.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase) ? StringShowIdType.Imdb : StringShowIdType.Slug;
+			if (showIdType == TraktTextShowIdType.Auto) {
+				showIdType = showId.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase) ? TraktTextShowIdType.Imdb : TraktTextShowIdType.Slug;
 			}
 
 			var ret = Activator.CreateInstance<T>();
 			ret.Ids = new TraktShowIds();
 
 			switch (showIdType) {
-				case StringShowIdType.Slug:
+				case TraktTextShowIdType.Slug:
 					ret.Ids.Slug = showId;
 					break;
-				case StringShowIdType.Imdb:
+				case TraktTextShowIdType.Imdb:
 					ret.Ids.Imdb = showId;
 					break;
 				default:
@@ -50,28 +50,28 @@ namespace TraktSharp.Factories {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktShow FromId(int showId, IntShowIdType showIdType) { return FromId<TraktShow>(showId, showIdType); }
+		public static TraktShow FromId(int showId, TraktNumericShowIdType showIdType) { return FromId<TraktShow>(showId, showIdType); }
 
 		/// <summary>Create an instance of a <see cref="TraktShow"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static T FromId<T>(int showId, IntShowIdType showIdType) where T : TraktShow {
+		public static T FromId<T>(int showId, TraktNumericShowIdType showIdType) where T : TraktShow {
 			var ret = Activator.CreateInstance<T>();
 			ret.Ids = new TraktShowIds();
 
 			switch (showIdType) {
-				case IntShowIdType.Trakt:
+				case TraktNumericShowIdType.Trakt:
 					ret.Ids.Trakt = showId;
 					break;
-				case IntShowIdType.Tvdb:
+				case TraktNumericShowIdType.Tvdb:
 					ret.Ids.Tvdb = showId;
 					break;
-				case IntShowIdType.Tmdb:
+				case TraktNumericShowIdType.Tmdb:
 					ret.Ids.Tmdb = showId;
 					break;
-				case IntShowIdType.TvRage:
+				case TraktNumericShowIdType.TvRage:
 					ret.Ids.TvRage = showId;
 					break;
 				default:
@@ -106,7 +106,7 @@ namespace TraktSharp.Factories {
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktShow> FromIds(IEnumerable<string> showIds, StringShowIdType showIdType = StringShowIdType.Auto) {
+		public static IEnumerable<TraktShow> FromIds(IEnumerable<string> showIds, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) {
 			return showIds == null ? null : showIds.Select(showId => FromId<TraktShow>(showId, showIdType));
 		}
 
@@ -115,7 +115,7 @@ namespace TraktSharp.Factories {
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<string> showIds, StringShowIdType showIdType = StringShowIdType.Auto) where T : TraktShow {
+		public static IEnumerable<T> FromIds<T>(IEnumerable<string> showIds, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) where T : TraktShow {
 			return showIds == null ? null : showIds.Select(showId => FromId<T>(showId, showIdType));
 		}
 
@@ -123,7 +123,7 @@ namespace TraktSharp.Factories {
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktShow> FromIds(IEnumerable<int> showIds, IntShowIdType showIdType) {
+		public static IEnumerable<TraktShow> FromIds(IEnumerable<int> showIds, TraktNumericShowIdType showIdType) {
 			return showIds == null ? null : showIds.Select(showId => FromId<TraktShow>(showId, showIdType));
 		}
 
@@ -132,7 +132,7 @@ namespace TraktSharp.Factories {
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<int> showIds, IntShowIdType showIdType) where T : TraktShow {
+		public static IEnumerable<T> FromIds<T>(IEnumerable<int> showIds, TraktNumericShowIdType showIdType) where T : TraktShow {
 			return showIds == null ? null : showIds.Select(showId => FromId<T>(showId, showIdType));
 		}
 
