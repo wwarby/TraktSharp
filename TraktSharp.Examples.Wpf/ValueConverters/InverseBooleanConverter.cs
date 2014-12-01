@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 
-namespace TraktSharp.Examples.ValueConverters {
+namespace TraktSharp.Examples.Wpf.ValueConverters {
 
 	[ValueConversion(typeof(bool), typeof(bool))]
 	public class InverseBooleanConverter : IValueConverter {

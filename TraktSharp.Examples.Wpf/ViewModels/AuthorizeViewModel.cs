@@ -3,9 +3,9 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Navigation;
 using Microsoft.Win32;
-using TraktSharp.Examples.Views;
+using TraktSharp.Examples.Wpf.Views;
 
-namespace TraktSharp.Examples.ViewModels {
+namespace TraktSharp.Examples.Wpf.ViewModels {
 
 	public class AuthorizeViewModel : ViewModelBase {
 

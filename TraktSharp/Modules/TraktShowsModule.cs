@@ -57,15 +57,15 @@ namespace TraktSharp.Modules {
 		/// <param name="show">The show</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktShow> GetShow(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
-			return await GetShow(show.Ids.GetBestId(), extended);
+		public async Task<TraktShow> GetShowAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
+			return await GetShowAsync(show.Ids.GetBestId(), extended);
 		}
 
 		/// <summary>Returns a single shows's details</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktShow> GetShow(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<TraktShow> GetShowAsync(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await SendAsync(new TraktShowsSummaryRequest(Client) {
 				Id = showId,
 				Extended = extended

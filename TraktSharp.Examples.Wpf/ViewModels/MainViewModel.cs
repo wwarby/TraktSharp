@@ -7,13 +7,13 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TraktSharp.Entities;
-using TraktSharp.Examples.Helpers;
-using TraktSharp.Examples.Views;
+using TraktSharp.Examples.Wpf.Helpers;
+using TraktSharp.Examples.Wpf.Views;
 using TraktSharp.Exceptions;
 using TraktSharp.Helpers;
 using TraktSharp.Serialization;
 
-namespace TraktSharp.Examples.ViewModels {
+namespace TraktSharp.Examples.Wpf.ViewModels {
 
 	public class MainViewModel : ViewModelBase {
 
@@ -324,6 +324,9 @@ namespace TraktSharp.Examples.ViewModels {
 			}
 			LastReturnedValue = sb.ToString();
 			NotifyPropertyChanged(this.GetMemberName(x => x.LastReturnedValue));
+			if (value is Exception) {
+				SelectedResponseTab = 3;
+			}
 		}
 
 		private string PrettyPrint(string json) {

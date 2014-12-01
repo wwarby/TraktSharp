@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using TraktSharp.Entities;
 
-namespace TraktSharp.Examples {
+namespace TraktSharp.Examples.Wpf {
 
 	public class SavedState {
 

@@ -9,7 +9,7 @@ namespace TraktSharp.Entities {
 	public class TraktRatings {
 
 		[JsonProperty(PropertyName = "rating")]
-		public decimal Rating { get; set; }
+		public decimal? Rating { get; set; }
 
 		[JsonProperty(PropertyName = "votes")]
 		public int Votes { get; set; }

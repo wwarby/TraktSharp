@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TraktSharp.Helpers;
 
-namespace TraktSharp.Examples {
+namespace TraktSharp.Examples.Wpf {
 
 	public static class TestRequests {
 
@@ -137,10 +137,54 @@ namespace TraktSharp.Examples {
 			ScrobbleStopEpisodeAsync,
 
 			// Seasons module
+			[Description("TraktClient.Seasons.GetSeasonOverviewAsync()")]
+			SeasonsGetSeasonOverviewAsync,
+			[Description("TraktClient.Seasons.SeasonsGetEpisodesForSeasonAsync()")]
+			SeasonsGetEpisodesForSeasonAsync,
+			[Description("TraktClient.Seasons.GetCommentsAsync()")]
+			SeasonsGetCommentsAsync,
+			[Description("TraktClient.Seasons.GetRatingsAsync()")]
+			SeasonsGetRatingsAsync,
+			[Description("TraktClient.Seasons.GetUsersWatchingSeasonAsync()")]
+			SeasonsGetUsersWatchingSeasonAsync,
+
+			// Shows module
+			[Description("TraktClient.Shows.GetPopularShowsAsync()")]
+			ShowsGetPopularShowsAsync,
+			[Description("TraktClient.Shows.GetTrendingShowsAsync()")]
+			ShowsGetTrendingShowsAsync,
+			[Description("TraktClient.Shows.GetUpdatedShowsAsync()")]
+			ShowsGetUpdatedShowsAsync,
+			[Description("TraktClient.Shows.GetShowAsync()")]
+			ShowsGetShowAsync,
+			[Description("TraktClient.Shows.GetAliasesAsync()")]
+			ShowsGetAliasesAsync,
+			[Description("TraktClient.Shows.GetTranslationsAsync()")]
+			ShowsGetTranslationsAsync,
+			[Description("TraktClient.Shows.GetCommentsAsync()")]
+			ShowsGetCommentsAsync,
+			[Description("TraktClient.Shows.GetCollectionProgressAsync()")]
+			ShowsGetCollectionProgressAsync,
+			[Description("TraktClient.Shows.GetWatchedProgressAsync()")]
+			ShowsGetWatchedProgressAsync,
+			[Description("TraktClient.Shows.GetCastAndCrewAsync()")]
+			ShowsGetCastAndCrewAsync,
+			[Description("TraktClient.Shows.GetRatingsAsync()")]
+			ShowsGetRatingsAsync,
+			[Description("TraktClient.Shows.GetRelatedShowsAsync()")]
+			ShowsGetRelatedShowsAsync,
+			[Description("TraktClient.Shows.GetStatsAsync()")]
+			ShowsGetStatsAsync,
+			[Description("TraktClient.Shows.GetUsersWatchingShowAsync()")]
+			ShowsGetUsersWatchingShowAsync,
 
 		}
 
 		public static async Task<object> ExecuteTestRequest(TraktClient client, TestRequestType requestType, ExtendedOption extended = ExtendedOption.Unspecified, string testId = null) {
+			
+			//Uncomment if required
+			//int? testIdInt;
+			//try { if (testId != null) { testIdInt = Int32.Parse(testId); } } catch {}
 
 			switch (requestType) {
 				
@@ -271,6 +315,48 @@ namespace TraktSharp.Examples {
 					return await client.Scrobble.StopMovieAsync(testId ?? "tt0120591", StringMovieIdType.Auto, 99.9F, extended: extended);
 				case TestRequestType.ScrobbleStopEpisodeAsync:
 					return await client.Scrobble.StopEpisodeAsync(testId ?? "tt0959621", StringEpisodeIdType.Auto, 99.9F, extended: extended);
+
+				// Seasons module
+				case TestRequestType.SeasonsGetSeasonOverviewAsync:
+					return await client.Seasons.GetSeasonOverviewAsync(testId ?? "breaking-bad", extended);
+				case TestRequestType.SeasonsGetEpisodesForSeasonAsync:
+					return await client.Seasons.GetEpisodesForSeasonAsync(testId ?? "breaking-bad", 1, extended);
+				case TestRequestType.SeasonsGetCommentsAsync:
+					return await client.Seasons.GetCommentsAsync(testId ?? "breaking-bad", 1);
+				case TestRequestType.SeasonsGetRatingsAsync:
+					return await client.Seasons.GetRatingsAsync(testId ?? "breaking-bad", 1);
+				case TestRequestType.SeasonsGetUsersWatchingSeasonAsync:
+					return await client.Seasons.GetUsersWatchingSeasonAsync(testId ?? "breaking-bad", 1);
+
+				// Shows module
+				case TestRequestType.ShowsGetPopularShowsAsync:
+					return await client.Shows.GetPopularShowsAsync(extended);
+				case TestRequestType.ShowsGetTrendingShowsAsync:
+					return await client.Shows.GetTrendingShowsAsync(extended);
+				case TestRequestType.ShowsGetUpdatedShowsAsync:
+					return await client.Shows.GetUpdatedShowsAsync(DateTime.Now.AddMonths(-1), extended);
+				case TestRequestType.ShowsGetShowAsync:
+					return await client.Shows.GetShowAsync(testId ?? "breaking-bad", extended);
+				case TestRequestType.ShowsGetAliasesAsync:
+					return await client.Shows.GetAliasesAsync(testId ?? "breaking-bad");
+				case TestRequestType.ShowsGetTranslationsAsync:
+					return await client.Shows.GetTranslationsAsync(testId ?? "breaking-bad", "es");
+				case TestRequestType.ShowsGetCommentsAsync:
+					return await client.Shows.GetCommentsAsync(testId ?? "breaking-bad");
+				case TestRequestType.ShowsGetCollectionProgressAsync:
+					return await client.Shows.GetCollectionProgressAsync(testId ?? "breaking-bad", extended);
+				case TestRequestType.ShowsGetWatchedProgressAsync:
+					return await client.Shows.GetWatchedProgressAsync(testId ?? "breaking-bad", extended);
+				case TestRequestType.ShowsGetCastAndCrewAsync:
+					return await client.Shows.GetCastAndCrewAsync(testId ?? "breaking-bad", extended);
+				case TestRequestType.ShowsGetRatingsAsync:
+					return await client.Shows.GetRatingsAsync(testId ?? "breaking-bad");
+				case TestRequestType.ShowsGetRelatedShowsAsync:
+					return await client.Shows.GetRelatedShowsAsync(testId ?? "breaking-bad", extended);
+				case TestRequestType.ShowsGetStatsAsync:
+					return await client.Shows.GetStatsAsync(testId ?? "breaking-bad");
+				case TestRequestType.ShowsGetUsersWatchingShowAsync:
+					return await client.Shows.GetUsersWatchingShowAsync(testId ?? "breaking-bad", extended);
 
 				// Invalid request type
 				default:

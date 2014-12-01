@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using TraktSharp.Examples.ViewModels;
+using TraktSharp.Examples.Wpf.ViewModels;
 
-namespace TraktSharp.Examples.Views {
+namespace TraktSharp.Examples.Wpf.Views {
 
 	public partial class MainView {
 

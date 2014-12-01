@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace TraktSharp.Examples.Helpers {
+namespace TraktSharp.Examples.Wpf.Helpers {
 
 	// From http://joelabrahamsson.com/getting-property-and-method-names-using-static-reflection-in-c/
 

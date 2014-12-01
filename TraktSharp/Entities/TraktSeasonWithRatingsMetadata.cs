@@ -11,9 +11,6 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "rated_at")]
 		public DateTime? RatedAt { get; set; }
 
-		[JsonProperty(PropertyName = "rating")]
-		public Rating Rating { get; set; }
-
 		[JsonProperty(PropertyName = "episodes")]
 		public new IEnumerable<TraktEpisodeWithRatingsMetadata> Episodes { get; set; }
 

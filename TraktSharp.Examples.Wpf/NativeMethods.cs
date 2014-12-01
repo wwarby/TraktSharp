@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace TraktSharp.Examples {
+namespace TraktSharp.Examples.Wpf {
 
 	public static class NativeMethods {
 

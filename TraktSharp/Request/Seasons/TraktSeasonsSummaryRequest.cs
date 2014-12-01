@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Seasons {
 
-	public class TraktSeasonsSummaryRequest : TraktGetByIdRequest<TraktSeason> {
+	public class TraktSeasonsSummaryRequest : TraktGetByIdRequest<IEnumerable<TraktSeason>> {
 
 		public TraktSeasonsSummaryRequest(TraktClient client) : base(client) { }
 

@@ -18,7 +18,7 @@ namespace TraktSharp.Modules {
 		/// <param name="show">The show</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktSeason> GetSeasonOverviewAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktSeason>> GetSeasonOverviewAsync(TraktShow show, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await GetSeasonOverviewAsync(show.Ids.GetBestId(), extended);
 		}
 
@@ -26,7 +26,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktSeason> GetSeasonOverviewAsync(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktSeason>> GetSeasonOverviewAsync(string showId, ExtendedOption extended = ExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSeasonsSummaryRequest(Client) {
 				Id = showId,
 				Extended = extended
@@ -153,6 +153,7 @@ namespace TraktSharp.Modules {
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingSeasonAsync(string showId, int seasonNumber, ExtendedOption extended = ExtendedOption.Unspecified) {
+			//TODO: This method crashes because the returned JSON contradicts the spec
 			return await SendAsync(new TraktSeasonsWatchingRequest(Client) {
 				Id = showId,
 				Season = seasonNumber,

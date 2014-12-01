@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace TraktSharp.Examples.ViewModels {
+namespace TraktSharp.Examples.Wpf.ViewModels {
 
 	public class ViewModelBase : INotifyPropertyChanged {
 

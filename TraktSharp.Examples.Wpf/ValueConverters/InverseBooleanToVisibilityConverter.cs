@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 
-namespace TraktSharp.Examples.ValueConverters {
+namespace TraktSharp.Examples.Wpf.ValueConverters {
 
 	[ValueConversion(typeof(bool), typeof(bool))]
 	public class InverseBooleanToVisibilityConverter : IValueConverter {
