@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TraktSharp {
+namespace TraktSharp.Enums {
 
 	/// <summary>Settings for pagination on supporting request types</summary>
 	public struct PaginationOptions {

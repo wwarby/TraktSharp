@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TraktSharp.Entities;
+using TraktSharp.Enums;
 using TraktSharp.EventArgs;
 using TraktSharp.Exceptions;
 using TraktSharp.Helpers;

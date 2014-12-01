@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 
-namespace TraktSharp {
+namespace TraktSharp.Enums {
 
-	/// <summary>Options for the text person ID type on supporting request types</summary>
-	public enum StringPersonIdType {
+	/// <summary>Options for the text movie ID type on supporting request types</summary>
+	public enum StringMovieIdType {
 		/// <summary>Automatically detect ID type</summary>
 		Auto,
 		/// <summary>Trakt URL slug</summary>

@@ -5,11 +5,11 @@ using TraktSharp.Entities.Response.Users;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersFollowersRequest : TraktGetByUsernameRequest<IEnumerable<TraktUsersFollowResponseItem>> {
+	public class TraktUsersFollowingRequest : TraktGetByUsernameRequest<IEnumerable<TraktUsersFollowResponseItem>> {
 
-		public TraktUsersFollowersRequest(TraktClient client) : base(client) { }
+		public TraktUsersFollowingRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/followers"; } }
+		protected override string PathTemplate { get { return "users/{username}/following"; } }
 
 	}
 

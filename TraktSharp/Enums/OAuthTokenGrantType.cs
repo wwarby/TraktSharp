@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 
-namespace TraktSharp {
+namespace TraktSharp.Enums {
 
 	/// <summary>OAuth authentication token grant type</summary>
 	public enum OAuthTokenGrantType {

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Entities.RequestBody.Scrobble;
 using TraktSharp.Entities.Response.Scrobble;
+using TraktSharp.Enums;
 using TraktSharp.Factories;
 using TraktSharp.Request.Scrobble;
 

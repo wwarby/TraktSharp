@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using TraktSharp.Entities;
+using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Movies {
 

@@ -7,6 +7,7 @@ using TraktSharp.Entities;
 using TraktSharp.Entities.RequestBody.Users;
 using TraktSharp.Entities.Response;
 using TraktSharp.Entities.Response.Users;
+using TraktSharp.Enums;
 using TraktSharp.Request.Users;
 
 namespace TraktSharp.Modules {

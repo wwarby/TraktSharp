@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities.Response.Calendars;
+using TraktSharp.Enums;
 using TraktSharp.Request.Calendars;
 
 namespace TraktSharp.Modules {

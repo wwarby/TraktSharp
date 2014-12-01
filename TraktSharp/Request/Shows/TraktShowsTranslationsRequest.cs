@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TraktSharp.Entities.Response.Shows;
+using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Shows {
 

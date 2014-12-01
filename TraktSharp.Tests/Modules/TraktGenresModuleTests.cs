@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TraktSharp.Entities.Response.Genres;
+using TraktSharp.Enums;
 
 namespace TraktSharp.Tests.Modules {
 

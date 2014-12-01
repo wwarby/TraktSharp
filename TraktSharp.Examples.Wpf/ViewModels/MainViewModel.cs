@@ -7,6 +7,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TraktSharp.Entities;
+using TraktSharp.Enums;
 using TraktSharp.Examples.Wpf.Helpers;
 using TraktSharp.Examples.Wpf.Views;
 using TraktSharp.Exceptions;

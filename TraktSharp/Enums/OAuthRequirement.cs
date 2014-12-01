@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace TraktSharp {
+namespace TraktSharp.Enums {
 
 	/// <summary>Indicates the requirement for OAuth authentication on a request type</summary>
 	public enum OAuthRequirement {

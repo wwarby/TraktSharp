@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities.Response.Genres;
+using TraktSharp.Enums;
 using TraktSharp.Request.Genres;
 
 namespace TraktSharp.Modules {

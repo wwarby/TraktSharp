@@ -2,6 +2,7 @@
 using System.Linq;
 using TraktSharp.Entities.RequestBody.OAuth;
 using TraktSharp.Entities.Response.OAuth;
+using TraktSharp.Enums;
 
 namespace TraktSharp.Request.OAuth {
 

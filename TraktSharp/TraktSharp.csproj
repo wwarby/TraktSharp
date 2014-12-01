@@ -52,9 +52,9 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioChannels.cs" />
-    <Compile Include="AudioFormat.cs" />
-    <Compile Include="Entities\EnumInfo.cs" />
+    <Compile Include="Enums\AudioChannels.cs" />
+    <Compile Include="Enums\AudioFormat.cs" />
+    <Compile Include="Enums\EnumInfo.cs" />
     <Compile Include="Entities\RequestBody\Auth\TraktAuthLoginRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Scrobble\TraktScrobbleEpisodeRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Scrobble\TraktScrobbleMovieRequestBody.cs" />
@@ -156,38 +156,59 @@
     <Compile Include="Exceptions\TraktUnauthorizedException.cs" />
     <Compile Include="Exceptions\TraktBadRequestException.cs" />
     <Compile Include="Exceptions\TraktNotFoundException.cs" />
-    <Compile Include="ExtendedOption.cs" />
+    <Compile Include="Enums\ExtendedOption.cs" />
     <Compile Include="Factories\TraktPersonFactory.cs" />
     <Compile Include="Factories\TraktListFactory.cs" />
     <Compile Include="Factories\TraktSeasonFactory.cs" />
     <Compile Include="Factories\TraktShowFactory.cs" />
     <Compile Include="Factories\TraktEpisodeFactory.cs" />
     <Compile Include="Factories\TraktMovieFactory.cs" />
-    <Compile Include="GenreTypeOptions.cs" />
+    <Compile Include="Enums\GenreTypeOptions.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\TimeZoneHelper.cs" />
-    <Compile Include="IdLookupType.cs" />
-    <Compile Include="IntEpisodeIdType.cs" />
-    <Compile Include="IntListIdType.cs" />
-    <Compile Include="IntMovieIdType.cs" />
-    <Compile Include="IntPersonIdType.cs" />
-    <Compile Include="IntSeasonIdType.cs" />
-    <Compile Include="IntShowIdType.cs" />
-    <Compile Include="MediaType.cs" />
+    <Compile Include="Enums\IdLookupType.cs" />
+    <Compile Include="Enums\IntEpisodeIdType.cs" />
+    <Compile Include="Enums\IntListIdType.cs" />
+    <Compile Include="Enums\IntMovieIdType.cs" />
+    <Compile Include="Enums\IntPersonIdType.cs" />
+    <Compile Include="Enums\IntSeasonIdType.cs" />
+    <Compile Include="Enums\IntShowIdType.cs" />
+    <Compile Include="Enums\MediaType.cs" />
     <Compile Include="Modules\ITraktModule.cs" />
     <Compile Include="Modules\TraktAuthModule.cs" />
     <Compile Include="Modules\TraktModuleBase.cs" />
-    <Compile Include="Modules\TraktSyncModule.RemoveFromWatchlist.cs" />
-    <Compile Include="Modules\TraktSyncModule.AddToWatchlist.cs" />
-    <Compile Include="Modules\TraktSyncModule.RemoveRatings.cs" />
     <Compile Include="Modules\TraktSyncModule.cs" />
-    <Compile Include="Modules\TraktSyncModule.MarkUnwatched.cs" />
-    <Compile Include="Modules\TraktSyncModule.MarkWatched.cs" />
-    <Compile Include="Modules\TraktSyncModule.RemoveFromCollection.cs" />
-    <Compile Include="Modules\TraktSyncModule.Get.cs" />
-    <Compile Include="Modules\TraktUsersModule.RemoveFromList.cs" />
+    <Compile Include="Modules\TraktSyncModule.AddRatings.cs">
+      <DependentUpon>TraktSyncModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraktSyncModule.AddToCollection.cs">
+      <DependentUpon>TraktSyncModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraktSyncModule.AddToWatchlist.cs">
+      <DependentUpon>TraktSyncModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraktSyncModule.MarkUnwatched.cs">
+      <DependentUpon>TraktSyncModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraktSyncModule.MarkWatched.cs">
+      <DependentUpon>TraktSyncModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraktSyncModule.RemoveFromCollection.cs">
+      <DependentUpon>TraktSyncModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraktSyncModule.RemoveFromWatchlist.cs">
+      <DependentUpon>TraktSyncModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraktSyncModule.RemoveRatings.cs">
+      <DependentUpon>TraktSyncModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\TraktUsersModule.cs" />
-    <Compile Include="Modules\TraktSyncModule.AddToCollection.cs" />
+    <Compile Include="Modules\TraktUsersModule.AddToList.cs">
+      <DependentUpon>TraktUsersModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TraktUsersModule.RemoveFromList.cs">
+      <DependentUpon>TraktUsersModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\TraktScrobbleModule.cs" />
     <Compile Include="Modules\TraktRecommendationsModule.cs" />
     <Compile Include="Modules\TraktCommentsModule.cs" />
@@ -200,9 +221,9 @@
     <Compile Include="Entities\TraktSharing.cs" />
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktPeopleModule.cs" />
-    <Compile Include="OAuthRequirement.cs" />
-    <Compile Include="PrivacyOption.cs" />
-    <Compile Include="Rating.cs" />
+    <Compile Include="Enums\OAuthRequirement.cs" />
+    <Compile Include="Enums\PrivacyOption.cs" />
+    <Compile Include="Enums\Rating.cs" />
     <Compile Include="Request\AfterRequestEventHandler.cs" />
     <Compile Include="Request\Auth\TraktAuthLogoutRequest.cs" />
     <Compile Include="Request\Auth\TraktAuthLoginRequest.cs" />
@@ -375,8 +396,8 @@
     <Compile Include="Request\Users\TraktUsersRatingsMoviesRequest.cs" />
     <Compile Include="Request\Users\TraktUsersRatingsSeasonsRequest.cs" />
     <Compile Include="Request\Users\TraktUsersFriendsRequest.cs" />
-    <Compile Include="Request\Users\TraktUsersFollowingRequest.cs" />
     <Compile Include="Request\Users\TraktUsersFollowersRequest.cs" />
+    <Compile Include="Request\Users\TraktUsersFollowingRequest.cs" />
     <Compile Include="Request\Users\TraktUsersHistoryEpisodesRequest.cs" />
     <Compile Include="Request\Users\TraktUsersHistoryMoviesRequest.cs" />
     <Compile Include="Request\Users\TraktUsersUnfollowRequest.cs" />
@@ -398,27 +419,26 @@
     <Compile Include="Request\Users\TraktUsersRequestsRequest.cs" />
     <Compile Include="Request\Users\TraktUsersProfileRequest.cs" />
     <Compile Include="Request\Users\TraktUsersSettingsRequest.cs" />
-    <Compile Include="Resolution.cs" />
+    <Compile Include="Enums\Resolution.cs" />
     <Compile Include="Serialization\OriginalPropertyNamesContractResolver.cs" />
     <Compile Include="Serialization\SkipDefaultPropertyValuesContractResolver.cs" />
-    <Compile Include="StringEpisodeIdType.cs" />
-    <Compile Include="StringListIdType.cs" />
-    <Compile Include="StringMovieIdType.cs" />
-    <Compile Include="StringPersonIdType.cs" />
-    <Compile Include="StringShowIdType.cs" />
-    <Compile Include="TextQueryType.cs" />
+    <Compile Include="Enums\StringEpisodeIdType.cs" />
+    <Compile Include="Enums\StringListIdType.cs" />
+    <Compile Include="Enums\StringMovieIdType.cs" />
+    <Compile Include="Enums\StringPersonIdType.cs" />
+    <Compile Include="Enums\StringShowIdType.cs" />
+    <Compile Include="Enums\TextQueryType.cs" />
     <Compile Include="TraktAuthentication.cs" />
     <Compile Include="TraktConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TraktClient.cs" />
-    <Compile Include="OAuthTokenGrantType.cs" />
+    <Compile Include="Enums\OAuthTokenGrantType.cs" />
     <Compile Include="Exceptions\TraktException.cs" />
     <Compile Include="Request\TraktRequest.cs" />
     <Compile Include="Modules\TraktShowsModule.cs" />
-    <Compile Include="PaginationOptions.cs" />
+    <Compile Include="Enums\PaginationOptions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modules\TraktUsersModule.AddToList.cs" />
     <None Include="Key.snk" />
     <None Include="packages.config" />
   </ItemGroup>

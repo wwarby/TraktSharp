@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using TraktSharp.Entities;
+using TraktSharp.Enums;
 
 namespace TraktSharp.Helpers {
 

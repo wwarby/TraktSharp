@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 
-namespace TraktSharp {
+namespace TraktSharp.Enums {
 
 	/// <summary>Options for the resolution metadata on supporting request types</summary>
 	// ReSharper disable InconsistentNaming

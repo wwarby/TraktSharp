@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Entities.RequestBody.OAuth;
 using TraktSharp.Entities.Response.OAuth;
+using TraktSharp.Enums;
 using TraktSharp.Helpers;
 using TraktSharp.Request.OAuth;
 

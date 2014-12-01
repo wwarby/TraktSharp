@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Entities.RequestBody.Sync;
 using TraktSharp.Entities.Response;
+using TraktSharp.Enums;
 using TraktSharp.Factories;
 using TraktSharp.Request.Sync;
 

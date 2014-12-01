@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TraktSharp.Entities {
+namespace TraktSharp.Enums {
 
 	public class EnumInfo : IEquatable<EnumInfo> {
 

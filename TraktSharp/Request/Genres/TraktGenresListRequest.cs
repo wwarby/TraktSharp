@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TraktSharp.Entities.Response.Genres;
+using TraktSharp.Enums;
 using TraktSharp.Helpers;
 
 namespace TraktSharp.Request.Genres {

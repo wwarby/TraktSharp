@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace TraktSharp {
+namespace TraktSharp.Enums {
 
 	/// <summary>Options for the rating parameter on supporting request types</summary>
 	public enum Rating {

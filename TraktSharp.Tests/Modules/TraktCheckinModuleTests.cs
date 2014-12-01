@@ -7,6 +7,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TraktSharp.Entities;
 using TraktSharp.Entities.Response.Checkin;
+using TraktSharp.Enums;
 using TraktSharp.Exceptions;
 using TraktSharp.Factories;
 

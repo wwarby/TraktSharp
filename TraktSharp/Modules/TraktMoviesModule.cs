@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Entities.Response.Movies;
+using TraktSharp.Enums;
 using TraktSharp.Request.Movies;
 
 namespace TraktSharp.Modules {

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using TraktSharp.Enums;
 using TraktSharp.Helpers;
 
 namespace TraktSharp.Examples.Wpf {

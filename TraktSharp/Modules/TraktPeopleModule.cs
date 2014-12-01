@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
+using TraktSharp.Enums;
 using TraktSharp.Request.People;
 
 namespace TraktSharp.Modules {
