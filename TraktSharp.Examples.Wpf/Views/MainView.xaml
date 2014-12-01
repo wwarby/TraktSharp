@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:TraktSharp.Examples.Wpf.ViewModels"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-		Closing="Window_Closing"
+		Closing="WindowClosing"
         Title="TraktSharp Examples" Width="1000" Height="600" MinWidth="1000" MinHeight="600" Icon="/Icons/TraktSharp.ico">
 	
 	<Window.Resources>
@@ -72,7 +72,7 @@
 						<TextBox Width="500" Text="{Binding ClientSecret, UpdateSourceTrigger=PropertyChanged}" />
 					</WrapPanel>
 					<WrapPanel  Margin="125,5,5,5">
-						<Button Content="Authorize" Width="Auto" Padding="20,0" Click="Authorize_Click" IsEnabled="{Binding CanAuthorize}" />
+						<Button Content="Authorize" Width="Auto" Padding="20,0" Click="AuthorizeClick" IsEnabled="{Binding CanAuthorize}" />
 						<Label Width="Auto" Margin="10,0,0,0" Content="Enter client ID and client secret to enable authorization"
 							   Visibility="{Binding CanAuthorize, Converter={StaticResource InverseBoolToVisConverter}}" />
 					</WrapPanel>
@@ -94,24 +94,24 @@
 								<WrapPanel>
 									<Label Width="60" Content="Request:" Padding="0,0,10,0"/>
 									<ComboBox ItemsSource="{Binding TestRequestTypes}" SelectedValue="{Binding SelectedTestRequestType}" Margin="0,0,10,0" Width="400" />
-									<Button Content="Test Request" Width="Auto" Padding="10,0" Click="TestRequest_Click" HorizontalAlignment="Left" />
+									<Button Content="Test Request" Width="Auto" Padding="10,0" Click="TestRequestClick" HorizontalAlignment="Left" />
 								</WrapPanel>
 								<WrapPanel Margin="0,10,0,0">
 									<Label Width="60" Content="Search:" Padding="0,0,10,0"/>
-									<TextBox Width="120" Margin="0,0,10,0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" KeyDown="Search_KeyDown" />
+									<TextBox Width="120" Margin="0,0,10,0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" KeyDown="SearchKeyDown" />
 									<ComboBox ItemsSource="{Binding TextQueryTypes}" SelectedValue="{Binding SelectedTextQueryType}" Margin="0,0,10,0" Width="100" 
 												Visibility="{Binding IdLookup, Converter={StaticResource InverseBoolToVisConverter}}" />
 									<ComboBox ItemsSource="{Binding IdLookupTypes}" SelectedValue="{Binding SelectedIdLookupType}" Margin="0,0,10,0" Width="100"
 												Visibility="{Binding IdLookup, Converter={StaticResource BoolToVisConverter}}" />
 									<CheckBox Content="ID lookup" VerticalAlignment="Center" Margin="0,0,10,0" IsChecked="{Binding IdLookup}" />
-									<Button Content="Search" Width="Auto" Click="Search_Click" HorizontalAlignment="Left" IsEnabled="{Binding CanSearch}" />
+									<Button Content="Search" Width="Auto" Click="SearchClick" HorizontalAlignment="Left" IsEnabled="{Binding CanSearch}" />
 								</WrapPanel>
 							</StackPanel>
 							<GroupBox Header="Settings to use in the request" HorizontalAlignment="Right" Padding="10">
 								<StackPanel HorizontalAlignment="Right">
 									<WrapPanel>
 										<Label Width="70" Content="ID:" />
-										<TextBox Text="{Binding TestId}" Width="120" KeyDown="TestId_KeyDown" />
+										<TextBox Text="{Binding TestId}" Width="120" KeyDown="TestIdKeyDown" />
 									</WrapPanel>
 									<WrapPanel Margin="0,10,0,0">
 										<Label Width="70" Content="Extended:"/>

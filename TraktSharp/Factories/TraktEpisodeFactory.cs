@@ -94,8 +94,8 @@ namespace TraktSharp.Factories {
 		/// <returns>See summary</returns>
 		public static T FromSeasonAndEpisodeNumber<T>(int seasonNumber, int episodeNumber) where T : TraktEpisode {
 			var ret = Activator.CreateInstance<T>();
-			ret.Season = seasonNumber;
-			ret.Number = episodeNumber;
+			ret.SeasonNumber = seasonNumber;
+			ret.EpisodeNumber = episodeNumber;
 			return ret;
 		}
 

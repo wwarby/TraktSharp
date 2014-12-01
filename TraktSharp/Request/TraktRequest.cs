@@ -16,15 +16,6 @@ using TraktSharp.Serialization;
 
 namespace TraktSharp.Request {
 
-	public delegate void BeforeRequestEventHandler(object sender, BeforeRequestEventArgs e);
-	public delegate void AfterRequestEventHandler(object sender, AfterRequestEventArgs e);
-
-	public interface ITraktRequest<TResponse> {
-		event BeforeRequestEventHandler BeforeRequest;
-		event AfterRequestEventHandler AfterRequest;
-		Task<TResponse> SendAsync();
-	}
-
 	public abstract class TraktRequest<TResponse, TRequestBody> : ITraktRequest<TResponse> where TRequestBody : class {
 
 		public event BeforeRequestEventHandler BeforeRequest;

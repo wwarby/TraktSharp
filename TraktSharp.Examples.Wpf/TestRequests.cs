@@ -8,11 +8,11 @@ using TraktSharp.Helpers;
 
 namespace TraktSharp.Examples.Wpf {
 
-	public static class TestRequests {
+	internal static class TestRequests {
 
 		private static Dictionary<string, Expression> _testRequests = new Dictionary<string, Expression>();
 
-		public enum TestRequestType {
+		internal enum TestRequestType {
 			
 			// Auth module
 			[Description("TraktClient.Auth.LoginAsync()")]

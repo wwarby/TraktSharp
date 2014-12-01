@@ -4,12 +4,15 @@ using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
 
+	/// <summary>A movie with metadata related to a user's rating of that movie</summary>
 	[Serializable]
 	public class TraktMovieWithRatingsMetadata : TraktMovie {
 
+		/// <summary>The UTC date when the rating was made</summary>
 		[JsonProperty(PropertyName = "rated_at")]
 		public DateTime? RatedAt { get; set; }
 
+		/// <summary>The rating</summary>
 		[JsonProperty(PropertyName = "rating")]
 		new public Rating Rating { get; set; }
 

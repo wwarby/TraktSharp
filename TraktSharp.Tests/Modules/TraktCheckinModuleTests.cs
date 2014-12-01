@@ -114,8 +114,8 @@ namespace TraktSharp.Tests.Modules {
 			result.Sharing.Facebook.Should().BeTrue();
 			result.Sharing.Twitter.Should().BeTrue();
 			result.Sharing.Tumblr.Should().BeFalse();
-			result.Episode.Season.Should().Be(1);
-			result.Episode.Number.Should().Be(1);
+			result.Episode.SeasonNumber.Should().Be(1);
+			result.Episode.EpisodeNumber.Should().Be(1);
 			result.Episode.Title.Should().Be("Pilot");
 			result.Episode.Ids.Trakt.Should().Be(16);
 			result.Episode.Ids.Tvdb.Should().Be(349232);

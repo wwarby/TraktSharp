@@ -68,7 +68,9 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "seasons")]
 		public IEnumerable<TraktSeason> Seasons { get; set; }
 
-		public bool IsPostable() {
+		/// <summary>Indicates if the instance contains the data required for it to be sent as part of a request body in a <c>POST</c> HTTP method</summary>
+		/// <returns><c>true</c> if the instance is in a fit state to be <c>POSTed</c>, otherwise <c>false</c></returns>
+		internal bool IsPostable() {
 			return !string.IsNullOrEmpty(Title) || (Ids != null && Ids.HasAnyValuesSet());
 		}
 

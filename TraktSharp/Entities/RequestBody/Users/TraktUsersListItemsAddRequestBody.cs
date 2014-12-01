@@ -23,7 +23,7 @@ namespace TraktSharp.Entities.RequestBody.Users {
 		[JsonProperty(PropertyName = "people")]
 		public IEnumerable<TraktPerson> People { get; set; }
 
-		public bool IsPostable() {
+		internal bool IsPostable() {
 			return (Movies != null && Movies.Any())
 				|| (Shows != null && Shows.Any()) 
 				|| (Seasons != null && Seasons.Any()) 

@@ -16,19 +16,19 @@ namespace TraktSharp.Examples.Wpf.Views {
 			DataContext = ViewModel;
 		}
 
-		private void Authorize_Click(object sender, RoutedEventArgs e) { ViewModel.Authorize(); }
+		private void AuthorizeClick(object sender, RoutedEventArgs e) { ViewModel.Authorize(); }
 
-		private void TestRequest_Click(object sender, RoutedEventArgs e) { ViewModel.TestRequest(); }
+		private void TestRequestClick(object sender, RoutedEventArgs e) { ViewModel.TestRequest(); }
 
-		private void Search_Click(object sender, RoutedEventArgs e) { ViewModel.Search(); }
+		private void SearchClick(object sender, RoutedEventArgs e) { ViewModel.Search(); }
 
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) { ViewModel.Closing(); }
+		private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e) { ViewModel.Closing(); }
 
-		private void TestId_KeyDown(object sender, KeyEventArgs e) {
+		private void TestIdKeyDown(object sender, KeyEventArgs e) {
 			if (e.Key == Key.Return) { ViewModel.TestRequest(); }
 		}
 
-		private void Search_KeyDown(object sender, KeyEventArgs e) {
+		private void SearchKeyDown(object sender, KeyEventArgs e) {
 			if (e.Key == Key.Return) { ViewModel.Search(); }
 		}
 

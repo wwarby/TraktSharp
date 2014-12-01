@@ -257,7 +257,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		public static string StateSerializationPath {
 			get {
 				var assemblyPath = Assembly.GetExecutingAssembly().Location;
-				return Path.Combine(Path.GetDirectoryName(assemblyPath), string.Format("{0}.state", Path.GetFileNameWithoutExtension(assemblyPath)));
+				return Path.Combine(Path.GetDirectoryName(assemblyPath) ?? string.Empty, string.Format("{0}.state", Path.GetFileNameWithoutExtension(assemblyPath)));
 			}
 		}
 

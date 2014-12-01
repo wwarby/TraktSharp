@@ -19,7 +19,7 @@ namespace TraktSharp.Tests {
 			get {
 				return string.IsNullOrEmpty(_responseFilename)
 					? string.Empty
-					: Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Response", _responseFilename);
+					: Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty, "Response", _responseFilename);
 			}
 		}
 

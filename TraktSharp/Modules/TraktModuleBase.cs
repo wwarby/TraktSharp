@@ -5,17 +5,6 @@ using TraktSharp.Request;
 
 namespace TraktSharp.Modules {
 
-	/// <summary>Represents a module containing Trakt API request methods</summary>
-	public interface ITraktModule {
-		
-		/// <summary>Executes immediately before an HTTP request is issued</summary>
-		event BeforeRequestEventHandler BeforeRequest;
-
-		/// <summary>Executes immediately after an HTTP response is received</summary>
-		event AfterRequestEventHandler AfterRequest;
-
-	}
-
 	/// <summary>Base class for module containing Trakt API request methods</summary>
 	public abstract class TraktModuleBase : ITraktModule {
 

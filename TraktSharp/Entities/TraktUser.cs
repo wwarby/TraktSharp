@@ -17,7 +17,7 @@ namespace TraktSharp.Entities {
 		public string Name { get; set; }
 
 		[JsonProperty(PropertyName = "vip")]
-		public bool VIP { get; set; }
+		public bool Vip { get; set; }
 
 		[JsonProperty(PropertyName = "joined_at")]
 		public DateTime? JoinedAt { get; set; }

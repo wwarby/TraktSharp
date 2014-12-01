@@ -16,7 +16,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <param name="rating">The rating</param>
-		/// <param name="ratedAt">The date when the rating was made</param>
+		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddRatingsByMovieIdAsync(string movieId, StringMovieIdType movieIdType, Rating rating, DateTime? ratedAt = null) {
 			var obj = TraktMovieFactory.FromId<TraktMovieWithRatingsMetadata>(movieId, movieIdType);
@@ -29,7 +29,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <param name="rating">The rating</param>
-		/// <param name="ratedAt">The date when the rating was made</param>
+		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddRatingsByMovieIdAsync(int movieId, IntMovieIdType movieIdType, Rating rating, DateTime? ratedAt = null) {
 			var obj = TraktMovieFactory.FromId<TraktMovieWithRatingsMetadata>(movieId, movieIdType);
@@ -42,7 +42,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <param name="rating">The rating</param>
-		/// <param name="ratedAt">The date when the rating was made</param>
+		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddRatingsByShowIdAsync(string showId, StringShowIdType showIdType, Rating rating, DateTime? ratedAt = null) {
 			var obj = TraktShowFactory.FromId<TraktShowWithRatingsMetadata>(showId, showIdType);
@@ -55,7 +55,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <param name="rating">The rating</param>
-		/// <param name="ratedAt">The date when the rating was made</param>
+		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddRatingsByShowIdAsync(int showId, IntShowIdType showIdType, Rating rating, DateTime? ratedAt = null) {
 			var obj = TraktShowFactory.FromId<TraktShowWithRatingsMetadata>(showId, showIdType);
@@ -68,7 +68,7 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <param name="rating">The rating</param>
-		/// <param name="ratedAt">The date when the rating was made</param>
+		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddRatingsByEpisodeIdAsync(string episodeId, StringEpisodeIdType episodeIdType, Rating rating, DateTime? ratedAt = null) {
 			var obj = TraktEpisodeFactory.FromId<TraktEpisodeWithRatingsMetadata>(episodeId, episodeIdType);
@@ -81,7 +81,7 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <param name="rating">The rating</param>
-		/// <param name="ratedAt">The date when the rating was made</param>
+		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddRatingsByEpisodeIdAsync(int episodeId, IntEpisodeIdType episodeIdType, Rating rating, DateTime? ratedAt = null) {
 			var obj = TraktEpisodeFactory.FromId<TraktEpisodeWithRatingsMetadata>(episodeId, episodeIdType);

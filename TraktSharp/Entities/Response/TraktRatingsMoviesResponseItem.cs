@@ -14,7 +14,7 @@ namespace TraktSharp.Entities.Response {
 		public DateTime? RatedAt { get; set; }
 
 		[JsonProperty(PropertyName = "movie")]
-		public TraktMovie movie { get; set; }
+		public TraktMovie Movie { get; set; }
 
 	}
 

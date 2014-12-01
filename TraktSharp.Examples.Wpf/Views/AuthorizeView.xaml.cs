@@ -18,7 +18,7 @@ namespace TraktSharp.Examples.Wpf.Views {
 
 		public void Load() { AuthorizeBrowser.Navigate(ViewModel.Client.Authentication.AuthorizationUrl); }
 
-		private void AuthorizeBrowser_Navigating(object sender, NavigatingCancelEventArgs e) { ViewModel.Navigating(this, e); }
+		private void AuthorizeBrowserNavigating(object sender, NavigatingCancelEventArgs e) { ViewModel.Navigating(this, e); }
 
 	}
 
