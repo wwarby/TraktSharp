@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace TraktSharp.Tests {
 
-	public class FakeResponseHandler : DelegatingHandler {
+	internal class FakeResponseHandler : DelegatingHandler {
 
 		private readonly Dictionary<string, HttpResponseMessage> _fakeResponses = new Dictionary<string, HttpResponseMessage>();
 		private string _responseFilename = "";
@@ -23,7 +23,7 @@ namespace TraktSharp.Tests {
 			}
 		}
 
-		public void AddFakeResponse(string url, HttpStatusCode statusCode, string responseFilename) {
+		internal void AddFakeResponse(string url, HttpStatusCode statusCode, string responseFilename) {
 			_responseFilename = responseFilename;
 			_fakeResponses[url] = new HttpResponseMessage(statusCode) {
 				Content = new StringContent(string.IsNullOrEmpty(ResponseFilePath) ? string.Empty : File.ReadAllText(ResponseFilePath))

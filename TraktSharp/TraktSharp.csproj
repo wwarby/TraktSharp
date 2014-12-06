@@ -164,8 +164,7 @@
     <Compile Include="Factories\TraktEpisodeFactory.cs" />
     <Compile Include="Factories\TraktMovieFactory.cs" />
     <Compile Include="Enums\TraktGenreTypeOptions.cs" />
-    <Compile Include="Helpers\DateTimeHelper.cs" />
-    <Compile Include="Helpers\TimeZoneHelper.cs" />
+    <Compile Include="Helpers\TraktTimeZoneHelper.cs" />
     <Compile Include="Enums\TraktIdLookupType.cs" />
     <Compile Include="Enums\TraktNumericEpisodeIdType.cs" />
     <Compile Include="Enums\TraktIntListIdType.cs" />
@@ -325,8 +324,7 @@
     <Compile Include="Entities\TraktShowIds.cs" />
     <Compile Include="Entities\TraktShow.cs" />
     <Compile Include="ExtensionMethods\DateTimeExtensions.cs" />
-    <Compile Include="Helpers\EnumsHelper.cs" />
-    <Compile Include="Helpers\FileSystemHelper.cs" />
+    <Compile Include="Helpers\TraktEnumHelper.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsShowsRequest.cs" />
     <Compile Include="Entities\RequestBody\OAuth\TraktOAuthTokenRequestBody.cs" />
     <Compile Include="Entities\Response\Calendars\TraktCalendarsShowsResponseItem.cs" />

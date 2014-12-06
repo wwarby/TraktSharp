@@ -12,7 +12,6 @@ using TraktSharp.Entities;
 using TraktSharp.Enums;
 using TraktSharp.EventArgs;
 using TraktSharp.Exceptions;
-using TraktSharp.ExtensionMethods;
 using TraktSharp.Helpers;
 using TraktSharp.Serialization;
 using TraktSharp.Structs;

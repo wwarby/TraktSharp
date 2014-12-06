@@ -1,44 +1,76 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using TraktSharp.Helpers;
 
 namespace TraktSharp.Entities {
 
+	/// <summary>The air time for a show</summary>
 	[Serializable]
 	public class TraktShowAirs {
 
+		/// <summary>The day of the week on which the show airs</summary>
 		[JsonProperty(PropertyName = "day")]
 		public string Day { get; set; }
 
+		/// <summary>The time of day at which the show airs</summary>
 		[JsonProperty(PropertyName = "time")]
 		public string Time { get; set; }
 
+		/// <summary>The Olson time zone ID for the location in which the show airs (<see cref="Day"/> and <see cref="Time"/> are relative to this time zone)</summary>
 		[JsonProperty(PropertyName = "timezone")]
 		public string OlsonTimeZoneId { get; set; }
 
+		/// <summary>The time zone for the location in which the show airs (derived from <see cref="OlsonTimeZoneId"/>)</summary>
 		[JsonIgnore]
 		public TimeZoneInfo TimeZone {
-			get { return string.IsNullOrEmpty(OlsonTimeZoneId) ? default(TimeZoneInfo) : TimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId); }
+			get { return string.IsNullOrEmpty(OlsonTimeZoneId) ? default(TimeZoneInfo) : TraktTimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId); }
 		}
 
-		//TODO: This implementation is a bit muddled and doesn't work properly. Revisit.
+		/// <summary>The day of the week on which the show airs in local time</summary>
 		[JsonIgnore]
-		public DateTime NextAirDate {
+		public string LocalDay {
 			get {
-				return !string.IsNullOrEmpty(Day) && !string.IsNullOrEmpty(Time) ? DateTimeHelper.NextOccurrenceOf(Day, Time, TimeZone) : DateTime.MinValue;
-			}
-		}
-
-		[JsonIgnore]
-		public DateTime NextAirDateLocal {
-			get {
-				var nextAirDate = NextAirDate;
-				if (nextAirDate == DateTime.MinValue || TimeZone == null) {
-					return nextAirDate.ToLocalTime();
+				if (string.IsNullOrEmpty(Day) || string.IsNullOrEmpty(Time) || !Regex.IsMatch(Time, @"\d{2}:\d{2}") || TimeZone == null) { return string.Empty; }
+				var days = new List<string> { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+				var dayIndex = days.IndexOf(Day);
+				var hours = Int32.Parse(Time.Substring(0, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes / 60);
+				var minutes = Int32.Parse(Time.Substring(3, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes % 60);
+				if (minutes > 60) {
+					hours++;
+				} else if (minutes < 0) {
+					hours--;
 				}
-				return TimeZoneInfo.ConvertTime(nextAirDate, TimeZone, TimeZoneInfo.Local).ToLocalTime();
+				if (hours < 0) { return dayIndex > 0 ? days[dayIndex - 1] : days.Last(); }
+				if (hours > 24) { return dayIndex < 6 ? days[dayIndex + 1] : days.First(); }
+				return Day;
 			}
+		}
+
+		/// <summary>The day of the week on which the show airs in local time</summary>
+		[JsonIgnore]
+		public string LocalTime {
+			get {
+				if (string.IsNullOrEmpty(Day) || string.IsNullOrEmpty(Time) || !Regex.IsMatch(Time, @"\d{2}:\d{2}") || TimeZone == null) { return string.Empty; }
+				var hours = Int32.Parse(Time.Substring(0, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes / 60);
+				var minutes = Int32.Parse(Time.Substring(3, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes % 60);
+				if (minutes > 60) {
+					minutes -= 60;
+					hours++;
+				} else if (minutes < 0) {
+					minutes += 60;
+					hours--;
+				}
+				if (hours < 0) { hours += 24; }
+				if (hours > 24) { hours -= 24; }
+				return string.Format("{0:00}:{1:00}", hours, minutes);
+			}
+		}
+
+		private double TimeZoneOffsetMinutes {
+			get { return TimeZone == null ? 0 : TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).TotalMinutes - TimeZone.GetUtcOffset(DateTime.Now).TotalMinutes; }
 		}
 
 	}

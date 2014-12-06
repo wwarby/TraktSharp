@@ -95,6 +95,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helpers\FileSystemHelper.cs" />
     <Compile Include="Helpers\StaticReflectionHelper.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="SavedState.cs" />

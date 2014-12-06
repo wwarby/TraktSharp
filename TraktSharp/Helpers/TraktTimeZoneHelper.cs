@@ -5,8 +5,8 @@ using System.Linq;
 namespace TraktSharp.Helpers {
 
 	//Adapted from http://stackoverflow.com/questions/5996320/net-timezoneinfo-from-olson-time-zone
-	
-	public static class TimeZoneHelper {
+
+	internal static class TraktTimeZoneHelper {
 
 		private static Dictionary<string, string> _olsonTimeZoneMappings;
 
@@ -138,7 +138,7 @@ namespace TraktSharp.Helpers {
 			}
 		}
 
-		public static TimeZoneInfo FromOlsonTimeZoneId(string olsonTimeZoneId) {
+		internal static TimeZoneInfo FromOlsonTimeZoneId(string olsonTimeZoneId) {
 			if (string.IsNullOrEmpty("olsonTimeZoneId")) {
 				throw new ArgumentNullException("olsonTimeZoneId", "Olson time zone not specified");
 			}

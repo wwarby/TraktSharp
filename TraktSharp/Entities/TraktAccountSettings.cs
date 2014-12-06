@@ -16,7 +16,7 @@ namespace TraktSharp.Entities {
 		/// <summary>The user's timezone represented in the form of a <see cref="TimeZoneInfo"/> instance (derived from <see cref="OlsonTimeZoneId"/>)</summary>
 		[JsonIgnore]
 		public TimeZoneInfo TimeZone {
-			get { return string.IsNullOrEmpty(OlsonTimeZoneId) ? default(TimeZoneInfo) : TimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId); }
+			get { return string.IsNullOrEmpty(OlsonTimeZoneId) ? default(TimeZoneInfo) : TraktTimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId); }
 		}
 
 		/// <summary>A cover image for the user's account</summary>

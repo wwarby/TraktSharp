@@ -5,43 +5,44 @@ using TraktSharp.Entities;
 
 namespace TraktSharp.Examples.Wpf {
 
-	public class SavedState {
+	[Serializable]
+	internal class SavedState {
 
-		public TraktAccessToken AccessToken { get; set; }
+		internal TraktAccessToken AccessToken { get; set; }
 
-		public string Username { get; set; }
+		internal string Username { get; set; }
 
-		public string ClientId { get; set; }
+		internal string ClientId { get; set; }
 
-		public string ClientSecret { get; set; }
+		internal string ClientSecret { get; set; }
 
-		public string SelectedTestRequestType { get; set; }
+		internal string SelectedTestRequestType { get; set; }
 
-		public int SelectedResponseTab { get; set; }
+		internal int SelectedResponseTab { get; set; }
 
-		public int SelectedMainTab { get; set; }
+		internal int SelectedMainTab { get; set; }
 
-		public string SelectedExtendedOption { get; set; }
+		internal string SelectedExtendedOption { get; set; }
 
-		public string SelectedTextQueryType { get; set; }
+		internal string SelectedTextQueryType { get; set; }
 
-		public string SelectedIdLookupType { get; set; }
+		internal string SelectedIdLookupType { get; set; }
 
-		public string TestId { get; set; }
+		internal string TestId { get; set; }
 
-		public bool IdLookup { get; set; }
+		internal bool IdLookup { get; set; }
 
-		public string SearchText { get; set; }
+		internal string SearchText { get; set; }
 
-		public double WindowHeight { get; set; }
+		internal double WindowHeight { get; set; }
 
-		public double WindowWidth { get; set; }
+		internal double WindowWidth { get; set; }
 
-		public double WindowLeft { get; set; }
+		internal double WindowLeft { get; set; }
 
-		public double WindowTop { get; set; }
+		internal double WindowTop { get; set; }
 
-		public WindowState WindowState { get; set; }
+		internal WindowState WindowState { get; set; }
 
 	}
 

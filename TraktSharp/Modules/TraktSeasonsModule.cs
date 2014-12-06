@@ -50,7 +50,7 @@ namespace TraktSharp.Modules {
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktEpisode>> GetEpisodesForSeasonAsync(TraktShow show, TraktSeason season, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
-			return await GetEpisodesForSeasonAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), extended);
+			return await GetEpisodesForSeasonAsync(show.Ids.GetBestId(), season.SeasonNumber.GetValueOrDefault(), extended);
 		}
 
 		/// <summary>Returns all episodes for a specific season of a show</summary>
@@ -83,7 +83,7 @@ namespace TraktSharp.Modules {
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(TraktShow show, TraktSeason season, int? page = null, int? limit = null) {
-			return await GetCommentsAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), page, limit);
+			return await GetCommentsAsync(show.Ids.GetBestId(), season.SeasonNumber.GetValueOrDefault(), page, limit);
 		}
 
 		/// <summary>Returns all top level comments for a season. Most recent comments returned first.</summary>
@@ -115,7 +115,7 @@ namespace TraktSharp.Modules {
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktRatings> GetRatingsAsync(TraktShow show, TraktSeason season, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
-			return await GetRatingsAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), extended);
+			return await GetRatingsAsync(show.Ids.GetBestId(), season.SeasonNumber.GetValueOrDefault(), extended);
 		}
 
 		/// <summary>Returns rating (between 0 and 10) and distribution for a season</summary>
@@ -146,7 +146,7 @@ namespace TraktSharp.Modules {
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingSeasonAsync(TraktShow show, TraktSeason season, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
-			return await GetUsersWatchingSeasonAsync(show.Ids.GetBestId(), season.Number.GetValueOrDefault(), extended);
+			return await GetUsersWatchingSeasonAsync(show.Ids.GetBestId(), season.SeasonNumber.GetValueOrDefault(), extended);
 		}
 
 		/// <summary>Returns all users watching this season right now</summary>
