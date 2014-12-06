@@ -7,17 +7,17 @@ using TraktSharp.ExtensionMethods;
 
 namespace TraktSharp.Request.Calendars {
 
-	public class TraktCalendarsShowsRequest : TraktGetRequest<TraktCalendarsShowsResponse> {
+	internal class TraktCalendarsShowsRequest : TraktGetRequest<TraktCalendarsShowsResponse> {
 
-		public TraktCalendarsShowsRequest(TraktClient client) : base(client) { }
+		internal TraktCalendarsShowsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "calendars/shows/{start_date}/{days}"; } }
 
 		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Optional; } }
 
-		public DateTime? StartDate { get; set; }
+		internal DateTime? StartDate { get; set; }
 
-		public int? Days { get; set; }
+		internal int? Days { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {

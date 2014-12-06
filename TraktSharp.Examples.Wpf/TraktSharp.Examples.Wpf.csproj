@@ -98,6 +98,7 @@
     <Compile Include="Helpers\StaticReflectionHelper.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="SavedState.cs" />
+    <Compile Include="Serialization\OriginalPropertyNamesContractResolver.cs" />
     <Compile Include="TestRequests.cs" />
     <Compile Include="ValueConverters\InverseBooleanToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\InverseBooleanConverter.cs" />

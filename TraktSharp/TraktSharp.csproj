@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="Enums\TraktAudioChannels.cs" />
     <Compile Include="Enums\TraktAudioFormat.cs" />
-    <Compile Include="Enums\TraktEnumInfo.cs" />
+    <Compile Include="Enums\TraktEnumMemberInfo.cs" />
     <Compile Include="Entities\RequestBody\Auth\TraktAuthLoginRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Scrobble\TraktScrobbleEpisodeRequestBody.cs" />
     <Compile Include="Entities\RequestBody\Scrobble\TraktScrobbleMovieRequestBody.cs" />
@@ -302,7 +302,7 @@
     <Compile Include="Entities\Response\Genres\TraktGenresListResponseItem.cs" />
     <Compile Include="Entities\TraktCrew.cs" />
     <Compile Include="Entities\TraktCrewMember.cs" />
-    <Compile Include="Entities\TraktPeople.cs" />
+    <Compile Include="Entities\TraktCastAndCrew.cs" />
     <Compile Include="Entities\TraktCastMember.cs" />
     <Compile Include="Entities\Response\Shows\TraktShowsTranslationsResponseItem.cs" />
     <Compile Include="Entities\TraktComment.cs" />
@@ -420,7 +420,6 @@
     <Compile Include="Request\Users\TraktUsersProfileRequest.cs" />
     <Compile Include="Request\Users\TraktUsersSettingsRequest.cs" />
     <Compile Include="Enums\TraktResolution.cs" />
-    <Compile Include="Serialization\OriginalPropertyNamesContractResolver.cs" />
     <Compile Include="Serialization\SkipDefaultPropertyValuesContractResolver.cs" />
     <Compile Include="Enums\TraktTextEpisodeIdType.cs" />
     <Compile Include="Enums\TraktTextListIdType.cs" />

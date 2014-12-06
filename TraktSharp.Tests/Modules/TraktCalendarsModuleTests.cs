@@ -9,10 +9,10 @@ using TraktSharp.Entities.Response.Calendars;
 namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
-	public class TraktCalendarsModuleTests : TraktRequestTestsBase {
+	internal class TraktCalendarsModuleTests : TraktRequestTestsBase {
 
 		[TestMethod]
-		public async Task TestCalendarsGetMoviesAsync() {
+		internal async Task TestCalendarsGetMoviesAsync() {
 
 			FakeResponsePath = @"Calendars\Shows.json";
 			var result = await Client.Calendars.GetShowsAsync();
@@ -34,7 +34,7 @@ namespace TraktSharp.Tests.Modules {
 		}
 
 		[TestMethod]
-		public async Task TestCalendarsGetNewShowsAsync() {
+		internal async Task TestCalendarsGetNewShowsAsync() {
 
 			FakeResponsePath = @"Calendars\ShowsNew.json";
 			var result = await Client.Calendars.GetShowsAsync();
@@ -56,7 +56,7 @@ namespace TraktSharp.Tests.Modules {
 		}
 
 		[TestMethod]
-		public async Task TestCalendarsGetPremiereShowsAsync() {
+		internal async Task TestCalendarsGetPremiereShowsAsync() {
 
 			FakeResponsePath = @"Calendars\ShowsPremieres.json";
 			var result = await Client.Calendars.GetShowsAsync();
@@ -78,7 +78,7 @@ namespace TraktSharp.Tests.Modules {
 		}
 
 		[TestMethod]
-		public async Task TestCalendarsGetShowsAsync() {
+		internal async Task TestCalendarsGetShowsAsync() {
 
 			FakeResponsePath = @"Calendars\Movies.json";
 			var result = await Client.Calendars.GetMoviesAsync();

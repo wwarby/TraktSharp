@@ -7,15 +7,15 @@ using TraktSharp.ExtensionMethods;
 
 namespace TraktSharp.Request.Shows {
 
-	public class TraktShowsUpdatesRequest : TraktGetRequest<IEnumerable<TraktShowsUpdatesResponseItem>> {
+	internal class TraktShowsUpdatesRequest : TraktGetRequest<IEnumerable<TraktShowsUpdatesResponseItem>> {
 
-		public TraktShowsUpdatesRequest(TraktClient client) : base(client) { }
+		internal TraktShowsUpdatesRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "shows/updates/{start_date}"; } }
 
 		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
-		public DateTime? StartDate { get; set; }
+		internal DateTime? StartDate { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {

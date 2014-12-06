@@ -6,9 +6,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.OAuth {
 
-	public class TraktOAuthTokenRequest : TraktPostRequest<TraktOAuthTokenResponse, TraktOAuthTokenRequestBody> {
+	internal class TraktOAuthTokenRequest : TraktPostRequest<TraktOAuthTokenResponse, TraktOAuthTokenRequestBody> {
 
-		public TraktOAuthTokenRequest(TraktClient client) : base(client) { }
+		internal TraktOAuthTokenRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "oauth/token"; } }
 

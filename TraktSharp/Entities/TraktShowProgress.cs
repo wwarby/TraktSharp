@@ -13,11 +13,11 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "aired")]
 		public int? AiredCount { get; set; }
 
-		/// <summary><c>true</c> if all the aired episodes in this all the seasons of this show are completed, otherwise <c>false</c></summary>
+		/// <summary><c>true</c> if all the aired episodes in this all the seasons of the show are completed, otherwise <c>false</c></summary>
 		[JsonProperty(PropertyName = "completed")]
 		public int? Completed { get; set; }
 
-		/// <summary>A collection indicating which seasons and episodes in this show have been completed</summary>
+		/// <summary>A collection indicating which seasons and episodes in the show have been completed</summary>
 		[JsonProperty(PropertyName = "seasons")]
 		public IEnumerable<TraktSeasonProgress> Seasons { get; set; }
 

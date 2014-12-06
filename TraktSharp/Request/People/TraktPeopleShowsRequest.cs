@@ -5,9 +5,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.People {
 
-	public class TraktPeopleShowsRequest : TraktGetByIdRequest<TraktShowCredits> {
+	internal class TraktPeopleShowsRequest : TraktGetByIdRequest<TraktShowCredits> {
 
-		public TraktPeopleShowsRequest(TraktClient client) : base(client) { }
+		internal TraktPeopleShowsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "people/{id}/shows"; } }
 

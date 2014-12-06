@@ -6,9 +6,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Shows {
 
-	public class TraktShowsCommentsRequest : TraktGetByIdRequest<IEnumerable<TraktComment>> {
+	internal class TraktShowsCommentsRequest : TraktGetByIdRequest<IEnumerable<TraktComment>> {
 
-		public TraktShowsCommentsRequest(TraktClient client) : base(client) { }
+		internal TraktShowsCommentsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "shows/{id}/comments"; } }
 

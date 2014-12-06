@@ -9,28 +9,28 @@ using Newtonsoft.Json.Linq;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
 using TraktSharp.Examples.Wpf.Helpers;
+using TraktSharp.Examples.Wpf.Serialization;
 using TraktSharp.Examples.Wpf.Views;
 using TraktSharp.Exceptions;
 using TraktSharp.Helpers;
-using TraktSharp.Serialization;
 
 namespace TraktSharp.Examples.Wpf.ViewModels {
 
-	public class MainViewModel : ViewModelBase {
+	internal class MainViewModel : ViewModelBase {
 
 		private MainView _view;
 
-		public MainViewModel() { }
+		internal MainViewModel() { }
 
-		public MainViewModel(MainView view) {
+		internal MainViewModel(MainView view) {
 
 			_view = view;
 
 			Client = new TraktClient();
-			ExtendedOptions = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TraktExtendedOption)).Select(v => v.Value.Label));
-			TestRequestTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
-			IdLookupTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TraktIdLookupType)).Select(v => v.Value.Label));
-			TextQueryTypes = new ObservableCollection<string>(EnumsHelper.GetEnumInfo(typeof(TraktTextQueryType)).Select(v => v.Value.Label));
+			ExtendedOptions = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktExtendedOption)).Select(v => v.Value.Label));
+			TestRequestTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
+			IdLookupTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktIdLookupType)).Select(v => v.Value.Label));
+			TextQueryTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktTextQueryType)).Select(v => v.Value.Label));
 			TryLoadState();
 			PropertyChanged += (sender, e) => TrySaveState();
 
@@ -74,7 +74,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		}
 
-		public TraktClient Client { get; private set; }
+		private TraktClient Client { get; set; }
 
 		public string Username {
 			get { return Client.Authentication.Username; }
@@ -116,9 +116,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private TraktExtendedOption _selectedExtendedOption;
 		public string SelectedExtendedOption {
-			get { return EnumsHelper.GetLabel(_selectedExtendedOption); }
+			get { return TraktEnumHelper.GetLabel(_selectedExtendedOption); }
 			set {
-				_selectedExtendedOption = EnumsHelper.FromLabel<TraktExtendedOption>(value);
+				_selectedExtendedOption = TraktEnumHelper.FromLabel<TraktExtendedOption>(value);
 				NotifyPropertyChanged();
 			}
 		}
@@ -127,9 +127,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private TestRequests.TestRequestType _selectedTestRequestType;
 		public string SelectedTestRequestType {
-			get { return EnumsHelper.GetDescription(_selectedTestRequestType); }
+			get { return TraktEnumHelper.GetDescription(_selectedTestRequestType); }
 			set {
-				_selectedTestRequestType = EnumsHelper.FromDescription<TestRequests.TestRequestType>(value);
+				_selectedTestRequestType = TraktEnumHelper.FromDescription<TestRequests.TestRequestType>(value);
 				NotifyPropertyChanged();
 			}
 		}
@@ -138,9 +138,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private TraktTextQueryType _selectedTextQueryType;
 		public string SelectedTextQueryType {
-			get { return EnumsHelper.GetLabel(_selectedTextQueryType); }
+			get { return TraktEnumHelper.GetLabel(_selectedTextQueryType); }
 			set {
-				_selectedTextQueryType = EnumsHelper.FromLabel<TraktTextQueryType>(value);
+				_selectedTextQueryType = TraktEnumHelper.FromLabel<TraktTextQueryType>(value);
 				NotifyPropertyChanged();
 			}
 		}
@@ -149,9 +149,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private TraktIdLookupType _selectedIdLookupType;
 		public string SelectedIdLookupType {
-			get { return EnumsHelper.GetLabel(_selectedIdLookupType); }
+			get { return TraktEnumHelper.GetLabel(_selectedIdLookupType); }
 			set {
-				_selectedIdLookupType = EnumsHelper.FromLabel<TraktIdLookupType>(value);
+				_selectedIdLookupType = TraktEnumHelper.FromLabel<TraktIdLookupType>(value);
 				NotifyPropertyChanged();
 			}
 		}
@@ -314,7 +314,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			} catch { }
 		}
 
-		private void UpdateLastReturnValue(object value) {
+		public void UpdateLastReturnValue(object value) {
 			var sb = new StringBuilder();
 			if (value != null) {
 				sb.AppendLine(value.GetType().ToString());

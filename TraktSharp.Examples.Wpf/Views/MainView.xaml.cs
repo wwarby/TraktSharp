@@ -6,9 +6,9 @@ using TraktSharp.Examples.Wpf.ViewModels;
 
 namespace TraktSharp.Examples.Wpf.Views {
 
-	public partial class MainView {
+	internal partial class MainView {
 
-		public MainViewModel ViewModel { get; set; }
+		private MainViewModel ViewModel { get; set; }
 
 		public MainView() {
 			InitializeComponent();

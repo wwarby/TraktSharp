@@ -7,7 +7,7 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Seasons {
 
-	public class TraktSeasonsWatchingRequest : TraktGetByIdRequest<IEnumerable<TraktUser>> {
+	internal class TraktSeasonsWatchingRequest : TraktGetByIdRequest<IEnumerable<TraktUser>> {
 
 		public TraktSeasonsWatchingRequest(TraktClient client) : base(client) { }
 

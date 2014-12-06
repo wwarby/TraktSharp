@@ -6,9 +6,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncWatchedMoviesRequest : TraktGetRequest<IEnumerable<TraktWatchedMoviesResponseItem>> {
+	internal class TraktSyncWatchedMoviesRequest : TraktGetRequest<IEnumerable<TraktWatchedMoviesResponseItem>> {
 
-		public TraktSyncWatchedMoviesRequest(TraktClient client) : base(client) { }
+		internal TraktSyncWatchedMoviesRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "sync/watched/movies"; } }
 

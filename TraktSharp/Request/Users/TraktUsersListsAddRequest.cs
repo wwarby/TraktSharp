@@ -5,9 +5,9 @@ using TraktSharp.Entities.RequestBody.Users;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersListsAddRequest : TraktPostByUsernameRequest<TraktList, TraktListRequestBody> {
+	internal class TraktUsersListsAddRequest : TraktPostByUsernameRequest<TraktList, TraktListRequestBody> {
 
-		public TraktUsersListsAddRequest(TraktClient client) : base(client) { }
+		internal TraktUsersListsAddRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "users/{username}/lists"; } }
 

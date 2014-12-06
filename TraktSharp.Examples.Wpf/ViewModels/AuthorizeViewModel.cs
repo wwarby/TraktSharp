@@ -7,9 +7,9 @@ using TraktSharp.Examples.Wpf.Views;
 
 namespace TraktSharp.Examples.Wpf.ViewModels {
 
-	public class AuthorizeViewModel : ViewModelBase {
+	internal class AuthorizeViewModel : ViewModelBase {
 
-		public AuthorizeViewModel(TraktClient traktClient) {
+		internal AuthorizeViewModel(TraktClient traktClient) {
 
 			// Teach the WebBrowser control some manners
 			NativeMethods.DisableInternetExplorerClickSounds();
@@ -22,9 +22,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			Client = traktClient;
 		}
 
-		public TraktClient Client { get; private set; }
+		internal TraktClient Client { get; private set; }
 
-		public void Navigating(AuthorizeView sender, NavigatingCancelEventArgs e) {
+		internal void Navigating(AuthorizeView sender, NavigatingCancelEventArgs e) {
 			if (!e.Uri.AbsoluteUri.StartsWith(Client.Authentication.RedirectUri, StringComparison.CurrentCultureIgnoreCase)) {
 				return;
 			}

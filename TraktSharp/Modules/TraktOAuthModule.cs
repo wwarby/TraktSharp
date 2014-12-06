@@ -24,7 +24,7 @@ namespace TraktSharp.Modules {
 		/// </summary>
 		/// <returns>See summary</returns>
 		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync() {
-			return await GetOAuthTokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.RedirectUri, EnumsHelper.GetDescription(TraktOAuthTokenGrantType.AuthorizationCode));
+			return await GetOAuthTokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.RedirectUri, TraktEnumHelper.GetDescription(TraktOAuthTokenGrantType.AuthorizationCode));
 		}
 
 		/// <summary>

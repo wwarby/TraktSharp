@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersListItemsRemoveRequest : TraktPostByUsernameAndIdRequest<TraktRemoveResponse, TraktUsersListItemsRemoveRequestBody> {
+	internal class TraktUsersListItemsRemoveRequest : TraktPostByUsernameAndIdRequest<TraktRemoveResponse, TraktUsersListItemsRemoveRequestBody> {
 
-		public TraktUsersListItemsRemoveRequest(TraktClient client) : base(client) { }
+		internal TraktUsersListItemsRemoveRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "users/{username}/lists/{id}/items/remove"; } }
 

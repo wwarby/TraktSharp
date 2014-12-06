@@ -6,9 +6,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersRequestsRequest : TraktGetRequest<IEnumerable<TraktFollowRequest>> {
+	internal class TraktUsersRequestsRequest : TraktGetRequest<IEnumerable<TraktFollowRequest>> {
 
-		public TraktUsersRequestsRequest(TraktClient client) : base(client) { }
+		internal TraktUsersRequestsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "users/requests"; } }
 

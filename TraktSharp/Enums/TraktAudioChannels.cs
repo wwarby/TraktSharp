@@ -18,6 +18,9 @@ namespace TraktSharp.Enums {
 		/// <summary>3.0</summary>
 		[Description("3.0")]
 		Channels30,
+		/// <summary>3.1</summary>
+		[Description("3.1")]
+		Channels31,
 		/// <summary>4.0</summary>
 		[Description("4.0")]
 		Channels40,

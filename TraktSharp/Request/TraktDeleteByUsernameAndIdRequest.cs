@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktDeleteByUsernameAndIdRequest : TraktDeleteRequest {
+	internal abstract class TraktDeleteByUsernameAndIdRequest : TraktDeleteRequest {
 
 		protected TraktDeleteByUsernameAndIdRequest(TraktClient client) : base(client) { }
 
-		public string Username { get; set; }
+		internal string Username { get; set; }
 
-		public string Id { get; set; }
+		internal string Id { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {

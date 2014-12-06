@@ -8,7 +8,8 @@
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
 		Closing="WindowClosing"
-        Title="TraktSharp Examples" Width="1000" Height="600" MinWidth="1000" MinHeight="600" Icon="/Icons/TraktSharp.ico">
+        Title="TraktSharp Examples" Width="1000" Height="600" MinWidth="1000" MinHeight="600" Icon="/Icons/TraktSharp.ico"
+        x:ClassModifier="internal">
 	
 	<Window.Resources>
 		

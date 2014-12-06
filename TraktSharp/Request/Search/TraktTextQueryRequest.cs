@@ -7,9 +7,9 @@ using TraktSharp.Helpers;
 
 namespace TraktSharp.Request.Search {
 
-	public class TraktTextQueryRequest : TraktGetRequest<IEnumerable<TraktSearchResult>> {
+	internal class TraktTextQueryRequest : TraktGetRequest<IEnumerable<TraktSearchResult>> {
 
-		public TraktTextQueryRequest(TraktClient client) : base(client) { }
+		internal TraktTextQueryRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "search"; } }
 
@@ -17,15 +17,15 @@ namespace TraktSharp.Request.Search {
 
 		protected override bool SupportsPagination { get { return true; } }
 
-		public string Query { get; set; }
+		internal string Query { get; set; }
 
-		public TraktTextQueryType Type { get; set; }
+		internal TraktTextQueryType Type { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
 			var ret = base.GetQueryStringParameters(queryStringParameters).ToDictionary(o => o.Key, o => o.Value);
 			ret["query"] = Query;
 			if (Type != TraktTextQueryType.Unspecified) {
-				ret["type"] = EnumsHelper.GetDescription(Type);
+				ret["type"] = TraktEnumHelper.GetDescription(Type);
 			}
 			return ret;
 		}

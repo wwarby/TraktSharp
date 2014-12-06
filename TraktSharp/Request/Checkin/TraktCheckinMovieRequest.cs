@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response.Checkin;
 
 namespace TraktSharp.Request.Checkin {
 
-	public class TraktCheckinMovieRequest : TraktPostRequest<TraktCheckinMovieResponse, TraktCheckinMovieRequestBody> {
+	internal class TraktCheckinMovieRequest : TraktPostRequest<TraktCheckinMovieResponse, TraktCheckinMovieRequestBody> {
 
-		public TraktCheckinMovieRequest(TraktClient client) : base(client) { }
+		internal TraktCheckinMovieRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "checkin"; } }
 

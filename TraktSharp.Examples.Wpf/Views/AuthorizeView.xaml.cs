@@ -5,9 +5,9 @@ using TraktSharp.Examples.Wpf.ViewModels;
 
 namespace TraktSharp.Examples.Wpf.Views {
 
-	public partial class AuthorizeView {
+	internal partial class AuthorizeView {
 
-		public AuthorizeViewModel ViewModel { get; set; }
+		private AuthorizeViewModel ViewModel { get; set; }
 
 		public AuthorizeView(AuthorizeViewModel viewModel) {
 			InitializeComponent();
@@ -16,7 +16,7 @@ namespace TraktSharp.Examples.Wpf.Views {
 			Load();
 		}
 
-		public void Load() { AuthorizeBrowser.Navigate(ViewModel.Client.Authentication.AuthorizationUrl); }
+		private void Load() { AuthorizeBrowser.Navigate(ViewModel.Client.Authentication.AuthorizationUrl); }
 
 		private void AuthorizeBrowserNavigating(object sender, NavigatingCancelEventArgs e) { ViewModel.Navigating(this, e); }
 

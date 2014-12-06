@@ -12,13 +12,14 @@ using TraktSharp.Entities;
 using TraktSharp.Enums;
 using TraktSharp.EventArgs;
 using TraktSharp.Exceptions;
+using TraktSharp.ExtensionMethods;
 using TraktSharp.Helpers;
 using TraktSharp.Serialization;
 using TraktSharp.Structs;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktRequest<TResponse, TRequestBody> : ITraktRequest<TResponse> where TRequestBody : class {
+	internal abstract class TraktRequest<TResponse, TRequestBody> : ITraktRequest<TResponse> where TRequestBody : class {
 
 		public event BeforeRequestEventHandler BeforeRequest;
 		public event AfterRequestEventHandler AfterRequest;
@@ -30,13 +31,13 @@ namespace TraktSharp.Request {
 			Pagination = new TraktPaginationOptions();
 		}
 
-		public TraktExtendedOption Extended { get; set; }
+		internal TraktExtendedOption Extended { get; set; }
 
-		public TraktPaginationOptions Pagination { get; set; }
+		internal TraktPaginationOptions Pagination { get; set; }
 
 		private bool _authenticate;
 
-		public bool Authenticate {
+		internal bool Authenticate {
 			get {
 				if (_client.Configuration.ForceAuthentication && OAuthRequirement != TraktOAuthRequirement.Forbidden) { return true; }
 				if (OAuthRequirement == TraktOAuthRequirement.Required) { return true; }
@@ -72,7 +73,7 @@ namespace TraktSharp.Request {
 
 		protected virtual IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
 			if (Extended != TraktExtendedOption.Unspecified) {
-				queryStringParameters["extended"] = EnumsHelper.GetDescription(Extended);
+				queryStringParameters["extended"] = TraktEnumHelper.GetDescription(Extended);
 			}
 			if (SupportsPagination) {
 				if (Pagination.Page != null) { queryStringParameters["page"] = Pagination.Page.ToString(); }
@@ -91,9 +92,9 @@ namespace TraktSharp.Request {
 			}
 		}
 
-		public string Url { get { return string.Format("{0}{1}{2}", _client.Configuration.BaseUrl, Path, QueryString); } }
+		internal string Url { get { return string.Format("{0}{1}{2}", _client.Configuration.BaseUrl, Path, QueryString); } }
 
-		public TRequestBody RequestBody { get; set; }
+		internal TRequestBody RequestBody { get; set; }
 
 		protected HttpContent RequestBodyContent {
 			get {

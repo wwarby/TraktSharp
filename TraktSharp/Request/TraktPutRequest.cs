@@ -5,7 +5,7 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktPutRequest<TResponse, TRequestBody> : TraktRequest<TResponse, TRequestBody> where TRequestBody : class {
+	internal abstract class TraktPutRequest<TResponse, TRequestBody> : TraktRequest<TResponse, TRequestBody> where TRequestBody : class {
 
 		protected TraktPutRequest(TraktClient client) : base(client) { }
 

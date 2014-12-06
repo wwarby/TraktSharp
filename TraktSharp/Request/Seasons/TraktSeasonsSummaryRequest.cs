@@ -6,9 +6,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Seasons {
 
-	public class TraktSeasonsSummaryRequest : TraktGetByIdRequest<IEnumerable<TraktSeason>> {
+	internal class TraktSeasonsSummaryRequest : TraktGetByIdRequest<IEnumerable<TraktSeason>> {
 
-		public TraktSeasonsSummaryRequest(TraktClient client) : base(client) { }
+		internal TraktSeasonsSummaryRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "shows/{id}/seasons"; } }
 

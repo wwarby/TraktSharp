@@ -5,7 +5,7 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktBodylessPostRequest<TResponse> : TraktRequest<TResponse, object> {
+	internal abstract class TraktBodylessPostRequest<TResponse> : TraktRequest<TResponse, object> {
 
 		protected TraktBodylessPostRequest(TraktClient client) : base(client) { }
 

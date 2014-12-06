@@ -8,10 +8,10 @@ using TraktSharp.Entities.Response.Auth;
 namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
-	public class TraktAuthModuleTests : TraktRequestTestsBase {
+	internal class TraktAuthModuleTests : TraktRequestTestsBase {
 
 		[TestMethod]
-		public async Task TestLoginAsync() {
+		internal async Task TestLoginAsync() {
 
 			FakeResponsePath = @"Auth\Login.json";
 			var result = await Client.Auth.LoginAsync("foo", "bar");
@@ -22,7 +22,7 @@ namespace TraktSharp.Tests.Modules {
 		}
 
 		[TestMethod]
-		public async Task TestLogoutAsync() {
+		internal async Task TestLogoutAsync() {
 
 			await Client.Auth.LogoutAsync();
 

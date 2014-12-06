@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response.Users;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersFriendsRequest : TraktGetByUsernameRequest<IEnumerable<TraktUsersFriendsResponseItem>> {
+	internal class TraktUsersFriendsRequest : TraktGetByUsernameRequest<IEnumerable<TraktUsersFriendsResponseItem>> {
 
-		public TraktUsersFriendsRequest(TraktClient client) : base(client) { }
+		internal TraktUsersFriendsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "users/{username}/friends"; } }
 

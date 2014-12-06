@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace TraktSharp.Request.Auth {
 
-	public class TraktAuthLogoutRequest : TraktDeleteRequest {
+	internal class TraktAuthLogoutRequest : TraktDeleteRequest {
 
-		public TraktAuthLogoutRequest(TraktClient client) : base(client) { }
+		internal TraktAuthLogoutRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "auth/logout"; } }
 

@@ -7,19 +7,19 @@ using TraktSharp.Helpers;
 
 namespace TraktSharp.Request.Genres {
 
-	public class TraktGenresListRequest : TraktGetRequest<IEnumerable<TraktGenresListResponseItem>> {
+	internal class TraktGenresListRequest : TraktGetRequest<IEnumerable<TraktGenresListResponseItem>> {
 
-		public TraktGenresListRequest(TraktClient client) : base(client) { }
+		internal TraktGenresListRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "genres/{type}"; } }
 
 		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
-		public TraktGenreTypeOptions Type { get; set; }
+		internal TraktGenreTypeOptions Type { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
-				{"type", EnumsHelper.GetDescription(Type)}
+				{"type", TraktEnumHelper.GetDescription(Type)}
 			};
 		}
 

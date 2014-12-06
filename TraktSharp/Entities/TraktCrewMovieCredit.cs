@@ -8,7 +8,7 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktCrewMovieCredit {
 
-		/// <summary>The crew member's job on this movie</summary>
+		/// <summary>The crew member's job on the movie</summary>
 		[JsonProperty(PropertyName = "job")]
 		public string Job { get; set; }
 

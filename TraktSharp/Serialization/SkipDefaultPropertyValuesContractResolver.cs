@@ -6,7 +6,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace TraktSharp.Serialization {
 
-	public class SkipDefaultPropertyValuesContractResolver : DefaultContractResolver {
+	internal class SkipDefaultPropertyValuesContractResolver : DefaultContractResolver {
 
 		protected override JsonProperty CreateProperty(MemberInfo member,
 			MemberSerialization memberSerialization) {

@@ -5,7 +5,7 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktDeleteRequest : TraktRequest<object, object> {
+	internal abstract class TraktDeleteRequest : TraktRequest<object, object> {
 
 		protected TraktDeleteRequest(TraktClient client) : base(client) { }
 

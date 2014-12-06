@@ -4,9 +4,9 @@ using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Comments {
 
-	public class TraktCommentsUpdateRequest : TraktPutByIdRequest<TraktComment, TraktComment> {
+	internal class TraktCommentsUpdateRequest : TraktPutByIdRequest<TraktComment, TraktComment> {
 
-		public TraktCommentsUpdateRequest(TraktClient client) : base(client) { }
+		internal TraktCommentsUpdateRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "comments/{id}"; } }
 

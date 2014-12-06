@@ -5,13 +5,13 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktGetByUsernameRequest<TResponse> : TraktGetRequest<TResponse> {
+	internal abstract class TraktGetByUsernameRequest<TResponse> : TraktGetRequest<TResponse> {
 
 		protected TraktGetByUsernameRequest(TraktClient client) : base(client) { }
 
 		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Optional; } }
 
-		public string Username { get; set; }
+		internal string Username { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {

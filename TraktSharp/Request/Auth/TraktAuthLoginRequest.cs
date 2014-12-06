@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response.Auth;
 
 namespace TraktSharp.Request.Auth {
 
-	public class TraktAuthLoginRequest : TraktPostRequest<TraktAuthLoginResponse, TraktAuthLoginRequestBody> {
+	internal class TraktAuthLoginRequest : TraktPostRequest<TraktAuthLoginResponse, TraktAuthLoginRequestBody> {
 
-		public TraktAuthLoginRequest(TraktClient client) : base(client) { }
+		internal TraktAuthLoginRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "auth/login"; } }
 

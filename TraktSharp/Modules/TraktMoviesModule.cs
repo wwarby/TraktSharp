@@ -153,7 +153,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movie">The movie</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktPeople> GetCastAndCrewAsync(TraktMovie movie, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(TraktMovie movie, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await GetCastAndCrewAsync(movie.Ids.GetBestId(), extended);
 		}
 
@@ -161,7 +161,7 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktPeople> GetCastAndCrewAsync(string movieId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(string movieId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktMoviesPeopleRequest(Client) {
 				Id = movieId,
 				Extended = extended
@@ -218,7 +218,7 @@ namespace TraktSharp.Modules {
 			return null;
 		}
 
-		/// <summary>Returns all users watching this movie right now</summary>
+		/// <summary>Returns all users watching the movie right now</summary>
 		/// <param name="movie">The movie</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
@@ -226,7 +226,7 @@ namespace TraktSharp.Modules {
 			return await GetUsersWatchingMovieAsync(movie.Ids.GetBestId(), extended);
 		}
 
-		/// <summary>Returns all users watching this movie right now</summary>
+		/// <summary>Returns all users watching the movie right now</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>

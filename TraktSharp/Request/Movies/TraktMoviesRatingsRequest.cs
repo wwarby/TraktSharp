@@ -5,9 +5,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Movies {
 
-	public class TraktMoviesRatingsRequest : TraktGetByIdRequest<TraktRatings> {
+	internal class TraktMoviesRatingsRequest : TraktGetByIdRequest<TraktRatings> {
 
-		public TraktMoviesRatingsRequest(TraktClient client) : base(client) { }
+		internal TraktMoviesRatingsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "movies/{id}/ratings"; } }
 

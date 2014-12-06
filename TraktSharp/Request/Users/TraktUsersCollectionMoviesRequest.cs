@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersCollectionMoviesRequest : TraktGetByUsernameRequest<IEnumerable<TraktCollectionMoviesResponseItem>> {
+	internal class TraktUsersCollectionMoviesRequest : TraktGetByUsernameRequest<IEnumerable<TraktCollectionMoviesResponseItem>> {
 
-		public TraktUsersCollectionMoviesRequest(TraktClient client) : base(client) { }
+		internal TraktUsersCollectionMoviesRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "users/{username}/collection/movies"; } }
 

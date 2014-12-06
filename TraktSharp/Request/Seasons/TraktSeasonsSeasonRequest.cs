@@ -7,15 +7,15 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Seasons {
 
-	public class TraktSeasonsSeasonRequest : TraktGetByIdRequest<IEnumerable<TraktEpisode>> {
+	internal class TraktSeasonsSeasonRequest : TraktGetByIdRequest<IEnumerable<TraktEpisode>> {
 
-		public TraktSeasonsSeasonRequest(TraktClient client) : base(client) { }
+		internal TraktSeasonsSeasonRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}"; } }
 
 		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
-		public int Season { get; set; }
+		internal int Season { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {

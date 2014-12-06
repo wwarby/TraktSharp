@@ -105,7 +105,7 @@ namespace TraktSharp.Modules {
 			return null;
 		}
 
-		/// <summary>Returns all users watching this episode right now</summary>
+		/// <summary>Returns all users watching the episode right now</summary>
 		/// <param name="show">The show</param>
 		/// <param name="episode">The episode</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
@@ -114,7 +114,7 @@ namespace TraktSharp.Modules {
 			return await GetUsersWatchingEpisodeAsync(show.Ids.GetBestId(), episode.SeasonNumber.GetValueOrDefault(), episode.EpisodeNumber.GetValueOrDefault(), extended);
 		}
 
-		/// <summary>Returns all users watching this episode right now</summary>
+		/// <summary>Returns all users watching the episode right now</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="seasonNumber">The season number</param>
 		/// <param name="episodeNumber">The episode number within the specified season</param>

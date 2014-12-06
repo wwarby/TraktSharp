@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncWatchlistRemoveRequest : TraktPostRequest<TraktRemoveResponse, TraktSyncRemoveRequestBody> {
+	internal class TraktSyncWatchlistRemoveRequest : TraktPostRequest<TraktRemoveResponse, TraktSyncRemoveRequestBody> {
 
-		public TraktSyncWatchlistRemoveRequest(TraktClient client) : base(client) { }
+		internal TraktSyncWatchlistRemoveRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "sync/watchlist/remove"; } }
 

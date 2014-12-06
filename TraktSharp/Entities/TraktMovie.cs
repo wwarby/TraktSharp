@@ -5,51 +5,67 @@ using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
 
+	/// <summary>A movie</summary>
 	[Serializable]
 	public class TraktMovie {
 
+		/// <summary>The movie title</summary>
 		[JsonProperty(PropertyName = "title")]
 		public string Title { get; set; }
 
+		/// <summary>The movie release year</summary>
 		[JsonProperty(PropertyName = "year")]
 		public int? Year { get; set; }
 
+		/// <summary>A collection of unique identifiers for the movie in various web services</summary>
 		[JsonProperty(PropertyName = "ids")]
 		public TraktMovieIds Ids { get; set; }
 
+		/// <summary>A collection of images related to the movie</summary>
 		[JsonProperty(PropertyName = "images")]
 		public TraktMovieImages Images { get; set; }
 
+		/// <summary>The movie's promotional tag line</summary>
 		[JsonProperty(PropertyName = "tagline")]
 		public string Tagline { get; set; }
 
+		/// <summary>A synopsis of the movie</summary>
 		[JsonProperty(PropertyName = "overview")]
 		public string Overview { get; set; }
 
+		/// <summary>The UTC date when the movie was first released</summary>
 		[JsonProperty(PropertyName = "released")]
 		public DateTime? Released { get; set; }
 
+		/// <summary>The movie's running time (in minutes)</summary>
 		[JsonProperty(PropertyName = "runtime")]
 		public int? Runtime { get; set; }
 
+		/// <summary>The UTC date when the movie was last updated</summary>
 		[JsonProperty(PropertyName = "updated_at")]
 		public DateTime? UpdatedAt { get; set; }
 
+		/// <summary>The URL of a trailer for the movie</summary>
 		[JsonProperty(PropertyName = "trailer")]
 		public string Trailer { get; set; }
 
+		/// <summary>The URL of the movie's homepage</summary>
 		[JsonProperty(PropertyName = "homepage")]
 		public string Homepage { get; set; }
 
+		/// <summary>The average user rating for the movie</summary>
 		[JsonProperty(PropertyName = "rating")]
 		public decimal? Rating { get; set; }
 
+		/// <summary>The language of the movie in the form of a two-letter language code</summary>
 		[JsonProperty(PropertyName = "language")]
 		public string Language { get; set; }
 
+		/// <summary>A list of translations available for the movie in the form of two-letter language codes</summary>
 		[JsonProperty(PropertyName = "available_translations")]
 		public IEnumerable<string> AvailableTranslations { get; set; }
 
+		/// <summary>The genres to the movie is tagged with</summary>
 		[JsonProperty(PropertyName = "genres")]
 		public IEnumerable<string> Genres { get; set; }
 

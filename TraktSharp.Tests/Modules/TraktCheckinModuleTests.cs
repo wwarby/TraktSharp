@@ -14,10 +14,10 @@ using TraktSharp.Factories;
 namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
-	public class TraktCheckinModuleTests : TraktRequestTestsBase {
+	internal class TraktCheckinModuleTests : TraktRequestTestsBase {
 
 		[TestMethod]
-		public async Task TestCheckinCheckinMovieAsync() {
+		internal async Task TestCheckinCheckinMovieAsync() {
 
 			FakeResponsePath = @"Checkin\Movie.json";
 
@@ -72,7 +72,7 @@ namespace TraktSharp.Tests.Modules {
 		}
 
 		[TestMethod]
-		public async Task TestCheckinCheckinEpisodeAsync() {
+		internal async Task TestCheckinCheckinEpisodeAsync() {
 
 			FakeResponsePath = @"Checkin\Episode.json";
 			

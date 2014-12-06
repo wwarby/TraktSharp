@@ -174,7 +174,7 @@ namespace TraktSharp.Modules {
 		/// <param name="show">The show</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktPeople> GetCastAndCrewAsync(TraktShow show, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(TraktShow show, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await GetCastAndCrewAsync(show.Ids.GetBestId(), extended);
 		}
 
@@ -182,7 +182,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktPeople> GetCastAndCrewAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktShowsPeopleRequest(Client) {
 				Id = showId,
 				Extended = extended
@@ -239,7 +239,7 @@ namespace TraktSharp.Modules {
 			return null;
 		}
 
-		/// <summary>Returns all users watching this show right now</summary>
+		/// <summary>Returns all users watching the show right now</summary>
 		/// <param name="show">The show</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
@@ -247,7 +247,7 @@ namespace TraktSharp.Modules {
 			return await GetUsersWatchingShowAsync(show.Ids.GetBestId(), extended);
 		}
 
-		/// <summary>Returns all users watching this show right now</summary>
+		/// <summary>Returns all users watching the show right now</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>

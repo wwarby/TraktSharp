@@ -7,9 +7,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Episodes {
 
-	public class TraktEpisodesCommentsRequest : TraktGetByIdRequest<IEnumerable<TraktComment>> {
+	internal class TraktEpisodesCommentsRequest : TraktGetByIdRequest<IEnumerable<TraktComment>> {
 
-		public TraktEpisodesCommentsRequest(TraktClient client) : base(client) { }
+		internal TraktEpisodesCommentsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}/episodes/{episode}/comments"; } }
 
@@ -17,9 +17,9 @@ namespace TraktSharp.Request.Episodes {
 
 		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
-		public int Season { get; set; }
+		internal int Season { get; set; }
 
-		public int Episode { get; set; }
+		internal int Episode { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {

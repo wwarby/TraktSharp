@@ -362,7 +362,7 @@ namespace TraktSharp.Examples.Wpf {
 				// Invalid request type
 				default:
 					throw new ArgumentOutOfRangeException("requestType",
-						string.Format("A test case has not been implemented for the requested method type: {0}", EnumsHelper.GetDescription(requestType)));
+						string.Format("A test case has not been implemented for the requested method type: {0}", TraktEnumHelper.GetDescription(requestType)));
 			}
 
 		}

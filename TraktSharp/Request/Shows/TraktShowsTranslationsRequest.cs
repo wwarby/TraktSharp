@@ -6,15 +6,15 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Shows {
 
-	public class TraktShowsTranslationsRequest : TraktGetByIdRequest<IEnumerable<TraktShowsTranslationsResponseItem>> {
+	internal class TraktShowsTranslationsRequest : TraktGetByIdRequest<IEnumerable<TraktShowsTranslationsResponseItem>> {
 
-		public TraktShowsTranslationsRequest(TraktClient client) : base(client) { }
+		internal TraktShowsTranslationsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "shows/{id}/translations/{language}"; } }
 
 		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
 
-		public string Language { get; set; }
+		internal string Language { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {

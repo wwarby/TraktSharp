@@ -10,10 +10,10 @@ using TraktSharp.Enums;
 namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
-	public class TraktGenresModuleTests : TraktRequestTestsBase {
+	internal class TraktGenresModuleTests : TraktRequestTestsBase {
 
 		[TestMethod]
-		public async Task TestGenresGetGenresAsync() {
+		internal async Task TestGenresGetGenresAsync() {
 
 			FakeResponsePath = @"Genres\Movies.json";
 			var moviesResult = (await Client.Genres.GetGenresAsync(TraktGenreTypeOptions.Movies)).ToList();

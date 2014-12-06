@@ -6,9 +6,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncCollectionShowsRequest : TraktGetRequest<IEnumerable<TraktCollectionShowsResponseItem>> {
+	internal class TraktSyncCollectionShowsRequest : TraktGetRequest<IEnumerable<TraktCollectionShowsResponseItem>> {
 
-		public TraktSyncCollectionShowsRequest(TraktClient client) : base(client) { }
+		internal TraktSyncCollectionShowsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "sync/collection/shows"; } }
 

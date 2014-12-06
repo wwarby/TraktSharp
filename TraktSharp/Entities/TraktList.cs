@@ -26,8 +26,8 @@ namespace TraktSharp.Entities {
 		/// <summary>The privacy option for this list in a more usable enum form</summary>
 		[JsonIgnore]
 		public TraktPrivacyOption Privacy {
-			get { return EnumsHelper.FromDescription(PrivacyString, TraktPrivacyOption.Unspecified); }
-			set { PrivacyString = EnumsHelper.GetDescription(value); }
+			get { return TraktEnumHelper.FromDescription(PrivacyString, TraktPrivacyOption.Unspecified); }
+			set { PrivacyString = TraktEnumHelper.GetDescription(value); }
 		}
 
 		/// <summary>Indicates whether numbers are displayed for the items in this list</summary>

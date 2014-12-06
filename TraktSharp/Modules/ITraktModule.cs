@@ -5,7 +5,7 @@ using TraktSharp.Request;
 namespace TraktSharp.Modules {
 
 	/// <summary>Represents a module containing Trakt API request methods</summary>
-	public interface ITraktModule {
+	internal interface ITraktModule {
 		
 		/// <summary>Executes immediately before an HTTP request is issued</summary>
 		event BeforeRequestEventHandler BeforeRequest;

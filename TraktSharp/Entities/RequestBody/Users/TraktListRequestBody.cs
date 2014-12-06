@@ -20,8 +20,8 @@ namespace TraktSharp.Entities.RequestBody.Users {
 
 		[JsonIgnore]
 		public TraktPrivacyOption Privacy {
-			get { return EnumsHelper.FromDescription(PrivacyString, TraktPrivacyOption.Unspecified); }
-			set { PrivacyString = EnumsHelper.GetDescription(value); }
+			get { return TraktEnumHelper.FromDescription(PrivacyString, TraktPrivacyOption.Unspecified); }
+			set { PrivacyString = TraktEnumHelper.GetDescription(value); }
 		}
 
 		[JsonProperty(PropertyName = "display_numbers")]

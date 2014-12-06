@@ -5,9 +5,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersSettingsRequest : TraktGetRequest<TraktUserSettings> {
+	internal class TraktUsersSettingsRequest : TraktGetRequest<TraktUserSettings> {
 
-		public TraktUsersSettingsRequest(TraktClient client) : base(client) { }
+		internal TraktUsersSettingsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "users/settings"; } }
 

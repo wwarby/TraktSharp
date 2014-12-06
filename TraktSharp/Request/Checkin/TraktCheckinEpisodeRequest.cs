@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response.Checkin;
 
 namespace TraktSharp.Request.Checkin {
 
-	public class TraktCheckinEpisodeRequest : TraktPostRequest<TraktCheckinEpisodeResponse, TraktCheckinEpisodeRequestBody> {
+	internal class TraktCheckinEpisodeRequest : TraktPostRequest<TraktCheckinEpisodeResponse, TraktCheckinEpisodeRequestBody> {
 
-		public TraktCheckinEpisodeRequest(TraktClient client) : base(client) { }
+		internal TraktCheckinEpisodeRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "checkin"; } }
 

@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersWatchedShowsRequest : TraktGetByUsernameRequest<IEnumerable<TraktWatchedShowsResponseItem>> {
+	internal class TraktUsersWatchedShowsRequest : TraktGetByUsernameRequest<IEnumerable<TraktWatchedShowsResponseItem>> {
 
-		public TraktUsersWatchedShowsRequest(TraktClient client) : base(client) { }
+		internal TraktUsersWatchedShowsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "users/{username}/watched/shows"; } }
 

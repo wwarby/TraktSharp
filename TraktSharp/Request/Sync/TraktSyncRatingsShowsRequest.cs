@@ -7,15 +7,15 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncRatingsShowsRequest : TraktGetRequest<IEnumerable<TraktRatingsShowsResponseItem>> {
+	internal class TraktSyncRatingsShowsRequest : TraktGetRequest<IEnumerable<TraktRatingsShowsResponseItem>> {
 
-		public TraktSyncRatingsShowsRequest(TraktClient client) : base(client) { }
+		internal TraktSyncRatingsShowsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "sync/ratings/shows/{rating}"; } }
 
 		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Required; } }
 
-		public TraktRating Rating { get; set; }
+		internal TraktRating Rating { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {

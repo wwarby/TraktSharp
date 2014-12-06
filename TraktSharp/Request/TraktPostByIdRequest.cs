@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace TraktSharp.Request {
 
-	public abstract class TraktPostByIdRequest<TResponse, TRequestBody> : TraktPostRequest<TResponse, TRequestBody> where TRequestBody : class {
+	internal abstract class TraktPostByIdRequest<TResponse, TRequestBody> : TraktPostRequest<TResponse, TRequestBody> where TRequestBody : class {
 
 		protected TraktPostByIdRequest(TraktClient client) : base(client) { }
 
-		public string Id { get; set; }
+		internal string Id { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {

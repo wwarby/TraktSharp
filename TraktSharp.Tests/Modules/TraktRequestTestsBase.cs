@@ -8,7 +8,7 @@ using TraktSharp.Entities;
 namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
-	public abstract class TraktRequestTestsBase {
+	internal abstract class TraktRequestTestsBase {
 
 		protected TraktRequestTestsBase() {
 			FakeResponseHandler = new FakeResponseHandler();
@@ -31,21 +31,21 @@ namespace TraktSharp.Tests.Modules {
 			};
 		}
 
-		public string FakeResponsePath { get; set; }
+		internal string FakeResponsePath { get; set; }
 
-		public HttpStatusCode FakeResponseCode { get; set; }
+		internal HttpStatusCode FakeResponseCode { get; set; }
 
-		public FakeResponseHandler FakeResponseHandler { get; private set; }
+		internal FakeResponseHandler FakeResponseHandler { get; private set; }
 
-		public TraktClient Client { get; private set; }
+		internal TraktClient Client { get; private set; }
 
-		public HttpRequestMessage LastRequest { get; set; }
+		internal HttpRequestMessage LastRequest { get; set; }
 
-		public HttpResponseMessage LastResponse { get; set; }
+		internal HttpResponseMessage LastResponse { get; set; }
 
-		public string LastResponseText { get; set; }
+		internal string LastResponseText { get; set; }
 
-		public HttpClient LastHttpClient { get; set; }
+		internal HttpClient LastHttpClient { get; set; }
 
 	}
 

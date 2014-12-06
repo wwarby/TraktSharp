@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response.Scrobble;
 
 namespace TraktSharp.Request.Scrobble {
 
-	public class TraktScrobbleStopEpisodeRequest : TraktPostRequest<TraktScrobbleEpisodeResponse, TraktScrobbleEpisodeRequestBody> {
+	internal class TraktScrobbleStopEpisodeRequest : TraktPostRequest<TraktScrobbleEpisodeResponse, TraktScrobbleEpisodeRequestBody> {
 
-		public TraktScrobbleStopEpisodeRequest(TraktClient client) : base(client) { }
+		internal TraktScrobbleStopEpisodeRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "scrobble/stop"; } }
 

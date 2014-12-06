@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncWatchlistAddRequest : TraktPostRequest<TraktAddResponse, TraktSyncWatchlistAddRequestBody> {
+	internal class TraktSyncWatchlistAddRequest : TraktPostRequest<TraktAddResponse, TraktSyncWatchlistAddRequestBody> {
 
-		public TraktSyncWatchlistAddRequest(TraktClient client) : base(client) { }
+		internal TraktSyncWatchlistAddRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "sync/watchlist"; } }
 

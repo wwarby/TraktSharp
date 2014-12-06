@@ -7,9 +7,9 @@ using TraktSharp.ExtensionMethods;
 
 namespace TraktSharp.Request.Movies {
 
-	public class TraktMoviesUpdatesRequest : TraktGetRequest<IEnumerable<TraktMoviesUpdatesResponseItem>> {
+	internal class TraktMoviesUpdatesRequest : TraktGetRequest<IEnumerable<TraktMoviesUpdatesResponseItem>> {
 
-		public TraktMoviesUpdatesRequest(TraktClient client) : base(client) { }
+		internal TraktMoviesUpdatesRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "movies/updates/{start_date}"; } }
 
@@ -17,7 +17,7 @@ namespace TraktSharp.Request.Movies {
 
 		protected override bool SupportsPagination { get { return true; } }
 
-		public DateTime? StartDate { get; set; }
+		internal DateTime? StartDate { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {

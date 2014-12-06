@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncWatchedRemoveRequest : TraktPostRequest<TraktRemoveResponse, TraktSyncRemoveRequestBody> {
+	internal class TraktSyncWatchedRemoveRequest : TraktPostRequest<TraktRemoveResponse, TraktSyncRemoveRequestBody> {
 
-		public TraktSyncWatchedRemoveRequest(TraktClient client) : base(client) { }
+		internal TraktSyncWatchedRemoveRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "sync/history/remove"; } }
 

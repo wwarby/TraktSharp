@@ -5,9 +5,9 @@ using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncRatingsAddRequest : TraktPostRequest<TraktAddResponse, TraktSyncRatingsAddRequestBody> {
+	internal class TraktSyncRatingsAddRequest : TraktPostRequest<TraktAddResponse, TraktSyncRatingsAddRequestBody> {
 
-		public TraktSyncRatingsAddRequest(TraktClient client) : base(client) { }
+		internal TraktSyncRatingsAddRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "sync/ratings"; } }
 

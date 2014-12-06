@@ -5,9 +5,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Sync {
 
-	public class TraktSyncLastActivitiesRequest : TraktGetRequest<TraktSyncLastActivitiesResponse> {
+	internal class TraktSyncLastActivitiesRequest : TraktGetRequest<TraktSyncLastActivitiesResponse> {
 
-		public TraktSyncLastActivitiesRequest(TraktClient client) : base(client) { }
+		internal TraktSyncLastActivitiesRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "sync/last_activities"; } }
 

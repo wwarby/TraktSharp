@@ -4,9 +4,9 @@ using TraktSharp.Entities.Response.Users;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersFollowRequest : TraktBodylessPostByUsernameRequest<TraktUsersFollowResponse> {
+	internal class TraktUsersFollowRequest : TraktBodylessPostByUsernameRequest<TraktUsersFollowResponse> {
 
-		public TraktUsersFollowRequest(TraktClient client) : base(client) { }
+		internal TraktUsersFollowRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "users/{username}/follow"; } }
 

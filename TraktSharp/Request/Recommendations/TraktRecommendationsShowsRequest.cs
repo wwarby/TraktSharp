@@ -6,9 +6,9 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Recommendations {
 
-	public class TraktRecommendationsShowsRequest : TraktGetRequest<IEnumerable<TraktShow>> {
+	internal class TraktRecommendationsShowsRequest : TraktGetRequest<IEnumerable<TraktShow>> {
 
-		public TraktRecommendationsShowsRequest(TraktClient client) : base(client) { }
+		internal TraktRecommendationsShowsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "recommendations/shows"; } }
 

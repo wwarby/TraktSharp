@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace TraktSharp.Request.Comments {
 
-	public class TraktCommentsUnlikeRequest : TraktDeleteByIdRequest {
+	internal class TraktCommentsUnlikeRequest : TraktDeleteByIdRequest {
 
-		public TraktCommentsUnlikeRequest(TraktClient client) : base(client) { }
+		internal TraktCommentsUnlikeRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "comments/{id}/like"; } }
 

@@ -7,13 +7,13 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Users {
 
-	public class TraktUsersRatingsShowsRequest : TraktGetByUsernameRequest<IEnumerable<TraktRatingsShowsResponseItem>> {
+	internal class TraktUsersRatingsShowsRequest : TraktGetByUsernameRequest<IEnumerable<TraktRatingsShowsResponseItem>> {
 
-		public TraktUsersRatingsShowsRequest(TraktClient client) : base(client) { }
+		internal TraktUsersRatingsShowsRequest(TraktClient client) : base(client) { }
 
 		protected override string PathTemplate { get { return "users/{username}/ratings/shows/{rating}"; } }
 
-		public TraktRating Rating { get; set; }
+		internal TraktRating Rating { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
 			return new Dictionary<string, string> {
