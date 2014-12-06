@@ -13,7 +13,7 @@ namespace TraktSharp.Request.Users {
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();
-			if ((RequestBody.IsPostable())) {
+			if (!RequestBody.IsPostable()) {
 				throw new ArgumentException("At least one movie, show, season, episode or person must be included in the request.");
 			}
 		}

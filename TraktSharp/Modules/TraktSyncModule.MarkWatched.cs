@@ -13,7 +13,7 @@ namespace TraktSharp.Modules {
 
 	public partial class TraktSyncModule {
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add a movie to the user's watched history by ID</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
@@ -21,7 +21,7 @@ namespace TraktSharp.Modules {
 			return await MarkWatchedAsync(TraktMovieFactory.FromId<TraktMovieWithWatchedMetadata>(movieId, movieIdType));
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add a movie to the user's watched history by ID</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
@@ -29,23 +29,33 @@ namespace TraktSharp.Modules {
 			return await MarkWatchedAsync(TraktMovieFactory.FromId<TraktMovieWithWatchedMetadata>(movieId, movieIdType));
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add a show to the user's watched history by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
+		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> MarkWatchedByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) {
-			return await MarkWatchedAsync(TraktShowFactory.FromId<TraktShowWithWatchedMetadata>(showId, showIdType));
+		public async Task<TraktAddResponse> MarkWatchedByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto, IEnumerable<int> seasonNumbers = null) {
+			var obj = TraktShowFactory.FromId<TraktShowWithWatchedMetadata>(showId, showIdType);
+			if (seasonNumbers != null) {
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithWatchedMetadata { SeasonNumber = s }).ToList();
+			}
+			return await MarkWatchedAsync(obj);
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add a show to the user's watched history by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
+		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> MarkWatchedByShowIdAsync(int showId, TraktNumericShowIdType showIdType) {
-			return await MarkWatchedAsync(TraktShowFactory.FromId<TraktShowWithWatchedMetadata>(showId, showIdType));
+		public async Task<TraktAddResponse> MarkWatchedByShowIdAsync(int showId, TraktNumericShowIdType showIdType, IEnumerable<int> seasonNumbers = null) {
+			var obj = TraktShowFactory.FromId<TraktShowWithWatchedMetadata>(showId, showIdType);
+			if (seasonNumbers != null) {
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithWatchedMetadata { SeasonNumber = s }).ToList();
+			}
+			return await MarkWatchedAsync(obj);
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add an episode to the user's watched history by ID</summary>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
@@ -53,7 +63,7 @@ namespace TraktSharp.Modules {
 			return await MarkWatchedAsync(TraktEpisodeFactory.FromId<TraktEpisodeWithWatchedMetadata>(episodeId, episodeIdType));
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add an episode to the user's watched history by ID</summary>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
@@ -61,49 +71,49 @@ namespace TraktSharp.Modules {
 			return await MarkWatchedAsync(TraktEpisodeFactory.FromId<TraktEpisodeWithWatchedMetadata>(episodeId, episodeIdType));
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add a movie to the user's watched history</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> MarkWatchedAsync(TraktMovieWithWatchedMetadata movie) {
 			return await MarkWatchedAsync(new List<TraktMovieWithWatchedMetadata> { movie }, null, null);
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add a show to the user's watched history</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> MarkWatchedAsync(TraktShowWithWatchedMetadata show) {
 			return await MarkWatchedAsync(null, new List<TraktShowWithWatchedMetadata> { show }, null);
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add an episode to the user's watched history</summary>
 		/// <param name="episode">The episode with optional metadata</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> MarkWatchedAsync(TraktEpisodeWithWatchedMetadata episode) {
 			return await MarkWatchedAsync(null, null, new List<TraktEpisodeWithWatchedMetadata> { episode });
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add one or more movies to the user's watched history</summary>
 		/// <param name="movies">A collection of movies</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> MarkWatchedAsync(IEnumerable<TraktMovieWithWatchedMetadata> movies) {
 			return await MarkWatchedAsync(movies, null, null);
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add one or more shows to the user's watched history</summary>
 		/// <param name="shows">A collection of shows</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> MarkWatchedAsync(IEnumerable<TraktShowWithWatchedMetadata> shows) {
 			return await MarkWatchedAsync(null, shows, null);
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add one or more episodes to the user's watched history</summary>
 		/// <param name="episodes">A collection of episodes</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> MarkWatchedAsync(IEnumerable<TraktEpisodeWithWatchedMetadata> episodes) {
 			return await MarkWatchedAsync(null, null, episodes);
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add one or more items to the user's watched history by ID</summary>
 		/// <param name="movieIds">A collection of movie IDs</param>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="episodeIds">A collection of episode IDs</param>
@@ -115,7 +125,7 @@ namespace TraktSharp.Modules {
 				TraktEpisodeFactory.FromIds<TraktEpisodeWithWatchedMetadata>(episodeIds));
 		}
 
-		/// <summary>Add items to a watch history</summary>
+		/// <summary>Add one or more items to the user's watched history</summary>
 		/// <param name="movies">A collection of movies</param>
 		/// <param name="shows">A collection of shows</param>
 		/// <param name="episodes">A collection of episodes</param>

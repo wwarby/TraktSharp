@@ -11,6 +11,9 @@ namespace TraktSharp.Entities.Response {
 		[JsonProperty(PropertyName = "added")]
 		public TraktSyncResponseCounts Added { get; set; }
 
+		[JsonProperty(PropertyName = "updated")]
+		public TraktSyncResponseCounts Updated { get; set; }
+
 		[JsonProperty(PropertyName = "existing")]
 		public TraktSyncResponseCounts Existing { get; set; }
 

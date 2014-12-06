@@ -31,7 +31,7 @@ namespace TraktSharp.Modules {
 		/// </summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktSyncPlaybackResponse> GetPlaybackStateAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktSyncPlaybackResponse>> GetPlaybackStateAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncPlaybackRequest(Client) { Extended = extended });
 		}
 
@@ -67,7 +67,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktRatingsMoviesResponseItem>> GetMovieRatingsAsync(TraktRating rating = TraktRating.RatingUnspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktRatingsMoviesResponseItem>> GetMovieRatingsAsync(TraktRating rating = TraktRating.Unspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncRatingsMoviesRequest(Client) { Rating = rating, Extended = extended });
 		}
 
@@ -75,7 +75,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktRatingsShowsResponseItem>> GetShowRatingsAsync(TraktRating rating = TraktRating.RatingUnspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktRatingsShowsResponseItem>> GetShowRatingsAsync(TraktRating rating = TraktRating.Unspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncRatingsShowsRequest(Client) { Rating = rating, Extended = extended });
 		}
 
@@ -83,7 +83,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktRatingsSeasonsResponseItem>> GetSeasonRatingsAsync(TraktRating rating = TraktRating.RatingUnspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktRatingsSeasonsResponseItem>> GetSeasonRatingsAsync(TraktRating rating = TraktRating.Unspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncRatingsSeasonsRequest(Client) { Rating = rating, Extended = extended });
 		}
 
@@ -91,7 +91,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktRatingsEpisodesResponseItem>> GetEpisodeRatingsAsync(TraktRating rating = TraktRating.RatingUnspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktRatingsEpisodesResponseItem>> GetEpisodeRatingsAsync(TraktRating rating = TraktRating.Unspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktSyncRatingsEpisodesRequest(Client) { Rating = rating, Extended = extended });
 		}
 

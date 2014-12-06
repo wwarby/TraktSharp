@@ -13,7 +13,7 @@ namespace TraktSharp.Modules {
 
 	public partial class TraktSyncModule {
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove a rating for a movie by ID</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
@@ -21,7 +21,7 @@ namespace TraktSharp.Modules {
 			return await RemoveRatingAsync(TraktMovieFactory.FromId(movieId, movieIdType));
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove a rating for a movie by ID</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
@@ -29,23 +29,33 @@ namespace TraktSharp.Modules {
 			return await RemoveRatingAsync(TraktMovieFactory.FromId(movieId, movieIdType));
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove a rating for a show by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
+		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveRatingByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) {
-			return await RemoveRatingAsync(TraktShowFactory.FromId(showId, showIdType));
+		public async Task<TraktRemoveResponse> RemoveRatingByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto, IEnumerable<int> seasonNumbers = null) {
+			var obj = TraktShowFactory.FromId(showId, showIdType);
+			if (seasonNumbers != null) {
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeason { SeasonNumber = s }).ToList();
+			}
+			return await RemoveRatingAsync(obj);
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove a rating for a show by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
+		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveRatingByShowIdAsync(int showId, TraktNumericShowIdType showIdType) {
-			return await RemoveRatingAsync(TraktShowFactory.FromId(showId, showIdType));
+		public async Task<TraktRemoveResponse> RemoveRatingByShowIdAsync(int showId, TraktNumericShowIdType showIdType, IEnumerable<int> seasonNumbers = null) {
+			var obj = TraktShowFactory.FromId(showId, showIdType);
+			if (seasonNumbers != null) {
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeason { SeasonNumber = s }).ToList();
+			}
+			return await RemoveRatingAsync(obj);
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove a rating for an episode by ID</summary>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
@@ -53,7 +63,7 @@ namespace TraktSharp.Modules {
 			return await RemoveRatingAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove a rating for an episode by ID</summary>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
@@ -61,49 +71,49 @@ namespace TraktSharp.Modules {
 			return await RemoveRatingAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove a rating for a movie</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktRemoveResponse> RemoveRatingAsync(TraktMovie movie) {
 			return await RemoveRatingsAsync(new List<TraktMovie> { movie }, null, null);
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove a rating for a show</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktRemoveResponse> RemoveRatingAsync(TraktShow show) {
 			return await RemoveRatingsAsync(null, new List<TraktShow> { show }, null);
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove a rating for a an episode</summary>
 		/// <param name="episode">The episode</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktRemoveResponse> RemoveRatingAsync(TraktEpisode episode) {
 			return await RemoveRatingsAsync(null, null, new List<TraktEpisode> { episode });
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove ratings for one or more movies</summary>
 		/// <param name="movies">A collection of movies</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktRemoveResponse> RemoveRatingsAsync(IEnumerable<TraktMovie> movies) {
 			return await RemoveRatingsAsync(movies, null, null);
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove ratings for one or more shows</summary>
 		/// <param name="shows">A collection of shows</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktRemoveResponse> RemoveRatingsAsync(IEnumerable<TraktShow> shows) {
 			return await RemoveRatingsAsync(null, shows, null);
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove ratings for one or more episodes</summary>
 		/// <param name="episodes">A collection of episodes</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktRemoveResponse> RemoveRatingsAsync(IEnumerable<TraktEpisode> episodes) {
 			return await RemoveRatingsAsync(null, null, episodes);
 		}
 
-		/// <summary>Remove ratings for one or more items</summary>
+		/// <summary>Remove ratings for one or more items by IDs</summary>
 		/// <param name="movieIds">A collection of movie IDs</param>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="episodeIds">A collection of episode IDs</param>

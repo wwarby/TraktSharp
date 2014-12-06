@@ -6,7 +6,7 @@ namespace TraktSharp.Enums {
 	/// <summary>Options for the rating parameter on supporting request types</summary>
 	public enum TraktRating {
 		/// <summary>Rating 0 (unrated)</summary>
-		RatingUnspecified = 0,
+		Unspecified = 0,
 		/// <summary>Rating 1</summary>
 		Rating1 = 1,
 		/// <summary>Rating 2</summary>

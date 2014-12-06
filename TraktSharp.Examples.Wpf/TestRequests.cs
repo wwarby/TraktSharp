@@ -14,7 +14,7 @@ namespace TraktSharp.Examples.Wpf {
 		private static Dictionary<string, Expression> _testRequests = new Dictionary<string, Expression>();
 
 		internal enum TestRequestType {
-			
+
 			// Auth module
 			[Description("TraktClient.Auth.LoginAsync()")]
 			AuthLoginAsync,
@@ -179,23 +179,129 @@ namespace TraktSharp.Examples.Wpf {
 			[Description("TraktClient.Shows.GetUsersWatchingShowAsync()")]
 			ShowsGetUsersWatchingShowAsync,
 
+			// Sync module
+
+			[Description("TraktClient.Sync.GetLastActivitiesAsync()")]
+			SyncGetLastActivitiesAsync,
+			[Description("TraktClient.Sync.GetPlaybackStateAsync()")]
+			SyncGetPlaybackStateAsync,
+			[Description("TraktClient.Sync.GetMoviesCollectionAsync()")]
+			SyncGetMoviesCollectionAsync,
+			[Description("TraktClient.Sync.GetShowsCollectionAsync()")]
+			SyncGetShowsCollectionAsync,
+
+			[Description("TraktClient.Sync.AddToCollectionByMovieIdAsync()")]
+			SyncAddToCollectionByMovieIdAsync,
+			[Description("TraktClient.Sync.AddToCollectionByShowIdAsync()")]
+			SyncAddToCollectionByShowIdAsync,
+			[Description("TraktClient.Sync.AddToCollectionByShowIdAsync(SeasonNumbers)")]
+			SyncAddToCollectionByShowIdAsyncSeasonNumbers,
+			[Description("TraktClient.Sync.AddToCollectionByEpisodeIdAsync()")]
+			SyncAddToCollectionByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.RemoveFromCollectionByMovieIdAsync()")]
+			SyncRemoveFromCollectionByMovieIdAsync,
+			[Description("TraktClient.Sync.RemoveFromCollectionByShowIdAsync()")]
+			SyncRemoveFromCollectionByShowIdAsync,
+			[Description("TraktClient.Sync.RemoveFromCollectionByShowIdAsync(SeasonNumbers)")]
+			SyncRemoveFromCollectionByShowIdAsyncSeasonNumbers,
+			[Description("TraktClient.Sync.RemoveFromCollectionByEpisodeIdAsync()")]
+			SyncRemoveFromCollectionByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.GetWatchedMoviesAsync()")]
+			SyncGetWatchedMoviesAsync,
+			[Description("TraktClient.Sync.GetWatchedShowsAsync()")]
+			SyncGetWatchedShowsAsync,
+
+			[Description("TraktClient.Sync.MarkWatchedByMovieIdAsync()")]
+			SyncMarkWatchedByMovieIdAsync,
+			[Description("TraktClient.Sync.MarkWatchedByShowIdAsync()")]
+			SyncMarkWatchedByShowIdAsync,
+			[Description("TraktClient.Sync.MarkWatchedByShowIdAsync(SeasonNumbers)")]
+			SyncMarkWatchedByShowIdAsyncSeasonNumbers,
+			[Description("TraktClient.Sync.MarkWatchedByEpisodeIdAsync()")]
+			SyncMarkWatchedByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.MarkUnwatchedByMovieIdAsync()")]
+			SyncMarkUnwatchedByMovieIdAsync,
+			[Description("TraktClient.Sync.MarkUnwatchedByShowIdAsync()")]
+			SyncMarkUnwatchedByShowIdAsync,
+			[Description("TraktClient.Sync.MarkUnwatchedByShowIdAsync(SeasonNumbers)")]
+			SyncMarkUnwatchedByShowIdAsyncSeasonNumbers,
+			[Description("TraktClient.Sync.MarkUnwatchedByEpisodeIdAsync()")]
+			SyncMarkUnwatchedByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.GetMovieRatingsAsync()")]
+			SyncGetMovieRatingsAsync,
+			[Description("TraktClient.Sync.GetShowRatingsAsync()")]
+			SyncGetShowRatingsAsync,
+			[Description("TraktClient.Sync.GetSeasonRatingsAsync()")]
+			SyncGetSeasonRatingsAsync,
+			[Description("TraktClient.Sync.GetEpisodeRatingsAsync()")]
+			SyncGetEpisodeRatingsAsync,
+
+			[Description("TraktClient.Sync.AddRatingByMovieIdAsync()")]
+			SyncAddRatingByMovieIdAsync,
+			[Description("TraktClient.Sync.AddRatingByShowIdAsync()")]
+			SyncAddRatingByShowIdAsync,
+			[Description("TraktClient.Sync.AddRatingByShowIdAsync(SeasonNumbers)")]
+			SyncAddRatingByShowIdAsyncSeasonNumbers,
+			[Description("TraktClient.Sync.AddRatingByEpisodeIdAsync()")]
+			SyncAddRatingByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.RemoveRatingByMovieIdAsync()")]
+			SyncRemoveRatingByMovieIdAsync,
+			[Description("TraktClient.Sync.RemoveRatingByShowIdAsync()")]
+			SyncRemoveRatingByShowIdAsync,
+			[Description("TraktClient.Sync.RemoveRatingByShowIdAsync(SeasonNumbers)")]
+			SyncRemoveRatingByShowIdAsyncSeasonNumbers,
+			[Description("TraktClient.Sync.RemoveRatingByEpisodeIdAsync()")]
+			SyncRemoveRatingByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.GetWatchlistMoviesAsync()")]
+			SyncGetWatchlistMoviesAsync,
+			[Description("TraktClient.Sync.GetWatchlistShowsAsync()")]
+			SyncGetWatchlistShowsAsync,
+			[Description("TraktClient.Sync.GetWatchlistSeasonsAsync()")]
+			SyncGetWatchlistSeasonsAsync,
+			[Description("TraktClient.Sync.GetWatchlistEpisodesAsync()")]
+			SyncGetWatchlistEpisodesAsync,
+
+			[Description("TraktClient.Sync.AddToWatchlistByMovieIdAsync()")]
+			SyncAddToWatchlistByMovieIdAsync,
+			[Description("TraktClient.Sync.AddToWatchlistByShowIdAsync()")]
+			SyncAddToWatchlistByShowIdAsync,
+			[Description("TraktClient.Sync.AddToWatchlistByShowIdAsync(SeasonNumbers)")]
+			SyncAddToWatchlistByShowIdAsyncSeasonNumbers,
+			[Description("TraktClient.Sync.AddToWatchlistByEpisodeIdAsync()")]
+			SyncAddToWatchlistByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.RemoveFromWatchlistByMovieIdAsync()")]
+			SyncRemoveFromWatchlistByMovieIdAsync,
+			[Description("TraktClient.Sync.RemoveFromWatchlistByShowIdAsync()")]
+			SyncRemoveFromWatchlistByShowIdAsync,
+			[Description("TraktClient.Sync.RemoveFromWatchlistByShowIdAsync(SeasonNumbers)")]
+			SyncRemoveFromWatchlistByShowIdAsyncSeasonNumbers,
+			[Description("TraktClient.Sync.RemoveFromWatchlistByEpisodeIdAsync()")]
+			SyncRemoveFromWatchlistByEpisodeIdAsync,
+
 		}
 
 		public static async Task<object> ExecuteTestRequest(TraktClient client, TestRequestType requestType, TraktExtendedOption extended = TraktExtendedOption.Unspecified, string testId = null) {
-			
+
 			//Uncomment if required
 			//int? testIdInt;
 			//try { if (testId != null) { testIdInt = Int32.Parse(testId); } } catch {}
 
 			switch (requestType) {
-				
+
 				// Auth module
 				case TestRequestType.AuthLoginAsync:
 					return await client.Auth.LoginAsync("username", "password");
 				case TestRequestType.AuthLogoutAsync:
 					await client.Auth.LogoutAsync();
 					return null;
-				
+
 				// Calendars module
 				case TestRequestType.CalendarsGetShowsAsync:
 					return await client.Calendars.GetShowsAsync(extended: extended);
@@ -358,6 +464,111 @@ namespace TraktSharp.Examples.Wpf {
 					return await client.Shows.GetStatsAsync(testId ?? "breaking-bad");
 				case TestRequestType.ShowsGetUsersWatchingShowAsync:
 					return await client.Shows.GetUsersWatchingShowAsync(testId ?? "breaking-bad", extended);
+
+				// Sync module
+				case TestRequestType.SyncGetLastActivitiesAsync:
+					return await client.Sync.GetLastActivitiesAsync();
+				case TestRequestType.SyncGetPlaybackStateAsync:
+					return await client.Sync.GetPlaybackStateAsync(extended);
+				case TestRequestType.SyncGetMoviesCollectionAsync:
+					return await client.Sync.GetMoviesCollectionAsync(extended);
+				case TestRequestType.SyncGetShowsCollectionAsync:
+					return await client.Sync.GetShowsCollectionAsync(extended);
+
+				case TestRequestType.SyncAddToCollectionByMovieIdAsync:
+					return await client.Sync.AddToCollectionByMovieIdAsync(testId ?? "tt0120591");
+				case TestRequestType.SyncAddToCollectionByShowIdAsync:
+					return await client.Sync.AddToCollectionByShowIdAsync(testId ?? "breaking-bad");
+				case TestRequestType.SyncAddToCollectionByShowIdAsyncSeasonNumbers:
+					return await client.Sync.AddToCollectionByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+				case TestRequestType.SyncAddToCollectionByEpisodeIdAsync:
+					return await client.Sync.AddToCollectionByEpisodeIdAsync(testId ?? "tt0959621");
+
+				case TestRequestType.SyncRemoveFromCollectionByMovieIdAsync:
+					return await client.Sync.RemoveFromCollectionByMovieIdAsync(testId ?? "tt0120591");
+				case TestRequestType.SyncRemoveFromCollectionByShowIdAsync:
+					return await client.Sync.RemoveFromCollectionByShowIdAsync(testId ?? "breaking-bad");
+				case TestRequestType.SyncRemoveFromCollectionByShowIdAsyncSeasonNumbers:
+					return await client.Sync.RemoveFromCollectionByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+				case TestRequestType.SyncRemoveFromCollectionByEpisodeIdAsync:
+					return await client.Sync.RemoveFromCollectionByEpisodeIdAsync(testId ?? "tt0959621");
+
+				case TestRequestType.SyncGetWatchedMoviesAsync:
+					return await client.Sync.GetWatchedMoviesAsync(extended);
+				case TestRequestType.SyncGetWatchedShowsAsync:
+					return await client.Sync.GetWatchedShowsAsync(extended);
+
+				case TestRequestType.SyncMarkWatchedByMovieIdAsync:
+					return await client.Sync.MarkWatchedByMovieIdAsync(testId ?? "tt0120591");
+				case TestRequestType.SyncMarkWatchedByShowIdAsync:
+					return await client.Sync.MarkWatchedByShowIdAsync(testId ?? "breaking-bad");
+				case TestRequestType.SyncMarkWatchedByShowIdAsyncSeasonNumbers:
+					return await client.Sync.MarkWatchedByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+				case TestRequestType.SyncMarkWatchedByEpisodeIdAsync:
+					return await client.Sync.MarkWatchedByEpisodeIdAsync(testId ?? "tt0959621");
+
+				case TestRequestType.SyncMarkUnwatchedByMovieIdAsync:
+					return await client.Sync.MarkUnwatchedByMovieIdAsync(testId ?? "tt0120591");
+				case TestRequestType.SyncMarkUnwatchedByShowIdAsync:
+					return await client.Sync.MarkUnwatchedByShowIdAsync(testId ?? "breaking-bad");
+				case TestRequestType.SyncMarkUnwatchedByShowIdAsyncSeasonNumbers:
+					return await client.Sync.MarkUnwatchedByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+				case TestRequestType.SyncMarkUnwatchedByEpisodeIdAsync:
+					return await client.Sync.MarkUnwatchedByEpisodeIdAsync(testId ?? "tt0959621");
+
+				case TestRequestType.SyncGetMovieRatingsAsync:
+					return await client.Sync.GetMovieRatingsAsync(TraktRating.Unspecified, extended);
+				case TestRequestType.SyncGetShowRatingsAsync:
+					return await client.Sync.GetShowRatingsAsync(TraktRating.Unspecified, extended);
+				case TestRequestType.SyncGetSeasonRatingsAsync:
+					return await client.Sync.GetSeasonRatingsAsync(TraktRating.Unspecified, extended);
+				case TestRequestType.SyncGetEpisodeRatingsAsync:
+					return await client.Sync.GetEpisodeRatingsAsync(TraktRating.Unspecified, extended);
+
+				case TestRequestType.SyncAddRatingByMovieIdAsync:
+					return await client.Sync.AddRatingByMovieIdAsync(testId ?? "tt0120591", TraktTextMovieIdType.Auto, TraktRating.Rating7);
+				case TestRequestType.SyncAddRatingByShowIdAsync:
+					return await client.Sync.AddRatingByShowIdAsync(testId ?? "breaking-bad", TraktTextShowIdType.Auto, TraktRating.Rating7);
+				case TestRequestType.SyncAddRatingByShowIdAsyncSeasonNumbers:
+					return await client.Sync.AddRatingByShowIdAsync(testId ?? "breaking-bad", TraktTextShowIdType.Auto, TraktRating.Rating7, seasonNumbers: new[] { 1 });
+				case TestRequestType.SyncAddRatingByEpisodeIdAsync:
+					return await client.Sync.AddRatingByEpisodeIdAsync(testId ?? "tt0959621", TraktTextEpisodeIdType.Auto, TraktRating.Rating7);
+
+				case TestRequestType.SyncRemoveRatingByMovieIdAsync:
+					return await client.Sync.RemoveRatingByMovieIdAsync(testId ?? "tt0120591");
+				case TestRequestType.SyncRemoveRatingByShowIdAsync:
+					return await client.Sync.RemoveRatingByShowIdAsync(testId ?? "breaking-bad");
+				case TestRequestType.SyncRemoveRatingByShowIdAsyncSeasonNumbers:
+					return await client.Sync.RemoveRatingByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+				case TestRequestType.SyncRemoveRatingByEpisodeIdAsync:
+					return await client.Sync.RemoveRatingByEpisodeIdAsync(testId ?? "tt0959621");
+
+				case TestRequestType.SyncGetWatchlistMoviesAsync:
+					return await client.Sync.GetWatchlistMoviesAsync(extended);
+				case TestRequestType.SyncGetWatchlistShowsAsync:
+					return await client.Sync.GetWatchlistShowsAsync(extended);
+				case TestRequestType.SyncGetWatchlistSeasonsAsync:
+					return await client.Sync.GetWatchlistSeasonsAsync(extended);
+				case TestRequestType.SyncGetWatchlistEpisodesAsync:
+					return await client.Sync.GetWatchlistEpisodesAsync(extended);
+
+				case TestRequestType.SyncAddToWatchlistByMovieIdAsync:
+					return await client.Sync.AddToWatchlistByMovieIdAsync(testId ?? "tt0120591");
+				case TestRequestType.SyncAddToWatchlistByShowIdAsync:
+					return await client.Sync.AddToWatchlistByShowIdAsync(testId ?? "breaking-bad");
+				case TestRequestType.SyncAddToWatchlistByShowIdAsyncSeasonNumbers:
+					return await client.Sync.AddToWatchlistByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+				case TestRequestType.SyncAddToWatchlistByEpisodeIdAsync:
+					return await client.Sync.AddToWatchlistByEpisodeIdAsync(testId ?? "tt0959621");
+
+				case TestRequestType.SyncRemoveFromWatchlistByMovieIdAsync:
+					return await client.Sync.RemoveFromWatchlistByMovieIdAsync(testId ?? "tt0120591");
+				case TestRequestType.SyncRemoveFromWatchlistByShowIdAsync:
+					return await client.Sync.RemoveFromWatchlistByShowIdAsync(testId ?? "breaking-bad");
+				case TestRequestType.SyncRemoveFromWatchlistByShowIdAsyncSeasonNumbers:
+					return await client.Sync.RemoveFromWatchlistByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+				case TestRequestType.SyncRemoveFromWatchlistByEpisodeIdAsync:
+					return await client.Sync.RemoveFromWatchlistByEpisodeIdAsync(testId ?? "tt0959621");
 
 				// Invalid request type
 				default:

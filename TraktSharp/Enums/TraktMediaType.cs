@@ -6,6 +6,9 @@ namespace TraktSharp.Enums {
 
 	/// <summary>Options for the media type metadata on supporting request types</summary>
 	public enum TraktMediaType {
+		/// <summary>Unspecified</summary>
+		[Description("")]
+		Unspecified,
 		/// <summary>Digital</summary>
 		[Description("digital")]
 		Digital,

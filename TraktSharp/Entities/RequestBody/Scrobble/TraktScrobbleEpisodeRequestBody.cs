@@ -20,11 +20,11 @@ namespace TraktSharp.Entities.RequestBody.Scrobble {
 		[JsonProperty(PropertyName = "app_version")]
 		public string AppVersion { get; set; }
 
-		[JsonProperty(PropertyName = "app_date")]
-		public string AppDateString { get { return AppDate.ToTraktApiFormat(); } }
-
 		[JsonIgnore]
 		public DateTime? AppDate { get; set; }
+
+		[JsonProperty(PropertyName = "app_date")]
+		private string AppDateString { get { return AppDate.ToTraktApiFormat(); } }
 
 	}
 

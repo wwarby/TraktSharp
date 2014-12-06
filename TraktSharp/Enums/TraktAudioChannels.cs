@@ -6,6 +6,9 @@ namespace TraktSharp.Enums {
 
 	/// <summary>Options for the audio channels metadata on supporting request types</summary>
 	public enum TraktAudioChannels {
+		/// <summary>Unspecified</summary>
+		[Description("")]
+		Unspecified,
 		/// <summary>1.0</summary>
 		[Description("1.0")]
 		Channels10,

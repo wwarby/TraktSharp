@@ -13,7 +13,7 @@ namespace TraktSharp.Modules {
 
 	public partial class TraktSyncModule {
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add a movie to the user's collection by ID</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
@@ -21,7 +21,7 @@ namespace TraktSharp.Modules {
 			return await AddToCollectionAsync(TraktMovieFactory.FromId<TraktMovieWithCollectionMetadata>(movieId, movieIdType));
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add a movie to the user's collection by ID</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
@@ -29,23 +29,33 @@ namespace TraktSharp.Modules {
 			return await AddToCollectionAsync(TraktMovieFactory.FromId<TraktMovieWithCollectionMetadata>(movieId, movieIdType));
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add a show to the user's collection by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
+		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToCollectionByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) {
-			return await AddToCollectionAsync(TraktShowFactory.FromId<TraktShowWithCollectionMetadata>(showId, showIdType));
+		public async Task<TraktAddResponse> AddToCollectionByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto, IEnumerable<int> seasonNumbers = null) {
+			var obj = TraktShowFactory.FromId<TraktShowWithCollectionMetadata>(showId, showIdType);
+			if (seasonNumbers != null) {
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithCollectionMetadata { SeasonNumber = s }).ToList();
+			}
+			return await AddToCollectionAsync(obj);
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add a show to the user's collection by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
+		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToCollectionByShowIdAsync(int showId, TraktNumericShowIdType showIdType) {
-			return await AddToCollectionAsync(TraktShowFactory.FromId<TraktShowWithCollectionMetadata>(showId, showIdType));
+		public async Task<TraktAddResponse> AddToCollectionByShowIdAsync(int showId, TraktNumericShowIdType showIdType, IEnumerable<int> seasonNumbers = null) {
+			var obj = TraktShowFactory.FromId<TraktShowWithCollectionMetadata>(showId, showIdType);
+			if (seasonNumbers != null) {
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithCollectionMetadata { SeasonNumber = s }).ToList();
+			}
+			return await AddToCollectionAsync(obj);
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add an episode to the user's collection by ID</summary>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
@@ -53,7 +63,7 @@ namespace TraktSharp.Modules {
 			return await AddToCollectionAsync(TraktEpisodeFactory.FromId<TraktEpisodeWithCollectionMetadata>(episodeId, showIdType));
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add an episode to the user's collection by ID</summary>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
@@ -61,49 +71,49 @@ namespace TraktSharp.Modules {
 			return await AddToCollectionAsync(TraktEpisodeFactory.FromId<TraktEpisodeWithCollectionMetadata>(episodeId, showIdType));
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add a movie to the user's collection</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToCollectionAsync(TraktMovieWithCollectionMetadata movie) {
 			return await AddToCollectionAsync(new List<TraktMovieWithCollectionMetadata> { movie }, null, null);
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add a show to the user's collection</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToCollectionAsync(TraktShowWithCollectionMetadata show) {
 			return await AddToCollectionAsync(null, new List<TraktShowWithCollectionMetadata> { show }, null);
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add an episode to the user's collection</summary>
 		/// <param name="episode">The episode with optional metadata</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToCollectionAsync(TraktEpisodeWithCollectionMetadata episode) {
 			return await AddToCollectionAsync(null, null, new List<TraktEpisodeWithCollectionMetadata> { episode });
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add one or more movies to the user's collection</summary>
 		/// <param name="movies">A collection of movies</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToCollectionAsync(IEnumerable<TraktMovieWithCollectionMetadata> movies) {
 			return await AddToCollectionAsync(movies, null, null);
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add one or more shows to the user's collection</summary>
 		/// <param name="shows">A collection of shows</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToCollectionAsync(IEnumerable<TraktShowWithCollectionMetadata> shows) {
 			return await AddToCollectionAsync(null, shows, null);
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add one or more episodes to the user's collection</summary>
 		/// <param name="episodes">A collection of episodes</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToCollectionAsync(IEnumerable<TraktEpisodeWithCollectionMetadata> episodes) {
 			return await AddToCollectionAsync(null, null, episodes);
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add items to the user's collection by IDs</summary>
 		/// <param name="movieIds">A collection of movie IDs</param>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="episodeIds">A collection of episode IDs</param>
@@ -115,7 +125,7 @@ namespace TraktSharp.Modules {
 				TraktEpisodeFactory.FromIds<TraktEpisodeWithCollectionMetadata>(episodeIds));
 		}
 
-		/// <summary>Add items to a user's collection</summary>
+		/// <summary>Add items to the user's collection</summary>
 		/// <param name="movies">A collection of movies</param>
 		/// <param name="shows">A collection of shows</param>
 		/// <param name="episodes">A collection of episodes</param>

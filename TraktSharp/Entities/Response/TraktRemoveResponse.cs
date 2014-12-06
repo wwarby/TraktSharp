@@ -9,7 +9,7 @@ namespace TraktSharp.Entities.Response {
 	public class TraktRemoveResponse {
 
 		[JsonProperty(PropertyName = "deleted")]
-		public TraktSyncResponseCounts Added { get; set; }
+		public TraktSyncResponseCounts Deleted { get; set; }
 
 		[JsonProperty(PropertyName = "not_found")]
 		public TraktSyncResponseNotFound NotFound { get; set; }

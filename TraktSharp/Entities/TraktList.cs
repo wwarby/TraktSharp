@@ -18,17 +18,11 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "description")]
 		public string Description { get; set; }
 
-		/// <summary>The privacy option for this list as a string returned from the Trakt API</summary>
-		[JsonProperty(PropertyName = "privacy")]
-		public string PrivacyString { get; set; }
-
-		//TODO: More of this
-		/// <summary>The privacy option for this list in a more usable enum form</summary>
 		[JsonIgnore]
-		public TraktPrivacyOption Privacy {
-			get { return TraktEnumHelper.FromDescription(PrivacyString, TraktPrivacyOption.Unspecified); }
-			set { PrivacyString = TraktEnumHelper.GetDescription(value); }
-		}
+		public TraktPrivacyOption Privacy { get; set; }
+
+		[JsonProperty(PropertyName = "privacy")]
+		private string PrivacyString { get { return TraktEnumHelper.GetDescription(Privacy); } }
 
 		/// <summary>Indicates whether numbers are displayed for the items in this list</summary>
 		[JsonProperty(PropertyName = "display_numbers")]

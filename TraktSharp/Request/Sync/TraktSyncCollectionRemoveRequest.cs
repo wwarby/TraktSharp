@@ -13,7 +13,7 @@ namespace TraktSharp.Request.Sync {
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();
-			if ((RequestBody.IsPostable())) {
+			if (!RequestBody.IsPostable()) {
 				throw new ArgumentException("At least one movie, show or episode must be included in the request.");
 			}
 		}

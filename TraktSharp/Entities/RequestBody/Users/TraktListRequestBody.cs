@@ -15,14 +15,11 @@ namespace TraktSharp.Entities.RequestBody.Users {
 		[JsonProperty(PropertyName = "description")]
 		public string Description { get; set; }
 
-		[JsonProperty(PropertyName = "privacy")]
-		public string PrivacyString { get; set; }
-
 		[JsonIgnore]
-		public TraktPrivacyOption Privacy {
-			get { return TraktEnumHelper.FromDescription(PrivacyString, TraktPrivacyOption.Unspecified); }
-			set { PrivacyString = TraktEnumHelper.GetDescription(value); }
-		}
+		public TraktPrivacyOption Privacy { get; set; }
+
+		[JsonProperty(PropertyName = "privacy")]
+		private string PrivacyString { get { return TraktEnumHelper.GetDescription(Privacy); } }
 
 		[JsonProperty(PropertyName = "display_numbers")]
 		public bool? DisplayNumbers { get; set; }
