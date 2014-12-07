@@ -14,9 +14,11 @@ using TraktSharp.Tests.Request;
 
 namespace TraktSharp.Tests.Modules {
 
+	/// <summary>Unit tests</summary>
 	[TestClass]
 	public class TraktCheckinModuleTests : TraktRequestTestsBase {
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCheckinCheckinMovieAsync() {
 
@@ -72,6 +74,7 @@ namespace TraktSharp.Tests.Modules {
 
 		}
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCheckinCheckinEpisodeAsync() {
 

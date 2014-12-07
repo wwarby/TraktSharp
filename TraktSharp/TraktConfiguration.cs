@@ -10,7 +10,6 @@ namespace TraktSharp {
 		public TraktConfiguration(TraktClient client) {
 			Client = client;
 			ApiVersion = 2;
-			ForceAuthentication = true; //TODO: Temporary, whilst the app is not approved
 		}
 
 		/// <summary>The owning instance of <see cref="TraktClient"/></summary>

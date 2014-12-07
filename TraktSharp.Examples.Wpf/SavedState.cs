@@ -8,7 +8,9 @@ namespace TraktSharp.Examples.Wpf {
 	[Serializable]
 	internal class SavedState {
 
-		public TraktOAuthAccessToken AccessToken { get; set; }
+		public TraktOAuthAccessToken OAuthAccessToken { get; set; }
+
+		public string SimpleAccessToken { get; set; }
 
 		public string Username { get; set; }
 

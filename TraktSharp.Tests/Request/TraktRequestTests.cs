@@ -8,9 +8,11 @@ using TraktSharp.Exceptions;
 
 namespace TraktSharp.Tests.Request {
 
+	/// <summary>Unit tests</summary>
 	[TestClass]
 	public class TraktRequestTests : TraktRequestTestsBase {
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public void TestResponseCodeExceptions() {
 

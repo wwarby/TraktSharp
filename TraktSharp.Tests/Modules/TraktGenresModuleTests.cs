@@ -10,9 +10,11 @@ using TraktSharp.Tests.Request;
 
 namespace TraktSharp.Tests.Modules {
 
+	/// <summary>Unit tests</summary>
 	[TestClass]
 	public class TraktGenresModuleTests : TraktRequestTestsBase {
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestGenresGetGenresAsync() {
 

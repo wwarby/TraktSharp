@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace TraktSharp.Tests {
 
+	/// <summary>Fake HTTP message handler to generate HTTP response messages from local files rather than network calls for unit testing</summary>
 	public class FakeResponseHandler : DelegatingHandler {
 
 		private readonly Dictionary<string, HttpResponseMessage> _fakeResponses = new Dictionary<string, HttpResponseMessage>();
@@ -23,7 +24,7 @@ namespace TraktSharp.Tests {
 			}
 		}
 
-		public void AddFakeResponse(string url, HttpStatusCode statusCode, string responseFilename) {
+		internal void AddFakeResponse(string url, HttpStatusCode statusCode, string responseFilename) {
 			_responseFilename = responseFilename;
 			_fakeResponses[url] = new HttpResponseMessage(statusCode) {
 				Content = new StringContent(string.IsNullOrEmpty(ResponseFilePath) ? string.Empty : File.ReadAllText(ResponseFilePath))

@@ -8,7 +8,7 @@
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
 		Closing="WindowClosing"
-        Title="TraktSharp Examples"
+        Title="{Binding WindowTitle}"
 		MinWidth="1000" MinHeight="600" d:DesignWidth="1000" d:DesignHeight="800"
 		Icon="/Icons/TraktSharp.ico"
         x:ClassModifier="internal">
@@ -129,7 +129,7 @@
 				</DockPanel>
 			</TabItem>
 			<TabItem Header="Test API Methods">
-				<DockPanel Margin="10" IsEnabled="{Binding Authenticated}">
+				<DockPanel Margin="10">
 					<GroupBox DockPanel.Dock="Top" Padding="10" Header="Issue a test request to the Trakt API">
 						<DockPanel>
 							<StackPanel DockPanel.Dock="Left" HorizontalAlignment="Left">
@@ -148,8 +148,6 @@
 									<CheckBox Content="ID lookup" VerticalAlignment="Center" Margin="0,0,10,0" IsChecked="{Binding IdLookup}" />
 									<Button Content="Search" Width="Auto" Click="SearchClick" HorizontalAlignment="Left" IsEnabled="{Binding CanSearch}" />
 								</WrapPanel>
-								<Label Width="Auto" HorizontalContentAlignment="Left" Margin="10,20,0,0" Content="Authenticate to enable the test form"
-									   Visibility="{Binding Authenticated, Converter={StaticResource InverseBoolToVisConverter}}" />
 							</StackPanel>
 							<GroupBox Header="Settings to use in the request" HorizontalAlignment="Right" Padding="10">
 								<StackPanel HorizontalAlignment="Right">

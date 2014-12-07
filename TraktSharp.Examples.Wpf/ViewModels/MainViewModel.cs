@@ -20,9 +20,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private MainView _view;
 
-		internal MainViewModel() { }
+		public MainViewModel() { }
 
-		internal MainViewModel(MainView view) {
+		public MainViewModel(MainView view) {
 
 			_view = view;
 
@@ -77,6 +77,17 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private TraktClient Client { get; set; }
 
+		public string WindowTitle {
+			get {
+				var ret = new StringBuilder();
+				ret.Append("TraktSharp Examples");
+				if (Authenticated && Client.Authentication.AuthenticationMode == TraktAuthenticationMode.OAuth) { ret.Append(" - Authenticated with OAuth"); }
+				if (Authenticated && Client.Authentication.AuthenticationMode == TraktAuthenticationMode.Simple) { ret.Append(" - Authenticated with Simple Auth"); }
+				if (!Authenticated) { ret.Append(" - Not Authenticated"); }
+				return ret.ToString();
+			}
+		}
+
 		public string Username {
 			get { return Client.Authentication.Username; }
 			set {
@@ -111,6 +122,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				Client.Authentication.CurrentOAuthAccessToken = value;
 				NotifyPropertyChanged();
 				NotifyPropertyChanged(this.GetMemberName(x => x.Authenticated));
+				NotifyPropertyChanged(this.GetMemberName(x => x.WindowTitle));
 				NotifyPropertyChanged(this.GetMemberName(x => x.CanDiscardAccessToken));
 			}
 		}
@@ -121,6 +133,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				Client.Authentication.LoginUsernameOrEmail = value;
 				NotifyPropertyChanged();
 				NotifyPropertyChanged(this.GetMemberName(x => x.Authenticated));
+				NotifyPropertyChanged(this.GetMemberName(x => x.WindowTitle));
 				NotifyPropertyChanged(this.GetMemberName(x => x.CanLogin));
 			}
 		}
@@ -141,6 +154,8 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				Client.Authentication.CurrentSimpleAccessToken = value;
 				NotifyPropertyChanged();
 				NotifyPropertyChanged(this.GetMemberName(x => x.Authenticated));
+				NotifyPropertyChanged(this.GetMemberName(x => x.WindowTitle));
+				NotifyPropertyChanged(this.GetMemberName(x => x.CanLogout));
 			}
 		}
 
@@ -162,6 +177,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				Client.Authentication.AuthenticationMode = TraktEnumHelper.FromLabel<TraktAuthenticationMode>(value);
 				NotifyPropertyChanged();
 				NotifyPropertyChanged(this.GetMemberName(x => x.Authenticated));
+				NotifyPropertyChanged(this.GetMemberName(x => x.WindowTitle));
 				NotifyPropertyChanged(this.GetMemberName(x => x.IsOAuthAuthenticationMode));
 				NotifyPropertyChanged(this.GetMemberName(x => x.IsSimpleAuthenticationMode));
 			}
@@ -290,6 +306,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		public async void Login() {
+			SimpleAccessToken = string.Empty;
 			SimpleAccessToken = await Client.Authentication.Login(LoginUsernameOrEmail, Password);
 		}
 
@@ -347,7 +364,8 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 					_view.Top = result.WindowTop;
 					_view.WindowState = result.WindowState;
 				}
-				OAuthAccessToken = result.AccessToken;
+				OAuthAccessToken = result.OAuthAccessToken;
+				SimpleAccessToken = result.SimpleAccessToken;
 				Username = result.Username;
 				ClientId = result.ClientId;
 				ClientSecret = result.ClientSecret;
@@ -374,7 +392,8 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 					WindowLeft = _view.Left,
 					WindowTop = _view.Top,
 					WindowState = _view.WindowState,
-					AccessToken = OAuthAccessToken,
+					OAuthAccessToken = OAuthAccessToken,
+					SimpleAccessToken = SimpleAccessToken,
 					Username = Username,
 					ClientId = ClientId,
 					ClientSecret = ClientSecret,

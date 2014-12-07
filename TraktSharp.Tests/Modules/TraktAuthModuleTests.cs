@@ -8,9 +8,11 @@ using TraktSharp.Tests.Request;
 
 namespace TraktSharp.Tests.Modules {
 
+	/// <summary>Unit tests</summary>
 	[TestClass]
 	public class TraktAuthModuleTests : TraktRequestTestsBase {
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestLoginAsync() {
 
@@ -22,6 +24,7 @@ namespace TraktSharp.Tests.Modules {
 
 		}
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestLogoutAsync() {
 

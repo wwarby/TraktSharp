@@ -9,9 +9,11 @@ using TraktSharp.Tests.Request;
 
 namespace TraktSharp.Tests.Modules {
 
+	/// <summary>Unit tests</summary>
 	[TestClass]
 	public class TraktCalendarsModuleTests : TraktRequestTestsBase {
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCalendarsGetMoviesAsync() {
 
@@ -34,6 +36,7 @@ namespace TraktSharp.Tests.Modules {
 
 		}
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCalendarsGetNewShowsAsync() {
 
@@ -56,6 +59,7 @@ namespace TraktSharp.Tests.Modules {
 
 		}
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCalendarsGetPremiereShowsAsync() {
 
@@ -78,6 +82,7 @@ namespace TraktSharp.Tests.Modules {
 
 		}
 
+		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCalendarsGetShowsAsync() {
 
