@@ -21,7 +21,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "crew")]
 		public IEnumerable<TraktCrewMember> Crew { get; set; }
 
-		/// <summary>Crew members from the costume & make-up department</summary>
+		/// <summary>Crew members from the costume &amp; make-up department</summary>
 		[JsonProperty(PropertyName = "costume & make-up")]
 		public IEnumerable<TraktCrewMember> CostumeAndMakeUp { get; set; }
 
