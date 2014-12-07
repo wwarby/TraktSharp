@@ -18,6 +18,12 @@ namespace TraktSharp.Examples.Wpf.Views {
 
 		private void AuthorizeClick(object sender, RoutedEventArgs e) { ViewModel.Authorize(); }
 
+		private void DiscardAccessTokenClick(object sender, RoutedEventArgs e) { ViewModel.DiscardAccessToken(); }
+
+		private void LoginClick(object sender, RoutedEventArgs e) { ViewModel.Login(); }
+
+		private void LogoutClick(object sender, RoutedEventArgs e) { ViewModel.Logout(); }
+
 		private void TestRequestClick(object sender, RoutedEventArgs e) { ViewModel.TestRequest(); }
 
 		private void SearchClick(object sender, RoutedEventArgs e) { ViewModel.Search(); }

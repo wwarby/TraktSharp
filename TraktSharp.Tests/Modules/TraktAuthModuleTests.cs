@@ -4,14 +4,15 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TraktSharp.Entities.Response.Auth;
+using TraktSharp.Tests.Request;
 
 namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
-	internal class TraktAuthModuleTests : TraktRequestTestsBase {
+	public class TraktAuthModuleTests : TraktRequestTestsBase {
 
 		[TestMethod]
-		internal async Task TestLoginAsync() {
+		public async Task TestLoginAsync() {
 
 			FakeResponsePath = @"Auth\Login.json";
 			var result = await Client.Auth.LoginAsync("foo", "bar");
@@ -22,7 +23,7 @@ namespace TraktSharp.Tests.Modules {
 		}
 
 		[TestMethod]
-		internal async Task TestLogoutAsync() {
+		public async Task TestLogoutAsync() {
 
 			await Client.Auth.LogoutAsync();
 

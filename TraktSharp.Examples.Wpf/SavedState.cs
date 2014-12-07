@@ -8,7 +8,7 @@ namespace TraktSharp.Examples.Wpf {
 	[Serializable]
 	internal class SavedState {
 
-		public TraktAccessToken AccessToken { get; set; }
+		public TraktOAuthAccessToken AccessToken { get; set; }
 
 		public string Username { get; set; }
 
@@ -16,11 +16,15 @@ namespace TraktSharp.Examples.Wpf {
 
 		public string ClientSecret { get; set; }
 
+		public string LoginUsernameOrEmail { get; set; }
+
 		public string SelectedTestRequestType { get; set; }
 
-		public int SelectedResponseTab { get; set; }
+		public string SelectedAuthenticationMode { get; set; }
 
 		public int SelectedMainTab { get; set; }
+
+		public int SelectedResponseTab { get; set; }
 
 		public string SelectedExtendedOption { get; set; }
 

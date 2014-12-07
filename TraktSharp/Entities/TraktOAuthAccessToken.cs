@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
 
 	/// <summary>An OAuth access token issued by the Trakt API</summary>
 	[Serializable]
-	public class TraktAccessToken {
+	public class TraktOAuthAccessToken {
 
 		/// <summary>The access token</summary>
 		public string AccessToken { get; set; }
@@ -15,6 +16,10 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the access token expires</summary>
 		public DateTime AccessTokenExpires { get; set; }
+
+		/// <summary>Tests if the token is valid</summary>
+		[JsonIgnore]
+		public bool IsValid { get { return !string.IsNullOrEmpty(AccessToken) && AccessTokenExpires >= DateTime.UtcNow; } }
 
 	}
 

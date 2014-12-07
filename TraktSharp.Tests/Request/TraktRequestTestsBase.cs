@@ -5,10 +5,10 @@ using System.Net.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TraktSharp.Entities;
 
-namespace TraktSharp.Tests.Modules {
+namespace TraktSharp.Tests.Request {
 
 	[TestClass]
-	internal abstract class TraktRequestTestsBase {
+	public abstract class TraktRequestTestsBase {
 
 		protected TraktRequestTestsBase() {
 			FakeResponseHandler = new FakeResponseHandler();
@@ -16,7 +16,7 @@ namespace TraktSharp.Tests.Modules {
 			FakeResponseCode = HttpStatusCode.OK;
 			Client = new TraktClient(FakeResponseHandler) {
 				Authentication = {
-					CurrentAccessToken = new TraktAccessToken {
+					CurrentOAuthAccessToken = new TraktOAuthAccessToken {
 						AccessToken = "abcdef",
 						AccessTokenExpires = DateTime.Now.AddYears(1)
 					}
@@ -31,21 +31,21 @@ namespace TraktSharp.Tests.Modules {
 			};
 		}
 
-		internal string FakeResponsePath { get; set; }
+		public string FakeResponsePath { get; set; }
 
-		internal HttpStatusCode FakeResponseCode { get; set; }
+		public HttpStatusCode FakeResponseCode { get; set; }
 
-		internal FakeResponseHandler FakeResponseHandler { get; private set; }
+		public FakeResponseHandler FakeResponseHandler { get; private set; }
 
-		internal TraktClient Client { get; private set; }
+		public TraktClient Client { get; private set; }
 
-		internal HttpRequestMessage LastRequest { get; set; }
+		public HttpRequestMessage LastRequest { get; set; }
 
-		internal HttpResponseMessage LastResponse { get; set; }
+		public HttpResponseMessage LastResponse { get; set; }
 
-		internal string LastResponseText { get; set; }
+		public string LastResponseText { get; set; }
 
-		internal HttpClient LastHttpClient { get; set; }
+		public HttpClient LastHttpClient { get; set; }
 
 	}
 

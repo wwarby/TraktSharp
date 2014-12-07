@@ -20,7 +20,7 @@ namespace TraktSharp.Entities.RequestBody.OAuth {
 		[JsonProperty(PropertyName = "client_secret")]
 		public string ClientSecret { get; set; }
 
-		/// <summary>The uri to which Trakt should redirect upon successful authentication. Refer to <see cref="TraktAuthentication.RedirectUri"/> for further details.</summary>
+		/// <summary>The uri to which Trakt should redirect upon successful authentication. Refer to <see cref="TraktAuthentication.OAuthRedirectUri"/> for further details.</summary>
 		[JsonProperty(PropertyName = "redirect_uri")]
 		public string RedirectUri { get; set; }
 

@@ -155,7 +155,6 @@ namespace TraktSharp.Modules {
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingSeasonAsync(string showId, int seasonNumber, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
-			//TODO: This method crashes because the returned JSON contradicts the spec
 			return await SendAsync(new TraktSeasonsWatchingRequest(Client) {
 				Id = showId,
 				Season = seasonNumber,

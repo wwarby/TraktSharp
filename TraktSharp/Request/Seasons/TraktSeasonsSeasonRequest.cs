@@ -13,7 +13,7 @@ namespace TraktSharp.Request.Seasons {
 
 		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}"; } }
 
-		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
 
 		internal int Season { get; set; }
 

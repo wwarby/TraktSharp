@@ -147,11 +147,14 @@
     <Compile Include="Entities\TraktPersonImages.cs" />
     <Compile Include="Entities\TraktMovieImages.cs" />
     <Compile Include="Enums\TraktHistoryAction.cs" />
+    <Compile Include="Enums\TraktAuthenticationMode.cs" />
     <Compile Include="Enums\TraktScrobbleAction.cs" />
     <Compile Include="Enums\TraktWatchingItemType.cs" />
     <Compile Include="Enums\TraktListItemType.cs" />
     <Compile Include="EventArgs\TraktAfterRequestEventArgs.cs" />
     <Compile Include="EventArgs\TraktBeforeRequestEventArgs.cs" />
+    <Compile Include="Exceptions\TraktRateLimitExceededException.cs" />
+    <Compile Include="Exceptions\TraktUnprocessableEntityException.cs" />
     <Compile Include="Exceptions\TraktServiceUnavailableException.cs" />
     <Compile Include="Exceptions\TraktConflictException.cs" />
     <Compile Include="Exceptions\TraktMethodNotFoundException.cs" />
@@ -224,7 +227,7 @@
     <Compile Include="Entities\TraktSharing.cs" />
     <Compile Include="Modules\TraktMoviesModule.cs" />
     <Compile Include="Modules\TraktPeopleModule.cs" />
-    <Compile Include="Enums\TraktOAuthRequirement.cs" />
+    <Compile Include="Enums\TraktAuthenticationRequirement.cs" />
     <Compile Include="Enums\TraktPrivacyOption.cs" />
     <Compile Include="Enums\TraktRating.cs" />
     <Compile Include="Request\AfterRequestEventHandler.cs" />
@@ -338,7 +341,7 @@
     <Compile Include="Entities\TraktErrorResponse.cs" />
     <Compile Include="Entities\Response\Calendars\TraktCalendarsShowsResponse.cs" />
     <Compile Include="Entities\Response\OAuth\TraktOAuthTokenResponse.cs" />
-    <Compile Include="Entities\TraktAccessToken.cs" />
+    <Compile Include="Entities\TraktOAuthAccessToken.cs" />
     <Compile Include="Modules\TraktOAuthModule.cs" />
     <Compile Include="Modules\TraktCalendarsModule.cs" />
     <Compile Include="Entities\TraktEpisodeImages.cs" />

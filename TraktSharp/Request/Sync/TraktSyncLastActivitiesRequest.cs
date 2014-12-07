@@ -11,7 +11,7 @@ namespace TraktSharp.Request.Sync {
 
 		protected override string PathTemplate { get { return "sync/last_activities"; } }
 
-		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Required; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
 
 	}
 

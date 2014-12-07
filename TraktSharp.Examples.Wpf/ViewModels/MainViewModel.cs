@@ -27,6 +27,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			_view = view;
 
 			Client = new TraktClient();
+			AuthenticationModes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktAuthenticationMode)).Select(v => v.Value.Description));
 			ExtendedOptions = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktExtendedOption)).Select(v => v.Value.Label));
 			TestRequestTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
 			IdLookupTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktIdLookupType)).Select(v => v.Value.Label));
@@ -104,6 +105,47 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public string AuthorizationCode { get { return Client.Authentication.AuthorizationCode; } }
 
+		public TraktOAuthAccessToken OAuthAccessToken {
+			get { return Client.Authentication.CurrentOAuthAccessToken; }
+			set {
+				Client.Authentication.CurrentOAuthAccessToken = value;
+				NotifyPropertyChanged();
+				NotifyPropertyChanged(this.GetMemberName(x => x.Authenticated));
+				NotifyPropertyChanged(this.GetMemberName(x => x.CanDiscardAccessToken));
+			}
+		}
+
+		public string LoginUsernameOrEmail {
+			get { return Client.Authentication.LoginUsernameOrEmail; }
+			set {
+				Client.Authentication.LoginUsernameOrEmail = value;
+				NotifyPropertyChanged();
+				NotifyPropertyChanged(this.GetMemberName(x => x.Authenticated));
+				NotifyPropertyChanged(this.GetMemberName(x => x.CanLogin));
+			}
+		}
+
+		private string _password;
+		public string Password {
+			get { return _password; }
+			set {
+				_password = value;
+				NotifyPropertyChanged();
+				NotifyPropertyChanged(this.GetMemberName(x => x.CanLogin));
+			}
+		}
+
+		public string SimpleAccessToken {
+			get { return Client.Authentication.CurrentSimpleAccessToken; }
+			set {
+				Client.Authentication.CurrentSimpleAccessToken = value;
+				NotifyPropertyChanged();
+				NotifyPropertyChanged(this.GetMemberName(x => x.Authenticated));
+			}
+		}
+
+		public bool Authenticated { get { return Client.Authentication.Authenticated; } }
+
 		public string LastRequest { get; private set; }
 
 		public string LastResponse { get; private set; }
@@ -111,6 +153,23 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		public string LastResponseJson { get; private set; }
 
 		public string LastReturnedValue { get; private set; }
+
+		public ObservableCollection<string> AuthenticationModes { get; set; }
+
+		public string SelectedAuthenticationMode {
+			get { return TraktEnumHelper.GetLabel(Client.Authentication.AuthenticationMode); }
+			set {
+				Client.Authentication.AuthenticationMode = TraktEnumHelper.FromLabel<TraktAuthenticationMode>(value);
+				NotifyPropertyChanged();
+				NotifyPropertyChanged(this.GetMemberName(x => x.Authenticated));
+				NotifyPropertyChanged(this.GetMemberName(x => x.IsOAuthAuthenticationMode));
+				NotifyPropertyChanged(this.GetMemberName(x => x.IsSimpleAuthenticationMode));
+			}
+		}
+
+		public bool IsOAuthAuthenticationMode { get { return Client.Authentication.AuthenticationMode == TraktAuthenticationMode.OAuth; } }
+
+		public bool IsSimpleAuthenticationMode { get { return Client.Authentication.AuthenticationMode == TraktAuthenticationMode.Simple; } }
 
 		public ObservableCollection<string> ExtendedOptions { get; set; }
 
@@ -156,20 +215,20 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private int _selectedResponseTab;
-		public int SelectedResponseTab {
-			get { return _selectedResponseTab; }
-			set {
-				_selectedResponseTab = value;
-				NotifyPropertyChanged();
-			}
-		}
-
 		private int _selectedMainTab;
 		public int SelectedMainTab {
 			get { return _selectedMainTab; }
 			set {
 				_selectedMainTab = value;
+				NotifyPropertyChanged();
+			}
+		}
+
+		private int _selectedResponseTab;
+		public int SelectedResponseTab {
+			get { return _selectedResponseTab; }
+			set {
+				_selectedResponseTab = value;
 				NotifyPropertyChanged();
 			}
 		}
@@ -203,24 +262,40 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		public TraktAccessToken AccessToken {
-			get { return Client.Authentication.CurrentAccessToken; }
-			set {
-				Client.Authentication.CurrentAccessToken = value;
-				NotifyPropertyChanged();
-			}
-		}
-
 		public async void Authorize() {
 			var authorizeViewModel = new AuthorizeViewModel(Client);
 			var window = new AuthorizeView(authorizeViewModel);
 			window.ShowDialog();
 			NotifyPropertyChanged(this.GetMemberName(x => x.AuthorizationCode));
-			AccessToken = await Client.Authentication.GetAccessToken();
+			OAuthAccessToken = await Client.Authentication.GetOAuthAccessToken();
 		}
 
+		public void DiscardAccessToken() {
+			OAuthAccessToken = null;
+		}
 		public object CanAuthorize {
 			get { return !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret); }
+		}
+
+		public object CanDiscardAccessToken {
+			get { return OAuthAccessToken != null && OAuthAccessToken.IsValid; }
+		}
+		
+		public object CanLogin {
+			get { return !string.IsNullOrEmpty(LoginUsernameOrEmail) && !string.IsNullOrEmpty(Password); }
+		}
+
+		public object CanLogout {
+			get { return !string.IsNullOrEmpty(SimpleAccessToken); }
+		}
+
+		public async void Login() {
+			SimpleAccessToken = await Client.Authentication.Login(LoginUsernameOrEmail, Password);
+		}
+
+		public async void Logout() {
+			await Client.Authentication.Logout();
+			SimpleAccessToken = string.Empty;
 		}
 
 		public async void TestRequest() {
@@ -272,10 +347,12 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 					_view.Top = result.WindowTop;
 					_view.WindowState = result.WindowState;
 				}
-				AccessToken = result.AccessToken;
+				OAuthAccessToken = result.AccessToken;
 				Username = result.Username;
 				ClientId = result.ClientId;
 				ClientSecret = result.ClientSecret;
+				LoginUsernameOrEmail = result.LoginUsernameOrEmail;
+				SelectedAuthenticationMode = result.SelectedAuthenticationMode;
 				SelectedMainTab = result.SelectedMainTab;
 				SelectedResponseTab = result.SelectedResponseTab;
 				SelectedExtendedOption = result.SelectedExtendedOption;
@@ -297,10 +374,12 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 					WindowLeft = _view.Left,
 					WindowTop = _view.Top,
 					WindowState = _view.WindowState,
-					AccessToken = AccessToken,
+					AccessToken = OAuthAccessToken,
 					Username = Username,
 					ClientId = ClientId,
 					ClientSecret = ClientSecret,
+					LoginUsernameOrEmail = LoginUsernameOrEmail,
+					SelectedAuthenticationMode = SelectedAuthenticationMode,
 					SelectedMainTab = SelectedMainTab,
 					SelectedResponseTab = SelectedResponseTab,
 					SelectedExtendedOption = SelectedExtendedOption,

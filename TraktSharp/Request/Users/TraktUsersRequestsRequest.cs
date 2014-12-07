@@ -12,7 +12,7 @@ namespace TraktSharp.Request.Users {
 
 		protected override string PathTemplate { get { return "users/requests"; } }
 
-		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Required; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
 
 	}
 

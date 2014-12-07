@@ -10,14 +10,15 @@ using TraktSharp.Entities.Response.Checkin;
 using TraktSharp.Enums;
 using TraktSharp.Exceptions;
 using TraktSharp.Factories;
+using TraktSharp.Tests.Request;
 
 namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
-	internal class TraktCheckinModuleTests : TraktRequestTestsBase {
+	public class TraktCheckinModuleTests : TraktRequestTestsBase {
 
 		[TestMethod]
-		internal async Task TestCheckinCheckinMovieAsync() {
+		public async Task TestCheckinCheckinMovieAsync() {
 
 			FakeResponsePath = @"Checkin\Movie.json";
 
@@ -72,7 +73,7 @@ namespace TraktSharp.Tests.Modules {
 		}
 
 		[TestMethod]
-		internal async Task TestCheckinCheckinEpisodeAsync() {
+		public async Task TestCheckinCheckinEpisodeAsync() {
 
 			FakeResponsePath = @"Checkin\Episode.json";
 			

@@ -25,10 +25,10 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		internal TraktClient Client { get; private set; }
 
 		internal void Navigating(AuthorizeView sender, NavigatingCancelEventArgs e) {
-			if (!e.Uri.AbsoluteUri.StartsWith(Client.Authentication.RedirectUri, StringComparison.CurrentCultureIgnoreCase)) {
+			if (!e.Uri.AbsoluteUri.StartsWith(Client.Authentication.OAuthRedirectUri, StringComparison.CurrentCultureIgnoreCase)) {
 				return;
 			}
-			Client.Authentication.ParseAuthorizationResponse(e.Uri);
+			Client.Authentication.ParseOAuthAuthorizationResponse(e.Uri);
 			e.Cancel = true;
 			sender.DialogResult = true;
 			sender.Close();

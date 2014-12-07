@@ -6,14 +6,15 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TraktSharp.Entities.Response.Genres;
 using TraktSharp.Enums;
+using TraktSharp.Tests.Request;
 
 namespace TraktSharp.Tests.Modules {
 
 	[TestClass]
-	internal class TraktGenresModuleTests : TraktRequestTestsBase {
+	public class TraktGenresModuleTests : TraktRequestTestsBase {
 
 		[TestMethod]
-		internal async Task TestGenresGetGenresAsync() {
+		public async Task TestGenresGetGenresAsync() {
 
 			FakeResponsePath = @"Genres\Movies.json";
 			var moviesResult = (await Client.Genres.GetGenresAsync(TraktGenreTypeOptions.Movies)).ToList();

@@ -38,14 +38,14 @@ namespace TraktSharp.Request {
 
 		internal bool Authenticate {
 			get {
-				if (_client.Configuration.ForceAuthentication && OAuthRequirement != TraktOAuthRequirement.Forbidden) { return true; }
-				if (OAuthRequirement == TraktOAuthRequirement.Required) { return true; }
-				if (OAuthRequirement == TraktOAuthRequirement.Forbidden) { return false; }
+				if (_client.Configuration.ForceAuthentication && AuthenticationRequirement != TraktAuthenticationRequirement.Forbidden) { return true; }
+				if (AuthenticationRequirement == TraktAuthenticationRequirement.Required) { return true; }
+				if (AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden) { return false; }
 				return _authenticate;
 			}
 			set {
-				if (!value && OAuthRequirement == TraktOAuthRequirement.Required) { throw new InvalidOperationException("This request type requires authentication"); }
-				if (!value && OAuthRequirement == TraktOAuthRequirement.Forbidden) { throw new InvalidOperationException("This request type does not allow authentication"); }
+				if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Required) { throw new InvalidOperationException("This request type requires authentication"); }
+				if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden) { throw new InvalidOperationException("This request type does not allow authentication"); }
 				_authenticate = value;
 			}
 		}
@@ -54,7 +54,7 @@ namespace TraktSharp.Request {
 
 		protected abstract string PathTemplate { get; }
 
-		protected abstract TraktOAuthRequirement OAuthRequirement { get; }
+		protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
 
 		protected virtual bool SupportsPagination { get { return false; } }
 
@@ -118,10 +118,18 @@ namespace TraktSharp.Request {
 			request.Headers.Add("trakt-api-version", _client.Configuration.ApiVersion.ToString(CultureInfo.InvariantCulture));
 			request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 			if (Authenticate) {
-				if (_client.Authentication.CurrentAccessToken == null || string.IsNullOrEmpty(_client.Authentication.CurrentAccessToken.AccessToken)) {
-					throw new InvalidOperationException("Authentication is required for this request type, but the current access token is not set");
+				if (!_client.Authentication.Authenticated) {
+					throw new InvalidOperationException("Authentication is required for this request type but the authentication parameters for the current authentication mode are invalid");
 				}
-				request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _client.Authentication.CurrentAccessToken.AccessToken);
+				switch (_client.Authentication.AuthenticationMode) {
+					case TraktAuthenticationMode.OAuth:
+						request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _client.Authentication.CurrentOAuthAccessToken.AccessToken);
+						break;
+					case TraktAuthenticationMode.Simple:
+						request.Headers.TryAddWithoutValidation("trakt-user-login", _client.Authentication.LoginUsernameOrEmail);
+						request.Headers.TryAddWithoutValidation("trakt-user-token", _client.Authentication.CurrentSimpleAccessToken);
+					break;
+				}
 			}
 		}
 
@@ -177,10 +185,10 @@ namespace TraktSharp.Request {
 						} catch { }
 						traktConflictErrorResponse = traktConflictErrorResponse ?? new TraktConflictErrorResponse();
 						throw new TraktConflictException(traktErrorResponse, Url, RequestBodyJson, responseText, traktConflictErrorResponse.ExpiresAt);
-					//case HttpStatusCode.UnprocessableEntity: //TODO: No such enumeration member. Must decide what to do about this
-					//	throw new TraktUnprocessableEntityException(traktError, Url, RequestBodyJson, responseText);
-					//case HttpStatusCode.RateLimitExceeded: //TODO: No such enumeration member. Must decide what to do about this
-					//	throw new TraktRateLimitExceededException(traktError, Url, RequestBodyJson, responseText);
+					case (HttpStatusCode)422:
+						throw new TraktUnprocessableEntityException(traktErrorResponse, Url, RequestBodyJson, responseText);
+					case (HttpStatusCode)429:
+						throw new TraktRateLimitExceededException(traktErrorResponse, Url, RequestBodyJson, responseText);
 					case HttpStatusCode.InternalServerError:
 						throw new TraktServerErrorException(traktErrorResponse, Url, RequestBodyJson, responseText);
 					case HttpStatusCode.ServiceUnavailable:

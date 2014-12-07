@@ -11,7 +11,7 @@ namespace TraktSharp.Request.People {
 
 		protected override string PathTemplate { get { return "people/{id}"; } }
 
-		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.NotRequired; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
 
 	}
 

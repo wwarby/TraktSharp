@@ -73,8 +73,9 @@
     <Compile Include="Modules\TraktCalendarsModuleTests.cs" />
     <Compile Include="Modules\TraktAuthModuleTests.cs" />
     <Compile Include="Modules\TraktCheckinModuleTests.cs" />
+    <Compile Include="Request\TraktRequestTests.cs" />
     <Compile Include="Modules\TraktGenresModuleTests.cs" />
-    <Compile Include="Modules\TraktRequestTestsBase.cs" />
+    <Compile Include="Request\TraktRequestTestsBase.cs" />
     <Compile Include="TraktClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

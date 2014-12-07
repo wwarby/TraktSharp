@@ -11,7 +11,7 @@ namespace TraktSharp.Request {
 
 		protected override HttpMethod Method { get { return HttpMethod.Put; } }
 
-		protected override TraktOAuthRequirement OAuthRequirement { get { return TraktOAuthRequirement.Required; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
 
 		protected override void ValidateParameters() {
 			if (RequestBody == null) {
