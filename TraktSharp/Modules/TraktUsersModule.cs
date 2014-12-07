@@ -47,7 +47,7 @@ namespace TraktSharp.Modules {
 		/// <param name="requestId">The request ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktUsersFollowResponseItem> ApproveFollowRequestAsync(string requestId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<TraktUsersFollowResponse> ApproveFollowRequestAsync(string requestId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktUsersRequestsApproveRequest(Client) { Id = requestId, Extended = extended });
 		}
 
@@ -293,7 +293,7 @@ namespace TraktSharp.Modules {
 		/// <param name="username">The user's Trakt username</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktUsersFollowResponseItem>> GetFollowersAsync(string username = _me, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktUsersFollowResponse>> GetFollowersAsync(string username = _me, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktUsersFollowersRequest(Client) { Username = username, Extended = extended });
 		}
 
@@ -301,7 +301,7 @@ namespace TraktSharp.Modules {
 		/// <param name="username">The user's Trakt username</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktUsersFollowResponseItem>> GetFollowingAsync(string username = _me, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+		public async Task<IEnumerable<TraktUsersFollowResponse>> GetFollowingAsync(string username = _me, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
 			return await SendAsync(new TraktUsersFollowingRequest(Client) { Username = username, Extended = extended });
 		}
 

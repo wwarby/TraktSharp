@@ -21,7 +21,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "certification")]
 		public string Certification { get; set; }
 
-		/// <summary>The country in which the show is produced</summary>
+		/// <summary>The country in which the show is produced in the form of a two-letter language code</summary>
 		[JsonProperty(PropertyName = "country")]
 		public string Country { get; set; }
 

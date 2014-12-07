@@ -7,7 +7,7 @@ using TraktSharp.ExtensionMethods;
 
 namespace TraktSharp.Request.Calendars {
 
-	internal class TraktCalendarsShowsRequest : TraktGetRequest<TraktCalendarsShowsResponse> {
+	internal class TraktCalendarsShowsRequest : TraktGetRequest<Dictionary<string, IEnumerable<TraktCalendarsShowsResponseItem>>> {
 
 		internal TraktCalendarsShowsRequest(TraktClient client) : base(client) { }
 

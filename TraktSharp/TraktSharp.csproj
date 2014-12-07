@@ -105,9 +105,8 @@
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponseMovies.cs" />
     <Compile Include="Entities\Response\Sync\TraktSyncLastActivitiesResponse.cs" />
     <Compile Include="Entities\Response\Users\TraktUsersWatchingResponse.cs" />
-    <Compile Include="Entities\Response\Users\TraktUsersFollowResponse.cs" />
     <Compile Include="Entities\Response\Users\TraktUsersFriendsResponseItem.cs" />
-    <Compile Include="Entities\Response\Users\TraktUsersFollowResponseItem.cs" />
+    <Compile Include="Entities\Response\Users\TraktUsersFollowResponse.cs" />
     <Compile Include="Entities\Response\Users\TraktUsersHistoryEpisodesResponseItem.cs" />
     <Compile Include="Entities\Response\Users\TraktUsersHistoryMoviesResponseItem.cs" />
     <Compile Include="Entities\TraktCastShowCredit.cs" />
@@ -302,7 +301,6 @@
     <Compile Include="Request\Shows\TraktShowsPopularRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsTranslationsRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsUpdatesRequest.cs" />
-    <Compile Include="Entities\Response\Calendars\TraktCalendarsMoviesResponse.cs" />
     <Compile Include="Entities\Response\Calendars\TraktCalendarsMoviesResponseItem.cs" />
     <Compile Include="Entities\Response\Checkin\TraktCheckinMovieResponse.cs" />
     <Compile Include="Entities\Response\Genres\TraktGenresListResponseItem.cs" />
@@ -339,7 +337,6 @@
     <Compile Include="Entities\Response\Shows\TraktShowsTrendingResponseItem.cs" />
     <Compile Include="Entities\Response\Shows\TraktShowsUpdatesResponseItem.cs" />
     <Compile Include="Entities\TraktErrorResponse.cs" />
-    <Compile Include="Entities\Response\Calendars\TraktCalendarsShowsResponse.cs" />
     <Compile Include="Entities\Response\OAuth\TraktOAuthTokenResponse.cs" />
     <Compile Include="Entities\TraktOAuthAccessToken.cs" />
     <Compile Include="Modules\TraktOAuthModule.cs" />

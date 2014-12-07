@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace TraktSharp.Tests.Modules {
 			FakeResponsePath = @"Calendars\Shows.json";
 			var result = await Client.Calendars.GetShowsAsync();
 
-			result.Should().BeOfType(typeof(TraktCalendarsShowsResponse));
+			result.Should().BeOfType(typeof(Dictionary<string, IEnumerable<TraktCalendarsShowsResponseItem>>));
 			result.Should().HaveCount(2);
 			result.First().Key.Should().Be("2014-07-14");
 			result.First().Value.First().AirsAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z", null, DateTimeStyles.RoundtripKind));
@@ -43,7 +44,7 @@ namespace TraktSharp.Tests.Modules {
 			FakeResponsePath = @"Calendars\ShowsNew.json";
 			var result = await Client.Calendars.GetShowsAsync();
 
-			result.Should().BeOfType(typeof(TraktCalendarsShowsResponse));
+			result.Should().BeOfType(typeof(Dictionary<string, IEnumerable<TraktCalendarsShowsResponseItem>>));
 			result.Should().HaveCount(1);
 			result.First().Key.Should().Be("2014-06-30");
 			result.First().Value.First().AirsAt.Should().Be(DateTime.Parse("2014-06-30T02:00:00.000Z", null, DateTimeStyles.RoundtripKind));
@@ -66,7 +67,7 @@ namespace TraktSharp.Tests.Modules {
 			FakeResponsePath = @"Calendars\ShowsPremieres.json";
 			var result = await Client.Calendars.GetShowsAsync();
 
-			result.Should().BeOfType(typeof(TraktCalendarsShowsResponse));
+			result.Should().BeOfType(typeof(Dictionary<string, IEnumerable<TraktCalendarsShowsResponseItem>>));
 			result.Should().HaveCount(2);
 			result.First().Key.Should().Be("2014-06-30");
 			result.First().Value.First().AirsAt.Should().Be(DateTime.Parse("2014-06-30T02:00:00.000Z", null, DateTimeStyles.RoundtripKind));
@@ -89,7 +90,7 @@ namespace TraktSharp.Tests.Modules {
 			FakeResponsePath = @"Calendars\Movies.json";
 			var result = await Client.Calendars.GetMoviesAsync();
 
-			result.Should().BeOfType(typeof(TraktCalendarsMoviesResponse));
+			result.Should().BeOfType(typeof(Dictionary<string, IEnumerable<TraktCalendarsMoviesResponseItem>>));
 			result.Should().HaveCount(2);
 			result.First().Key.Should().Be("2014-08-01");
 			result.First().Value.First().Movie.Title.Should().Be("Guardians of the Galaxy");

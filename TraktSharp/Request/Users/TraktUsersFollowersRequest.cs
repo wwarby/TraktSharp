@@ -5,7 +5,7 @@ using TraktSharp.Entities.Response.Users;
 
 namespace TraktSharp.Request.Users {
 
-	internal class TraktUsersFollowersRequest : TraktGetByUsernameRequest<IEnumerable<TraktUsersFollowResponseItem>> {
+	internal class TraktUsersFollowersRequest : TraktGetByUsernameRequest<IEnumerable<TraktUsersFollowResponse>> {
 
 		internal TraktUsersFollowersRequest(TraktClient client) : base(client) { }
 

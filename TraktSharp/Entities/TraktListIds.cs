@@ -13,7 +13,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "trakt")]
 		public int? Trakt { get; set; }
 
-		/// <summary>The Trakt slug for this item. This is a SEO-friendly URL-safe unique representation of the item in words,=.</summary>
+		/// <summary>The Trakt slug for this item. This is a SEO-friendly URL-safe unique representation of the item in words.</summary>
 		[JsonProperty(PropertyName = "slug")]
 		public string Slug { get; set; }
 
