@@ -33,9 +33,25 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "genres")]
 		public IEnumerable<string> Genres { get; set; }
 
-		/// <summary>The URL of the show's homepage</summary>
+		/// <summary>The URI of a trailer for the show</summary>
+		[JsonIgnore]
+		public Uri Trailer {
+			get { return string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null; }
+			set { TrailerString = value.AbsoluteUri; }
+		}
+
+		[JsonProperty(PropertyName = "trailer")]
+		private string TrailerString { get; set; }
+
+		/// <summary>The URI of the show's homepage</summary>
+		[JsonIgnore]
+		public Uri Homepage {
+			get { return string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
+			set { HomepageString = value.AbsoluteUri; }
+		}
+
 		[JsonProperty(PropertyName = "homepage")]
-		public string Homepage { get; set; }
+		private string HomepageString { get; set; }
 
 		/// <summary>A collection of unique identifiers for the show in various web services</summary>
 		[JsonProperty(PropertyName = "ids")]
@@ -72,10 +88,6 @@ namespace TraktSharp.Entities {
 		/// <summary>The show's title</summary>
 		[JsonProperty(PropertyName = "title")]
 		public string Title { get; set; }
-
-		/// <summary>The URL of a trailer for the show</summary>
-		[JsonProperty(PropertyName = "trailer")]
-		public string Trailer { get; set; }
 
 		/// <summary>The UTC date when the show was last updated</summary>
 		[JsonProperty(PropertyName = "updated_at")]

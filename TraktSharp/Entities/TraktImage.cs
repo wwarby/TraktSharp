@@ -8,9 +8,15 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktImage {
 
-		/// <summary>The URL to the full size image</summary>
+		/// <summary>The URI to the full size image</summary>
+		[JsonIgnore]
+		public Uri Full {
+			get { return string.IsNullOrEmpty(FullString) ? new Uri(FullString) : null; }
+			set { FullString = value.AbsoluteUri; }
+		}
+
 		[JsonProperty(PropertyName = "full")]
-		public string Full { get; set; }
+		private string FullString { get; set; }
 
 	}
 

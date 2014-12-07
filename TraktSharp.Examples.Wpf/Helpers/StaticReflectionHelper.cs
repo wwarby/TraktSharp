@@ -4,24 +4,24 @@ using System.Linq.Expressions;
 
 namespace TraktSharp.Examples.Wpf.Helpers {
 
-	// From http://joelabrahamsson.com/getting-property-and-method-names-using-static-reflection-in-c/
+	// Adapted from http://joelabrahamsson.com/getting-property-and-method-names-using-static-reflection-in-c/
 
-	public static class StaticReflectionHelper {
+	internal static class StaticReflectionHelper {
 
-		public static string GetMemberName<T>(this T instance, Expression<Func<T, object>> expression, bool includeParameters = false) {
+		internal static string GetMemberName<T>(this T instance, Expression<Func<T, object>> expression, bool includeParameters = false) {
 			return GetMemberName(expression, includeParameters);
 		}
 
-		public static string GetMemberName<T>(Expression<Func<T, object>> expression, bool includeParameters = false) {
+		internal static string GetMemberName<T>(Expression<Func<T, object>> expression, bool includeParameters = false) {
 			if (expression == null) { throw new ArgumentException("The expression cannot be null."); }
 			return GetMemberName(expression.Body, includeParameters);
 		}
 
-		public static string GetMemberName<T>(this T instance, Expression<Action<T>> expression, bool includeParameters = false) {
+		internal static string GetMemberName<T>(this T instance, Expression<Action<T>> expression, bool includeParameters = false) {
 			return GetMemberName(expression, includeParameters);
 		}
 
-		public static string GetMemberName<T>(Expression<Action<T>> expression, bool includeParameters = false) {
+		internal static string GetMemberName<T>(Expression<Action<T>> expression, bool includeParameters = false) {
 			if (expression == null) { throw new ArgumentException("The expression cannot be null."); }
 			return GetMemberName(expression.Body, includeParameters);
 		}

@@ -23,7 +23,7 @@ namespace TraktSharp.Modules {
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TraktTextQueryType queryType = TraktTextQueryType.Unspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified, int? page = null, int? limit = null) {
+		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TraktSearchItemType queryType = TraktSearchItemType.Unspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified, int? page = null, int? limit = null) {
 			return await SendAsync(new TraktTextQueryRequest(Client) {
 				Query = query,
 				Type = queryType,

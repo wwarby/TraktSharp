@@ -19,12 +19,12 @@ namespace TraktSharp.Request.Search {
 
 		internal string Query { get; set; }
 
-		internal TraktTextQueryType Type { get; set; }
+		internal TraktSearchItemType Type { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
 			var ret = base.GetQueryStringParameters(queryStringParameters).ToDictionary(o => o.Key, o => o.Value);
 			ret["query"] = Query;
-			if (Type != TraktTextQueryType.Unspecified) {
+			if (Type != TraktSearchItemType.Unspecified) {
 				ret["type"] = TraktEnumHelper.GetDescription(Type);
 			}
 			return ret;

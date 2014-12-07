@@ -7,7 +7,7 @@ using System.Windows.Data;
 namespace TraktSharp.Examples.Wpf.ValueConverters {
 
 	[ValueConversion(typeof(bool), typeof(bool))]
-	public class InverseBooleanToVisibilityConverter : IValueConverter {
+	internal class InverseBooleanToVisibilityConverter : IValueConverter {
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
 			if (targetType != typeof(Visibility)) { throw new InvalidOperationException("The target must be a Visibility"); }

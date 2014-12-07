@@ -5,7 +5,7 @@ using System.Linq;
 namespace TraktSharp.Enums {
 
 	/// <summary>Options for the rating parameter on supporting request types</summary>
-	public enum TraktTextQueryType {
+	public enum TraktWatchingItemType {
 		/// <summary>Unspecified</summary>
 		[Description("")]
 		Unspecified,
@@ -17,13 +17,7 @@ namespace TraktSharp.Enums {
 		Show,
 		/// <summary>Episode</summary>
 		[Description("episode")]
-		Episode,
-		/// <summary>Person</summary>
-		[Description("person")]
-		Person,
-		/// <summary>List</summary>
-		[Description("list")]
-		List
+		Episode
 	}
 
 }

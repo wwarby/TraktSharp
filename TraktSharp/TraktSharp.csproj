@@ -146,6 +146,10 @@
     <Compile Include="Entities\TraktConflictErrorResponse.cs" />
     <Compile Include="Entities\TraktPersonImages.cs" />
     <Compile Include="Entities\TraktMovieImages.cs" />
+    <Compile Include="Enums\TraktHistoryAction.cs" />
+    <Compile Include="Enums\TraktScrobbleAction.cs" />
+    <Compile Include="Enums\TraktWatchingItemType.cs" />
+    <Compile Include="Enums\TraktListItemType.cs" />
     <Compile Include="EventArgs\TraktAfterRequestEventArgs.cs" />
     <Compile Include="EventArgs\TraktBeforeRequestEventArgs.cs" />
     <Compile Include="Exceptions\TraktServiceUnavailableException.cs" />
@@ -424,7 +428,7 @@
     <Compile Include="Enums\TraktTextMovieIdType.cs" />
     <Compile Include="Enums\TraktTextPersonIdType.cs" />
     <Compile Include="Enums\TraktTextShowIdType.cs" />
-    <Compile Include="Enums\TraktTextQueryType.cs" />
+    <Compile Include="Enums\TraktSearchItemType.cs" />
     <Compile Include="TraktAuthentication.cs" />
     <Compile Include="TraktConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

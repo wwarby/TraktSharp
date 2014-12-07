@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
+using TraktSharp.Enums;
+using TraktSharp.Helpers;
 
 namespace TraktSharp.Entities.Response {
 
@@ -10,8 +12,11 @@ namespace TraktSharp.Entities.Response {
 		[JsonProperty(PropertyName = "listed_at")]
 		public DateTime? RatedAt { get; set; }
 
+		[JsonIgnore]
+		public TraktListItemType Type { get; set; }
+
 		[JsonProperty(PropertyName = "type")]
-		public string Type { get; set; }
+		private string TypeString { get { return TraktEnumHelper.GetDescription(Type); } }
 
 		[JsonProperty(PropertyName = "episode")]
 		public TraktEpisode Episode { get; set; }

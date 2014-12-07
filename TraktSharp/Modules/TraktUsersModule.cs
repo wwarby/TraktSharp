@@ -106,7 +106,7 @@ namespace TraktSharp.Modules {
 		}
 
 		/// <summary>Create a new custom list. The name is the only required field, but the other info is recommended to ask for.</summary>
-		/// <param name="name">Name of the list</param>
+		/// <param name="name">The name of the list</param>
 		/// <param name="description">Description for this list</param>
 		/// <param name="privacy">Privacy setting for the list</param>
 		/// <param name="displayMembers">Should each item be numbered?</param>

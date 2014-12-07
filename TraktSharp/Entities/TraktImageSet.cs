@@ -8,18 +8,36 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktImageSet {
 
-		/// <summary>The URL to the full size image</summary>
+		/// <summary>The URI to the full size image</summary>
+		[JsonIgnore]
+		public Uri Full {
+			get { return string.IsNullOrEmpty(FullString) ? new Uri(FullString) : null; }
+			set { FullString = value.AbsoluteUri; }
+		}
+
 		[JsonProperty(PropertyName = "full")]
-		public string Full { get; set; }
+		private string FullString { get; set; }
 
-		/// <summary>The URL to the medium size image</summary>
+		/// <summary>The URI to the medium size image</summary>
+		[JsonIgnore]
+		public Uri Medium {
+			get { return string.IsNullOrEmpty(MediumString) ? new Uri(MediumString) : null; }
+			set { MediumString = value.AbsoluteUri; }
+		}
+
 		[JsonProperty(PropertyName = "medium")]
-		public string Medium { get; set; }
+		private string MediumString { get; set; }
 
-		/// <summary>The URL to the thumbnail size image</summary>
+		/// <summary>The URI to the thumbnail size image</summary>
+		[JsonIgnore]
+		public Uri Thumb {
+			get { return string.IsNullOrEmpty(ThumbString) ? new Uri(ThumbString) : null; }
+			set { ThumbString = value.AbsoluteUri; }
+		}
+
 		[JsonProperty(PropertyName = "thumb")]
-		public string Thumb { get; set; }
-
+		private string ThumbString { get; set; }
+		
 	}
 
 }

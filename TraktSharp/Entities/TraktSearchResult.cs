@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
+using TraktSharp.Enums;
+using TraktSharp.Helpers;
 
 namespace TraktSharp.Entities {
 
@@ -9,8 +11,11 @@ namespace TraktSharp.Entities {
 	public class TraktSearchResult {
 
 		/// <summary>The type of media item</summary>
+		[JsonIgnore]
+		public TraktSearchItemType Type { get; set; }
+
 		[JsonProperty(PropertyName = "type")]
-		public string Type { get; set; }
+		private string TypeString { get { return TraktEnumHelper.GetDescription(Type); } }
 
 		/// <summary>The relevance score for the entry</summary>
 		[JsonProperty(PropertyName = "score")]

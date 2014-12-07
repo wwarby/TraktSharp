@@ -18,6 +18,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "description")]
 		public string Description { get; set; }
 
+		/// <summary>The privacy option for this list</summary>
 		[JsonIgnore]
 		public TraktPrivacyOption Privacy { get; set; }
 

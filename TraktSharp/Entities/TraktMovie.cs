@@ -45,13 +45,25 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "updated_at")]
 		public DateTime? UpdatedAt { get; set; }
 
-		/// <summary>The URL of a trailer for the movie</summary>
-		[JsonProperty(PropertyName = "trailer")]
-		public string Trailer { get; set; }
+		/// <summary>The URI of a trailer for the movie</summary>
+		[JsonIgnore]
+		public Uri Trailer {
+			get { return string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null; }
+			set { TrailerString = value.AbsoluteUri; }
+		}
 
-		/// <summary>The URL of the movie's homepage</summary>
+		[JsonProperty(PropertyName = "trailer")]
+		private string TrailerString { get; set; }
+
+		/// <summary>The URI of the movie's homepage</summary>
+		[JsonIgnore]
+		public Uri Homepage {
+			get { return string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
+			set { HomepageString = value.AbsoluteUri; }
+		}
+
 		[JsonProperty(PropertyName = "homepage")]
-		public string Homepage { get; set; }
+		private string HomepageString { get; set; }
 
 		/// <summary>The average user rating for the movie</summary>
 		[JsonProperty(PropertyName = "rating")]

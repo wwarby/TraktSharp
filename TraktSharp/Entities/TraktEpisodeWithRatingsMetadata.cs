@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Security.AccessControl;
 using Newtonsoft.Json;
 using TraktSharp.Enums;
+using TraktSharp.Helpers;
 
 namespace TraktSharp.Entities {
 

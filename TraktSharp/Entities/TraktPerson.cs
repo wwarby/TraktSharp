@@ -29,9 +29,14 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "birthday")]
 		public DateTime? Birthday { get; set; }
 
-		/// <summary>The person's age, derived from their <see cref="Birthday"/></summary>
+		/// <summary>The person's age, derived from their <see cref="Birthday"/> or <see cref="Death"/></summary>
 		[JsonIgnore]
-		public int Age { get { return Birthday.YearsBetween(DateTime.Now); } }
+		public int Age {
+			get {
+				if (!Birthday.HasValue) { return 0; }
+				return Death.HasValue ? Birthday.YearsBetween(Death) : Birthday.YearsBetween(DateTime.Now);
+			}
+		}
 
 		/// <summary>The person's date of death</summary>
 		[JsonProperty(PropertyName = "death")]
@@ -41,9 +46,15 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "birthplace")]
 		public string Birthplace { get; set; }
 
-		/// <summary>The URL of the person's homepage</summary>
+		/// <summary>The URI of the person's homepage</summary>
+		[JsonIgnore]
+		public Uri Homepage {
+			get { return string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
+			set { HomepageString = value.AbsoluteUri; }
+		}
+
 		[JsonProperty(PropertyName = "homepage")]
-		public string Homepage { get; set; }
+		private string HomepageString { get; set; }
 
 	}
 

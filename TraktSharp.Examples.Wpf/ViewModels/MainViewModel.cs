@@ -30,7 +30,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			ExtendedOptions = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktExtendedOption)).Select(v => v.Value.Label));
 			TestRequestTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
 			IdLookupTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktIdLookupType)).Select(v => v.Value.Label));
-			TextQueryTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktTextQueryType)).Select(v => v.Value.Label));
+			TextQueryTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktSearchItemType)).Select(v => v.Value.Label));
 			TryLoadState();
 			PropertyChanged += (sender, e) => TrySaveState();
 
@@ -136,11 +136,11 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public ObservableCollection<string> TextQueryTypes { get; set; }
 
-		private TraktTextQueryType _selectedTextQueryType;
+		private TraktSearchItemType _selectedTextQueryType;
 		public string SelectedTextQueryType {
 			get { return TraktEnumHelper.GetLabel(_selectedTextQueryType); }
 			set {
-				_selectedTextQueryType = TraktEnumHelper.FromLabel<TraktTextQueryType>(value);
+				_selectedTextQueryType = TraktEnumHelper.FromLabel<TraktSearchItemType>(value);
 				NotifyPropertyChanged();
 			}
 		}

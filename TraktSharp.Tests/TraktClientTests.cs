@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TraktSharp.Tests {
 
 	[TestClass]
-	public class TraktClientTests {
+	internal class TraktClientTests {
 
 	}
 
