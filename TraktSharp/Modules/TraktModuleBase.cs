@@ -24,7 +24,7 @@ namespace TraktSharp.Modules {
 		/// <summary>Send the HTTP request</summary>
 		/// <typeparam name="T">The return type for the request</typeparam>
 		/// <param name="request">The request</param>
-		/// <returns>An instance of <see cref="T"/> containing the payload from the Trakt API</returns>
+		/// <returns>An instance of <typeparamref name="T"/> containing the payload from the Trakt API</returns>
 		protected async Task<T> SendAsync<T>(ITraktRequest<T> request) {
 			if (BeforeRequest != null) { request.BeforeRequest += (sender, e) => BeforeRequest(sender, e); }
 			if (AfterRequest != null) { request.AfterRequest += (sender, e) => AfterRequest(sender, e); }
