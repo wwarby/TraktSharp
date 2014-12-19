@@ -47,15 +47,15 @@ namespace TraktSharp.Modules {
 		/// <param name="requestId">The request ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktUsersFollowResponse> ApproveFollowRequestAsync(string requestId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
-			return await SendAsync(new TraktUsersRequestsApproveRequest(Client) { Id = requestId, Extended = extended });
+		public async Task<TraktUsersFollowResponse> ApproveFollowRequestAsync(int requestId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
+			return await SendAsync(new TraktUsersRequestsApproveRequest(Client) { Id = requestId.ToString(CultureInfo.InvariantCulture), Extended = extended });
 		}
 
 		/// <summary>Deny a follower using the id of the request. If the id is not found, was already approved, or was already denied, a 404 error will be returned.</summary>
 		/// <param name="requestId">The request ID</param>
 		/// <returns>See summary</returns>
-		public async Task DenyFollowRequestAsync(string requestId) {
-			await SendAsync(new TraktUsersRequestsDenyRequest(Client) { Id = requestId });
+		public async Task DenyFollowRequestAsync(int requestId) {
+			await SendAsync(new TraktUsersRequestsDenyRequest(Client) { Id = requestId.ToString(CultureInfo.InvariantCulture) });
 		}
 
 		/// <summary>Get a user's profile information. If the user is private, info will only be returned if you send OAuth and are either that user or an approved follower.</summary>
@@ -165,14 +165,27 @@ namespace TraktSharp.Modules {
 		}
 
 		/// <summary>Update a custom list by sending 1 or more parameters. If you update the list name, the original slug will still be retained so existing references to this list won't break.</summary>
+		/// <param name="listId">The list ID</param>
 		/// <param name="name">Name of the list</param>
 		/// <param name="description">Description for this list</param>
 		/// <param name="privacy">Privacy setting for the list</param>
 		/// <param name="displayMembers">Should each item be numbered?</param>
 		/// <param name="allowComments">Are comments allowed?</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktList> UpdateListAsync(string name, string description = "", TraktPrivacyOption privacy = TraktPrivacyOption.Unspecified, bool? displayMembers = null, bool? allowComments = null) {
-			return await UpdateListAsync(new TraktListRequestBody {
+		public async Task<TraktList> UpdateListAsync(int listId, string name, string description = "", TraktPrivacyOption privacy = TraktPrivacyOption.Unspecified, bool? displayMembers = null, bool? allowComments = null) {
+			return await UpdateListAsync(listId.ToString(CultureInfo.InvariantCulture), name, description, privacy, displayMembers, allowComments);
+		}
+
+		/// <summary>Update a custom list by sending 1 or more parameters. If you update the list name, the original slug will still be retained so existing references to this list won't break.</summary>
+		/// <param name="listId">The list ID</param>
+		/// <param name="name">Name of the list</param>
+		/// <param name="description">Description for this list</param>
+		/// <param name="privacy">Privacy setting for the list</param>
+		/// <param name="displayMembers">Should each item be numbered?</param>
+		/// <param name="allowComments">Are comments allowed?</param>
+		/// <returns>See summary</returns>
+		public async Task<TraktList> UpdateListAsync(string listId, string name, string description = "", TraktPrivacyOption privacy = TraktPrivacyOption.Unspecified, bool? displayMembers = null, bool? allowComments = null) {
+			return await UpdateListAsync(listId, new TraktListRequestBody {
 				Name = name,
 				Description = description,
 				Privacy = privacy,
@@ -182,10 +195,20 @@ namespace TraktSharp.Modules {
 		}
 
 		/// <summary>Update a custom list by sending 1 or more parameters. If you update the list name, the original slug will still be retained so existing references to this list won't break.</summary>
+		/// <param name="listId">The list ID</param>
 		/// <param name="list">The list</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktList> UpdateListAsync(TraktListRequestBody list) {
+		public async Task<TraktList> UpdateListAsync(int listId, TraktListRequestBody list) {
+			return await UpdateListAsync(listId.ToString(CultureInfo.InvariantCulture), list);
+		}
+
+		/// <summary>Update a custom list by sending 1 or more parameters. If you update the list name, the original slug will still be retained so existing references to this list won't break.</summary>
+		/// <param name="listId">The list ID</param>
+		/// <param name="list">The list</param>
+		/// <returns>See summary</returns>
+		public async Task<TraktList> UpdateListAsync(string listId, TraktListRequestBody list) {
 			return await SendAsync(new TraktUsersListsUpdateRequest(Client) {
+				Id = listId,
 				RequestBody = list,
 				Username = _me //From Justin Nemeth: You can only create lists for yourself, for now anyway.
 			});
@@ -230,7 +253,7 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Votes help determine popular lists. Only one like is allowed per list per user.</summary>
 		/// <param name="listId">The list ID</param>
-		/// <param name="username">The user's Trakt username</param>
+		/// <param name="username">The list owner's Trakt username</param>
 		/// <returns>See summary</returns>
 		public async Task LikeListAsync(string listId, string username) {
 			await SendAsync(new TraktUsersListLikeRequest(Client) { Id = listId, Username = username });
@@ -238,7 +261,7 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Remove a like on a list</summary>
 		/// <param name="list">The list</param>
-		/// <param name="username">The user's Trakt username</param>
+		/// <param name="username">The list owner's Trakt username</param>
 		/// <returns>See summary</returns>
 		public async Task UnlikeListAsync(TraktList list, string username) {
 			await UnlikeListAsync(list.Ids.GetBestId(), username);
@@ -246,7 +269,7 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Remove a like on a list</summary>
 		/// <param name="listId">The list ID</param>
-		/// <param name="username">The user's Trakt username</param>
+		/// <param name="username">list owner's Trakt username</param>
 		/// <returns>See summary</returns>
 		public async Task UnlikeListAsync(int listId, string username) {
 			await UnlikeListAsync(listId.ToString(CultureInfo.InvariantCulture), username);
@@ -254,7 +277,7 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Remove a like on a list</summary>
 		/// <param name="listId">The list ID</param>
-		/// <param name="username">The user's Trakt username</param>
+		/// <param name="username">The list owner's Trakt username</param>
 		/// <returns>See summary</returns>
 		public async Task UnlikeListAsync(string listId, string username) {
 			await SendAsync(new TraktUsersListLikeDeleteRequest(Client) { Id = listId, Username = username });
@@ -263,14 +286,15 @@ namespace TraktSharp.Modules {
 		/// <summary>Get all items on a custom list. Items can be movies, shows, seasons, episodes, or people.</summary>
 		/// <param name="listId">The list ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
-		/// <param name="username">The user's Trakt username</param>
+		/// <param name="username">The list owner's Trakt username</param>
 		/// <param name="authenticate">If true, authentication headers will be sent with this request</param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktListItemsResponseItem>> GetListItemsAsync(string listId, TraktExtendedOption extended = TraktExtendedOption.Unspecified, string username = _me, bool authenticate = true) {
 			return await SendAsync(new TraktUsersListItemsRequest(Client) {
 				Id = listId,
 				Username = username,
-				Extended = extended
+				Extended = extended,
+				Authenticate = authenticate
 			});
 		}
 

@@ -11,6 +11,9 @@ namespace TraktSharp.Entities {
 		/// <summary>The access token</summary>
 		public string AccessToken { get; set; }
 
+		/// <summary>The refresh token</summary>
+		public string RefreshToken { get; set; }
+
 		/// <summary>The scope of access provided by the access token</summary>
 		public string AccessScope { get; set; }
 

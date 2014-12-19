@@ -17,7 +17,7 @@ namespace TraktSharp.Request.OAuth {
 		protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (string.IsNullOrEmpty(RequestBody.Code)) {
-				throw new ArgumentException("AuthorizationCode not set. This is usually set by calling ParseAuthorizationResponse().");
+				throw new ArgumentException("Code not set.");
 			}
 			if (string.IsNullOrEmpty(RequestBody.ClientId)) {
 				throw new ArgumentException("ClientId not set.");

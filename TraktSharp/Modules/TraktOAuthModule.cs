@@ -24,7 +24,7 @@ namespace TraktSharp.Modules {
 		/// </summary>
 		/// <returns>See summary</returns>
 		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync() {
-			return await GetOAuthTokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.OAuthRedirectUri, TraktEnumHelper.GetDescription(TraktOAuthTokenGrantType.AuthorizationCode));
+			return await GetOAuthTokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.OAuthRedirectUri, TraktOAuthTokenGrantType.AuthorizationCode);
 		}
 
 		/// <summary>
@@ -38,14 +38,14 @@ namespace TraktSharp.Modules {
 		/// <param name="redirectUri">The uri to which Trakt should redirect upon successful authentication. Refer to <see cref="TraktAuthentication.OAuthRedirectUri"/> for further details.</param>
 		/// <param name="grantType">The requested grant type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync(string code, string clientId, string clientSecret, string redirectUri, string grantType) {
+		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync(string code, string clientId, string clientSecret, string redirectUri, TraktOAuthTokenGrantType grantType) {
 			return await SendAsync(new TraktOAuthTokenRequest(Client) {
 				RequestBody = new TraktOAuthTokenRequestBody {
 					Code = code,
 					ClientId = clientId,
 					ClientSecret = clientSecret,
 					RedirectUri = redirectUri,
-					GrantType = grantType
+					GrantType = TraktEnumHelper.GetDescription(grantType)
 				}
 			});
 		}

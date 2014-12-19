@@ -18,6 +18,8 @@ namespace TraktSharp.Examples.Wpf.Views {
 
 		private void AuthorizeClick(object sender, RoutedEventArgs e) { ViewModel.Authorize(); }
 
+		private void RefreshAccessTokenClick(object sender, RoutedEventArgs e) { ViewModel.RefreshAccessToken(); }
+
 		private void DiscardAccessTokenClick(object sender, RoutedEventArgs e) { ViewModel.DiscardAccessToken(); }
 
 		private void LoginClick(object sender, RoutedEventArgs e) { ViewModel.Login(); }
@@ -30,7 +32,7 @@ namespace TraktSharp.Examples.Wpf.Views {
 
 		private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e) { ViewModel.Closing(); }
 
-		private void TestIdKeyDown(object sender, KeyEventArgs e) {
+		private void SettingsKeyDown(object sender, KeyEventArgs e) {
 			if (e.Key == Key.Return) { ViewModel.TestRequest(); }
 		}
 

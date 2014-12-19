@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TraktSharp.Entities;
@@ -123,6 +124,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				NotifyPropertyChanged();
 				NotifyPropertyChanged(this.GetMemberName(x => x.Authenticated));
 				NotifyPropertyChanged(this.GetMemberName(x => x.WindowTitle));
+				NotifyPropertyChanged(this.GetMemberName(x => x.CanRefreshAccessToken));
 				NotifyPropertyChanged(this.GetMemberName(x => x.CanDiscardAccessToken));
 			}
 		}
@@ -278,12 +280,34 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
+		private string _testUsername;
+		public string TestUsername {
+			get { return _testUsername; }
+			set {
+				_testUsername = value;
+				NotifyPropertyChanged();
+			}
+		}
+
+		private bool _authenticateIfOptional;
+		public bool AuthenticateIfOptional {
+			get { return _authenticateIfOptional; }
+			set {
+				_authenticateIfOptional = value;
+				NotifyPropertyChanged();
+			}
+		}
+
 		public async void Authorize() {
 			var authorizeViewModel = new AuthorizeViewModel(Client);
 			var window = new AuthorizeView(authorizeViewModel);
 			window.ShowDialog();
 			NotifyPropertyChanged(this.GetMemberName(x => x.AuthorizationCode));
 			OAuthAccessToken = await Client.Authentication.GetOAuthAccessToken();
+		}
+
+		public async void RefreshAccessToken() {
+			await Client.Authentication.RefreshOAuthAccessToken();
 		}
 
 		public void DiscardAccessToken() {
@@ -293,10 +317,14 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			get { return !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret); }
 		}
 
+		public object CanRefreshAccessToken {
+			get { return OAuthAccessToken != null && OAuthAccessToken.IsValid; }
+		}
+
 		public object CanDiscardAccessToken {
 			get { return OAuthAccessToken != null && OAuthAccessToken.IsValid; }
 		}
-		
+
 		public object CanLogin {
 			get { return !string.IsNullOrEmpty(LoginUsernameOrEmail) && !string.IsNullOrEmpty(Password); }
 		}
@@ -318,7 +346,12 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		public async void TestRequest() {
 			object result;
 			try {
-				result = await TestRequests.ExecuteTestRequest(Client, _selectedTestRequestType, _selectedExtendedOption, !string.IsNullOrEmpty(TestId) ? TestId : null);
+				result = await TestRequests.ExecuteTestRequest(Client, 
+															  _selectedTestRequestType,
+															  _selectedExtendedOption,
+															  !string.IsNullOrEmpty(TestId) ? TestId : null,
+															  !string.IsNullOrEmpty(TestUsername) ? TestUsername : null, 
+															  AuthenticateIfOptional);
 			} catch (Exception ex) {
 				result = ex;
 			}
@@ -378,6 +411,8 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				SelectedIdLookupType = result.SelectedIdLookupType;
 				SelectedTestRequestType = result.SelectedTestRequestType;
 				TestId = result.TestId;
+				TestUsername = result.TestUsername;
+				AuthenticateIfOptional = result.AuthenticateIfOptional;
 				IdLookup = result.IdLookup;
 				SearchText = result.SearchText;
 			} catch { }
@@ -406,6 +441,8 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 					SelectedTextQueryType = SelectedTextQueryType,
 					SelectedIdLookupType = SelectedIdLookupType,
 					TestId = TestId,
+					TestUsername = TestUsername,
+					AuthenticateIfOptional = AuthenticateIfOptional,
 					IdLookup = IdLookup,
 					SearchText = SearchText
 				}, Formatting.Indented), Encoding.UTF8);

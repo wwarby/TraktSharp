@@ -88,15 +88,32 @@ namespace TraktSharp {
 		/// <param name="url">The url that Trakt redirected the user to</param>
 		public void ParseOAuthAuthorizationResponse(string url) { ParseOAuthAuthorizationResponse(new Uri(url)); }
 
-		/// <summary>Make a call to <see cref="TraktOAuthModule.GetOAuthTokenAsync()"/> and parses the result into <see cref="CurrentOAuthAccessToken"/></summary>
+		/// <summary>Make a call to <see cref="TraktOAuthModule.GetOAuthTokenAsync()"/> to get an OAuth access token using <see cref="AuthorizationCode"/>, <see cref="ClientId"/>,
+		/// <see cref="ClientSecret"/> and <see cref="OAuthRedirectUri"/>, and parse the result into <see cref="CurrentOAuthAccessToken"/></summary>
 		/// <returns><see cref="CurrentOAuthAccessToken"/></returns>
 		public async Task<TraktOAuthAccessToken> GetOAuthAccessToken() {
 			AuthenticationMode = TraktAuthenticationMode.OAuth;
-			var result = await Client.OAuth.GetOAuthTokenAsync(AuthorizationCode, ClientId, ClientSecret, OAuthRedirectUri, TraktEnumHelper.GetDescription(TraktOAuthTokenGrantType.AuthorizationCode));
+			var result = await Client.OAuth.GetOAuthTokenAsync(AuthorizationCode, ClientId, ClientSecret, OAuthRedirectUri, TraktOAuthTokenGrantType.AuthorizationCode);
 			CurrentOAuthAccessToken = new TraktOAuthAccessToken {
 				AccessToken = result.AccessToken,
 				AccessTokenExpires = DateTime.Now.AddSeconds(result.ExpiresIn),
 				AccessScope = result.Scope
+			};
+			return CurrentOAuthAccessToken;
+		}
+
+		/// <summary>Make a call to <see cref="TraktOAuthModule.GetOAuthTokenAsync()"/> to refresh an OAuth access token using <see cref="AuthorizationCode"/>, <see cref="ClientId"/>,
+		/// <see cref="ClientSecret"/> and <see cref="OAuthRedirectUri"/>, and parse the result into <see cref="CurrentOAuthAccessToken"/></summary>
+		/// <returns><see cref="CurrentOAuthAccessToken"/></returns>
+		public async Task<TraktOAuthAccessToken> RefreshOAuthAccessToken() {
+			//TODO: OAuth refresh currently not working - it isn't clear from the docs exactly what values should be passed in. Reported to Trakt staff.
+			AuthenticationMode = TraktAuthenticationMode.OAuth;
+			var result = await Client.OAuth.GetOAuthTokenAsync(CurrentOAuthAccessToken.RefreshToken, ClientId, ClientSecret, OAuthRedirectUri, TraktOAuthTokenGrantType.RefreshToken);
+			CurrentOAuthAccessToken = new TraktOAuthAccessToken {
+				AccessToken = result.AccessToken,
+				AccessTokenExpires = DateTime.Now.AddSeconds(result.ExpiresIn),
+				AccessScope = result.Scope,
+				RefreshToken =  result.RefreshToken
 			};
 			return CurrentOAuthAccessToken;
 		}

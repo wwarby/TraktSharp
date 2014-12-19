@@ -285,13 +285,115 @@ namespace TraktSharp.Examples.Wpf {
 			[Description("TraktClient.Sync.RemoveFromWatchlistByEpisodeIdAsync()")]
 			SyncRemoveFromWatchlistByEpisodeIdAsync,
 
+			// Users module
+
+			[Description("TraktClient.Users.GetSettingsAsync()")]
+			UsersGetSettingsAsync,
+			[Description("TraktClient.Users.UpdateSettingsAsync()")]
+			UsersUpdateSettingsAsync,
+			[Description("TraktClient.Users.GetFollowRequestsAsync()")]
+			UsersGetFollowRequestsAsync,
+			[Description("TraktClient.Users.ApproveFollowRequestAsync()")]
+			UsersApproveFollowRequestAsync,
+			[Description("TraktClient.Users.DenyFollowRequestAsync()")]
+			UsersDenyFollowRequestAsync,
+			
+			[Description("TraktClient.Users.GetUserAsync()")]
+			UsersGetUserAsync,
+			[Description("TraktClient.Users.GetMoviesCollectionAsync()")]
+			UsersGetMoviesCollectionAsync,
+			[Description("TraktClient.Users.GetShowsCollectionAsync()")]
+			UsersGetShowsCollectionAsync,
+
+			[Description("TraktClient.Users.GetListsAsync()")]
+			UsersGetListsAsync,
+			[Description("TraktClient.Users.CreateListAsync()")]
+			UsersCreateListAsync,
+			[Description("TraktClient.Users.GetListAsync()")]
+			UsersGetListAsync,
+			
+			[Description("TraktClient.Users.AddToListByMovieIdAsync()")]
+			UsersAddToListByMovieIdAsync,
+			[Description("TraktClient.Users.AddToListByShowIdAsync()")]
+			UsersAddToListByShowIdAsync,
+			[Description("TraktClient.Users.AddToListByEpisodeIdAsync()")]
+			UsersAddToListByEpisodeIdAsync,
+
+			[Description("TraktClient.Users.RemoveFromListByMovieIdAsync()")]
+			UsersRemoveFromListByMovieIdAsync,
+			[Description("TraktClient.Users.RemoveFromListByShowIdAsync()")]
+			UsersRemoveFromListByShowIdAsync,
+			[Description("TraktClient.Users.RemoveFromListByEpisodeIdAsync()")]
+			UsersRemoveFromListByEpisodeIdAsync,
+
+			[Description("TraktClient.Users.UpdateListAsync()")]
+			UsersUpdateListAsync,
+			[Description("TraktClient.Users.DeleteListAsync()")]
+			UsersDeleteListAsync,
+			
+			[Description("TraktClient.Users.LikeListAsync()")]
+			UsersLikeListAsync,
+			[Description("TraktClient.Users.UnlikeListAsync()")]
+			UsersUnlikeListAsync,
+			[Description("TraktClient.Users.GetListItemsAsync()")]
+			UsersGetListItemsAsync,
+
+			[Description("TraktClient.Users.FollowAsync()")]
+			UsersFollowAsync,
+			[Description("TraktClient.Users.UnfollowAsync()")]
+			UsersUnfollowAsync,
+			[Description("TraktClient.Users.GetFollowersAsync()")]
+			UsersGetFollowersAsync,
+			[Description("TraktClient.Users.GetFollowingAsync()")]
+			UsersGetFollowingAsync,
+			[Description("TraktClient.Users.GetFriendsAsync()")]
+			UsersGetFriendsAsync,
+
+			[Description("TraktClient.Users.GetMoviesHistoryAsync()")]
+			UsersGetMoviesHistoryAsync,
+			[Description("TraktClient.Users.GetEpisodesHistoryAsync()")]
+			UsersGetEpisodesHistoryAsync,
+
+			[Description("TraktClient.Users.GetMovieRatingsAsync()")]
+			UsersGetMovieRatingsAsync,
+			[Description("TraktClient.Users.GetShowRatingsAsync()")]
+			UsersGetShowRatingsAsync,
+			[Description("TraktClient.Users.GetSeasonRatingsAsync()")]
+			UsersGetSeasonRatingsAsync,
+			[Description("TraktClient.Users.GetEpisodeRatingsAsync()")]
+			UsersGetEpisodeRatingsAsync,
+
+			[Description("TraktClient.Users.GetWatchlistMoviesAsync()")]
+			UsersGetWatchlistMoviesAsync,
+			[Description("TraktClient.Users.GetWatchlistShowsAsync()")]
+			UsersGetWatchlistShowsAsync,
+			[Description("TraktClient.Users.GetWatchlistSeasonsAsync()")]
+			UsersGetWatchlistSeasonsAsync,
+			[Description("TraktClient.Users.GetWatchlistEpisodesAsync()")]
+			UsersGetWatchlistEpisodesAsync,
+
+			[Description("TraktClient.Users.GetCurrentlyWatchingAsync()")]
+			UsersGetCurrentlyWatchingAsync,
+			[Description("TraktClient.Users.GetWatchedMoviesAsync()")]
+			UsersGetWatchedMoviesAsync,
+			[Description("TraktClient.Users.GetWatchedShowsAsync()")]
+			UsersGetWatchedShowsAsync,
+
+			[Description("TraktClient.Users.GetActivitiesAsync()")]
+			UsersGetActivitiesAsync,
+			[Description("TraktClient.Users.GetFriendActivitiesAsync()")]
+			UsersGetFriendActivitiesAsync
+
 		}
 
-		public static async Task<object> ExecuteTestRequest(TraktClient client, TestRequestType requestType, TraktExtendedOption extended = TraktExtendedOption.Unspecified, string testId = null) {
+		public static async Task<object> ExecuteTestRequest(TraktClient client, TestRequestType requestType, TraktExtendedOption extended = TraktExtendedOption.Unspecified, string testId = null, string testUsername = null, bool authenticateIfOptional = true) {
 
 			//Uncomment if required
-			//int? testIdInt;
-			//try { if (testId != null) { testIdInt = Int32.Parse(testId); } } catch {}
+			var testIdInt = 0;
+			try { if (testId != null) { testIdInt = Int32.Parse(testId); } } catch {}
+
+			//Default to current user if no test username provided
+			if (testUsername == null) { testUsername = client.Authentication.Username ?? string.Empty; }
 
 			switch (requestType) {
 
@@ -304,13 +406,13 @@ namespace TraktSharp.Examples.Wpf {
 
 				// Calendars module
 				case TestRequestType.CalendarsGetShowsAsync:
-					return await client.Calendars.GetShowsAsync(extended: extended);
+					return await client.Calendars.GetShowsAsync(extended: extended, authenticate: authenticateIfOptional);
 				case TestRequestType.CalendarsGetNewShowsAsync:
-					return await client.Calendars.GetNewShowsAsync(extended: extended);
+					return await client.Calendars.GetNewShowsAsync(extended: extended, authenticate: authenticateIfOptional);
 				case TestRequestType.CalendarsGetPremiereShowsAsync:
-					return await client.Calendars.GetPremiereShowsAsync(extended: extended);
+					return await client.Calendars.GetPremiereShowsAsync(extended: extended, authenticate: authenticateIfOptional);
 				case TestRequestType.CalendarsGetMoviesAsync:
-					return await client.Calendars.GetMoviesAsync(extended: extended);
+					return await client.Calendars.GetMoviesAsync(extended: extended, authenticate: authenticateIfOptional);
 
 				// Checkin module
 				case TestRequestType.CheckinCheckinMovieAsync:
@@ -569,6 +671,109 @@ namespace TraktSharp.Examples.Wpf {
 					return await client.Sync.RemoveFromWatchlistByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
 				case TestRequestType.SyncRemoveFromWatchlistByEpisodeIdAsync:
 					return await client.Sync.RemoveFromWatchlistByEpisodeIdAsync(testId ?? "tt0959621");
+
+				// Users module
+				case TestRequestType.UsersGetSettingsAsync:
+					return await client.Users.GetSettingsAsync(extended);
+				case TestRequestType.UsersUpdateSettingsAsync:
+					return await client.Users.UpdateSettingsAsync();
+				case TestRequestType.UsersGetFollowRequestsAsync:
+					return await client.Users.GetFollowRequestsAsync(extended);
+				case TestRequestType.UsersApproveFollowRequestAsync:
+					return await client.Users.ApproveFollowRequestAsync(testIdInt, extended);
+				case TestRequestType.UsersDenyFollowRequestAsync:
+					await client.Users.DenyFollowRequestAsync(testIdInt);
+					return null;
+				
+				case TestRequestType.UsersGetUserAsync:
+					return await client.Users.GetUserAsync(testUsername, extended, authenticateIfOptional);
+				case TestRequestType.UsersGetMoviesCollectionAsync:
+					return await client.Users.GetMoviesCollectionAsync(testUsername, extended, authenticateIfOptional);
+				case TestRequestType.UsersGetShowsCollectionAsync:
+					return await client.Users.GetShowsCollectionAsync(testUsername, extended, authenticateIfOptional);
+				
+				case TestRequestType.UsersGetListsAsync:
+					return await client.Users.GetListsAsync(testUsername, authenticateIfOptional);
+				case TestRequestType.UsersCreateListAsync:
+					return await client.Users.CreateListAsync("Test List", "Test List Description");
+				case TestRequestType.UsersGetListAsync:
+					return await client.Users.GetListAsync(testId, testUsername, authenticateIfOptional);
+
+				case TestRequestType.UsersUpdateListAsync:
+					return await client.Users.UpdateListAsync(testId, "Test List Updated", "Test List Description Updated");
+				case TestRequestType.UsersDeleteListAsync:
+					await client.Users.DeleteListAsync(testId);
+					return null;
+
+				case TestRequestType.UsersAddToListByMovieIdAsync:
+					return await client.Users.AddToListByMovieIdAsync(testId, "tt0120591");
+				case TestRequestType.UsersAddToListByShowIdAsync:
+					return await client.Users.AddToListByShowIdAsync(testId, "breaking-bad");
+				case TestRequestType.UsersAddToListByEpisodeIdAsync:
+					return await client.Users.AddToListByEpisodeIdAsync(testId, "tt0959621");
+
+				case TestRequestType.UsersRemoveFromListByMovieIdAsync:
+					return await client.Users.RemoveFromListByMovieIdAsync(testId, "tt0120591");
+				case TestRequestType.UsersRemoveFromListByShowIdAsync:
+					return await client.Users.RemoveFromListByShowIdAsync(testId, "breaking-bad");
+				case TestRequestType.UsersRemoveFromListByEpisodeIdAsync:
+					return await client.Users.RemoveFromListByEpisodeIdAsync(testId, "tt0959621");
+
+				case TestRequestType.UsersLikeListAsync:
+					await client.Users.LikeListAsync(testId, testUsername);
+					return null;
+				case TestRequestType.UsersUnlikeListAsync:
+					await client.Users.UnlikeListAsync(testId, testUsername);
+					return null;
+				case TestRequestType.UsersGetListItemsAsync:
+					return await client.Users.GetListItemsAsync(testId, extended, testUsername, authenticateIfOptional);
+				
+				case TestRequestType.UsersFollowAsync:
+					return await client.Users.FollowAsync(testUsername, extended);
+				case TestRequestType.UsersUnfollowAsync:
+					await client.Users.UnfollowAsync(testUsername);
+					return null;
+				case TestRequestType.UsersGetFollowersAsync:
+					return await client.Users.GetFollowersAsync(testUsername, extended);
+				case TestRequestType.UsersGetFollowingAsync:
+					return await client.Users.GetFollowingAsync(testUsername, extended);
+				case TestRequestType.UsersGetFriendsAsync:
+					return await client.Users.GetFriendsAsync(testUsername, extended);
+
+				case TestRequestType.UsersGetMoviesHistoryAsync:
+					return await client.Users.GetMoviesHistoryAsync(testUsername, extended);
+				case TestRequestType.UsersGetEpisodesHistoryAsync:
+					return await client.Users.GetEpisodesHistoryAsync(testUsername, extended);
+
+				case TestRequestType.UsersGetMovieRatingsAsync:
+					return await client.Users.GetMovieRatingsAsync(testUsername, extended: extended);
+				case TestRequestType.UsersGetShowRatingsAsync:
+					return await client.Users.GetShowRatingsAsync(testUsername, extended: extended);
+				case TestRequestType.UsersGetSeasonRatingsAsync:
+					return await client.Users.GetSeasonRatingsAsync(testUsername, extended: extended);
+				case TestRequestType.UsersGetEpisodeRatingsAsync:
+					return await client.Users.GetEpisodeRatingsAsync(testUsername, extended: extended);
+
+				case TestRequestType.UsersGetWatchlistMoviesAsync:
+					return await client.Users.GetWatchlistMoviesAsync(testUsername, extended);
+				case TestRequestType.UsersGetWatchlistShowsAsync:
+					return await client.Users.GetWatchlistShowsAsync(testUsername, extended);
+				case TestRequestType.UsersGetWatchlistSeasonsAsync:
+					return await client.Users.GetWatchlistSeasonsAsync(testUsername, extended);
+				case TestRequestType.UsersGetWatchlistEpisodesAsync:
+					return await client.Users.GetWatchlistEpisodesAsync(testUsername, extended);
+
+				case TestRequestType.UsersGetCurrentlyWatchingAsync:
+					return await client.Users.GetCurrentlyWatchingAsync(testUsername, extended);
+				case TestRequestType.UsersGetWatchedMoviesAsync:
+					return await client.Users.GetWatchedMoviesAsync(testUsername, extended);
+				case TestRequestType.UsersGetWatchedShowsAsync:
+					return await client.Users.GetWatchedShowsAsync(testUsername, extended);
+
+				case TestRequestType.UsersGetActivitiesAsync:
+					return await client.Users.GetActivitiesAsync(testUsername);
+				case TestRequestType.UsersGetFriendActivitiesAsync:
+					return await client.Users.GetFriendActivitiesAsync(testUsername);
 
 				// Invalid request type
 				default:

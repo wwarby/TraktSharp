@@ -36,6 +36,10 @@ namespace TraktSharp.Examples.Wpf {
 
 		public string TestId { get; set; }
 
+		public string TestUsername { get; set; }
+
+		public bool AuthenticateIfOptional { get; set; }
+
 		public bool IdLookup { get; set; }
 
 		public string SearchText { get; set; }

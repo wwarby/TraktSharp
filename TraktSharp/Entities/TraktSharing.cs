@@ -20,6 +20,10 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "tumblr")]
 		public bool? Tumblr { get; set; }
 
+		/// <summary>Indicates that the resource has been (or will be) shared on Google</summary>
+		[JsonProperty(PropertyName = "google")]
+		public bool? Google { get; set; }
+
 	}
 
 }
