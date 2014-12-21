@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -71,11 +72,32 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The language of the movie in the form of a two-letter language code</summary>
 		[JsonProperty(PropertyName = "language")]
-		public string Language { get; set; }
+		public string LanguageCode { get; set; }
 
-		/// <summary>A list of translations available for the movie in the form of two-letter language codes</summary>
+		/// <summary>>The language of the movie</summary>
+		[JsonIgnore]
+		public string Language {
+			get { try { return new CultureInfo(LanguageCode).DisplayName; } catch { return string.Empty; } }
+		}
+
+		/// <summary>A list of translation languages available for the movie in the form of two-letter language codes</summary>
 		[JsonProperty(PropertyName = "available_translations")]
-		public IEnumerable<string> AvailableTranslations { get; set; }
+		public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
+
+		/// <summary>A list of translation languages available for the movie</summary>
+		[JsonIgnore]
+		public List<string> AvailableTranslationLanguages {
+			get {
+				var ret = new List<string>();
+				foreach (var code in AvailableTranslationLanguageCodes) {
+					try {
+						ret.Add(new RegionInfo(code).DisplayName);
+					}
+					catch { }
+				}
+				return ret;
+			}
+		}
 
 		/// <summary>The genres to the movie is tagged with</summary>
 		[JsonProperty(PropertyName = "genres")]

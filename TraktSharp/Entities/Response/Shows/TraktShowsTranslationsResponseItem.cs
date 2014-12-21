@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -18,7 +19,13 @@ namespace TraktSharp.Entities.Response.Shows {
 
 		/// <summary>The language of this translation in the form of a two-letter language code</summary>
 		[JsonProperty(PropertyName = "language")]
-		public string Language { get; set; }
+		public string LanguageCode { get; set; }
+
+		/// <summary>The language of this translation</summary>
+		[JsonIgnore]
+		public string Language {
+			get { try { return new CultureInfo(LanguageCode).DisplayName; } catch { return string.Empty; } }
+		}
 
 	}
 

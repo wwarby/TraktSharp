@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Web;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
-using TraktSharp.Helpers;
 using TraktSharp.Modules;
 
 namespace TraktSharp {

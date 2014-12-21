@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -13,9 +14,23 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "airs")]
 		public TraktShowAirs Airs { get; set; }
 
-		/// <summary>A list of translations available for the show in the form of two-letter language codes</summary>
+		/// <summary>A list of translation languages available for the show in the form of two-letter language codes</summary>
 		[JsonProperty(PropertyName = "available_translations")]
-		public IEnumerable<string> AvailableTranslations { get; set; }
+		public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
+
+		/// <summary>A list of translation languages available for the show</summary>
+		[JsonIgnore]
+		public List<string> AvailableTranslationLanguages {
+			get {
+				var ret = new List<string>();
+				foreach (var code in AvailableTranslationLanguageCodes) {
+					try {
+						ret.Add(new RegionInfo(code).DisplayName);
+					} catch {}
+				}
+				return ret;
+			}
+		}
 
 		/// <summary>The show's certification</summary>
 		[JsonProperty(PropertyName = "certification")]
@@ -23,7 +38,13 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The country in which the show is produced in the form of a two-letter language code</summary>
 		[JsonProperty(PropertyName = "country")]
-		public string Country { get; set; }
+		public string CountryCode { get; set; }
+
+		/// <summary>The country in which the show is produced</summary>
+		[JsonIgnore]
+		public string Country {
+			get { try { return new RegionInfo(CountryCode).DisplayName; } catch { return string.Empty; } }
+		}
 
 		/// <summary>The UTC date when the first episode of the first season was first aired</summary>
 		[JsonProperty(PropertyName = "first_aired")]
@@ -63,7 +84,13 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The language of the show in the form of a two-letter language code</summary>
 		[JsonProperty(PropertyName = "language")]
-		public string Language { get; set; }
+		public string LanguageCode { get; set; }
+
+		/// <summary>>The language of the show</summary>
+		[JsonIgnore]
+		public string Language {
+			get { try { return new CultureInfo(CountryCode).DisplayName; } catch { return string.Empty; } }
+		}
 
 		/// <summary>The network that produces the show</summary>
 		[JsonProperty(PropertyName = "network")]

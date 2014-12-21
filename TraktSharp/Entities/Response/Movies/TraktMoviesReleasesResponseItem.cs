@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -14,7 +15,13 @@ namespace TraktSharp.Entities.Response.Movies {
 
 		/// <summary>The country in which this release date is applicable in the form of a two-letter language code</summary>
 		[JsonProperty(PropertyName = "country")]
-		public string Country { get; set; }
+		public string CountryCode { get; set; }
+
+		/// <summary>The country in which this release date is applicable</summary>
+		[JsonIgnore]
+		public string Country {
+			get { try { return new RegionInfo(CountryCode).DisplayName; } catch { return string.Empty; } }
+		}
 
 		/// <summary>The release date</summary>
 		[JsonProperty(PropertyName = "release_date")]

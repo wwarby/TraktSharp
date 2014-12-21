@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -9,10 +10,24 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktEpisode {
 
-		/// <summary>A list of translations available for the episode in the form of two-letter language codes</summary>
+		/// <summary>A list of translation languages available for the episode in the form of two-letter language codes</summary>
 		[JsonProperty(PropertyName = "available_translations")]
-		public IEnumerable<string> AvailableTranslations { get; set; }
+		public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
 
+		/// <summary>A list of translation languages available for the episode</summary>
+		[JsonIgnore]
+		public List<string> AvailableTranslationLanguages {
+			get {
+				var ret = new List<string>();
+				foreach (var code in AvailableTranslationLanguageCodes) {
+					try {
+						ret.Add(new RegionInfo(code).DisplayName);
+					}
+					catch { }
+				}
+				return ret;
+			}
+		}
 		/// <summary>The UTC date when the episode was first aired</summary>
 		[JsonProperty(PropertyName = "first_aired")]
 		public DateTime? FirstAired { get; set; }
