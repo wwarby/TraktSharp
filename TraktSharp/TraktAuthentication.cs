@@ -66,10 +66,10 @@ namespace TraktSharp {
 		public string OAuthRedirectUri { get; set; }
 
 		/// <summary>Gets the url that users must be redirected to in order to provide their credentials for OAuth authentication</summary>
-		public string OAuthAuthorizationUrl {
+		public Uri OAuthAuthorizationUri {
 			get {
-				return string.Format("{0}/oauth/authorize?response_type=code&client_id={1}&redirect_uri={2}&state={3}&username={4}",
-					Client.Configuration.BaseUrl, ClientId, HttpUtility.UrlEncode(OAuthRedirectUri), AntiForgeryToken, Username);
+				return new Uri(string.Format("{0}/oauth/authorize?response_type=code&client_id={1}&redirect_uri={2}&state={3}&username={4}",
+					Client.Configuration.BaseUrl, ClientId, HttpUtility.UrlEncode(OAuthRedirectUri), AntiForgeryToken, Username));
 			}
 		}
 
