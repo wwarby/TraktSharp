@@ -26,7 +26,7 @@ namespace TraktSharp.Entities {
 		/// <summary>The time zone for the location in which the show airs (derived from <see cref="OlsonTimeZoneId"/>)</summary>
 		[JsonIgnore]
 		public TimeZoneInfo TimeZone {
-			get { return string.IsNullOrEmpty(OlsonTimeZoneId) ? default(TimeZoneInfo) : TraktTimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId); }
+			get { return !string.IsNullOrEmpty(OlsonTimeZoneId) ? TraktTimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId) : default(TimeZoneInfo); }
 		}
 
 		/// <summary>The day of the week on which the show airs in local time</summary>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
+using TraktSharp.Enums;
+using TraktSharp.Helpers;
 
 namespace TraktSharp.Entities {
 
@@ -57,7 +59,7 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI of a trailer for the show</summary>
 		[JsonIgnore]
 		public Uri Trailer {
-			get { return string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null; }
+			get { return !string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null; }
 			set { TrailerString = value.AbsoluteUri; }
 		}
 
@@ -67,7 +69,7 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI of the show's homepage</summary>
 		[JsonIgnore]
 		public Uri Homepage {
-			get { return string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
+			get { return !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
 			set { HomepageString = value.AbsoluteUri; }
 		}
 
@@ -109,8 +111,12 @@ namespace TraktSharp.Entities {
 		public int? Runtime { get; set; }
 
 		/// <summary>The show's current status</summary>
+		[JsonIgnore]
+		public TraktShowStatus Status { get { return TraktEnumHelper.FromDescription<TraktShowStatus>(StatusString); } }
+
+		/// <summary>The show's current status</summary>
 		[JsonProperty(PropertyName = "status")]
-		public string Status { get; set; }
+		private string StatusString { get; set; }
 
 		/// <summary>The show's title</summary>
 		[JsonProperty(PropertyName = "title")]

@@ -49,7 +49,7 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI of a trailer for the movie</summary>
 		[JsonIgnore]
 		public Uri Trailer {
-			get { return string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null; }
+			get { return !string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null; }
 			set { TrailerString = value.AbsoluteUri; }
 		}
 
@@ -59,7 +59,7 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI of the movie's homepage</summary>
 		[JsonIgnore]
 		public Uri Homepage {
-			get { return string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
+			get { return !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
 			set { HomepageString = value.AbsoluteUri; }
 		}
 

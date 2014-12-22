@@ -49,7 +49,7 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI of the person's homepage</summary>
 		[JsonIgnore]
 		public Uri Homepage {
-			get { return string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
+			get { return !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
 			set { HomepageString = value.AbsoluteUri; }
 		}
 

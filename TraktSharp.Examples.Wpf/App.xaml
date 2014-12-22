@@ -1,11 +1,11 @@
 ﻿<Application x:Class="TraktSharp.Examples.Wpf.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:valueConverters1="clr-namespace:TraktSharp.Examples.Wpf.ValueConverters"
+             xmlns:vc="clr-namespace:TraktSharp.Examples.Wpf.ValueConverters"
              StartupUri="Views/MainView.xaml" x:ClassModifier="internal">
 	<Application.Resources>
-		<valueConverters1:InverseBooleanConverter x:Key="InverseBoolConverter" />
+		<vc:InverseBooleanConverter x:Key="InverseBoolConverter" />
 		<BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
-		<valueConverters1:InverseBooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" />
+		<vc:InverseBooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" />
 	</Application.Resources>
 </Application>

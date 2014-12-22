@@ -98,7 +98,7 @@ namespace TraktSharp.Request {
 		protected HttpContent RequestBodyContent {
 			get {
 				var json = RequestBodyJson;
-				return string.IsNullOrEmpty(json) ? null : new StringContent(json, Encoding.UTF8, "application/json");
+				return !string.IsNullOrEmpty(json) ? new StringContent(json, Encoding.UTF8, "application/json") : null;
 			}
 		}
 

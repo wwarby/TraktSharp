@@ -11,7 +11,7 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI to the full size image</summary>
 		[JsonIgnore]
 		public Uri Full {
-			get { return string.IsNullOrEmpty(FullString) ? new Uri(FullString) : null; }
+			get { return !string.IsNullOrEmpty(FullString) ? new Uri(FullString) : null; }
 			set { FullString = value.AbsoluteUri; }
 		}
 

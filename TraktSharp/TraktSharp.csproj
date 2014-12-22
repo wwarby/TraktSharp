@@ -147,6 +147,7 @@
     <Compile Include="Entities\TraktMovieImages.cs" />
     <Compile Include="Enums\TraktHistoryAction.cs" />
     <Compile Include="Enums\TraktAuthenticationMode.cs" />
+    <Compile Include="Enums\TraktShowStatus.cs" />
     <Compile Include="Enums\TraktScrobbleAction.cs" />
     <Compile Include="Enums\TraktWatchingItemType.cs" />
     <Compile Include="Enums\TraktListItemType.cs" />
