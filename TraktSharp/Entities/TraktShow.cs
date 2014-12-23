@@ -112,7 +112,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The show's current status</summary>
 		[JsonIgnore]
-		public TraktShowStatus Status { get { return TraktEnumHelper.FromDescription<TraktShowStatus>(StatusString); } }
+		public TraktShowStatus Status { get { return TraktEnumHelper.FromDescription(StatusString, TraktShowStatus.Unspecified); } }
 
 		/// <summary>The show's current status</summary>
 		[JsonProperty(PropertyName = "status")]

@@ -362,9 +362,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			object result;
 			try {
 				if (IdLookup) {
-					result = await Client.Search.IdLookupAsync(SearchText, _selectedIdLookupType, TraktExtendedOption.Min);
+					result = await Client.Search.IdLookupAsync(SearchText, _selectedIdLookupType, _selectedExtendedOption);
 				} else {
-					result = await Client.Search.TextQueryAsync(SearchText, _selectedTextQueryType, TraktExtendedOption.Min);
+					result = await Client.Search.TextQueryAsync(SearchText, _selectedTextQueryType, _selectedExtendedOption);
 				}
 			} catch (Exception ex) {
 				result = ex;
