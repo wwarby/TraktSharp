@@ -25,13 +25,6 @@ namespace TraktSharp.Request.Seasons {
 			});
 		}
 
-		protected override void ValidateParameters() {
-			base.ValidateParameters();
-			if (Season <= 0) {
-				throw new ArgumentException("Season must be a positive integer.");
-			}
-		}
-
 	}
 
 }

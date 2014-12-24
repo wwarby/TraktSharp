@@ -33,6 +33,10 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "rating")]
 		public decimal? Rating { get; set; }
 
+		/// <summary>A synopsis of the season</summary>
+		[JsonProperty(PropertyName = "overview")]
+		public string Overview { get; set; }
+
 	}
 
 }

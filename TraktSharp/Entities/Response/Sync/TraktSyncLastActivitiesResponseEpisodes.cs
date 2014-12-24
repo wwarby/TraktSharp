@@ -28,6 +28,10 @@ namespace TraktSharp.Entities.Response.Sync {
 		[JsonProperty(PropertyName = "commented_at")]
 		public DateTime? CommentedAt { get; set; }
 
+		/// <summary>The UTC date when the user most recently paused an episode</summary>
+		[JsonProperty(PropertyName = "paused_at")]
+		public DateTime? PausedAt { get; set; }
+
 	}
 
 }

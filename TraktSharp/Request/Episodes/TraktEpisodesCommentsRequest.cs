@@ -30,9 +30,6 @@ namespace TraktSharp.Request.Episodes {
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();
-			if (Season <= 0) {
-				throw new ArgumentException("Season must be a positive integer.");
-			}
 			if (Episode <= 0) {
 				throw new ArgumentException("Episode must be a positive integer.");
 			}
