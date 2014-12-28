@@ -170,7 +170,7 @@
 									</WrapPanel>
 									<WrapPanel Margin="0,10,0,0" HorizontalAlignment="Right">
 										<Label Content="Authenticate if optional:" Width="Auto" />
-										<CheckBox IsChecked="{Binding AuthenticateIfOptional}" />
+										<CheckBox IsChecked="{Binding AuthenticateIfOptional}" VerticalAlignment="Center" />
 									</WrapPanel>
 								</StackPanel>
 							</GroupBox>
