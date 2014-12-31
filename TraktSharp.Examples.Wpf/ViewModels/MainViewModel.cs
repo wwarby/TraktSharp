@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TraktSharp.Entities;
@@ -86,6 +85,14 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				if (Authenticated && Client.Authentication.AuthenticationMode == TraktAuthenticationMode.Simple) { ret.Append(" - Authenticated with Simple Auth"); }
 				if (!Authenticated) { ret.Append(" - Not Authenticated"); }
 				return ret.ToString();
+			}
+		}
+
+		public bool UseSandpit {
+			get { return Client.Configuration.UseSandpit; }
+			set {
+				Client.Configuration.UseSandpit = value;
+				NotifyPropertyChanged();
 			}
 		}
 
@@ -400,6 +407,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				OAuthAccessToken = result.OAuthAccessToken;
 				SimpleAccessToken = result.SimpleAccessToken;
 				Username = result.Username;
+				UseSandpit = result.UseSandpit;
 				ClientId = result.ClientId;
 				ClientSecret = result.ClientSecret;
 				LoginUsernameOrEmail = result.LoginUsernameOrEmail;
@@ -429,6 +437,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 					WindowState = _view.WindowState,
 					OAuthAccessToken = OAuthAccessToken,
 					SimpleAccessToken = SimpleAccessToken,
+					UseSandpit = UseSandpit,
 					Username = Username,
 					ClientId = ClientId,
 					ClientSecret = ClientSecret,

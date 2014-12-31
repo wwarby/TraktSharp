@@ -67,10 +67,13 @@
 			<TabItem Header="Authenticate">
 				<DockPanel Margin="10">
 					<GroupBox DockPanel.Dock="Top" Padding="10" Header="Authentication settings">
-						<WrapPanel>
-							<Label Width="Auto" Content="Current Authentication Mode:" Padding="0,0,10,0"/>
-							<ComboBox ItemsSource="{Binding AuthenticationModes}" SelectedValue="{Binding SelectedAuthenticationMode}" Margin="0,0,10,0" Width="400" />
-						</WrapPanel>
+						<StackPanel>
+							<WrapPanel>
+								<Label Width="Auto" Content="Current Authentication Mode:" Padding="0,0,10,0"/>
+								<ComboBox ItemsSource="{Binding AuthenticationModes}" SelectedValue="{Binding SelectedAuthenticationMode}" Margin="0,0,10,0" Width="400" />
+							</WrapPanel>
+							<CheckBox Content="Use sandpit" VerticalAlignment="Center" Margin="0,10,0,0" IsChecked="{Binding UseSandpit}" />
+						</StackPanel>
 					</GroupBox>
 					<StackPanel>
 						<StackPanel Margin="10" VerticalAlignment="Top" Visibility="{Binding IsOAuthAuthenticationMode, Converter={StaticResource BoolToVisConverter}}">

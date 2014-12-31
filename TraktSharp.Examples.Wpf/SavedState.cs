@@ -12,6 +12,8 @@ namespace TraktSharp.Examples.Wpf {
 
 		public string SimpleAccessToken { get; set; }
 
+		public bool UseSandpit { get; set; }
+
 		public string Username { get; set; }
 
 		public string ClientId { get; set; }
