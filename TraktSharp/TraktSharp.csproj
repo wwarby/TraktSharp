@@ -154,6 +154,7 @@
     <Compile Include="EventArgs\TraktAfterRequestEventArgs.cs" />
     <Compile Include="EventArgs\TraktBeforeRequestEventArgs.cs" />
     <Compile Include="Exceptions\TraktRateLimitExceededException.cs" />
+    <Compile Include="Exceptions\TraktBadGatewayException.cs" />
     <Compile Include="Exceptions\TraktUnprocessableEntityException.cs" />
     <Compile Include="Exceptions\TraktServiceUnavailableException.cs" />
     <Compile Include="Exceptions\TraktConflictException.cs" />

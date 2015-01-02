@@ -153,12 +153,12 @@ namespace TraktSharp.Request {
 			if (!response.IsSuccessStatusCode) {
 				TraktErrorResponse traktErrorResponse = null;
 				try {
-					traktErrorResponse = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TraktErrorResponse>(responseText));
+					traktErrorResponse = JsonConvert.DeserializeObject<TraktErrorResponse>(responseText);
 				} catch { }
 				if (traktErrorResponse == null || string.IsNullOrEmpty(traktErrorResponse.Description)) {
 					try {
 						if (response.StatusCode == HttpStatusCode.Unauthorized) {
-							var traktLoginErrorResponse = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TraktLoginErrorResponse>(responseText));
+							var traktLoginErrorResponse = JsonConvert.DeserializeObject<TraktLoginErrorResponse>(responseText);
 							traktErrorResponse = new TraktErrorResponse {Description = traktLoginErrorResponse.Message, Error = "login_failed"};
 						}
 					} catch { }
@@ -181,7 +181,7 @@ namespace TraktSharp.Request {
 					case HttpStatusCode.Conflict:
 						TraktConflictErrorResponse traktConflictErrorResponse = null;
 						try {
-							traktConflictErrorResponse = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TraktConflictErrorResponse>(responseText));
+							traktConflictErrorResponse = JsonConvert.DeserializeObject<TraktConflictErrorResponse>(responseText);
 						} catch { }
 						traktConflictErrorResponse = traktConflictErrorResponse ?? new TraktConflictErrorResponse();
 						throw new TraktConflictException(traktErrorResponse, Url, RequestBodyJson, responseText, traktConflictErrorResponse.ExpiresAt);
@@ -191,6 +191,8 @@ namespace TraktSharp.Request {
 						throw new TraktRateLimitExceededException(traktErrorResponse, Url, RequestBodyJson, responseText);
 					case HttpStatusCode.InternalServerError:
 						throw new TraktServerErrorException(traktErrorResponse, Url, RequestBodyJson, responseText);
+					case HttpStatusCode.BadGateway:
+						throw new TraktBadGatewayException(traktErrorResponse, Url, RequestBodyJson, responseText);
 					case HttpStatusCode.ServiceUnavailable:
 						throw new TraktServiceUnavailableException(traktErrorResponse, Url, RequestBodyJson, responseText);
 				}
@@ -200,7 +202,7 @@ namespace TraktSharp.Request {
 			if (string.IsNullOrEmpty(responseText) || response.StatusCode == HttpStatusCode.NoContent) {
 				return default(TResponse);
 			}
-			return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<TResponse>(responseText));
+			return JsonConvert.DeserializeObject<TResponse>(responseText);
 		}
 
 	}
