@@ -59,9 +59,11 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			Client.AfterRequest += (sender, e) => {
 
 				var sb = new StringBuilder();
-				sb.AppendLine(string.Format("HTTP/{0} {1}",
-					e.Response.Version,
-					e.Response.Headers.First(h => h.Key.Equals("Status", StringComparison.InvariantCultureIgnoreCase)).Value.First().ToUpper()));
+				var status = "UNKNOWN STATUS";
+				try {
+					status = e.Response.Headers.First(h => h.Key.Equals("Status", StringComparison.InvariantCultureIgnoreCase)).Value.First().ToUpper();
+				} catch {}
+				sb.AppendLine(string.Format("HTTP/{0} {1}", e.Response.Version, status));
 				e.Response.Headers.Select(h => string.Format("{0}: {1}", h.Key, string.Join(",", h.Value))).ToList().ForEach(l => sb.AppendLine(l));
 				sb.AppendLine();
 				sb.AppendLine(e.ResponseText);
@@ -122,7 +124,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		public string AuthorizationCode { get { return Client.Authentication.AuthorizationCode; } }
+		public string AuthorizationCode {
+			get { return Client.Authentication.AuthorizationCode; }
+		}
 
 		public TraktOAuthAccessToken OAuthAccessToken {
 			get { return Client.Authentication.CurrentOAuthAccessToken; }
@@ -318,8 +322,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		public void DiscardAccessToken() {
-			OAuthAccessToken = null;
+			Client.Authentication.OAuthLogout();
 		}
+
 		public object CanAuthorize {
 			get { return !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret); }
 		}
@@ -342,11 +347,11 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public async void Login() {
 			SimpleAccessToken = string.Empty;
-			SimpleAccessToken = await Client.Authentication.Login(LoginUsernameOrEmail, Password);
+			SimpleAccessToken = await Client.Authentication.LoginAsync(LoginUsernameOrEmail, Password);
 		}
 
 		public async void Logout() {
-			await Client.Authentication.Logout();
+			await Client.Authentication.LogoutAsync();
 			SimpleAccessToken = string.Empty;
 		}
 

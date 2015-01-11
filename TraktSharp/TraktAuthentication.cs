@@ -124,7 +124,7 @@ namespace TraktSharp {
 		/// <param name="usernameOrEmail">The user's username or email address</param>
 		/// <param name="password">The user's password</param>
 		/// <returns>A simple access token which is stored in <see cref="CurrentSimpleAccessToken"/> and used for subsequent Trakt API requests</returns>
-		public async Task<string> Login(string usernameOrEmail, string password) {
+		public async Task<string> LoginAsync(string usernameOrEmail, string password) {
 			AuthenticationMode = TraktAuthenticationMode.Simple;
 			if (!string.IsNullOrEmpty(usernameOrEmail)) { LoginUsernameOrEmail = usernameOrEmail; }
 			var result = await Client.Auth.LoginAsync(LoginUsernameOrEmail, password);
@@ -132,11 +132,17 @@ namespace TraktSharp {
 			return CurrentSimpleAccessToken;
 		}
 
-		/// <summary>Log out of the Trakt API. This destroys the access token created by <see cref="Login"/> on the server and the client</summary>
+		/// <summary>Log out of the Trakt API. This destroys the access token created by <see cref="LoginAsync"/> on the server and the client</summary>
 		/// <returns>An awaitable task</returns>
-		public async Task Logout() {
+		public async Task LogoutAsync() {
 			await Client.Auth.LogoutAsync();
 			CurrentSimpleAccessToken = string.Empty;
+		}
+
+		/// <summary>Discards the current OAuth access token and authorization code</summary>
+		public void OAuthLogout() {
+			CurrentOAuthAccessToken = null;
+			AuthorizationCode = null;
 		}
 
 		/// <summary>Tests if the authentication parameters for the current authentication mode are valid</summary>
