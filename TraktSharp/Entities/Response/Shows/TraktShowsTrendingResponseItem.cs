@@ -8,9 +8,9 @@ namespace TraktSharp.Entities.Response.Shows {
 	[Serializable]
 	public class TraktShowsTrendingResponseItem {
 
-		/// <summary>The UTC date when this show was updated</summary>
-		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime UpdatedAt { get; set; }
+		/// <summary>The number of users currently watching this show</summary>
+		[JsonProperty(PropertyName = "watchers")]
+		public int Watchers { get; set; }
 
 		/// <summary>The show</summary>
 		[JsonProperty(PropertyName = "show")]
