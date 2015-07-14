@@ -165,7 +165,7 @@ namespace TraktSharp.Request {
 				}
 				traktErrorResponse = traktErrorResponse ?? new TraktErrorResponse();
 				var message = string.IsNullOrEmpty(traktErrorResponse.Description)
-					? "The Trakt API threw an error with no content. Refer to the StatusCode for an indication of the problem."
+					? string.Format("The Trakt API threw an error with no content. The response status code was {0}.", (int)response.StatusCode)
 					: traktErrorResponse.Description;
 				switch (response.StatusCode) {
 					case HttpStatusCode.NotFound:

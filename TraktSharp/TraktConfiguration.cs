@@ -25,9 +25,7 @@ namespace TraktSharp {
 		public bool ForceAuthentication { get; set; }
 
 		/// <summary>The base URL for all requests</summary>
-		public string BaseUrl {
-			get { return UseSandpit ? string.Format("http://api.v{0}.trakt.tv/", ApiVersion) : "https://api.trakt.tv/"; }
-		}
+		public string BaseUrl => UseSandpit ? "https://api.staging.trakt.tv" : $"https://api-v{ApiVersion}launch.trakt.tv/";
 
 	}
 
