@@ -22,10 +22,6 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "ids")]
 		public TraktMovieIds Ids { get; set; }
 
-		/// <summary>A collection of images related to the movie</summary>
-		[JsonProperty(PropertyName = "images")]
-		public TraktMovieImages Images { get; set; }
-
 		/// <summary>The movie's promotional tag line</summary>
 		[JsonProperty(PropertyName = "tagline")]
 		public string Tagline { get; set; }

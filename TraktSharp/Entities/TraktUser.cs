@@ -44,10 +44,6 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "age")]
 		public int? Age { get; set; }
 
-		/// <summary>A collection of images related to the user</summary>
-		[JsonProperty(PropertyName = "images")]
-		public TraktUserImages Images { get; set; }
-
 	}
 
 }

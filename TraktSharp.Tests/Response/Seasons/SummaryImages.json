@@ -5,16 +5,6 @@
 			"tvdb": 137481,
 			"tmdb": 3627,
 			"tvrage": null
-		},
-		"images": {
-			"poster": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/145/posters/original/41221f3712.jpg?1409351965",
-				"medium": "https://walter.trakt.us/images/seasons/000/002/145/posters/medium/41221f3712.jpg?1409351965",
-				"thumb": "https://walter.trakt.us/images/seasons/000/002/145/posters/thumb/41221f3712.jpg?1409351965"
-			},
-			"thumb": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/145/thumbs/original/c41b46dd09.jpg?1409351965"
-			}
 		}
 	},
 	{
@@ -23,16 +13,6 @@
 			"tvdb": 364731,
 			"tmdb": 3624,
 			"tvrage": null
-		},
-		"images": {
-			"poster": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/146/posters/original/1834978783.jpg?1409351969",
-				"medium": "https://walter.trakt.us/images/seasons/000/002/146/posters/medium/1834978783.jpg?1409351969",
-				"thumb": "https://walter.trakt.us/images/seasons/000/002/146/posters/thumb/1834978783.jpg?1409351969"
-			},
-			"thumb": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/146/thumbs/original/6c996deed7.jpg?1409351970"
-			}
 		}
 	},
 	{
@@ -41,16 +21,6 @@
 			"tvdb": 473271,
 			"tmdb": 3625,
 			"tvrage": null
-		},
-		"images": {
-			"poster": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/147/posters/original/718943d94f.jpg?1409351972",
-				"medium": "https://walter.trakt.us/images/seasons/000/002/147/posters/medium/718943d94f.jpg?1409351972",
-				"thumb": "https://walter.trakt.us/images/seasons/000/002/147/posters/thumb/718943d94f.jpg?1409351972"
-			},
-			"thumb": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/147/thumbs/original/49d143cf04.jpg?1409352072"
-			}
 		}
 	},
 	{
@@ -59,16 +29,6 @@
 			"tvdb": 488434,
 			"tmdb": 3626,
 			"tvrage": null
-		},
-		"images": {
-			"poster": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/148/posters/original/910697a6af.jpg?1409352075",
-				"medium": "https://walter.trakt.us/images/seasons/000/002/148/posters/medium/910697a6af.jpg?1409352075",
-				"thumb": "https://walter.trakt.us/images/seasons/000/002/148/posters/thumb/910697a6af.jpg?1409352075"
-			},
-			"thumb": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/148/thumbs/original/ba2b7136cf.jpg?1409352075"
-			}
 		}
 	},
 	{
@@ -77,16 +37,6 @@
 			"tvdb": 522882,
 			"tmdb": 3628,
 			"tvrage": null
-		},
-		"images": {
-			"poster": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/149/posters/original/46cafaec1f.jpg?1409352078",
-				"medium": "https://walter.trakt.us/images/seasons/000/002/149/posters/medium/46cafaec1f.jpg?1409352078",
-				"thumb": "https://walter.trakt.us/images/seasons/000/002/149/posters/thumb/46cafaec1f.jpg?1409352078"
-			},
-			"thumb": {
-				"full": "https://walter.trakt.us/images/seasons/000/002/149/thumbs/original/0e0ca6a168.jpg?1409352079"
-			}
 		}
 	},
 	{
@@ -95,16 +45,6 @@
 			"tvdb": null,
 			"tmdb": 62090,
 			"tvrage": null
-		},
-		"images": {
-			"poster": {
-				"full": "https://walter.trakt.us/images/seasons/000/003/955/posters/original/8cbfffe9d4.jpg?1409352081",
-				"medium": "https://walter.trakt.us/images/seasons/000/003/955/posters/medium/8cbfffe9d4.jpg?1409352081",
-				"thumb": "https://walter.trakt.us/images/seasons/000/003/955/posters/thumb/8cbfffe9d4.jpg?1409352081"
-			},
-			"thumb": {
-				"full": "https://walter.trakt.us/images/seasons/000/003/955/thumbs/original/e8240191ba.jpg?1409352082"
-			}
 		}
 	}
 ]

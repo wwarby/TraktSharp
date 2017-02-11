@@ -8,12 +8,7 @@
 		"location": "San Diego, CA",
 		"about": "Co-founder of trakt.",
 		"gender": "male",
-		"age": 32,
-		"images": {
-			"avatar": {
-				"full": "https://secure.gravatar.com/avatar/30c2f0dfbc39e48656f40498aa871e33?r=pg&s=256"
-			}
-		}
+		"age": 32
 	},
 	"account": {
 		"timezone": null,

@@ -50,7 +50,7 @@ namespace TraktSharp.Tests.Modules {
 				"foobar",
 				"foobar",
 				DateTime.Now,
-				TraktExtendedOption.FullAndImages);
+				TraktExtendedOption.Full);
 
 			result.Should().BeOfType(typeof(TraktCheckinMovieResponse));
 			result.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T01:11:37.953Z", null, DateTimeStyles.RoundtripKind));
@@ -112,7 +112,7 @@ namespace TraktSharp.Tests.Modules {
 				"foobar",
 				"foobar",
 				DateTime.Now,
-				TraktExtendedOption.FullAndImages);
+				TraktExtendedOption.Full);
 
 			result.Should().BeOfType(typeof(TraktCheckinEpisodeResponse));
 			result.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z", null, DateTimeStyles.RoundtripKind));

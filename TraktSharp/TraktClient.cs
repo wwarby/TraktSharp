@@ -206,10 +206,10 @@ namespace TraktSharp {
 
 		private ITraktModule RegisterModule(ITraktModule module) {
 			module.BeforeRequest += (sender, e) => {
-				if (BeforeRequest != null) { BeforeRequest(sender, e); }
+				BeforeRequest?.Invoke(sender, e);
 			};
 			module.AfterRequest += (sender, e) => {
-				if (AfterRequest != null) { AfterRequest(sender, e); }
+				AfterRequest?.Invoke(sender, e);
 			};
 			return module;
 		}

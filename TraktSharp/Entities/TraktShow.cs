@@ -80,10 +80,6 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "ids")]
 		public TraktShowIds Ids { get; set; }
 
-		/// <summary>A collection of images related to the show</summary>
-		[JsonProperty(PropertyName = "images")]
-		public TraktShowImages Images { get; set; }
-
 		/// <summary>The language of the show in the form of a two-letter language code</summary>
 		[JsonProperty(PropertyName = "language")]
 		public string LanguageCode { get; set; }
