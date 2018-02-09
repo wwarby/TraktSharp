@@ -32,7 +32,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the movie was first released</summary>
 		[JsonProperty(PropertyName = "released")]
-		public DateTime? Released { get; set; }
+		public DateTimeOffset? Released { get; set; }
 
 		/// <summary>The movie's running time (in minutes)</summary>
 		[JsonProperty(PropertyName = "runtime")]
@@ -40,7 +40,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the movie was last updated</summary>
 		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime? UpdatedAt { get; set; }
+		public DateTimeOffset? UpdatedAt { get; set; }
 
 		/// <summary>The URI of a trailer for the movie</summary>
 		[JsonIgnore]

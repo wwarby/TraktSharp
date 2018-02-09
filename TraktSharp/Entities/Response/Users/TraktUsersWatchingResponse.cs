@@ -12,11 +12,11 @@ namespace TraktSharp.Entities.Response.Users {
 
 		/// <summary>The UTC date when the current checkin or scrobble expires</summary>
 		[JsonProperty(PropertyName = "expires_at")]
-		public DateTime? ExpiresAt { get; set; }
+		public DateTimeOffset? ExpiresAt { get; set; }
 
 		/// <summary>The UTC date when the current checkin or scrobble was started</summary>
 		[JsonProperty(PropertyName = "started_at")]
-		public DateTime? StartedAt { get; set; }
+		public DateTimeOffset? StartedAt { get; set; }
 
 		/// <summary>The action associated with the current checkin or scrobble</summary>
 		[JsonIgnore]

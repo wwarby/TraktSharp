@@ -13,7 +13,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the item was collected</summary>
 		[JsonProperty(PropertyName = "collected_at")]
-		public DateTime? CollectedAt { get; set; }
+		public DateTimeOffset? CollectedAt { get; set; }
 
 		/// <summary>The item's media type</summary>
 		[JsonIgnore]

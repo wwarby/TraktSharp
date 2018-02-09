@@ -12,7 +12,7 @@ namespace TraktSharp.Entities.Response {
 
 		/// <summary>The UTC date when the item was added to the list</summary>
 		[JsonProperty(PropertyName = "listed_at")]
-		public DateTime? ListedAt { get; set; }
+		public DateTimeOffset? ListedAt { get; set; }
 
 		/// <summary>The type of media item</summary>
 		[JsonIgnore]

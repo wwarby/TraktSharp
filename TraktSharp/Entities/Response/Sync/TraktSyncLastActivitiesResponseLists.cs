@@ -10,11 +10,11 @@ namespace TraktSharp.Entities.Response.Sync {
 
 		/// <summary>The UTC date when the user most recently "liked" a list</summary>
 		[JsonProperty(PropertyName = "liked_at")]
-		public DateTime? LikedAt { get; set; }
+		public DateTimeOffset? LikedAt { get; set; }
 
 		/// <summary>The UTC date when the user most recently updated a list</summary>
 		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime? UpdatedAt { get; set; }
+		public DateTimeOffset? UpdatedAt { get; set; }
 
 	}
 

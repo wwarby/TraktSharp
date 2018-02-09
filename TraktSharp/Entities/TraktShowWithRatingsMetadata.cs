@@ -12,7 +12,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the rating was made</summary>
 		[JsonProperty(PropertyName = "rated_at")]
-		public DateTime? RatedAt { get; set; }
+		public DateTimeOffset? RatedAt { get; set; }
 
 		/// <summary>The rating</summary>
 		[JsonProperty(PropertyName = "rating")]

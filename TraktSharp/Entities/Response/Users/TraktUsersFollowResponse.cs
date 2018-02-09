@@ -10,7 +10,7 @@ namespace TraktSharp.Entities.Response.Users {
 
 		/// <summary>The UTC date when the follow request was made</summary>
 		[JsonProperty(PropertyName = "followed_at")]
-		public DateTime? FollowedAt { get; set; }
+		public DateTimeOffset? FollowedAt { get; set; }
 
 		/// <summary>The user who is being followed</summary>
 		[JsonProperty(PropertyName = "user")]

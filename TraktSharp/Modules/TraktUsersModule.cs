@@ -489,6 +489,18 @@ namespace TraktSharp.Modules {
 			return null;
 		}
 
-	}
+        /// <summary>Get a user's profile information. If the user is private, info will only be returned if you send OAuth and are either that user or an approved follower.</summary>
+        /// <param name="username">The user's Trakt username</param>
+        /// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+        /// <param name="authenticate">If true, authentication headers will be sent with this request</param>
+        /// <returns>See summary</returns>
+        public async Task<IEnumerable<TraktLikeItem>> GetLikesAsync(TraktLikeType liketype = TraktLikeType.Unspecified, int page = 0, int limit = 10, bool authenticate = true) {
+            return await SendAsync(new TraktUsersLikesRequest(Client, liketype)
+            {
+                Authenticate = authenticate,
+                Pagination = new TraktPaginationOptions(page, limit)
+            });
+        }
+    }
 
 }

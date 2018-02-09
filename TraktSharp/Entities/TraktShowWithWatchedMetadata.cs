@@ -11,7 +11,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the user watched the show</summary>
 		[JsonProperty(PropertyName = "watched_at")]
-		public DateTime? WatchedAt { get; set; }
+		public DateTimeOffset? WatchedAt { get; set; }
 
 		/// <summary>A collection of seasons with metadata related to a user's watched status in regard to each season</summary>
 		[JsonProperty(PropertyName = "seasons")]

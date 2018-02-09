@@ -27,11 +27,11 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			_view = view;
 
 			Client = new TraktClient();
-			AuthenticationModes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktAuthenticationMode)).Select(v => v.Value.Description));
-			ExtendedOptions = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktExtendedOption)).Select(v => v.Value.Label));
-			TestRequestTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
-			IdLookupTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktIdLookupType)).Select(v => v.Value.Label));
-			TextQueryTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktSearchItemType)).Select(v => v.Value.Label));
+			AuthenticationModes = new ObservableCollection<string>(TraktEnumHelper.GetEnumDescriptions(typeof(TraktAuthenticationMode)));
+			ExtendedOptions = new ObservableCollection<string>(TraktEnumHelper.GetEnumLabels(typeof(TraktExtendedOption)));
+			TestRequestTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumDescriptions(typeof(TestRequests.TestRequestType)));
+			IdLookupTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumLabels(typeof(TraktIdLookupType)));
+			TextQueryTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumLabels(typeof(TraktSearchItemType)));
 			TryLoadState();
 			PropertyChanged += (sender, e) => TrySaveState();
 

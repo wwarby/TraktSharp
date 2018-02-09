@@ -50,7 +50,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the first episode of the first season was first aired</summary>
 		[JsonProperty(PropertyName = "first_aired")]
-		public DateTime? FirstAired { get; set; }
+		public DateTimeOffset? FirstAired { get; set; }
 
 		/// <summary>The genres to the show is tagged with</summary>
 		[JsonProperty(PropertyName = "genres")]
@@ -120,7 +120,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the show was last updated</summary>
 		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime? UpdatedAt { get; set; }
+		public DateTimeOffset? UpdatedAt { get; set; }
 
 		/// <summary>The show's release year (first episode of the first season)</summary>
 		[JsonProperty(PropertyName = "year")]
