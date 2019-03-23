@@ -20,7 +20,9 @@ namespace TraktSharp.Tests.Modules {
 			var result = await Client.Auth.LoginAsync("foo", "bar");
 
 			result.Should().BeOfType(typeof(TraktAuthLoginResponse));
+			// ReSharper disable StringLiteralTypo
 			result.Token.Should().Be("98ausd98SAUD98kzxjl");
+			// ReSharper restore StringLiteralTypo
 
 		}
 

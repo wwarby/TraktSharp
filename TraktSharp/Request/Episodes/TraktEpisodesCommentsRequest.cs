@@ -14,24 +14,23 @@ namespace TraktSharp.Request.Episodes {
 
         public TraktCommentSortOrder Order { get; set; }
 
-        protected override string PathTemplate { get { return "shows/{id}/seasons/{season}/episodes/{episode}/comments/" + TraktEnumHelper.GetDescription(Order); } }
+        protected override string PathTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/comments/" + TraktEnumHelper.GetDescription(Order);
 
-        protected override bool SupportsPagination { get { return true; } }
+        protected override bool SupportsPagination => true;
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
         internal int Season { get; set; }
 
         internal int Episode { get; set; }
 
-        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-            return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
-                {"season", Season.ToString(CultureInfo.InvariantCulture)},
-                {"episode", Episode.ToString(CultureInfo.InvariantCulture)}
-            });
-        }
+        protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
+				{"season", Season.ToString(CultureInfo.InvariantCulture)},
+				{"episode", Episode.ToString(CultureInfo.InvariantCulture)}
+			});
 
-        protected override void ValidateParameters() {
+		protected override void ValidateParameters() {
             base.ValidateParameters();
             if (Episode <= 0) {
                 throw new ArgumentException("Episode must be a positive integer.");

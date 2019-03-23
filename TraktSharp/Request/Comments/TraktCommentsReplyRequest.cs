@@ -8,9 +8,9 @@ namespace TraktSharp.Request.Comments {
 
 		internal TraktCommentsReplyRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "comments/{id}/replies"; } }
+		protected override string PathTemplate => "comments/{id}/replies";
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (string.IsNullOrEmpty(RequestBody.Comment)) {
 				throw new ArgumentException("Comment not set");

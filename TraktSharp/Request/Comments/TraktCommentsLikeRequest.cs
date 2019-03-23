@@ -8,8 +8,8 @@ namespace TraktSharp.Request.Comments {
 
 		internal TraktCommentsLikeRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "comments/{id}/like"; } }
+		protected override string PathTemplate => "comments/{id}/like";
 
-	}
+  }
 
 }

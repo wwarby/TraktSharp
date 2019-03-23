@@ -10,11 +10,11 @@ namespace TraktSharp.Request.OAuth {
 
 		internal TraktOAuthTokenRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "oauth/token"; } }
+		protected override string PathTemplate => "oauth/token";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Forbidden; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Forbidden;
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (string.IsNullOrEmpty(RequestBody.Code)) {
 				throw new ArgumentException("Code not set.");

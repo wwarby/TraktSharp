@@ -7,8 +7,8 @@ namespace TraktSharp.Request.Checkin {
 
 		internal TraktCheckinDeleteRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "checkin"; } }
+		protected override string PathTemplate => "checkin";
 
-	}
+  }
 
 }

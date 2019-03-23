@@ -9,10 +9,10 @@ namespace TraktSharp.Request {
 
 		protected TraktDeleteRequest(TraktClient client) : base(client) { }
 
-		protected override HttpMethod Method { get { return HttpMethod.Delete; } }
+		protected override HttpMethod Method => HttpMethod.Delete;
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-	}
+  }
 
 }

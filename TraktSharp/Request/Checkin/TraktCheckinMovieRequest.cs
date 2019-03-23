@@ -9,9 +9,9 @@ namespace TraktSharp.Request.Checkin {
 
 		internal TraktCheckinMovieRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "checkin"; } }
+		protected override string PathTemplate => "checkin";
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (RequestBody.Movie == null) {
 				throw new ArgumentException("Movie not set");

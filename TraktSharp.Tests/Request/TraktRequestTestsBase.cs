@@ -5,6 +5,7 @@ using System.Net.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
+// ReSharper disable StringLiteralTypo
 
 namespace TraktSharp.Tests.Request {
 

@@ -11,20 +11,19 @@ namespace TraktSharp.Request.Episodes {
 
 		internal TraktEpisodesSummaryRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}/episodes/{episode}"; } }
+		protected override string PathTemplate => "shows/{id}/seasons/{season}/episodes/{episode}";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-		internal int Season { get; set; }
+    internal int Season { get; set; }
 
 		internal int Episode { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
 				{"season", Season.ToString(CultureInfo.InvariantCulture)},
 				{"episode", Episode.ToString(CultureInfo.InvariantCulture)}
 			});
-		}
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

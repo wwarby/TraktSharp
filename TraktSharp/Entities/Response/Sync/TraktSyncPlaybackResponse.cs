@@ -15,9 +15,9 @@ namespace TraktSharp.Entities.Response.Sync {
 		public float Progress { get; set; }
 
 		[JsonProperty(PropertyName = "type")]
-		private string TypeString { get { return TraktEnumHelper.GetDescription(Type); } }
+		private string TypeString => TraktEnumHelper.GetDescription(Type);
 
-		/// <summary>The type of media item</summary>
+    /// <summary>The type of media item</summary>
 		[JsonIgnore]
 		public TraktWatchingItemType Type { get; set; }
 

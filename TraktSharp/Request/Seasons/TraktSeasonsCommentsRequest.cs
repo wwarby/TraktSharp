@@ -11,19 +11,18 @@ namespace TraktSharp.Request.Seasons {
 
 		internal TraktSeasonsCommentsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}/comments"; } }
+		protected override string PathTemplate => "shows/{id}/seasons/{season}/comments";
 
-		protected override bool SupportsPagination { get { return true; } }
+    protected override bool SupportsPagination => true;
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-		internal int Season { get; set; }
+    internal int Season { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
 				{"season", Season.ToString(CultureInfo.InvariantCulture)}
 			});
-		}
 
 	}
 

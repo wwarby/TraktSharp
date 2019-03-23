@@ -9,8 +9,8 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersWatchlistMoviesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/watchlist/movies"; } }
+		protected override string PathTemplate => "users/{username}/watchlist/movies";
 
-	}
+  }
 
 }

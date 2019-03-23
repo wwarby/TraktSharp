@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+// ReSharper disable StringLiteralTypo
 
 namespace TraktSharp.Examples.Wpf {
 

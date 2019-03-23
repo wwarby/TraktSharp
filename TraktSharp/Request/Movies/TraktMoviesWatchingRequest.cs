@@ -10,10 +10,10 @@ namespace TraktSharp.Request.Movies {
 
 		internal TraktMoviesWatchingRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/{id}/watching"; } }
+		protected override string PathTemplate => "movies/{id}/watching";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-	}
+  }
 
 }

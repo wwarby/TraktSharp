@@ -39,9 +39,18 @@ namespace TraktSharp.Request {
 		internal bool Authenticate {
 			get {
 				if (_client.Configuration.ForceAuthentication && AuthenticationRequirement != TraktAuthenticationRequirement.Forbidden) { return true; }
-				if (AuthenticationRequirement == TraktAuthenticationRequirement.Required) { return true; }
-				if (AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden) { return false; }
-				return _authenticate;
+				switch (AuthenticationRequirement) {
+					case TraktAuthenticationRequirement.Required:
+						return true;
+					case TraktAuthenticationRequirement.Forbidden:
+						return false;
+					case TraktAuthenticationRequirement.NotRequired:
+						return _authenticate;
+					case TraktAuthenticationRequirement.Optional:
+						return _authenticate;
+					default:
+						return _authenticate;
+				}
 			}
 			set {
 				if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Required) { throw new InvalidOperationException("This request type requires authentication"); }
@@ -56,17 +65,17 @@ namespace TraktSharp.Request {
 
 		protected abstract TraktAuthenticationRequirement AuthenticationRequirement { get; }
 
-		protected virtual bool SupportsPagination { get { return false; } }
+		protected virtual bool SupportsPagination => false;
 
-		protected virtual void ValidateParameters() { }
+    protected virtual void ValidateParameters() { }
 
-		protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) { return pathParameters; }
+		protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) => pathParameters;
 
 		private string Path {
 			get {
 				return GetPathParameters(new Dictionary<string, string>())
 					.Aggregate(PathTemplate.ToLower(), (current, parameter) => current.Replace("{" + parameter.Key.ToLower() + "}", parameter.Value.ToLower()))
-					.TrimEnd(new[] { '/' });
+					.TrimEnd('/');
 			}
 		}
 
@@ -85,15 +94,15 @@ namespace TraktSharp.Request {
 			get {
 				using (var content = new FormUrlEncodedContent(GetQueryStringParameters(new Dictionary<string, string>()))) {
 					var ret = content.ReadAsStringAsync().Result;
-					if (!string.IsNullOrEmpty(ret)) { ret = string.Format("?{0}", ret); }
+					if (!string.IsNullOrEmpty(ret)) { ret = $"?{ret}"; }
 					return ret;
 				}
 			}
 		}
 
-		internal string Url { get { return string.Format("{0}{1}{2}", _client.Configuration.BaseUrl, Path, QueryString); } }
+		internal string Url => $"{_client.Configuration.BaseUrl}{Path}{QueryString}";
 
-		internal TRequestBody RequestBody { get; set; }
+    internal TRequestBody RequestBody { get; set; }
 
 		protected HttpContent RequestBodyContent {
 			get {
@@ -147,7 +156,7 @@ namespace TraktSharp.Request {
 			}
 			var response = await cl.SendAsync(request);
 			var responseText = await response.Content.ReadAsStringAsync();
-			if (AfterRequest != null) { AfterRequest(this, new TraktAfterRequestEventArgs(response, responseText, request, RequestBodyJson ?? string.Empty, cl)); } //Raise event after request
+			AfterRequest?.Invoke(this, new TraktAfterRequestEventArgs(response, responseText, request, RequestBodyJson ?? string.Empty, cl));
 			cl.Dispose();
 
 			if (!response.IsSuccessStatusCode) {
@@ -165,7 +174,7 @@ namespace TraktSharp.Request {
 				}
 				traktErrorResponse = traktErrorResponse ?? new TraktErrorResponse();
 				var message = string.IsNullOrEmpty(traktErrorResponse.Description)
-					? string.Format("The Trakt API threw an error with no content. The response status code was {0}.", (int)response.StatusCode)
+					? $"The Trakt API threw an error with no content. The response status code was {(int) response.StatusCode}."
 					: traktErrorResponse.Description;
 				switch (response.StatusCode) {
 					case HttpStatusCode.NotFound:

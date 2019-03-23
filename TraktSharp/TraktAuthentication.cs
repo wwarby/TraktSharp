@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
 
@@ -31,7 +32,7 @@ namespace TraktSharp {
         /// <summary>The current access token that will be used in all authenticated requests</summary>
         public TraktOAuthAccessToken CurrentOAuthAccessToken {
             get { return _currentOAuthAccessToken = _currentOAuthAccessToken ?? new TraktOAuthAccessToken(); }
-            set { _currentOAuthAccessToken = value; }
+            set => _currentOAuthAccessToken = value;
         }
 
         /// <summary>The current access token that will be used in all authenticated requests</summary>
@@ -64,22 +65,14 @@ namespace TraktSharp {
         public string OAuthRedirectUri { get; set; }
 
         /// <summary>Gets the url that users must be redirected to in order to provide their credentials for OAuth authentication</summary>
-        public Uri OAuthAuthorizationUri
-        {
-            get
-            {
-                return new Uri($"{Client.Configuration.BaseUrl}/oauth/authorize?response_type=code&client_id={ClientId}&redirect_uri={Uri.EscapeUriString(OAuthRedirectUri)}&state={AntiForgeryToken}");
-            }
-        }
+        public Uri OAuthAuthorizationUri => new Uri($"{Client.Configuration.BaseUrl}/oauth/authorize?response_type=code&client_id={ClientId}&redirect_uri={Uri.EscapeUriString(OAuthRedirectUri)}&state={AntiForgeryToken}");
 
         /// <summary>Parses the uri that Trakt redirects to after successful OAuth authentication to extract the authorization code and check the anti-forgery token</summary>
         /// <param name="uri">The uri that Trakt redirected the user to</param>
         public void ParseOAuthAuthorizationResponse(Uri uri) {
-            var queryParams = uri.Query.Split('&')
-             .ToDictionary(c => c.Split('=')[0],
-                           c => Uri.UnescapeDataString(c.Split('=')[1]));
+            var queryParams = HttpUtility.ParseQueryString(uri.Query);
 
-            if (queryParams["state"] != AntiForgeryToken) {
+			if (queryParams["state"] != AntiForgeryToken) {
                 throw new Exception("Anti-forgery token does not match");
             }
             AuthorizationCode = queryParams["code"];
@@ -89,10 +82,10 @@ namespace TraktSharp {
         /// <param name="url">The url that Trakt redirected the user to</param>
         public void ParseOAuthAuthorizationResponse(string url) { ParseOAuthAuthorizationResponse(new Uri(url)); }
 
-        /// <summary>Make a call to <see cref="TraktOAuthModule.GetOAuthTokenAsync()"/> to get an OAuth access token using <see cref="AuthorizationCode"/>, <see cref="ClientId"/>,
-        /// <see cref="ClientSecret"/> and <see cref="OAuthRedirectUri"/>, and parse the result into <see cref="CurrentOAuthAccessToken"/></summary>
-        /// <returns><see cref="CurrentOAuthAccessToken"/></returns>
-        public async Task<TraktOAuthAccessToken> GetOAuthAccessToken() {
+		/// <summary>Make a call to <see cref="Modules.TraktOAuthModule.GetOAuthTokenAsync()"/> to get an OAuth access token using <see cref="AuthorizationCode"/>, <see cref="ClientId"/>,
+		/// <see cref="ClientSecret"/> and <see cref="OAuthRedirectUri"/>, and parse the result into <see cref="CurrentOAuthAccessToken"/></summary>
+		/// <returns><see cref="CurrentOAuthAccessToken"/></returns>
+		public async Task<TraktOAuthAccessToken> GetOAuthAccessToken() {
             AuthenticationMode = TraktAuthenticationMode.OAuth;
             var result = await Client.OAuth.GetOAuthTokenAsync(AuthorizationCode, ClientId, ClientSecret, OAuthRedirectUri, TraktOAuthTokenGrantType.AuthorizationCode);
             CurrentOAuthAccessToken = new TraktOAuthAccessToken {
@@ -103,10 +96,10 @@ namespace TraktSharp {
             return CurrentOAuthAccessToken;
         }
 
-        /// <summary>Make a call to <see cref="TraktOAuthModule.GetOAuthTokenAsync()"/> to refresh an OAuth access token using <see cref="AuthorizationCode"/>, <see cref="ClientId"/>,
-        /// <see cref="ClientSecret"/> and <see cref="OAuthRedirectUri"/>, and parse the result into <see cref="CurrentOAuthAccessToken"/></summary>
-        /// <returns><see cref="CurrentOAuthAccessToken"/></returns>
-        public async Task<TraktOAuthAccessToken> RefreshOAuthAccessToken() {
+		/// <summary>Make a call to <see cref="Modules.TraktOAuthModule.GetOAuthTokenAsync()"/> to refresh an OAuth access token using <see cref="AuthorizationCode"/>, <see cref="ClientId"/>,
+		/// <see cref="ClientSecret"/> and <see cref="OAuthRedirectUri"/>, and parse the result into <see cref="CurrentOAuthAccessToken"/></summary>
+		/// <returns><see cref="CurrentOAuthAccessToken"/></returns>
+		public async Task<TraktOAuthAccessToken> RefreshOAuthAccessToken() {
             //TODO: OAuth refresh currently not working - it isn't clear from the docs exactly what values should be passed in. Reported to Trakt staff.
             AuthenticationMode = TraktAuthenticationMode.OAuth;
             var result = await Client.OAuth.GetOAuthTokenAsync(CurrentOAuthAccessToken.RefreshToken, ClientId, ClientSecret, OAuthRedirectUri, TraktOAuthTokenGrantType.RefreshToken);
@@ -120,8 +113,9 @@ namespace TraktSharp {
         }
 
         /// <summary>
-        /// Log in to the Trakt API using a username/email and password. This is a special case where the application will is allowed to use a simpler token based authenticaion
-        /// instead of OAuth. In order to fall under this special use case, you will need to contact the trakt staff and get a special allowance made.
+        /// Log in to the Trakt API using a username/email and password. This is a special case where the application
+        /// will is allowed to use a simpler token based authentication instead of OAuth. In order to fall under this
+        /// special use case, you will need to contact the trakt staff and get a special allowance made.
         /// </summary>
         /// <param name="usernameOrEmail">The user's username or email address</param>
         /// <param name="password">The user's password</param>

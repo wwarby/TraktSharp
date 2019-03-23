@@ -11,17 +11,16 @@ namespace TraktSharp.Request.Sync {
 
 		internal TraktSyncRatingsMoviesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "sync/ratings/movies/{rating}"; } }
+		protected override string PathTemplate => "sync/ratings/movies/{rating}";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-		internal TraktRating Rating { get; set; }
+    internal TraktRating Rating { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			new Dictionary<string, string> {
 				{"rating", Rating != TraktRating.Unspecified ? ((int)Rating).ToString(CultureInfo.InvariantCulture) : string.Empty}
 			};
-		}
 
 	}
 

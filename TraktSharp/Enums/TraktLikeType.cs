@@ -9,11 +9,11 @@ namespace TraktSharp.Enums
         [Description("")]
         Unspecified,
 
-        /// <summary>Movie</summary>
+        /// <summary>Comments</summary>
         [Description("comment")]
         Comments,
 
-        /// <summary>Show</summary>
+        /// <summary>Lists</summary>
         [Description("list")]
         Lists
     }

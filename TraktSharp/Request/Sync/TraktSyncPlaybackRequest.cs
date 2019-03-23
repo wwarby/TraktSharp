@@ -10,10 +10,10 @@ namespace TraktSharp.Request.Sync {
 
 		internal TraktSyncPlaybackRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "sync/playback"; } }
+		protected override string PathTemplate => "sync/playback";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-	}
+  }
 
 }

@@ -22,9 +22,7 @@ namespace TraktSharp.Entities.Response.Sync
         public TraktShow Show { get; set; }
         public TraktMovie Movie { get; set; }
 
-        public override string ToString()
-        {
-            return $"{Show.Title} - {Episode.Title}: {WatchedAt.LocalDateTime.ToString()}";
-        }
-    }
+        public override string ToString() => $"{Show.Title} - {Episode.Title}: {WatchedAt.LocalDateTime.ToString()}";
+
+	}
 }

@@ -390,7 +390,7 @@ namespace TraktSharp.Examples.Wpf {
 
 			//Uncomment if required
 			var testIdInt = 0;
-			try { if (testId != null) { testIdInt = Int32.Parse(testId); } } catch {}
+			try { if (testId != null) { testIdInt = int.Parse(testId); } } catch {}
 
 			//Default to current user if no test username provided
 			if (testUsername == null) { testUsername = client.Authentication.Username ?? string.Empty; }
@@ -777,8 +777,8 @@ namespace TraktSharp.Examples.Wpf {
 
 				// Invalid request type
 				default:
-					throw new ArgumentOutOfRangeException("requestType",
-						string.Format("A test case has not been implemented for the requested method type: {0}", TraktEnumHelper.GetDescription(requestType)));
+					throw new ArgumentOutOfRangeException(nameof(requestType),
+						$"A test case has not been implemented for the requested method type: {TraktEnumHelper.GetDescription(requestType)}");
 			}
 
 		}

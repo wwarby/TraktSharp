@@ -6,10 +6,10 @@ namespace TraktSharp.Enums {
         /// <summary>Unspecified</summary>
         [Description("")]
         Unspecified,
-        /// <summary>No Seasons </summary>
+        /// <summary>No Seasons</summary>
         [Description("noseasons")]
         NoSeasons,
-        /// <summary>Include Depisodes</summary>
+        /// <summary>Include episodes</summary>
         [Description("episodes")]
         Episodes,
         /// <summary>Full</summary>

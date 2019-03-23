@@ -10,10 +10,10 @@ namespace TraktSharp.Request.Seasons {
 
 		internal TraktSeasonsSummaryRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/seasons"; } }
+		protected override string PathTemplate => "shows/{id}/seasons";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-	}
+  }
 
 }

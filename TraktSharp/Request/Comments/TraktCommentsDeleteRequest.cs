@@ -7,8 +7,8 @@ namespace TraktSharp.Request.Comments {
 
 		internal TraktCommentsDeleteRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "comments/{id}"; } }
+		protected override string PathTemplate => "comments/{id}";
 
-	}
+  }
 
 }

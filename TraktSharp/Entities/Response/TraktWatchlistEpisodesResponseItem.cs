@@ -19,9 +19,9 @@ namespace TraktSharp.Entities.Response {
 		public TraktListItemType Type { get; set; }
 
 		[JsonProperty(PropertyName = "type")]
-		private string TypeString { get { return TraktEnumHelper.GetDescription(Type); } }
+		private string TypeString => TraktEnumHelper.GetDescription(Type);
 
-		/// <summary>The episode</summary>
+    /// <summary>The episode</summary>
 		[JsonProperty(PropertyName = "episode")]
 		public TraktEpisode Episode { get; set; }
 

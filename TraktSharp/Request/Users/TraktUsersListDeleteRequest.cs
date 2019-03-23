@@ -7,8 +7,8 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersListDeleteRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/lists/{id}"; } }
+		protected override string PathTemplate => "users/{username}/lists/{id}";
 
-	}
+  }
 
 }

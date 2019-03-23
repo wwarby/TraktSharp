@@ -11,17 +11,16 @@ namespace TraktSharp.Request.Seasons {
 
 		public TraktSeasonsWatchingRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/seasons/{season}/watching"; } }
+		protected override string PathTemplate => "shows/{id}/seasons/{season}/watching";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-		public int Season { get; set; }
+    public int Season { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
 				{"season", Season.ToString(CultureInfo.InvariantCulture)}
 			});
-		}
 
 	}
 

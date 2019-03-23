@@ -9,9 +9,9 @@ namespace TraktSharp.Request.Scrobble {
 
 		internal TraktScrobbleStartMovieRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "scrobble/start"; } }
+		protected override string PathTemplate => "scrobble/start";
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (RequestBody.Movie == null) {
 				throw new ArgumentException("Movie not set");

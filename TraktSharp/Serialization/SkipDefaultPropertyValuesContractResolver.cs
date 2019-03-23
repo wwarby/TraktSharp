@@ -14,8 +14,8 @@ namespace TraktSharp.Serialization {
             {
                 property.ShouldSerialize = obj =>
                 {
-                    var value = memberProp != null ? memberProp.GetValue(obj, null) : memberField != null ? memberField.GetValue(obj) : null;
-                    if (value is bool) { return (bool)value; }
+                    var value = memberProp != null ? memberProp.GetValue(obj, null) : memberField?.GetValue(obj);
+                    if (value is bool isBool) { return isBool; }
                     if (value is string) { return !string.IsNullOrWhiteSpace(value.ToString()); }
                     return true;
                 };

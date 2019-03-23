@@ -25,19 +25,17 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The time zone for the location in which the show airs (derived from <see cref="OlsonTimeZoneId"/>)</summary>
 		[JsonIgnore]
-		public TimeZoneInfo TimeZone {
-			get { return !string.IsNullOrEmpty(OlsonTimeZoneId) ? TraktTimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId) : default(TimeZoneInfo); }
-		}
+		public TimeZoneInfo TimeZone => !string.IsNullOrEmpty(OlsonTimeZoneId) ? TraktTimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId) : default(TimeZoneInfo);
 
-		/// <summary>The day of the week on which the show airs in local time</summary>
+    /// <summary>The day of the week on which the show airs in local time</summary>
 		[JsonIgnore]
 		public string LocalDay {
 			get {
 				if (string.IsNullOrEmpty(Day) || string.IsNullOrEmpty(Time) || !Regex.IsMatch(Time, @"\d{2}:\d{2}") || TimeZone == null) { return string.Empty; }
 				var days = new List<string> { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 				var dayIndex = days.IndexOf(Day);
-				var hours = Int32.Parse(Time.Substring(0, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes / 60);
-				var minutes = Int32.Parse(Time.Substring(3, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes % 60);
+				var hours = int.Parse(Time.Substring(0, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes / 60);
+				var minutes = int.Parse(Time.Substring(3, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes % 60);
 				if (minutes > 60) {
 					hours++;
 				} else if (minutes < 0) {
@@ -54,8 +52,8 @@ namespace TraktSharp.Entities {
 		public string LocalTime {
 			get {
 				if (string.IsNullOrEmpty(Day) || string.IsNullOrEmpty(Time) || !Regex.IsMatch(Time, @"\d{2}:\d{2}") || TimeZone == null) { return string.Empty; }
-				var hours = Int32.Parse(Time.Substring(0, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes / 60);
-				var minutes = Int32.Parse(Time.Substring(3, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes % 60);
+				var hours = int.Parse(Time.Substring(0, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes / 60);
+				var minutes = int.Parse(Time.Substring(3, 2)) + (int)Math.Floor(TimeZoneOffsetMinutes % 60);
 				if (minutes > 60) {
 					minutes -= 60;
 					hours++;
@@ -65,14 +63,12 @@ namespace TraktSharp.Entities {
 				}
 				if (hours < 0) { hours += 24; }
 				if (hours > 24) { hours -= 24; }
-				return string.Format("{0:00}:{1:00}", hours, minutes);
+				return $"{hours:00}:{minutes:00}";
 			}
 		}
 
-		private double TimeZoneOffsetMinutes {
-			get { return TimeZone == null ? 0 : TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).TotalMinutes - TimeZone.GetUtcOffset(DateTime.Now).TotalMinutes; }
-		}
+		private double TimeZoneOffsetMinutes => TimeZone == null ? 0 : TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).TotalMinutes - TimeZone.GetUtcOffset(DateTime.Now).TotalMinutes;
 
-	}
+  }
 
 }

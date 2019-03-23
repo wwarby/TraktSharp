@@ -9,10 +9,10 @@ namespace TraktSharp.Request.Shows {
 
 		internal TraktShowsProgressWatchedRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/progress/watched"; } }
+		protected override string PathTemplate => "shows/{id}/progress/watched";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-	}
+  }
 
 }

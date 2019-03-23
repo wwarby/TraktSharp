@@ -48,29 +48,29 @@ namespace TraktSharp.Exceptions {
 
 		/// <summary>The custom error message reported by the Trakt API</summary>
 		[DataMember]
-		public override string Message { get { return base.Message; } }
+		public override string Message => base.Message;
 
-		/// <summary>The error source associated with the error</summary>
+    /// <summary>The error source associated with the error</summary>
 		[DataMember]
 		public override string Source {
-			get { return base.Source; } 
-			set { base.Source = value; }
-		}
+			get => base.Source;
+      set => base.Source = value;
+    }
 
 		/// <summary>Data associated with the error</summary>
 		[DataMember]
-		public override System.Collections.IDictionary Data { get { return base.Data; } }
+		public override System.Collections.IDictionary Data => base.Data;
 
-		/// <summary>The stack trace associated with the error</summary>
+    /// <summary>The stack trace associated with the error</summary>
 		[DataMember]
-		public override string StackTrace { get { return base.StackTrace; } }
+		public override string StackTrace => base.StackTrace;
 
-		/// <summary>A help link associated with the error</summary>
+    /// <summary>A help link associated with the error</summary>
 		[DataMember]
 		public override string HelpLink {
-			get { return base.HelpLink; }
-			set { base.HelpLink = value; }
-		}
+			get => base.HelpLink;
+      set => base.HelpLink = value;
+    }
 
 	}
 

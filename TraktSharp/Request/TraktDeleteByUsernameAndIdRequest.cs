@@ -12,12 +12,11 @@ namespace TraktSharp.Request {
 
 		internal string Id { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			new Dictionary<string, string> {
 				{"username", Username},
 				{"id", Id}
 			};
-		}
 
 		protected override void ValidateParameters() {
 			if (string.IsNullOrEmpty(Username)) {

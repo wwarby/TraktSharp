@@ -15,7 +15,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The rating</summary>
 		[JsonProperty(PropertyName = "rating")]
-		new public TraktRating Rating { get; set; }
+		public new TraktRating Rating { get; set; }
 
 	}
 

@@ -11,6 +11,7 @@ using TraktSharp.Enums;
 using TraktSharp.Exceptions;
 using TraktSharp.Factories;
 using TraktSharp.Tests.Request;
+// ReSharper disable StringLiteralTypo
 
 namespace TraktSharp.Tests.Modules {
 

@@ -1,6 +1,6 @@
 ﻿namespace TraktSharp {
 
-    /// <summary>Configuation settings for an instance of <see cref="TraktClient"/></summary>
+    /// <summary>Configuration settings for an instance of <see cref="TraktClient"/></summary>
     public class TraktConfiguration {
 
         /// <summary>Default constructor. Used internally by <see cref="TraktClient"/>.</summary>

@@ -10,10 +10,10 @@ namespace TraktSharp.Request.Sync {
 
 		internal TraktSyncWatchlistEpisodesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "sync/watchlist/episodes"; } }
+		protected override string PathTemplate => "sync/watchlist/episodes";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-	}
+  }
 
 }

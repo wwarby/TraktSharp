@@ -11,15 +11,14 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersRatingsEpisodesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/ratings/episodes/{rating}"; } }
+		protected override string PathTemplate => "users/{username}/ratings/episodes/{rating}";
 
-		internal TraktRating Rating { get; set; }
+    internal TraktRating Rating { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			new Dictionary<string, string> {
 				{"rating", Rating != TraktRating.Unspecified ? ((int)Rating).ToString(CultureInfo.InvariantCulture) : string.Empty}
 			};
-		}
 
 	}
 

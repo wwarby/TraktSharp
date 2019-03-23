@@ -11,10 +11,11 @@ namespace TraktSharp.Request.Shows {
 
         public TraktCommentSortOrder Order { get; set; }
 
-        protected override string PathTemplate { get { return "shows/{id}/comments/" + TraktEnumHelper.GetDescription(Order); } }
+        protected override string PathTemplate => "shows/{id}/comments/" + TraktEnumHelper.GetDescription(Order);
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-        protected override bool SupportsPagination { get { return true; } }
+        protected override bool SupportsPagination => true;
+
     }
 }

@@ -9,9 +9,9 @@ namespace TraktSharp.Request.Scrobble {
 
 		internal TraktScrobbleStopEpisodeRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "scrobble/stop"; } }
+		protected override string PathTemplate => "scrobble/stop";
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (RequestBody.Episode == null) {
 				throw new ArgumentException("Episode not set");

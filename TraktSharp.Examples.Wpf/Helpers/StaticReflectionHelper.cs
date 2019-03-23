@@ -8,18 +8,16 @@ namespace TraktSharp.Examples.Wpf.Helpers {
 
 	internal static class StaticReflectionHelper {
 
-		internal static string GetMemberName<T>(this T instance, Expression<Func<T, object>> expression, bool includeParameters = false) {
-			return GetMemberName(expression, includeParameters);
-		}
+		internal static string GetMemberName<T>(this T instance, Expression<Func<T, object>> expression, bool includeParameters = false)
+			=> GetMemberName(expression, includeParameters);
 
 		internal static string GetMemberName<T>(Expression<Func<T, object>> expression, bool includeParameters = false) {
 			if (expression == null) { throw new ArgumentException("The expression cannot be null."); }
 			return GetMemberName(expression.Body, includeParameters);
 		}
 
-		internal static string GetMemberName<T>(this T instance, Expression<Action<T>> expression, bool includeParameters = false) {
-			return GetMemberName(expression, includeParameters);
-		}
+		internal static string GetMemberName<T>(this T instance, Expression<Action<T>> expression, bool includeParameters = false)
+			=> GetMemberName(expression, includeParameters);
 
 		internal static string GetMemberName<T>(Expression<Action<T>> expression, bool includeParameters = false) {
 			if (expression == null) { throw new ArgumentException("The expression cannot be null."); }
@@ -28,27 +26,24 @@ namespace TraktSharp.Examples.Wpf.Helpers {
 
 		private static string GetMemberName(Expression expression, bool includeParameters = false) {
 			if (expression == null) { throw new ArgumentException("The expression cannot be null."); }
-			var memberExpression = expression as MemberExpression;
-			if (memberExpression != null) {
+			if (expression is MemberExpression memberExpression) {
 				return memberExpression.Member.Name;
 			}
-			var methodCallExpression = expression as MethodCallExpression;
-			if (methodCallExpression != null) {
+			if (expression is MethodCallExpression methodCallExpression) {
 				var ret = methodCallExpression.Method.Name;
 				if (includeParameters) {
-					ret += string.Format("({0})", string.Join(", ", methodCallExpression.Method.GetParameters().Select(p => p.Name).ToList()));
+					ret += $"({string.Join(", ", methodCallExpression.Method.GetParameters().Select(p => p.Name).ToList())})";
 					return ret;
 				}
 			}
-			var unaryExpression = expression as UnaryExpression;
-			if (unaryExpression != null) { return GetMemberName(unaryExpression); }
+			if (expression is UnaryExpression unaryExpression) { return GetMemberName(unaryExpression); }
 			throw new ArgumentException("Invalid expression");
 		}
 
-		private static string GetMemberName(UnaryExpression unaryExpression) {
-			var methodExpression = unaryExpression.Operand as MethodCallExpression;
-			return methodExpression != null ? methodExpression.Method.Name : ((MemberExpression)unaryExpression.Operand).Member.Name;
-		}
+		private static string GetMemberName(UnaryExpression unaryExpression) =>
+			unaryExpression.Operand is MethodCallExpression methodExpression
+				? methodExpression.Method.Name
+				: ((MemberExpression)unaryExpression.Operand).Member.Name;
 
 	}
 

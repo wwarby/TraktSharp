@@ -10,17 +10,16 @@ namespace TraktSharp.Request.Shows {
 
 		internal TraktShowsTranslationsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/translations/{language}"; } }
+		protected override string PathTemplate => "shows/{id}/translations/{language}";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-		internal string Language { get; set; }
+    internal string Language { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
-				{"language", Language},
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {
+				{"language", Language}
 			});
-		}
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

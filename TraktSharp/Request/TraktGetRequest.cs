@@ -8,8 +8,8 @@ namespace TraktSharp.Request {
 
 		protected TraktGetRequest(TraktClient client) : base(client) { }
 
-		protected override HttpMethod Method { get { return HttpMethod.Get; } }
+		protected override HttpMethod Method => HttpMethod.Get;
 
-	}
+  }
 
 }

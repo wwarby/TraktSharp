@@ -19,9 +19,9 @@ namespace TraktSharp.Entities.Response.Users {
 		public TraktHistoryAction Action { get; set; }
 
 		[JsonProperty(PropertyName = "action")]
-		private string ActionString { get { return TraktEnumHelper.GetDescription(Action); } }
+		private string ActionString => TraktEnumHelper.GetDescription(Action);
 
-		/// <summary>The movie</summary>
+    /// <summary>The movie</summary>
 		[JsonProperty(PropertyName = "movie")]
 		public TraktMovie Movie { get; set; }
 

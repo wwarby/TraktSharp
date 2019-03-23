@@ -8,8 +8,8 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersWatchingRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/watching"; } }
+		protected override string PathTemplate => "users/{username}/watching";
 
-	}
+  }
 
 }

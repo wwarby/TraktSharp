@@ -17,7 +17,7 @@ namespace TraktSharp.Enums {
 		Checkin,
 		/// <summary>Scrobble</summary>
 		[Description("scrobble")]
-		Scrobble,
+		Scrobble
 	}
 
 }

@@ -9,11 +9,11 @@ namespace TraktSharp.Request {
 
 		protected TraktPutRequest(TraktClient client) : base(client) { }
 
-		protected override HttpMethod Method { get { return HttpMethod.Put; } }
+		protected override HttpMethod Method => HttpMethod.Put;
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			if (RequestBody == null) {
 				throw new ArgumentException("Request body not set");
 			}

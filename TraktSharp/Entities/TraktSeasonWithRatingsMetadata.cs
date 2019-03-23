@@ -16,7 +16,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The rating</summary>
 		[JsonProperty(PropertyName = "rating")]
-		new public TraktRating Rating { get; set; }
+		public new TraktRating Rating { get; set; }
 
 		/// <summary>A collection of episodes with metadata related to a user's rating in regard to each episode</summary>
 		[JsonProperty(PropertyName = "episodes")]

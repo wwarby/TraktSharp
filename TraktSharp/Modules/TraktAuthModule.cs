@@ -18,14 +18,13 @@ namespace TraktSharp.Modules {
 		/// <param name="login">Must be set to email or username.</param>
 		/// <param name="password">The user's password.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAuthLoginResponse> LoginAsync(string login, string password) {
-			return await SendAsync(new TraktAuthLoginRequest(Client) {
+		public async Task<TraktAuthLoginResponse> LoginAsync(string login, string password) =>
+			await SendAsync(new TraktAuthLoginRequest(Client) {
 				RequestBody = new TraktAuthLoginRequestBody {
 					Login = login,
 					Password = password
 				}
 			});
-		}
 
 		/// <summary>Resets the user's token. Does not return anything.</summary>
 		/// <returns>See summary</returns>

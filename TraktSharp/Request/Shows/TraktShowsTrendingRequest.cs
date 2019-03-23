@@ -10,12 +10,12 @@ namespace TraktSharp.Request.Shows {
 
 		internal TraktShowsTrendingRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/trending"; } }
+		protected override string PathTemplate => "shows/trending";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-		protected override bool SupportsPagination { get { return true; } }
+    protected override bool SupportsPagination => true;
 
-	}
+  }
 
 }

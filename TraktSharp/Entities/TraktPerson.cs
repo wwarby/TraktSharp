@@ -45,9 +45,9 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI of the person's homepage</summary>
 		[JsonIgnore]
 		public Uri Homepage {
-			get { return !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
-			set { HomepageString = value.AbsoluteUri; }
-		}
+			get => !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null;
+      set => HomepageString = value.AbsoluteUri;
+    }
 
 		[JsonProperty(PropertyName = "homepage")]
 		private string HomepageString { get; set; }

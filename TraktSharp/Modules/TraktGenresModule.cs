@@ -18,11 +18,10 @@ namespace TraktSharp.Modules {
 		/// <summary>Get a list of all genres, including names and slugs</summary>
 		/// <param name="genreType">The genre type</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktGenresListResponseItem>> GetGenresAsync(TraktGenreTypeOptions genreType) {
-			return await SendAsync(new TraktGenresListRequest(Client) {
+		public async Task<IEnumerable<TraktGenresListResponseItem>> GetGenresAsync(TraktGenreTypeOptions genreType) =>
+			await SendAsync(new TraktGenresListRequest(Client) {
 				Type = genreType
 			});
-		}
 
 	}
 

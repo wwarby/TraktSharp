@@ -7,8 +7,8 @@ namespace TraktSharp.Request.Recommendations {
 
 		internal TraktRecommendationsShowsDismissRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "recommendations/shows/{id}"; } }
+		protected override string PathTemplate => "recommendations/shows/{id}";
 
-	}
+  }
 
 }

@@ -23,9 +23,9 @@ namespace TraktSharp.Entities.RequestBody.Users {
 		public TraktPrivacyOption Privacy { get; set; }
 
 		[JsonProperty(PropertyName = "privacy")]
-		private string PrivacyString { get { return TraktEnumHelper.GetDescription(Privacy); } }
+		private string PrivacyString => TraktEnumHelper.GetDescription(Privacy);
 
-		/// <summary>Should each item be numbered?</summary>
+    /// <summary>Should each item be numbered?</summary>
 		[JsonProperty(PropertyName = "display_numbers")]
 		public bool? DisplayNumbers { get; set; }
 

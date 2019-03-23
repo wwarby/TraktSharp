@@ -9,10 +9,10 @@ namespace TraktSharp.Request.Shows {
 
 		internal TraktShowsSummaryRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}"; } }
+		protected override string PathTemplate => "shows/{id}";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-	}
+  }
 
 }

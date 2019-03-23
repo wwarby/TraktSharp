@@ -2,35 +2,25 @@
 using TraktSharp.Entities;
 using TraktSharp.Enums;
 
-namespace TraktSharp.Request.Users
-{
-    internal class TraktUsersLikesRequest : TraktGetRequest<IEnumerable<TraktLikeItem>>
-    {
-        internal TraktUsersLikesRequest(TraktClient client, TraktLikeType type) : base(client)
-        {
-            this.type = type;
-        }
+namespace TraktSharp.Request.Users {
+	internal class TraktUsersLikesRequest : TraktGetRequest<IEnumerable<TraktLikeItem>> {
+		internal TraktUsersLikesRequest(TraktClient client, TraktLikeType type) : base(client) => _likeType = type;
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement
-        {
-            get
-            {
-                return TraktAuthenticationRequirement.Required;
-            }
-        }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-        protected override string PathTemplate
-        {
-            get
-            {
-                string _type = Helpers.TraktEnumHelper.GetDescription(type);
-                if (string.IsNullOrWhiteSpace(_type)) throw new System.Exception("Type not specified");
-                return $"users/likes/{_type}s";
-            }
-        }
+		protected override string PathTemplate {
+			get {
+				var description = Helpers.TraktEnumHelper.GetDescription(_likeType);
+				if (string.IsNullOrWhiteSpace(description)) {
+					throw new System.Exception("Type not specified");
+				}
 
-        protected override bool SupportsPagination { get { return true; } }
+				return $"users/likes/{description}s";
+			}
+		}
 
-        private TraktLikeType type = TraktLikeType.Unspecified;
-    }
+		protected override bool SupportsPagination => true;
+
+		private readonly TraktLikeType _likeType;
+	}
 }

@@ -9,9 +9,8 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "") {
-			if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
-		}
+		protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+			=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
 	}
 

@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
 
-	/// <summary>An epsisode of a show</summary>
+	/// <summary>An episode of a show</summary>
 	[Serializable]
 	public class TraktEpisode {
 
@@ -67,9 +67,7 @@ namespace TraktSharp.Entities {
 		/// <summary>Indicates if the instance contains the data required for it to be sent as part of a request body in a <c>POST</c> HTTP method</summary>
 		/// <param name="show">A <see cref="TraktShow"/> instance that would be <c>POSTed</c> alongside the episode</param>
 		/// <returns><c>true</c> if the instance is in a fit state to be <c>POSTed</c>, otherwise <c>false</c></returns>
-		internal bool IsPostable(TraktShow show = null) {
-			return (Ids != null && Ids.HasAnyValuesSet()) || (show != null && !string.IsNullOrEmpty(show.Title) && SeasonNumber > 0 && EpisodeNumber > 0);
-		}
+		internal bool IsPostable(TraktShow show = null) => (Ids != null && Ids.HasAnyValuesSet()) || (show != null && !string.IsNullOrEmpty(show.Title) && SeasonNumber > 0 && EpisodeNumber > 0);
 
 	}
 

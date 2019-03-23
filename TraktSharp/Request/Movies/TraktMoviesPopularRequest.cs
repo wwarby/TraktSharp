@@ -10,12 +10,12 @@ namespace TraktSharp.Request.Movies {
 
 		internal TraktMoviesPopularRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/popular"; } }
+		protected override string PathTemplate => "movies/popular";
 
-		protected override bool SupportsPagination { get { return true; } }
+    protected override bool SupportsPagination => true;
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-	}
+  }
 
 }

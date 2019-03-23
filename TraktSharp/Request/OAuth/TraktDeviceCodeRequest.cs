@@ -9,9 +9,9 @@ namespace TraktSharp.Request.OAuth {
 
         internal TraktDeviceCodeRequest(TraktClient client) : base(client) { }
 
-        protected override string PathTemplate { get { return "oauth/device/code"; } }
+        protected override string PathTemplate => "oauth/device/code";
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Forbidden; } }
+        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Forbidden;
 
         protected override void ValidateParameters() {
             base.ValidateParameters();

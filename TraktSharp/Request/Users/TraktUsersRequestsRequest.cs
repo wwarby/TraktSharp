@@ -10,10 +10,10 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersRequestsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/requests"; } }
+		protected override string PathTemplate => "users/requests";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-	}
+  }
 
 }

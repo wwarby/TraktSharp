@@ -7,8 +7,8 @@ namespace TraktSharp.Request.Auth {
 
 		internal TraktAuthLogoutRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "auth/logout"; } }
+		protected override string PathTemplate => "auth/logout";
 
-	}
+  }
 
 }

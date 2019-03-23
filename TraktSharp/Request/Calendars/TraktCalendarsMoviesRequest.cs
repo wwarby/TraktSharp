@@ -11,20 +11,19 @@ namespace TraktSharp.Request.Calendars {
 
 		internal TraktCalendarsMoviesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "calendars/movies/{start_date}/{days}"; } }
+		protected override string PathTemplate => "calendars/movies/{start_date}/{days}";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Optional; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Optional;
 
-		internal DateTime? StartDate { get; set; }
+    internal DateTime? StartDate { get; set; }
 
 		internal int? Days { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			new Dictionary<string, string> {
 				{"start_date", StartDate.ToTraktApiFormat()},
 				{"days", Days.ToString()}
 			};
-		}
 
 	}
 

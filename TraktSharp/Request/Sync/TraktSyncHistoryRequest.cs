@@ -4,71 +4,70 @@ using System.Linq;
 using TraktSharp.Entities.Response.Sync;
 using TraktSharp.Enums;
 
-namespace TraktSharp.Request.Sync
-{
-    internal class TraktSyncHistoryRequest : TraktGetRequest<IEnumerable<TraktSyncHistoryResponse>>
-    {
-        internal TraktSyncHistoryRequest(TraktClient Client, TraktHistoryItemType Type = TraktHistoryItemType.Unspecified, int? Id = null, int? Page = null, int? Limit = null, DateTimeOffset? From = null, DateTimeOffset? To = null) : base(Client)
-        {
-            this.Id = Id;
-            this.Type = Type;
-            this.Page = Page;
-            this.Limit = Limit;
-            this.From = From;
-            this.To = To;
+namespace TraktSharp.Request.Sync {
+	internal class TraktSyncHistoryRequest : TraktGetRequest<IEnumerable<TraktSyncHistoryResponse>> {
+		internal TraktSyncHistoryRequest(
+			TraktClient client,
+			TraktHistoryItemType type = TraktHistoryItemType.Unspecified,
+			int? id = null,
+			int? page = null,
+			int? limit = null,
+			DateTimeOffset? from = null, 
+			DateTimeOffset? to = null
+		) : base(client) {
+			Id = id;
+			Type = type;
+			Page = page;
+			Limit = limit;
+			From = from;
+			To = to;
 
-            Template = "sync/history";
+			Template = "sync/history";
 
-            if (Type != TraktHistoryItemType.Unspecified)
-            {
-                Template += $"/{Helpers.TraktEnumHelper.GetDescription(Type)}";
-            }
+			if (type != TraktHistoryItemType.Unspecified) {
+				Template += $"/{Helpers.TraktEnumHelper.GetDescription(type)}";
+			}
 
-            if (Id != null)
-            {
-                Template += $"/{Id}";
-            }
+			if (id != null) {
+				Template += $"/{id}";
+			}
 
-            Dictionary<string, string> QuerySet = new Dictionary<string, string>();
+			var querySet = new Dictionary<string, string>();
 
-            if (From != null)
-            {
-                QuerySet.Add("start_at", From.Value.ToString("yyyy-MM-ddTHH:mm:ssK", System.Globalization.CultureInfo.InvariantCulture));
-            }
+			if (from != null) {
+				querySet.Add("start_at", from.Value.ToString("yyyy-MM-ddTHH:mm:ssK", System.Globalization.CultureInfo.InvariantCulture));
+			}
 
-            if (To != null)
-            {
-                QuerySet.Add("end_at", To.Value.ToString("yyyy-MM-ddTHH:mm:ssK", System.Globalization.CultureInfo.InvariantCulture));
-            }
+			if (to != null) {
+				querySet.Add("end_at", to.Value.ToString("yyyy-MM-ddTHH:mm:ssK", System.Globalization.CultureInfo.InvariantCulture));
+			}
 
-            if (Page != null)
-            {
-                QuerySet.Add("page", Page.Value.ToString());
-            }
+			if (page != null) {
+				querySet.Add("page", page.Value.ToString());
+			}
 
-            if (Limit != null)
-            {
-                QuerySet.Add("limit", Limit.Value.ToString());
-            }
+			if (limit != null) {
+				querySet.Add("limit", limit.Value.ToString());
+			}
 
-            if (QuerySet.Any())
-            {
-                Template += "?";
-                Template += string.Join("&", QuerySet.Select(query => $"{query.Key}={query.Value}"));
-            }
-        }
+			if (querySet.Any()) {
+				Template += "?";
+				Template += string.Join("&", querySet.Select(query => $"{query.Key}={query.Value}"));
+			}
+		}
 
-        private string Template { get; set; }
-        protected override string PathTemplate { get { return Template; } }
+		private string Template { get; set; }
+		protected override string PathTemplate => Template;
 
-        public TraktHistoryItemType Type { get; }
-        public int? Id { get; }
-        public int? Page { get; }
-        public int? Limit { get; }
+		public TraktHistoryItemType Type { get; }
+		public int? Id { get; }
+		public int? Page { get; }
+		public int? Limit { get; }
 
-        public DateTimeOffset? From { get; set; }
-        public DateTimeOffset? To { get; set; }
+		public DateTimeOffset? From { get; set; }
+		public DateTimeOffset? To { get; set; }
 
-        protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
-    }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
+
+	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+// ReSharper disable StringLiteralTypo
 
 namespace TraktSharp.Helpers {
 
@@ -452,14 +453,14 @@ namespace TraktSharp.Helpers {
 
 		internal static TimeZoneInfo FromOlsonTimeZoneId(string olsonTimeZoneId) {
 			if (string.IsNullOrEmpty(olsonTimeZoneId)) {
-				throw new ArgumentNullException("olsonTimeZoneId", "Olson time zone not specified");
+				throw new ArgumentNullException(nameof(olsonTimeZoneId), "Olson time zone not specified");
 			}
 			if (!OlsonTimeZoneMappings.ContainsKey(olsonTimeZoneId)) {
-				throw new ArgumentException(string.Format("'{0}' is not a valid Olson time zone ID", olsonTimeZoneId), "olsonTimeZoneId");
+				throw new ArgumentException($"'{olsonTimeZoneId}' is not a valid Olson time zone ID", nameof(olsonTimeZoneId));
 			}
-			string windowsTimeZoneId;
+
 			TimeZoneInfo windowsTimeZone = null;
-			if (OlsonTimeZoneMappings.TryGetValue(olsonTimeZoneId, out windowsTimeZoneId)) {
+			if (OlsonTimeZoneMappings.TryGetValue(olsonTimeZoneId, out var windowsTimeZoneId)) {
 				try {
 					windowsTimeZone = TimeZoneInfo.FindSystemTimeZoneById(windowsTimeZoneId);
 				} catch (Exception) {}

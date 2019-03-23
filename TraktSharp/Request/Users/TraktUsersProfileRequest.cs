@@ -8,8 +8,8 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersProfileRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}"; } }
+		protected override string PathTemplate => "users/{username}";
 
-	}
+  }
 
 }

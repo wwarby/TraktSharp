@@ -10,10 +10,10 @@ namespace TraktSharp.Request.Recommendations {
 
 		internal TraktRecommendationsShowsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "recommendations/shows"; } }
+		protected override string PathTemplate => "recommendations/shows";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-	}
+  }
 
 }

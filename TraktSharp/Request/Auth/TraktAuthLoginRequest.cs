@@ -10,11 +10,11 @@ namespace TraktSharp.Request.Auth {
 
 		internal TraktAuthLoginRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "auth/login"; } }
+		protected override string PathTemplate => "auth/login";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Forbidden; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Forbidden;
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (string.IsNullOrEmpty(RequestBody.Login)) {
 				throw new ArgumentException("Login not set");

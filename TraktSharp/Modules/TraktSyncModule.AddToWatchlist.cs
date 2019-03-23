@@ -17,17 +17,13 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistByMovieIdAsync(string movieId, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) {
-			return await AddToWatchlistAsync(TraktMovieFactory.FromId(movieId, movieIdType));
-		}
+		public async Task<TraktAddResponse> AddToWatchlistByMovieIdAsync(string movieId, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) => await AddToWatchlistAsync(TraktMovieFactory.FromId(movieId, movieIdType));
 
 		/// <summary>Add a movie to the user's watchlist by ID</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistByMovieIdAsync(int movieId, TraktNumericMovieIdType movieIdType) {
-			return await AddToWatchlistAsync(TraktMovieFactory.FromId(movieId, movieIdType));
-		}
+		public async Task<TraktAddResponse> AddToWatchlistByMovieIdAsync(int movieId, TraktNumericMovieIdType movieIdType) => await AddToWatchlistAsync(TraktMovieFactory.FromId(movieId, movieIdType));
 
 		/// <summary>Add a show to the user's watchlist by ID</summary>
 		/// <param name="showId">The show ID</param>
@@ -59,86 +55,68 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistByEpisodeIdAsync(string episodeId, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) {
-			return await AddToWatchlistAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
-		}
+		public async Task<TraktAddResponse> AddToWatchlistByEpisodeIdAsync(string episodeId, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) => await AddToWatchlistAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 
 		/// <summary>Add an episode to the user's watchlist by ID</summary>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistByEpisodeIdAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType) {
-			return await AddToWatchlistAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
-		}
+		public async Task<TraktAddResponse> AddToWatchlistByEpisodeIdAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType) => await AddToWatchlistAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 
 		/// <summary>Add a movie to the user's watchlist</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktMovie movie) {
-			return await AddToWatchlistAsync(new List<TraktMovie> { movie }, null, null);
-		}
+		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktMovie movie) => await AddToWatchlistAsync(new List<TraktMovie> { movie }, null, null);
 
 		/// <summary>Add a show to the user's watchlist</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktShow show) {
-			return await AddToWatchlistAsync(null, new List<TraktShow> { show }, null);
-		}
+		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktShow show) => await AddToWatchlistAsync(null, new List<TraktShow> { show }, null);
 
 		/// <summary>Add an episode to the user's watchlist</summary>
 		/// <param name="episode">The episode</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktEpisode episode) {
-			return await AddToWatchlistAsync(null, null, new List<TraktEpisode> { episode });
-		}
+		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktEpisode episode) => await AddToWatchlistAsync(null, null, new List<TraktEpisode> { episode });
 
 		/// <summary>Add one or more movies to the user's watchlist</summary>
 		/// <param name="movies">A collection of movies</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<TraktMovie> movies) {
-			return await AddToWatchlistAsync(movies, null, null);
-		}
+		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<TraktMovie> movies) => await AddToWatchlistAsync(movies, null, null);
 
 		/// <summary>Add one or more shows to the user's watchlist</summary>
 		/// <param name="shows">A collection of shows</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<TraktShow> shows) {
-			return await AddToWatchlistAsync(null, shows, null);
-		}
+		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<TraktShow> shows) => await AddToWatchlistAsync(null, shows, null);
 
 		/// <summary>Add one or more episodes to the user's watchlist</summary>
 		/// <param name="episodes">A collection of episodes</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<TraktEpisode> episodes) {
-			return await AddToWatchlistAsync(null, null, episodes);
-		}
+		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<TraktEpisode> episodes) => await AddToWatchlistAsync(null, null, episodes);
 
 		/// <summary>Add one or more items to the user's watchlist by IDs</summary>
 		/// <param name="movieIds">A collection of movie IDs</param>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="episodeIds">A collection of episode IDs</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<string> movieIds, IEnumerable<string> showIds, IEnumerable<string> episodeIds) {
-			return await AddToWatchlistAsync(
+		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<string> movieIds, IEnumerable<string> showIds, IEnumerable<string> episodeIds) =>
+			await AddToWatchlistAsync(
 				TraktMovieFactory.FromIds<TraktMovie>(movieIds),
 				TraktShowFactory.FromIds<TraktShow>(showIds),
 				TraktEpisodeFactory.FromIds<TraktEpisode>(episodeIds));
-		}
 
 		/// <summary>Add one or more items to the user's watchlist</summary>
 		/// <param name="movies">A collection of movies</param>
 		/// <param name="shows">A collection of shows</param>
 		/// <param name="episodes">A collection of episodes</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<TraktMovie> movies, IEnumerable<TraktShow> shows, IEnumerable<TraktEpisode> episodes) {
-			return await SendAsync(new TraktSyncWatchlistAddRequest(Client) {
+		public async Task<TraktAddResponse> AddToWatchlistAsync(IEnumerable<TraktMovie> movies, IEnumerable<TraktShow> shows, IEnumerable<TraktEpisode> episodes) =>
+			await SendAsync(new TraktSyncWatchlistAddRequest(Client) {
 				RequestBody = new TraktSyncWatchlistAddRequestBody {
 					Movies = movies,
 					Shows = shows,
 					Episodes = episodes
 				}
 			});
-		}
 
 	}
 

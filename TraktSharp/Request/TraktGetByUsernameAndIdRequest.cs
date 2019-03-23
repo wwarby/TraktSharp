@@ -9,18 +9,17 @@ namespace TraktSharp.Request {
 
 		protected TraktGetByUsernameAndIdRequest(TraktClient client) : base(client) { }
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Optional; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Optional;
 
-		internal string Username { get; set; }
+    internal string Username { get; set; }
 
 		internal string Id { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			new Dictionary<string, string> {
 				{"username", Username},
 				{"id", Id}
 			};
-		}
 
 		protected override void ValidateParameters() {
 			if (string.IsNullOrEmpty(Username)) {

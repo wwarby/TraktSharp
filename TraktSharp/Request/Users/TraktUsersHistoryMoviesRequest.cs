@@ -9,10 +9,10 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersHistoryMoviesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/history/movies"; } }
+		protected override string PathTemplate => "users/{username}/history/movies";
 
-		protected override bool SupportsPagination { get { return true; } }
+    protected override bool SupportsPagination => true;
 
-	}
+  }
 
 }

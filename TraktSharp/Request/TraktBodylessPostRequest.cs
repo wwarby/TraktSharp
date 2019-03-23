@@ -9,10 +9,10 @@ namespace TraktSharp.Request {
 
 		protected TraktBodylessPostRequest(TraktClient client) : base(client) { }
 
-		protected override HttpMethod Method { get { return HttpMethod.Post; } }
+		protected override HttpMethod Method => HttpMethod.Post;
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+    protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-	}
+  }
 
 }
