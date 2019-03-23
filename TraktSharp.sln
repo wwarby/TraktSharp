@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraktSharp", "TraktSharp\Tr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktSharp.Examples.Wpf", "TraktSharp.Examples.Wpf\TraktSharp.Examples.Wpf.csproj", "{98EE9E37-B135-4C29-83AD-9529CB4D87E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktSharp.Tests", "TraktSharp.Tests\TraktSharp.Tests.csproj", "{396089A0-9489-4EEF-A532-F99E95DD6D82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraktSharp.Tests", "TraktSharp.Tests\TraktSharp.Tests.csproj", "{396089A0-9489-4EEF-A532-F99E95DD6D82}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D18E8C9-7273-44A9-9E00-ECE9ED51AE39}"
 	ProjectSection(SolutionItems) = preProject

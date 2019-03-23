@@ -8,8 +8,8 @@
     <AssemblyName>TraktSharp</AssemblyName>
     <Title>TraktSharp</Title>
     <Description>A C# wrapper around the Trakt API</Description>
-    <Version>0.1.0.0</Version>
-    <FileVersion>0.1.0.0</FileVersion>
+    <Version>0.2.0.0</Version>
+    <FileVersion>1.2.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -18,6 +18,13 @@
 
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <RepositoryUrl>https://github.com/wwarby/TraktSharp</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/wwarby/TraktSharp</PackageProjectUrl>
+    <PackageTags>trakt, traktsharp, api</PackageTags>
+    <PackageId>TraktSharp.NetStandard2</PackageId>
+    <PackageLicenseUrl>https://github.com/wwarby/TraktSharp/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
