@@ -10,7 +10,7 @@ namespace TraktSharp.Entities.Response.Sync {
 
 		/// <summary>The UTC date when the user most recently had any interaction with the Trakt service</summary>
 		[JsonProperty(PropertyName = "all")]
-		public DateTime? All { get; set; }
+		public DateTimeOffset? All { get; set; }
 
 		/// <summary>The dates when the user most recently had any interaction with movies on the Trakt service</summary>
 		[JsonProperty(PropertyName = "movies")]

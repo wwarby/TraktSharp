@@ -462,7 +462,7 @@ namespace TraktSharp.Helpers {
 			if (OlsonTimeZoneMappings.TryGetValue(olsonTimeZoneId, out windowsTimeZoneId)) {
 				try {
 					windowsTimeZone = TimeZoneInfo.FindSystemTimeZoneById(windowsTimeZoneId);
-				} catch (TimeZoneNotFoundException) {} catch (InvalidTimeZoneException) {}
+				} catch (Exception) {}
 			}
 			return windowsTimeZone;
 		}

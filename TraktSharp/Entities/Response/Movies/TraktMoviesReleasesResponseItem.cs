@@ -25,7 +25,7 @@ namespace TraktSharp.Entities.Response.Movies {
 
 		/// <summary>The release date</summary>
 		[JsonProperty(PropertyName = "release_date")]
-		public DateTime? ReleaseDate { get; set; }
+		public DateTimeOffset? ReleaseDate { get; set; }
 
 	}
 

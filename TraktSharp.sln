@@ -1,20 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktSharp", "TraktSharp\TraktSharp.csproj", "{80324701-B0E5-49DB-9476-54D3DABB0740}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraktSharp", "TraktSharp\TraktSharp.csproj", "{80324701-B0E5-49DB-9476-54D3DABB0740}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktSharp.Examples.Wpf", "TraktSharp.Examples.Wpf\TraktSharp.Examples.Wpf.csproj", "{98EE9E37-B135-4C29-83AD-9529CB4D87E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktSharp.Tests", "TraktSharp.Tests\TraktSharp.Tests.csproj", "{396089A0-9489-4EEF-A532-F99E95DD6D82}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BBF8907E-F76F-49D0-B771-8FD7219F5668}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D18E8C9-7273-44A9-9E00-ECE9ED51AE39}"
 	ProjectSection(SolutionItems) = preProject
@@ -42,5 +35,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B3AF657-55A3-4F58-B50F-A253CA6A070D}
 	EndGlobalSection
 EndGlobal

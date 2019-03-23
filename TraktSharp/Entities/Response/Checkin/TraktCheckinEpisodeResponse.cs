@@ -10,7 +10,7 @@ namespace TraktSharp.Entities.Response.Checkin {
 
 		/// <summary>The UTC date when the item was watched</summary>
 		[JsonProperty(PropertyName = "watched_at")]
-		public DateTime? WatchedAt { get; set; }
+		public DateTimeOffset? WatchedAt { get; set; }
 
 		/// <summary>Indicators showing which connected social networks the action was published to</summary>
 		[JsonProperty(PropertyName = "sharing")]

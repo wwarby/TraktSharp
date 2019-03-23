@@ -19,7 +19,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddRatingByMovieIdAsync(string movieId, TraktTextMovieIdType movieIdType, TraktRating rating, DateTime? ratedAt = null) {
+		public async Task<TraktAddResponse> AddRatingByMovieIdAsync(string movieId, TraktTextMovieIdType movieIdType, TraktRating rating, DateTimeOffset? ratedAt = null) {
 			var obj = TraktMovieFactory.FromId<TraktMovieWithRatingsMetadata>(movieId, movieIdType);
 			obj.Rating = rating;
 			obj.RatedAt = ratedAt;
@@ -32,7 +32,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddRatingByMovieIdAsync(int movieId, TraktNumericMovieIdType movieIdType, TraktRating rating, DateTime? ratedAt = null) {
+		public async Task<TraktAddResponse> AddRatingByMovieIdAsync(int movieId, TraktNumericMovieIdType movieIdType, TraktRating rating, DateTimeOffset? ratedAt = null) {
 			var obj = TraktMovieFactory.FromId<TraktMovieWithRatingsMetadata>(movieId, movieIdType);
 			obj.Rating = rating;
 			obj.RatedAt = ratedAt;
@@ -46,7 +46,7 @@ namespace TraktSharp.Modules {
 		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddRatingByShowIdAsync(string showId, TraktTextShowIdType showIdType, TraktRating rating, DateTime? ratedAt = null, IEnumerable<int> seasonNumbers = null) {
+		public async Task<TraktAddResponse> AddRatingByShowIdAsync(string showId, TraktTextShowIdType showIdType, TraktRating rating, DateTimeOffset? ratedAt = null, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId<TraktShowWithRatingsMetadata>(showId, showIdType);
 			obj.Rating = rating;
 			obj.RatedAt = ratedAt;
@@ -63,7 +63,7 @@ namespace TraktSharp.Modules {
 		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddRatingByShowIdAsync(int showId, TraktNumericShowIdType showIdType, TraktRating rating, DateTime? ratedAt = null, IEnumerable<int> seasonNumbers = null) {
+		public async Task<TraktAddResponse> AddRatingByShowIdAsync(int showId, TraktNumericShowIdType showIdType, TraktRating rating, DateTimeOffset? ratedAt = null, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId<TraktShowWithRatingsMetadata>(showId, showIdType);
 			obj.Rating = rating;
 			obj.RatedAt = ratedAt;
@@ -79,7 +79,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddRatingByEpisodeIdAsync(string episodeId, TraktTextEpisodeIdType episodeIdType, TraktRating rating, DateTime? ratedAt = null) {
+		public async Task<TraktAddResponse> AddRatingByEpisodeIdAsync(string episodeId, TraktTextEpisodeIdType episodeIdType, TraktRating rating, DateTimeOffset? ratedAt = null) {
 			var obj = TraktEpisodeFactory.FromId<TraktEpisodeWithRatingsMetadata>(episodeId, episodeIdType);
 			obj.Rating = rating;
 			obj.RatedAt = ratedAt;
@@ -92,7 +92,7 @@ namespace TraktSharp.Modules {
 		/// <param name="rating">The rating</param>
 		/// <param name="ratedAt">The UTC date when the rating was made</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddRatingByEpisodeIdAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType, TraktRating rating, DateTime? ratedAt = null) {
+		public async Task<TraktAddResponse> AddRatingByEpisodeIdAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType, TraktRating rating, DateTimeOffset? ratedAt = null) {
 			var obj = TraktEpisodeFactory.FromId<TraktEpisodeWithRatingsMetadata>(episodeId, episodeIdType);
 			obj.Rating = rating;
 			obj.RatedAt = ratedAt;

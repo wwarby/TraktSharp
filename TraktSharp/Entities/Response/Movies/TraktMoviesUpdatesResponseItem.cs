@@ -10,7 +10,7 @@ namespace TraktSharp.Entities.Response.Movies {
 
 		/// <summary>The UTC date when this movie was updated</summary>
 		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime UpdatedAt { get; set; }
+		public DateTimeOffset UpdatedAt { get; set; }
 
 		/// <summary>The movie</summary>
 		[JsonProperty(PropertyName = "movie")]

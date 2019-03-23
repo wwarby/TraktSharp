@@ -35,7 +35,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when this list was updated</summary>
 		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime? UpdatedAt { get; set; }
+		public DateTimeOffset? UpdatedAt { get; set; }
 
 		/// <summary>The number of items in this list</summary>
 		[JsonProperty(PropertyName = "item_count")]
