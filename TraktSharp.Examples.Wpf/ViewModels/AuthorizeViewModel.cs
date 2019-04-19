@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using TraktSharp.Examples.Wpf.Interfaces;
 
 namespace TraktSharp.Examples.Wpf.ViewModels {
@@ -22,7 +21,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		public string Address {
 			get => _address;
 			set {
-				Debug.WriteLine(value);
 				_address = value;
 				if (_address.StartsWith(Client.Authentication.OAuthRedirectUri, StringComparison.CurrentCultureIgnoreCase)) {
 					HandleCallback(value);
