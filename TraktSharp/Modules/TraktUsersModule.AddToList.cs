@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Entities.RequestBody.Users;
@@ -57,31 +59,31 @@ namespace TraktSharp.Modules {
 		/// <param name="listId">The list ID</param>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktMovie movie) => await AddToListAsync(listId, new List<TraktMovie> { movie }, null, null, null, null);
+		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktMovie movie) => await AddToListAsync(listId, new List<TraktMovie> {movie}, null, null, null, null);
 
 		/// <summary>Add one or more items to a custom list</summary>
 		/// <param name="listId">The list ID</param>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktShow show) => await AddToListAsync(listId, null, new List<TraktShow> { show }, null, null, null);
+		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktShow show) => await AddToListAsync(listId, null, new List<TraktShow> {show}, null, null, null);
 
 		/// <summary>Add one or more items to a custom list</summary>
 		/// <param name="listId">The list ID</param>
 		/// <param name="season">The season</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktSeason season) => await AddToListAsync(listId, null, null, new List<TraktSeason> { season }, null, null);
+		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktSeason season) => await AddToListAsync(listId, null, null, new List<TraktSeason> {season}, null, null);
 
 		/// <summary>Add one or more items to a custom list</summary>
 		/// <param name="listId">The list ID</param>
 		/// <param name="episode">The episode</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktEpisode episode) => await AddToListAsync(listId, null, null, null, new List<TraktEpisode> { episode }, null);
+		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktEpisode episode) => await AddToListAsync(listId, null, null, null, new List<TraktEpisode> {episode}, null);
 
 		/// <summary>Add one or more items to a custom list</summary>
 		/// <param name="listId">The list ID</param>
 		/// <param name="person">The person</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktPerson person) => await AddToListAsync(listId, null, null, null, null, new List<TraktPerson> { person });
+		public async Task<TraktAddResponse> AddToListAsync(string listId, TraktPerson person) => await AddToListAsync(listId, null, null, null, null, new List<TraktPerson> {person});
 
 		/// <summary>Add one or more items to a custom list</summary>
 		/// <param name="listId">The list ID</param>

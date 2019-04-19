@@ -1,4 +1,7 @@
-﻿namespace TraktSharp.Request.Checkin {
+﻿using System;
+using System.Linq;
+
+namespace TraktSharp.Request.Checkin {
 
 	internal class TraktCheckinDeleteRequest : TraktDeleteRequest {
 
@@ -6,6 +9,6 @@
 
 		protected override string PathTemplate => "checkin";
 
-  }
+	}
 
 }

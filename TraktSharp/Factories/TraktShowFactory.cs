@@ -6,17 +6,17 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Factories {
 
-	/// <summary>A factory for generating <see cref="TraktShow"/> instances</summary>
+	/// <summary>A factory for generating <see cref="TraktShow" /> instances</summary>
 	public static class TraktShowFactory {
 
-		/// <summary>Create an instance of <see cref="TraktShow"/> from an ID</summary>
+		/// <summary>Create an instance of <see cref="TraktShow" /> from an ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
 		public static TraktShow FromId(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) => FromId<TraktShow>(showId, showIdType);
 
-		/// <summary>Create an instance of a <see cref="TraktShow"/> subclass from an ID</summary>
-		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
+		/// <summary>Create an instance of a <see cref="TraktShow" /> subclass from an ID</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktMovie" /> to be created</typeparam>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
@@ -46,14 +46,14 @@ namespace TraktSharp.Factories {
 			return ret;
 		}
 
-		/// <summary>Create an instance of <see cref="TraktShow"/> from an ID</summary>
+		/// <summary>Create an instance of <see cref="TraktShow" /> from an ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
 		public static TraktShow FromId(int showId, TraktNumericShowIdType showIdType) => FromId<TraktShow>(showId, showIdType);
 
-		/// <summary>Create an instance of a <see cref="TraktShow"/> subclass from an ID</summary>
-		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
+		/// <summary>Create an instance of a <see cref="TraktShow" /> subclass from an ID</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktMovie" /> to be created</typeparam>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
@@ -81,14 +81,14 @@ namespace TraktSharp.Factories {
 			return ret;
 		}
 
-		/// <summary>Create an instance of <see cref="TraktShow"/> from a title and year</summary>
+		/// <summary>Create an instance of <see cref="TraktShow" /> from a title and year</summary>
 		/// <param name="showTitle">The show title</param>
 		/// <param name="showYear">The show release year (first season)</param>
 		/// <returns>See summary</returns>
 		public static TraktShow FromTitleAndYear(string showTitle, int? showYear = null) => FromTitleAndYear<TraktShow>(showTitle, showYear);
 
-		/// <summary>Create an instance of a <see cref="TraktShow"/> subclass from a title and year</summary>
-		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
+		/// <summary>Create an instance of a <see cref="TraktShow" /> subclass from a title and year</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktMovie" /> to be created</typeparam>
 		/// <param name="showTitle">The show title</param>
 		/// <param name="showYear">The show release year (first season)</param>
 		/// <returns>See summary</returns>
@@ -96,45 +96,38 @@ namespace TraktSharp.Factories {
 			if (string.IsNullOrEmpty(showTitle)) {
 				throw new ArgumentException("showTitle not set", nameof(showTitle));
 			}
+
 			var ret = Activator.CreateInstance<T>();
 			ret.Title = showTitle;
 			ret.Year = showYear;
 			return ret;
 		}
 
-		/// <summary>Create an collection of <see cref="TraktShow"/> instances from a collection of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktShow" /> instances from a collection of IDs</summary>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktShow> FromIds(IEnumerable<string> showIds, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) {
-			return showIds?.Select(showId => FromId<TraktShow>(showId, showIdType));
-		}
+		public static IEnumerable<TraktShow> FromIds(IEnumerable<string> showIds, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) { return showIds?.Select(showId => FromId<TraktShow>(showId, showIdType)); }
 
-		/// <summary>Create an collection of <see cref="TraktShow"/> subclass instances from a collection of IDs</summary>
-		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
+		/// <summary>Create an collection of <see cref="TraktShow" /> subclass instances from a collection of IDs</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktMovie" /> to be created</typeparam>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<string> showIds, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) where T : TraktShow {
-			return showIds?.Select(showId => FromId<T>(showId, showIdType));
-		}
+		public static IEnumerable<T> FromIds<T>(IEnumerable<string> showIds, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) where T : TraktShow { return showIds?.Select(showId => FromId<T>(showId, showIdType)); }
 
-		/// <summary>Create an collection of <see cref="TraktShow"/> instances from a collection of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktShow" /> instances from a collection of IDs</summary>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktShow> FromIds(IEnumerable<int> showIds, TraktNumericShowIdType showIdType) {
-			return showIds?.Select(showId => FromId<TraktShow>(showId, showIdType));
-		}
+		public static IEnumerable<TraktShow> FromIds(IEnumerable<int> showIds, TraktNumericShowIdType showIdType) { return showIds?.Select(showId => FromId<TraktShow>(showId, showIdType)); }
 
-		/// <summary>Create an collection of <see cref="TraktShow"/> subclass instances from a collection of IDs</summary>
-		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
+		/// <summary>Create an collection of <see cref="TraktShow" /> subclass instances from a collection of IDs</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktMovie" /> to be created</typeparam>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<int> showIds, TraktNumericShowIdType showIdType) where T : TraktShow {
-			return showIds?.Select(showId => FromId<T>(showId, showIdType));
-		}
+		public static IEnumerable<T> FromIds<T>(IEnumerable<int> showIds, TraktNumericShowIdType showIdType) where T : TraktShow { return showIds?.Select(showId => FromId<T>(showId, showIdType)); }
 
 	}
 

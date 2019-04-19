@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Entities.Response.Shows;
@@ -12,12 +13,15 @@ namespace TraktSharp.Modules {
 	/// <summary>Provides API methods in the Shows namespace</summary>
 	public class TraktShowsModule : TraktModuleBase {
 
-		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
-		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient" />.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient" /></param>
 		public TraktShowsModule(TraktClient client) : base(client) { }
 
 		/// <summary>Returns the most anticipated shows based on the number of lists a show appears on.</summary>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -27,9 +31,15 @@ namespace TraktSharp.Modules {
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
-		/// <summary>Returns the most collected (unique users) shows in the specified time period, defaulting to weekly. All stats are relative to the specific time period.</summary>
+		/// <summary>
+		///     Returns the most collected (unique users) shows in the specified time period, defaulting to weekly. All stats
+		///     are relative to the specific time period.
+		/// </summary>
 		/// <param name="period">The reporting period across which to retrieve the results</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -40,9 +50,15 @@ namespace TraktSharp.Modules {
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
-		/// <summary>Returns the most played (a single user can watch multiple episodes multiple times) shows in the specified time period, defaulting to weekly. All stats are relative to the specific time period.</summary>
+		/// <summary>
+		///     Returns the most played (a single user can watch multiple episodes multiple times) shows in the specified time
+		///     period, defaulting to weekly. All stats are relative to the specific time period.
+		/// </summary>
 		/// <param name="period">The reporting period across which to retrieve the results</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -53,8 +69,14 @@ namespace TraktSharp.Modules {
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
-		/// <summary>Returns the most popular shows. Popularity is calculated using the rating percentage and the number of ratings.</summary>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <summary>
+		///     Returns the most popular shows. Popularity is calculated using the rating percentage and the number of
+		///     ratings.
+		/// </summary>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -65,7 +87,10 @@ namespace TraktSharp.Modules {
 			});
 
 		/// <summary>Returns all shows being watched right now. Shows with the most users are returned first.</summary>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -75,9 +100,15 @@ namespace TraktSharp.Modules {
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
-		/// <summary>Returns all shows updated since the specified UTC date. We recommended storing the date you can be efficient using this method moving forward.</summary>
+		/// <summary>
+		///     Returns all shows updated since the specified UTC date. We recommended storing the date you can be efficient
+		///     using this method moving forward.
+		/// </summary>
 		/// <param name="startDate">Return items updated after this date</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -88,9 +119,15 @@ namespace TraktSharp.Modules {
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
-		/// <summary>Returns the most watched (unique users) shows in the specified time period, defaulting to weekly. All stats are relative to the specific time period.</summary>
+		/// <summary>
+		///     Returns the most watched (unique users) shows in the specified time period, defaulting to weekly. All stats
+		///     are relative to the specific time period.
+		/// </summary>
 		/// <param name="period">The reporting period across which to retrieve the results</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -103,13 +140,19 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Returns a single show's details</summary>
 		/// <param name="show">The show</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktShow> GetShowAsync(TraktShow show, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetShowAsync(show.Ids.GetBestId(), extended);
 
 		/// <summary>Returns the details for a single show</summary>
 		/// <param name="showId">The show ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktShow> GetShowAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
 			await SendAsync(new TraktShowsSummaryRequest(Client) {
@@ -133,14 +176,20 @@ namespace TraktSharp.Modules {
 		/// <summary>Returns all translations for a show, including language and translated values for title and overview</summary>
 		/// <param name="show">The show</param>
 		/// <param name="language">2 character language code.Example: <c>es</c>.</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> GetTranslationsAsync(TraktShow show, string language, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetTranslationsAsync(show.Ids.GetBestId(), language, extended);
 
 		/// <summary>Returns all translations for a show, including language and translated values for title and overview</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="language">2 character language code.Example: <c>es</c>.</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktShowsTranslationsResponseItem>> GetTranslationsAsync(string showId, string language, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
 			await SendAsync(new TraktShowsTranslationsRequest(Client) {
@@ -169,30 +218,54 @@ namespace TraktSharp.Modules {
 			Pagination = new TraktPaginationOptions(page, limit)
 		});
 
-		/// <summary>Returns collection progress for show including details on all seasons and episodes. The next_episode will be the next episode the user should collect, if there are no upcoming episodes it will be set to null.</summary>
+		/// <summary>
+		///     Returns collection progress for show including details on all seasons and episodes. The next_episode will be
+		///     the next episode the user should collect, if there are no upcoming episodes it will be set to null.
+		/// </summary>
 		/// <param name="show">The show</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktShowProgress> GetCollectionProgressAsync(TraktShow show, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetCollectionProgressAsync(show.Ids.GetBestId(), extended);
 
-		/// <summary>Returns collection progress for show including details on all seasons and episodes. The next_episode will be the next episode the user should collect, if there are no upcoming episodes it will be set to null.</summary>
+		/// <summary>
+		///     Returns collection progress for show including details on all seasons and episodes. The next_episode will be
+		///     the next episode the user should collect, if there are no upcoming episodes it will be set to null.
+		/// </summary>
 		/// <param name="showId">The show ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktShowProgress> GetCollectionProgressAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsProgressCollectionRequest(Client) {
 			Id = showId,
 			Extended = extended
 		});
 
-		/// <summary>Returns watched progress for show including details on all seasons and episodes. The next_episode will be the next episode the user should watch, if there are no upcoming episodes it will be set to null.</summary>
+		/// <summary>
+		///     Returns watched progress for show including details on all seasons and episodes. The next_episode will be the
+		///     next episode the user should watch, if there are no upcoming episodes it will be set to null.
+		/// </summary>
 		/// <param name="show">The show</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktShowProgress> GetWatchedProgressAsync(TraktShow show, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetWatchedProgressAsync(show.Ids.GetBestId(), extended);
 
-		/// <summary>Returns watched progress for show including details on all seasons and episodes. The next_episode will be the next episode the user should watch, if there are no upcoming episodes it will be set to null.</summary>
+		/// <summary>
+		///     Returns watched progress for show including details on all seasons and episodes. The next_episode will be the
+		///     next episode the user should watch, if there are no upcoming episodes it will be set to null.
+		/// </summary>
 		/// <param name="showId">The show ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktShowProgress> GetWatchedProgressAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsProgressWatchedRequest(Client) {
 			Id = showId,
@@ -201,13 +274,19 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Returns all cast and crew for a show. Each cast member will have a character and a standard person object</summary>
 		/// <param name="show">The show</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(TraktShow show, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetCastAndCrewAsync(show.Ids.GetBestId(), extended);
 
 		/// <summary>Returns all cast and crew for a show. Each cast member will have a character and a standard person object</summary>
 		/// <param name="showId">The show ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsPeopleRequest(Client) {
 			Id = showId,
@@ -228,13 +307,19 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Returns related and similar shows</summary>
 		/// <param name="show">The show</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktShow>> GetRelatedShowsAsync(TraktShow show, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetRelatedShowsAsync(show.Ids.GetBestId(), extended);
 
 		/// <summary>Returns related and similar shows</summary>
 		/// <param name="showId">The show ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktShow>> GetRelatedShowsAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsRelatedRequest(Client) {
 			Id = showId,
@@ -256,17 +341,25 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Returns all users watching the show right now</summary>
 		/// <param name="show">The show</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingShowAsync(TraktShow show, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetUsersWatchingShowAsync(show.Ids.GetBestId(), extended);
 
 		/// <summary>Returns all users watching the show right now</summary>
 		/// <param name="showId">The show ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingShowAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsWatchingRequest(Client) {
 			Id = showId,
 			Extended = extended
 		});
+
 	}
+
 }

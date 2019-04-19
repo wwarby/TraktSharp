@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TraktSharp.Request {
 
@@ -22,6 +23,7 @@ namespace TraktSharp.Request {
 			if (string.IsNullOrEmpty(Username)) {
 				throw new ArgumentException("Username not set.");
 			}
+
 			if (string.IsNullOrEmpty(Id)) {
 				throw new ArgumentException("Id not set.");
 			}

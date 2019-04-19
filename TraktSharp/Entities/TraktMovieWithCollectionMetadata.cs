@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.Enums;
 using TraktSharp.Helpers;
@@ -20,28 +21,27 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "media_type")]
 		private string MediaTypeString => TraktEnumHelper.GetDescription(MediaType);
 
-    /// <summary>The item's resolution</summary>
+		/// <summary>The item's resolution</summary>
 		[JsonIgnore]
 		public TraktResolution Resolution { get; set; }
 
 		[JsonProperty(PropertyName = "resolution")]
 		private string ResolutionString => TraktEnumHelper.GetDescription(Resolution);
 
-    /// <summary>The item's audio format</summary>
+		/// <summary>The item's audio format</summary>
 		[JsonIgnore]
 		public TraktAudioFormat AudioFormat { get; set; }
 
-		[JsonProperty(PropertyName = "audio")]
-		private string AudioFormatString => TraktEnumHelper.GetDescription(AudioFormat);
+		[JsonProperty(PropertyName = "audio")] private string AudioFormatString => TraktEnumHelper.GetDescription(AudioFormat);
 
-    /// <summary>The number of channels in the item's audio track</summary>
+		/// <summary>The number of channels in the item's audio track</summary>
 		[JsonIgnore]
 		public TraktAudioChannels AudioChannels { get; set; }
 
 		[JsonProperty(PropertyName = "audio_channels")]
 		private string AudioChannelsString => TraktEnumHelper.GetDescription(AudioChannels);
 
-    /// <summary>Indicates if the item is in the 3D format</summary>
+		/// <summary>Indicates if the item is in the 3D format</summary>
 		[JsonProperty(PropertyName = "3d")]
 		public bool? Is3D { get; set; }
 

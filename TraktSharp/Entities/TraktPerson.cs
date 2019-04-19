@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.ExtensionMethods;
 
@@ -24,11 +25,14 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "birthday")]
 		public DateTime? Birthday { get; set; }
 
-		/// <summary>The person's age, derived from their <see cref="Birthday"/> or <see cref="Death"/></summary>
+		/// <summary>The person's age, derived from their <see cref="Birthday" /> or <see cref="Death" /></summary>
 		[JsonIgnore]
 		public int Age {
 			get {
-				if (!Birthday.HasValue) { return 0; }
+				if (!Birthday.HasValue) {
+					return 0;
+				}
+
 				return Death.HasValue ? Birthday.YearsBetween(Death) : Birthday.YearsBetween(DateTime.Now);
 			}
 		}
@@ -43,10 +47,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The URI of the person's homepage</summary>
 		[JsonIgnore]
-		public Uri Homepage {
-			get => !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null;
-			set => HomepageString = value.AbsoluteUri;
-		}
+		public Uri Homepage { get => !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; set => HomepageString = value.AbsoluteUri; }
 
 		[JsonProperty(PropertyName = "homepage")]
 		private string HomepageString { get; set; }

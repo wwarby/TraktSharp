@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
 using TraktSharp.Examples.Wpf.Helpers;
@@ -18,12 +18,37 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 	internal class MainViewModel : ViewModelBase {
 
-		private MainView _view;
+		private readonly MainView _view;
+
+		private bool _authenticateIfOptional;
+
+		private bool _idLookup;
+
+		private string _password;
+
+		private string _searchText;
+
+		private TraktExtendedOption _selectedExtendedOption;
+
+		private TraktIdLookupType _selectedIdLookupType;
+
+		private int _selectedMainTab;
+
+		private TraktReportingPeriod _selectedReportingPeriod;
+
+		private int _selectedResponseTab;
+
+		private TestRequests.TestRequestType _selectedTestRequestType;
+
+		private TraktSearchItemType _selectedTextQueryType;
+
+		private string _testId;
+
+		private string _testUsername;
 
 		public MainViewModel() { }
 
 		public MainViewModel(MainView view) {
-
 			_view = view;
 
 			Client = new TraktClient();
@@ -37,7 +62,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			PropertyChanged += (sender, e) => TrySaveState();
 
 			Client.BeforeRequest += (sender, e) => {
-
 				LastResponse = "Waiting...";
 				NotifyPropertyChanged(this.GetMemberName(x => x.LastResponse));
 
@@ -54,16 +78,15 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				sb.AppendLine(e.RequestBody);
 				LastRequest = sb.ToString();
 				NotifyPropertyChanged(this.GetMemberName(x => x.LastRequest));
-
 			};
 
 			Client.AfterRequest += (sender, e) => {
-
 				var sb = new StringBuilder();
 				var status = "UNKNOWN STATUS";
 				try {
 					status = e.Response.Headers.First(h => h.Key.Equals("Status", StringComparison.InvariantCultureIgnoreCase)).Value.First().ToUpper();
 				} catch { }
+
 				sb.AppendLine($"HTTP/{e.Response.Version} {status}");
 				e.Response.Headers.Select(h => $"{h.Key}: {string.Join(",", h.Value)}").ToList().ForEach(l => sb.AppendLine(l));
 				sb.AppendLine();
@@ -73,9 +96,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 				LastResponseJson = !string.IsNullOrEmpty(e.ResponseText) ? PrettyPrint(e.ResponseText) : "The response did not include a body";
 				NotifyPropertyChanged(this.GetMemberName(x => x.LastResponseJson));
-
 			};
-
 		}
 
 		private TraktClient Client { get; }
@@ -84,9 +105,18 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			get {
 				var ret = new StringBuilder();
 				ret.Append("TraktSharp Examples");
-				if (Authenticated && Client.Authentication.AuthenticationMode == TraktAuthenticationMode.OAuth) { ret.Append(" - Authenticated with OAuth"); }
-				if (Authenticated && Client.Authentication.AuthenticationMode == TraktAuthenticationMode.Simple) { ret.Append(" - Authenticated with Simple Auth"); }
-				if (!Authenticated) { ret.Append(" - Not Authenticated"); }
+				if (Authenticated && (Client.Authentication.AuthenticationMode == TraktAuthenticationMode.OAuth)) {
+					ret.Append(" - Authenticated with OAuth");
+				}
+
+				if (Authenticated && (Client.Authentication.AuthenticationMode == TraktAuthenticationMode.Simple)) {
+					ret.Append(" - Authenticated with Simple Auth");
+				}
+
+				if (!Authenticated) {
+					ret.Append(" - Not Authenticated");
+				}
+
 				return ret.ToString();
 			}
 		}
@@ -150,7 +180,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private string _password;
 		public string Password {
 			get => _password;
 			set {
@@ -173,7 +202,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public bool Authenticated => Client.Authentication.Authenticated;
 
-    public string LastRequest { get; private set; }
+		public string LastRequest { get; private set; }
 
 		public string LastResponse { get; private set; }
 
@@ -199,11 +228,10 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public bool IsSimpleAuthenticationMode => Client.Authentication.AuthenticationMode == TraktAuthenticationMode.Simple;
 
-    public ObservableCollection<string> ExtendedOptions { get; set; }
+		public ObservableCollection<string> ExtendedOptions { get; set; }
 
 		public ObservableCollection<string> ReportingPeriods { get; set; }
 
-		private TraktExtendedOption _selectedExtendedOption;
 		public string SelectedExtendedOption {
 			get => TraktEnumHelper.GetLabel(_selectedExtendedOption);
 			set {
@@ -212,7 +240,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private TraktReportingPeriod _selectedReportingPeriod;
 		public string SelectedReportingPeriod {
 			get => TraktEnumHelper.GetLabel(_selectedReportingPeriod);
 			set {
@@ -223,7 +250,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public ObservableCollection<string> TestRequestTypes { get; set; }
 
-		private TestRequests.TestRequestType _selectedTestRequestType;
 		public string SelectedTestRequestType {
 			get => TraktEnumHelper.GetDescription(_selectedTestRequestType);
 			set {
@@ -234,7 +260,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public ObservableCollection<string> TextQueryTypes { get; set; }
 
-		private TraktSearchItemType _selectedTextQueryType;
 		public string SelectedTextQueryType {
 			get => TraktEnumHelper.GetLabel(_selectedTextQueryType);
 			set {
@@ -245,7 +270,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public ObservableCollection<string> IdLookupTypes { get; set; }
 
-		private TraktIdLookupType _selectedIdLookupType;
 		public string SelectedIdLookupType {
 			get => TraktEnumHelper.GetLabel(_selectedIdLookupType);
 			set {
@@ -254,7 +278,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private int _selectedMainTab;
 		public int SelectedMainTab {
 			get => _selectedMainTab;
 			set {
@@ -263,7 +286,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private int _selectedResponseTab;
 		public int SelectedResponseTab {
 			get => _selectedResponseTab;
 			set {
@@ -272,7 +294,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private string _searchText;
 		public string SearchText {
 			get => _searchText;
 			set {
@@ -282,7 +303,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private bool _idLookup;
 		public bool IdLookup {
 			get => _idLookup;
 			set {
@@ -292,7 +312,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private string _testId;
 		public string TestId {
 			get => _testId;
 			set {
@@ -301,7 +320,6 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private string _testUsername;
 		public string TestUsername {
 			get => _testUsername;
 			set {
@@ -310,12 +328,30 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		private bool _authenticateIfOptional;
 		public bool AuthenticateIfOptional {
 			get => _authenticateIfOptional;
 			set {
 				_authenticateIfOptional = value;
 				NotifyPropertyChanged();
+			}
+		}
+
+		public object CanAuthorize => !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret);
+
+		public object CanRefreshAccessToken => (OAuthAccessToken != null) && OAuthAccessToken.IsValid;
+
+		public object CanDiscardAccessToken => (OAuthAccessToken != null) && OAuthAccessToken.IsValid;
+
+		public object CanLogin => !string.IsNullOrEmpty(LoginUsernameOrEmail) && !string.IsNullOrEmpty(Password);
+
+		public object CanLogout => !string.IsNullOrEmpty(SimpleAccessToken);
+
+		public object CanSearch => !string.IsNullOrEmpty(SearchText);
+
+		public static string StateSerializationPath {
+			get {
+				var assemblyPath = Assembly.GetExecutingAssembly().Location;
+				return Path.Combine(Path.GetDirectoryName(assemblyPath) ?? string.Empty, $"{Path.GetFileNameWithoutExtension(assemblyPath)}.state");
 			}
 		}
 
@@ -327,25 +363,11 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			OAuthAccessToken = await Client.Authentication.GetOAuthAccessToken();
 		}
 
-		public async void RefreshAccessToken() {
-			await Client.Authentication.RefreshOAuthAccessToken();
-		}
+		public async void RefreshAccessToken() { await Client.Authentication.RefreshOAuthAccessToken(); }
 
-		public void DiscardAccessToken() {
-			Client.Authentication.OAuthLogout();
-		}
+		public void DiscardAccessToken() { Client.Authentication.OAuthLogout(); }
 
-		public object CanAuthorize => !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret);
-
-		public object CanRefreshAccessToken => OAuthAccessToken != null && OAuthAccessToken.IsValid;
-
-		public object CanDiscardAccessToken => OAuthAccessToken != null && OAuthAccessToken.IsValid;
-
-		public object CanLogin => !string.IsNullOrEmpty(LoginUsernameOrEmail) && !string.IsNullOrEmpty(Password);
-
-		public object CanLogout => !string.IsNullOrEmpty(SimpleAccessToken);
-
-    public async void Login() {
+		public async void Login() {
 			SimpleAccessToken = string.Empty;
 			SimpleAccessToken = await Client.Authentication.LoginAsync(LoginUsernameOrEmail, Password);
 		}
@@ -360,15 +382,16 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			try {
 				result = await TestRequests.ExecuteTestRequest(
 					Client,
-				  _selectedTestRequestType,
-				  _selectedExtendedOption,
-				  TraktEnumHelper.FromLabel<TraktReportingPeriod>(SelectedReportingPeriod),
-				  !string.IsNullOrEmpty(TestId) ? TestId : null,
-				  !string.IsNullOrEmpty(TestUsername) ? TestUsername : null,
-				  AuthenticateIfOptional);
+					_selectedTestRequestType,
+					_selectedExtendedOption,
+					TraktEnumHelper.FromLabel<TraktReportingPeriod>(SelectedReportingPeriod),
+					!string.IsNullOrEmpty(TestId) ? TestId : null,
+					!string.IsNullOrEmpty(TestUsername) ? TestUsername : null,
+					AuthenticateIfOptional);
 			} catch (Exception ex) {
 				result = ex;
 			}
+
 			UpdateLastReturnValue(result);
 		}
 
@@ -383,32 +406,29 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			} catch (Exception ex) {
 				result = ex;
 			}
+
 			UpdateLastReturnValue(result);
 		}
 
-		public object CanSearch => !string.IsNullOrEmpty(SearchText);
-
-    public void Closing() {
-			TrySaveState();
-		}
-
-		public static string StateSerializationPath {
-			get {
-				var assemblyPath = Assembly.GetExecutingAssembly().Location;
-				return Path.Combine(Path.GetDirectoryName(assemblyPath) ?? string.Empty, $"{Path.GetFileNameWithoutExtension(assemblyPath)}.state");
-			}
-		}
+		public void Closing() { TrySaveState(); }
 
 		public void TryLoadState() {
 			try {
 				var result = JsonConvert.DeserializeObject<SavedState>(File.ReadAllText(StateSerializationPath));
-				if (result.WindowWidth > 0 && result.WindowHeight > 0) {
-					if (result.WindowHeight > _view.MinHeight) { _view.Height = result.WindowHeight; }
-					if (result.WindowWidth > _view.MinWidth) { _view.Width = result.WindowWidth; }
+				if ((result.WindowWidth > 0) && (result.WindowHeight > 0)) {
+					if (result.WindowHeight > _view.MinHeight) {
+						_view.Height = result.WindowHeight;
+					}
+
+					if (result.WindowWidth > _view.MinWidth) {
+						_view.Width = result.WindowWidth;
+					}
+
 					_view.Left = result.WindowLeft;
 					_view.Top = result.WindowTop;
 					_view.WindowState = result.WindowState;
 				}
+
 				OAuthAccessToken = result.OAuthAccessToken;
 				SimpleAccessToken = result.SimpleAccessToken;
 				Username = result.Username;
@@ -435,33 +455,36 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		public void TrySaveState() {
 			try {
 				FileSystemHelper.EnsureParentDirectoryExists(StateSerializationPath);
-				File.WriteAllText(StateSerializationPath, JsonConvert.SerializeObject(new SavedState {
-					WindowHeight = _view.Height,
-					WindowWidth = _view.Width,
-					WindowLeft = _view.Left,
-					WindowTop = _view.Top,
-					WindowState = _view.WindowState,
-					OAuthAccessToken = OAuthAccessToken,
-					SimpleAccessToken = SimpleAccessToken,
-					UseSandpit = UseSandpit,
-					Username = Username,
-					ClientId = ClientId,
-					ClientSecret = ClientSecret,
-					LoginUsernameOrEmail = LoginUsernameOrEmail,
-					SelectedAuthenticationMode = SelectedAuthenticationMode,
-					SelectedMainTab = SelectedMainTab,
-					SelectedResponseTab = SelectedResponseTab,
-					SelectedExtendedOption = SelectedExtendedOption,
-					SelectedReportingPeriod = SelectedReportingPeriod,
-					SelectedTestRequestType = SelectedTestRequestType,
-					SelectedTextQueryType = SelectedTextQueryType,
-					SelectedIdLookupType = SelectedIdLookupType,
-					TestId = TestId,
-					TestUsername = TestUsername,
-					AuthenticateIfOptional = AuthenticateIfOptional,
-					IdLookup = IdLookup,
-					SearchText = SearchText
-				}, Formatting.Indented), Encoding.UTF8);
+				File.WriteAllText(StateSerializationPath,
+					JsonConvert.SerializeObject(new SavedState {
+							WindowHeight = _view.Height,
+							WindowWidth = _view.Width,
+							WindowLeft = _view.Left,
+							WindowTop = _view.Top,
+							WindowState = _view.WindowState,
+							OAuthAccessToken = OAuthAccessToken,
+							SimpleAccessToken = SimpleAccessToken,
+							UseSandpit = UseSandpit,
+							Username = Username,
+							ClientId = ClientId,
+							ClientSecret = ClientSecret,
+							LoginUsernameOrEmail = LoginUsernameOrEmail,
+							SelectedAuthenticationMode = SelectedAuthenticationMode,
+							SelectedMainTab = SelectedMainTab,
+							SelectedResponseTab = SelectedResponseTab,
+							SelectedExtendedOption = SelectedExtendedOption,
+							SelectedReportingPeriod = SelectedReportingPeriod,
+							SelectedTestRequestType = SelectedTestRequestType,
+							SelectedTextQueryType = SelectedTextQueryType,
+							SelectedIdLookupType = SelectedIdLookupType,
+							TestId = TestId,
+							TestUsername = TestUsername,
+							AuthenticateIfOptional = AuthenticateIfOptional,
+							IdLookup = IdLookup,
+							SearchText = SearchText
+						},
+						Formatting.Indented),
+					Encoding.UTF8);
 			} catch { }
 		}
 
@@ -474,6 +497,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			} else {
 				sb.AppendLine("This method does not have a return value");
 			}
+
 			LastReturnedValue = sb.ToString();
 			NotifyPropertyChanged(this.GetMemberName(x => x.LastReturnedValue));
 			if (value is Exception) {
@@ -482,8 +506,14 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		private string PrettyPrint(string json) {
-			try { return PrettyPrint(JArray.Parse(json)); } catch { }
-			try { return PrettyPrint(JObject.Parse(json)); } catch { }
+			try {
+				return PrettyPrint(JArray.Parse(json));
+			} catch { }
+
+			try {
+				return PrettyPrint(JObject.Parse(json));
+			} catch { }
+
 			return string.Empty;
 		}
 
@@ -499,6 +529,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 							sb.AppendLine($"Expires At: {traktConflictEx.ExpiresAt}");
 						}
 					}
+
 					sb.AppendLine();
 					sb.AppendLine($"Stack Trace:\r\n\r\n{ex.StackTrace}");
 					if (ex.InnerException != null) {
@@ -507,14 +538,18 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 						sb.AppendLine();
 						sb.AppendLine($"Inner Exception Stack Trace:\r\n\r\n{ex.InnerException.StackTrace}");
 					}
+
 					return sb.ToString();
 				}
-				return JsonConvert.SerializeObject(obj, new JsonSerializerSettings {
-					Formatting = Formatting.Indented,
-					ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-					ContractResolver = new OriginalPropertyNamesContractResolver { IgnoreSerializableInterface = true, IgnoreSerializableAttribute = true }
-				});
+
+				return JsonConvert.SerializeObject(obj,
+					new JsonSerializerSettings {
+						Formatting = Formatting.Indented,
+						ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+						ContractResolver = new OriginalPropertyNamesContractResolver {IgnoreSerializableInterface = true, IgnoreSerializableAttribute = true}
+					});
 			} catch { }
+
 			return string.Empty;
 		}
 

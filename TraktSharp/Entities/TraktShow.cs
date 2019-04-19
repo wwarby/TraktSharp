@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.Enums;
 using TraktSharp.Helpers;
@@ -29,6 +30,7 @@ namespace TraktSharp.Entities {
 						ret.Add(new RegionInfo(code).DisplayName);
 					} catch { }
 				}
+
 				return ret;
 			}
 		}
@@ -44,7 +46,13 @@ namespace TraktSharp.Entities {
 		/// <summary>The country in which the show is produced</summary>
 		[JsonIgnore]
 		public string Country {
-			get { try { return new RegionInfo(CountryCode).DisplayName; } catch { return string.Empty; } }
+			get {
+				try {
+					return new RegionInfo(CountryCode).DisplayName;
+				} catch {
+					return string.Empty;
+				}
+			}
 		}
 
 		/// <summary>The UTC date when the first episode of the first season was first aired</summary>
@@ -57,20 +65,14 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The URI of a trailer for the show</summary>
 		[JsonIgnore]
-		public Uri Trailer {
-			get => !string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null;
-			set => TrailerString = value.AbsoluteUri;
-		}
+		public Uri Trailer { get => !string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null; set => TrailerString = value.AbsoluteUri; }
 
 		[JsonProperty(PropertyName = "trailer")]
 		private string TrailerString { get; set; }
 
 		/// <summary>The URI of the show's homepage</summary>
 		[JsonIgnore]
-		public Uri Homepage {
-			get => !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null;
-			set => HomepageString = value.AbsoluteUri;
-		}
+		public Uri Homepage { get => !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; set => HomepageString = value.AbsoluteUri; }
 
 		[JsonProperty(PropertyName = "homepage")]
 		private string HomepageString { get; set; }
@@ -86,7 +88,13 @@ namespace TraktSharp.Entities {
 		/// <summary>>The language of the show</summary>
 		[JsonIgnore]
 		public string Language {
-			get { try { return new CultureInfo(CountryCode).DisplayName; } catch { return string.Empty; } }
+			get {
+				try {
+					return new CultureInfo(CountryCode).DisplayName;
+				} catch {
+					return string.Empty;
+				}
+			}
 		}
 
 		/// <summary>The network that produces the show</summary>
@@ -109,7 +117,7 @@ namespace TraktSharp.Entities {
 		[JsonIgnore]
 		public TraktShowStatus Status => TraktEnumHelper.FromDescription(StatusString, TraktShowStatus.Unspecified);
 
-    /// <summary>The show's current status</summary>
+		/// <summary>The show's current status</summary>
 		[JsonProperty(PropertyName = "status")]
 		private string StatusString { get; set; }
 
@@ -129,9 +137,12 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "seasons")]
 		public IEnumerable<TraktSeason> Seasons { get; set; }
 
-		/// <summary>Indicates if the instance contains the data required for it to be sent as part of a request body in a <c>POST</c> HTTP method</summary>
+		/// <summary>
+		///     Indicates if the instance contains the data required for it to be sent as part of a request body in a
+		///     <c>POST</c> HTTP method
+		/// </summary>
 		/// <returns><c>true</c> if the instance is in a fit state to be <c>POSTed</c>, otherwise <c>false</c></returns>
-		internal bool IsPostable() => !string.IsNullOrEmpty(Title) || (Ids != null && Ids.HasAnyValuesSet());
+		internal bool IsPostable() => !string.IsNullOrEmpty(Title) || ((Ids != null) && Ids.HasAnyValuesSet());
 
 	}
 

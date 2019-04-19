@@ -1,9 +1,12 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+﻿using System;
+using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace TraktSharp.Serialization {
-    internal class SkipDefaultPropertyValuesContractResolver : DefaultContractResolver {
+
+	internal class SkipDefaultPropertyValuesContractResolver : DefaultContractResolver {
 
 		protected override JsonProperty CreateProperty(MemberInfo member,
 			MemberSerialization memberSerialization) {
@@ -13,11 +16,18 @@ namespace TraktSharp.Serialization {
 			if (typeof(bool).IsAssignableFrom(property.PropertyType) || typeof(string).IsAssignableFrom(property.PropertyType)) {
 				property.ShouldSerialize = obj => {
 					var value = memberProp != null ? memberProp.GetValue(obj, null) : memberField != null ? memberField.GetValue(obj) : null;
-					if (value is bool boolValue) { return boolValue; }
-					if (value is string) { return !string.IsNullOrWhiteSpace(value.ToString()); }
+					if (value is bool boolValue) {
+						return boolValue;
+					}
+
+					if (value is string) {
+						return !string.IsNullOrWhiteSpace(value.ToString());
+					}
+
 					return true;
 				};
 			}
+
 			return property;
 		}
 

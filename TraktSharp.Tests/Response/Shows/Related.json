@@ -1,122 +1,122 @@
 ﻿[
-	{
-		"title": "Battlestar Galactica",
-		"year": 2005,
-		"ids": {
-			"trakt": 331,
-			"slug": "battlestar-galactica",
-			"tvdb": 73545,
-			"imdb": "tt0407362",
-			"tmdb": 1972,
-			"tvrage": null
-		}
-	},
-	{
-		"title": "Game of Thrones",
-		"year": 2011,
-		"ids": {
-			"trakt": 353,
-			"slug": "game-of-thrones",
-			"tvdb": 121361,
-			"imdb": "tt0944947",
-			"tmdb": 1399,
-			"tvrage": 24493
-		}
-	},
-	{
-		"title": "Firefly",
-		"year": 2002,
-		"ids": {
-			"trakt": 329,
-			"slug": "firefly",
-			"tvdb": 78874,
-			"imdb": "tt0303461",
-			"tmdb": 1437,
-			"tvrage": null
-		}
-	},
-	{
-		"title": "The Newsroom",
-		"year": 2012,
-		"ids": {
-			"trakt": 497,
-			"slug": "the-newsroom",
-			"tvdb": 256227,
-			"imdb": "tt1870479",
-			"tmdb": 15621,
-			"tvrage": null
-		}
-	},
-	{
-		"title": "Dollhouse",
-		"year": 2009,
-		"ids": {
-			"trakt": 395,
-			"slug": "dollhouse",
-			"tvdb": 82046,
-			"imdb": "tt1135300",
-			"tmdb": 14956,
-			"tvrage": null
-		}
-	},
-	{
-		"title": "Sons of Anarchy",
-		"year": 2008,
-		"ids": {
-			"trakt": 23,
-			"slug": "sons-of-anarchy",
-			"tvdb": 82696,
-			"imdb": "tt1124373",
-			"tmdb": 1409,
-			"tvrage": null
-		}
-	},
-	{
-		"title": "Hannibal",
-		"year": 2013,
-		"ids": {
-			"trakt": 567,
-			"slug": "hannibal",
-			"tvdb": 259063,
-			"imdb": "tt2243973",
-			"tmdb": 40008,
-			"tvrage": 30909
-		}
-	},
-	{
-		"title": "True Blood",
-		"year": 2008,
-		"ids": {
-			"trakt": 122,
-			"slug": "true-blood",
-			"tvdb": 82283,
-			"imdb": "tt0844441",
-			"tmdb": 10545,
-			"tvrage": 12662
-		}
-	},
-	{
-		"title": "The Walking Dead",
-		"year": 2010,
-		"ids": {
-			"trakt": 2,
-			"slug": "the-walking-dead",
-			"tvdb": 153021,
-			"imdb": "tt1520211",
-			"tmdb": 1402,
-			"tvrage": 25056
-		}
-	},
-	{
-		"title": "The Shield",
-		"year": 2002,
-		"ids": {
-			"trakt": 486,
-			"slug": "the-shield",
-			"tvdb": 78261,
-			"imdb": "tt0286486",
-			"tmdb": 1414,
-			"tvrage": null
-		}
-	}
+  {
+    "title": "Battlestar Galactica",
+    "year": 2005,
+    "ids": {
+      "trakt": 331,
+      "slug": "battlestar-galactica",
+      "tvdb": 73545,
+      "imdb": "tt0407362",
+      "tmdb": 1972,
+      "tvrage": null
+    }
+  },
+  {
+    "title": "Game of Thrones",
+    "year": 2011,
+    "ids": {
+      "trakt": 353,
+      "slug": "game-of-thrones",
+      "tvdb": 121361,
+      "imdb": "tt0944947",
+      "tmdb": 1399,
+      "tvrage": 24493
+    }
+  },
+  {
+    "title": "Firefly",
+    "year": 2002,
+    "ids": {
+      "trakt": 329,
+      "slug": "firefly",
+      "tvdb": 78874,
+      "imdb": "tt0303461",
+      "tmdb": 1437,
+      "tvrage": null
+    }
+  },
+  {
+    "title": "The Newsroom",
+    "year": 2012,
+    "ids": {
+      "trakt": 497,
+      "slug": "the-newsroom",
+      "tvdb": 256227,
+      "imdb": "tt1870479",
+      "tmdb": 15621,
+      "tvrage": null
+    }
+  },
+  {
+    "title": "Dollhouse",
+    "year": 2009,
+    "ids": {
+      "trakt": 395,
+      "slug": "dollhouse",
+      "tvdb": 82046,
+      "imdb": "tt1135300",
+      "tmdb": 14956,
+      "tvrage": null
+    }
+  },
+  {
+    "title": "Sons of Anarchy",
+    "year": 2008,
+    "ids": {
+      "trakt": 23,
+      "slug": "sons-of-anarchy",
+      "tvdb": 82696,
+      "imdb": "tt1124373",
+      "tmdb": 1409,
+      "tvrage": null
+    }
+  },
+  {
+    "title": "Hannibal",
+    "year": 2013,
+    "ids": {
+      "trakt": 567,
+      "slug": "hannibal",
+      "tvdb": 259063,
+      "imdb": "tt2243973",
+      "tmdb": 40008,
+      "tvrage": 30909
+    }
+  },
+  {
+    "title": "True Blood",
+    "year": 2008,
+    "ids": {
+      "trakt": 122,
+      "slug": "true-blood",
+      "tvdb": 82283,
+      "imdb": "tt0844441",
+      "tmdb": 10545,
+      "tvrage": 12662
+    }
+  },
+  {
+    "title": "The Walking Dead",
+    "year": 2010,
+    "ids": {
+      "trakt": 2,
+      "slug": "the-walking-dead",
+      "tvdb": 153021,
+      "imdb": "tt1520211",
+      "tmdb": 1402,
+      "tvrage": 25056
+    }
+  },
+  {
+    "title": "The Shield",
+    "year": 2002,
+    "ids": {
+      "trakt": 486,
+      "slug": "the-shield",
+      "tvdb": 78261,
+      "imdb": "tt0286486",
+      "tmdb": 1414,
+      "tvrage": null
+    }
+  }
 ]

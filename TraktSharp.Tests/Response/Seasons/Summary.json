@@ -1,42 +1,42 @@
 ﻿[
-	{
-		"number": 0,
-		"ids": {
-			"tvdb": 137481,
-			"tmdb": 3627,
-			"tvrage": null
-		}
-	},
-	{
-		"number": 1,
-		"ids": {
-			"tvdb": 364731,
-			"tmdb": 3624,
-			"tvrage": null
-		}
-	},
-	{
-		"number": 2,
-		"ids": {
-			"tvdb": 473271,
-			"tmdb": 3625,
-			"tvrage": null
-		}
-	},
-	{
-		"number": 3,
-		"ids": {
-			"tvdb": 488434,
-			"tmdb": 3626,
-			"tvrage": null
-		}
-	},
-	{
-		"number": 4,
-		"ids": {
-			"tvdb": 522882,
-			"tmdb": 3628,
-			"tvrage": null
-		}
-	}
+  {
+    "number": 0,
+    "ids": {
+      "tvdb": 137481,
+      "tmdb": 3627,
+      "tvrage": null
+    }
+  },
+  {
+    "number": 1,
+    "ids": {
+      "tvdb": 364731,
+      "tmdb": 3624,
+      "tvrage": null
+    }
+  },
+  {
+    "number": 2,
+    "ids": {
+      "tvdb": 473271,
+      "tmdb": 3625,
+      "tvrage": null
+    }
+  },
+  {
+    "number": 3,
+    "ids": {
+      "tvdb": 488434,
+      "tmdb": 3626,
+      "tvrage": null
+    }
+  },
+  {
+    "number": 4,
+    "ids": {
+      "tvdb": 522882,
+      "tmdb": 3628,
+      "tvrage": null
+    }
+  }
 ]

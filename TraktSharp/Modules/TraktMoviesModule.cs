@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Entities.Response.Movies;
@@ -12,12 +13,15 @@ namespace TraktSharp.Modules {
 	/// <summary>Provides API methods in the Movies namespace</summary>
 	public class TraktMoviesModule : TraktModuleBase {
 
-		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
-		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient" />.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient" /></param>
 		public TraktMoviesModule(TraktClient client) : base(client) { }
 
 		/// <summary>Returns all movies being watched right now. Movies with the most users are returned first.</summary>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -28,16 +32,25 @@ namespace TraktSharp.Modules {
 			});
 
 		/// <summary>Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.</summary>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktMoviesAnticipatedResponseItem>> GetBoxOfficeMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
 			await SendAsync(new TraktMoviesAnticipatedRequest(Client) {
 				Extended = extended
 			});
 
-		/// <summary>Returns the most collected (unique users) movies in the specified time period, defaulting to weekly. All stats are relative to the specific time period.</summary>
+		/// <summary>
+		///     Returns the most collected (unique users) movies in the specified time period, defaulting to weekly. All stats
+		///     are relative to the specific time period.
+		/// </summary>
 		/// <param name="period">The reporting period across which to retrieve the results</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -48,9 +61,15 @@ namespace TraktSharp.Modules {
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
-		/// <summary>Returns the most played (a single user can watch multiple times) movies in the specified time period, defaulting to weekly. All stats are relative to the specific time period.</summary>
+		/// <summary>
+		///     Returns the most played (a single user can watch multiple times) movies in the specified time period,
+		///     defaulting to weekly. All stats are relative to the specific time period.
+		/// </summary>
 		/// <param name="period">The reporting period across which to retrieve the results</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -61,8 +80,14 @@ namespace TraktSharp.Modules {
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
-		/// <summary>Returns the most popular movies. Popularity is calculated using the rating percentage and the number of ratings.</summary>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <summary>
+		///     Returns the most popular movies. Popularity is calculated using the rating percentage and the number of
+		///     ratings.
+		/// </summary>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -73,7 +98,10 @@ namespace TraktSharp.Modules {
 			});
 
 		/// <summary>Returns all movies being watched right now. Movies with the most users are returned first.</summary>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -83,9 +111,15 @@ namespace TraktSharp.Modules {
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
-		/// <summary>Returns all movies updated since the specified UTC date. We recommended storing the date you can be efficient using this method moving forward.</summary>
+		/// <summary>
+		///     Returns all movies updated since the specified UTC date. We recommended storing the date you can be efficient
+		///     using this method moving forward.
+		/// </summary>
 		/// <param name="startDate">Return items updated after this date</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -96,9 +130,15 @@ namespace TraktSharp.Modules {
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
-		/// <summary>Returns the most watched (unique users) movies in the specified time period, defaulting to weekly. All stats are relative to the specific time period.</summary>
+		/// <summary>
+		///     Returns the most watched (unique users) movies in the specified time period, defaulting to weekly. All stats
+		///     are relative to the specific time period.
+		/// </summary>
 		/// <param name="period">The reporting period across which to retrieve the results</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -111,13 +151,19 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Returns a single movie's details</summary>
 		/// <param name="movie">The movie</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktMovie> GetMovieAsync(TraktMovie movie, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetMovieAsync(movie.Ids.GetBestId(), extended);
 
 		/// <summary>Returns a single movie's details</summary>
 		/// <param name="movieId">The movie ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktMovie> GetMovieAsync(string movieId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
 			await SendAsync(new TraktMoviesSummaryRequest(Client) {
@@ -190,13 +236,19 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Returns all cast and crew for a movie. Each cast member will have a character and a standard person object.</summary>
 		/// <param name="movie">The movie</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(TraktMovie movie, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetCastAndCrewAsync(movie.Ids.GetBestId(), extended);
 
 		/// <summary>Returns all cast and crew for a movie. Each cast member will have a character and a standard person object.</summary>
 		/// <param name="movieId">The movie ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(string movieId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
 			await SendAsync(new TraktMoviesPeopleRequest(Client) {
@@ -219,13 +271,19 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Returns related and similar movies</summary>
 		/// <param name="movie">The movie</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktMovie>> GetRelatedMoviesAsync(TraktMovie movie, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetRelatedMoviesAsync(movie.Ids.GetBestId(), extended);
 
 		/// <summary>Returns related and similar movies</summary>
 		/// <param name="movieId">The movie ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktMovie>> GetRelatedMoviesAsync(string movieId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
 			await SendAsync(new TraktMoviesRelatedRequest(Client) {
@@ -233,12 +291,18 @@ namespace TraktSharp.Modules {
 				Extended = extended
 			});
 
-		/// <summary>Returns lots of movie stats including ratings breakdowns, scrobbles, checkins, collections, lists, and comments</summary>
+		/// <summary>
+		///     Returns lots of movie stats including ratings breakdowns, scrobbles, checkins, collections, lists, and
+		///     comments
+		/// </summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
 		public async Task<object> GetStatsAsync(TraktMovie movie) => await GetStatsAsync(movie.Ids.GetBestId());
 
-		/// <summary>Returns lots of movie stats including ratings breakdowns, scrobbles, checkins, collections, lists, and comments</summary>
+		/// <summary>
+		///     Returns lots of movie stats including ratings breakdowns, scrobbles, checkins, collections, lists, and
+		///     comments
+		/// </summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <returns>See summary</returns>
 		public async Task<object> GetStatsAsync(string movieId) {
@@ -248,13 +312,19 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Returns all users watching the movie right now</summary>
 		/// <param name="movie">The movie</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingMovieAsync(TraktMovie movie, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetUsersWatchingMovieAsync(movie.Ids.GetBestId(), extended);
 
 		/// <summary>Returns all users watching the movie right now</summary>
 		/// <param name="movieId">The movie ID</param>
-		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
+		/// <param name="extended">
+		///     Changes which properties are populated for standard media objects. By default, minimal data is
+		///     returned. Change this if additional fields are required in the returned data.
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktUser>> GetUsersWatchingMovieAsync(string movieId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
 			await SendAsync(new TraktMoviesWatchingRequest(Client) {

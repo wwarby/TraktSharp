@@ -1,4 +1,7 @@
-﻿namespace TraktSharp.Request.Auth {
+﻿using System;
+using System.Linq;
+
+namespace TraktSharp.Request.Auth {
 
 	internal class TraktAuthLogoutRequest : TraktDeleteRequest {
 
@@ -6,6 +9,6 @@
 
 		protected override string PathTemplate => "auth/logout";
 
-  }
+	}
 
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.ExtensionMethods;
 
@@ -27,6 +28,6 @@ namespace TraktSharp.Entities.RequestBody.Scrobble {
 		[JsonProperty(PropertyName = "app_date")]
 		private string AppDateString => AppDate.ToTraktApiFormat();
 
-  }
+	}
 
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TraktSharp.Entities.Response.Movies;
 using TraktSharp.Enums;
 

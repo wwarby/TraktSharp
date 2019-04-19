@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Comments {
@@ -9,14 +10,16 @@ namespace TraktSharp.Request.Comments {
 
 		protected override string PathTemplate => "comments";
 
-    protected override void ValidateParameters() {
+		protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (string.IsNullOrEmpty(RequestBody.Comment)) {
 				throw new ArgumentException("Comment not set");
 			}
+
 			if (RequestBody.List == null) {
 				throw new ArgumentException("List not set");
 			}
+
 			if (!RequestBody.List.IsPostable()) {
 				throw new ArgumentException("At least one list id value must be set");
 			}

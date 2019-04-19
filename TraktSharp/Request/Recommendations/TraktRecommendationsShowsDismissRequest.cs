@@ -1,4 +1,7 @@
-﻿namespace TraktSharp.Request.Recommendations {
+﻿using System;
+using System.Linq;
+
+namespace TraktSharp.Request.Recommendations {
 
 	internal class TraktRecommendationsShowsDismissRequest : TraktDeleteByIdRequest {
 
@@ -6,6 +9,6 @@
 
 		protected override string PathTemplate => "recommendations/shows/{id}";
 
-  }
+	}
 
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -16,7 +17,6 @@ namespace TraktSharp.Tests.Modules {
 		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestGenresGetGenresAsync() {
-
 			FakeResponsePath = @"Genres\Movies.json";
 			var moviesResult = (await Client.Genres.GetGenresAsync(TraktGenreTypeOptions.Movies)).ToList();
 
@@ -33,7 +33,6 @@ namespace TraktSharp.Tests.Modules {
 			showsResult.Skip(3).First().Slug.Should().Be("biography");
 			showsResult.Should().HaveCount(28);
 			showsResult.Should().NotBeEquivalentTo(moviesResult);
-
 		}
 
 	}

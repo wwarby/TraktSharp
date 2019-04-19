@@ -14,7 +14,7 @@ namespace TraktSharp.Request.Movies {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-    internal string Language { get; set; }
+		internal string Language { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
 			base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {

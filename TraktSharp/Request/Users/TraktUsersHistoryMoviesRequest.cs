@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TraktSharp.Entities.Response.Users;
 
 namespace TraktSharp.Request.Users {
@@ -11,6 +13,6 @@ namespace TraktSharp.Request.Users {
 
 		protected override bool SupportsPagination => true;
 
-  }
+	}
 
 }

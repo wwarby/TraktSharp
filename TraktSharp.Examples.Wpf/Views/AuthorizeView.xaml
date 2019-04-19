@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Authorize" Height="640" Width="640" WindowStartupLocation="CenterScreen" Icon="/Icons/Authorize.ico"
         x:ClassModifier="internal">
-	<Grid>
-		<WebBrowser x:Name="AuthorizeBrowser" Navigating="AuthorizeBrowserNavigating" />
-	</Grid>
+  <Grid>
+    <WebBrowser x:Name="AuthorizeBrowser" Navigating="AuthorizeBrowserNavigating" />
+  </Grid>
 </Window>

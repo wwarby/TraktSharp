@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vc="clr-namespace:TraktSharp.Examples.Wpf.ValueConverters"
              StartupUri="Views/MainView.xaml" x:ClassModifier="internal">
-	<Application.Resources>
-		<vc:InverseBooleanConverter x:Key="InverseBoolConverter" />
-		<BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
-		<vc:InverseBooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" />
-	</Application.Resources>
+  <Application.Resources>
+    <vc:InverseBooleanConverter x:Key="InverseBoolConverter" />
+    <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    <vc:InverseBooleanToVisibilityConverter x:Key="InverseBoolToVisConverter" />
+  </Application.Resources>
 </Application>

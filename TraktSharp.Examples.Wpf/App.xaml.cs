@@ -1,7 +1,8 @@
-﻿namespace TraktSharp.Examples.Wpf {
+﻿using System;
+using System.Linq;
 
-	internal partial class App {
+namespace TraktSharp.Examples.Wpf {
 
-	}
+	internal partial class App { }
 
 }

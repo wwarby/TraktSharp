@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using TraktSharp.EventArgs;
 
 namespace TraktSharp.Request {

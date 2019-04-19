@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TraktSharp.Entities.Response.Shows;
 using TraktSharp.Enums;
 using TraktSharp.Helpers;
@@ -15,12 +17,12 @@ namespace TraktSharp.Request.Shows {
 
 		internal TraktReportingPeriod Period { get; set; }
 
+		protected override bool SupportsPagination => true;
+
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
 			new Dictionary<string, string> {
 				{"period", Period != TraktReportingPeriod.Unspecified ? TraktEnumHelper.GetDescription(Period) : string.Empty}
 			};
-
-		protected override bool SupportsPagination => true;
 
 	}
 

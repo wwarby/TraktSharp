@@ -15,7 +15,7 @@ namespace TraktSharp.Request.Episodes {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-    internal int Season { get; set; }
+		internal int Season { get; set; }
 
 		internal int Episode { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
@@ -27,26 +28,34 @@ namespace TraktSharp.Modules {
 		/// <summary>Add a show to the user's collection by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
-		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
+		/// <param name="seasonNumbers">
+		///     If set, the action will be applied to the specified season numbers instead of the show
+		///     itself
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToCollectionByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId<TraktShowWithCollectionMetadata>(showId, showIdType);
 			if (seasonNumbers != null) {
-				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithCollectionMetadata { SeasonNumber = s }).ToList();
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithCollectionMetadata {SeasonNumber = s}).ToList();
 			}
+
 			return await AddToCollectionAsync(obj);
 		}
 
 		/// <summary>Add a show to the user's collection by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
-		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
+		/// <param name="seasonNumbers">
+		///     If set, the action will be applied to the specified season numbers instead of the show
+		///     itself
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToCollectionByShowIdAsync(int showId, TraktNumericShowIdType showIdType, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId<TraktShowWithCollectionMetadata>(showId, showIdType);
 			if (seasonNumbers != null) {
-				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithCollectionMetadata { SeasonNumber = s }).ToList();
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithCollectionMetadata {SeasonNumber = s}).ToList();
 			}
+
 			return await AddToCollectionAsync(obj);
 		}
 
@@ -65,17 +74,17 @@ namespace TraktSharp.Modules {
 		/// <summary>Add a movie to the user's collection</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToCollectionAsync(TraktMovieWithCollectionMetadata movie) => await AddToCollectionAsync(new List<TraktMovieWithCollectionMetadata> { movie }, null, null);
+		public async Task<TraktAddResponse> AddToCollectionAsync(TraktMovieWithCollectionMetadata movie) => await AddToCollectionAsync(new List<TraktMovieWithCollectionMetadata> {movie}, null, null);
 
 		/// <summary>Add a show to the user's collection</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToCollectionAsync(TraktShowWithCollectionMetadata show) => await AddToCollectionAsync(null, new List<TraktShowWithCollectionMetadata> { show }, null);
+		public async Task<TraktAddResponse> AddToCollectionAsync(TraktShowWithCollectionMetadata show) => await AddToCollectionAsync(null, new List<TraktShowWithCollectionMetadata> {show}, null);
 
 		/// <summary>Add an episode to the user's collection</summary>
 		/// <param name="episode">The episode with optional metadata</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToCollectionAsync(TraktEpisodeWithCollectionMetadata episode) => await AddToCollectionAsync(null, null, new List<TraktEpisodeWithCollectionMetadata> { episode });
+		public async Task<TraktAddResponse> AddToCollectionAsync(TraktEpisodeWithCollectionMetadata episode) => await AddToCollectionAsync(null, null, new List<TraktEpisodeWithCollectionMetadata> {episode});
 
 		/// <summary>Add one or more movies to the user's collection</summary>
 		/// <param name="movies">A collection of movies</param>

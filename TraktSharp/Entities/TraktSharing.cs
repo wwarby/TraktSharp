@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
 
-	/// <summary>A set of social media connection indicators indicating where a resource has been (or will be) shared on social media sites</summary>
+	/// <summary>
+	///     A set of social media connection indicators indicating where a resource has been (or will be) shared on social
+	///     media sites
+	/// </summary>
 	[Serializable]
 	public class TraktSharing {
 

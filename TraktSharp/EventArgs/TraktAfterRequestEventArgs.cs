@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
 
 namespace TraktSharp.EventArgs {
 
@@ -10,7 +12,7 @@ namespace TraktSharp.EventArgs {
 		/// <param name="responseText">The HTTP response body parsed as a string</param>
 		/// <param name="request">The raw HTTP request</param>
 		/// <param name="requestBody">The HTTP request body</param>
-		/// <param name="client">The <see cref="HttpClient"/> used to execute the request</param>
+		/// <param name="client">The <see cref="HttpClient" /> used to execute the request</param>
 		public TraktAfterRequestEventArgs(HttpResponseMessage response, string responseText, HttpRequestMessage request, string requestBody, HttpClient client) {
 			Response = response;
 			ResponseText = responseText;
@@ -31,7 +33,7 @@ namespace TraktSharp.EventArgs {
 		/// <summary>The HTTP request body</summary>
 		public string RequestBody { get; set; }
 
-		/// <summary>The <see cref="HttpClient"/> used to execute the request</summary>
+		/// <summary>The <see cref="HttpClient" /> used to execute the request</summary>
 		public HttpClient Client { get; set; }
 
 	}

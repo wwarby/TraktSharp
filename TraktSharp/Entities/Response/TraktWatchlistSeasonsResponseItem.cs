@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.Enums;
 using TraktSharp.Helpers;
@@ -17,10 +18,9 @@ namespace TraktSharp.Entities.Response {
 		[JsonIgnore]
 		public TraktListItemType Type { get; set; }
 
-		[JsonProperty(PropertyName = "type")]
-		private string TypeString => TraktEnumHelper.GetDescription(Type);
+		[JsonProperty(PropertyName = "type")] private string TypeString => TraktEnumHelper.GetDescription(Type);
 
-    /// <summary>The season</summary>
+		/// <summary>The season</summary>
 		[JsonProperty(PropertyName = "season")]
 		public TraktSeason Season { get; set; }
 

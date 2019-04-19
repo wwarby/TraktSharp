@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
@@ -8,7 +9,10 @@ namespace TraktSharp.Entities {
 	[Serializable]
 	public class TraktListIds {
 
-		/// <summary>The Trakt numeric ID for this item. If available, this is the best ID to use when calling API methods that take an ID as a parameter.</summary>
+		/// <summary>
+		///     The Trakt numeric ID for this item. If available, this is the best ID to use when calling API methods that
+		///     take an ID as a parameter.
+		/// </summary>
 		[JsonProperty(PropertyName = "trakt")]
 		public int? Trakt { get; set; }
 
@@ -18,13 +22,22 @@ namespace TraktSharp.Entities {
 
 		/// <summary>Tests if at least one of the IDs for this item has been set</summary>
 		/// <returns><c>true</c> if one or more of the IDs for this item has a non-default value, otherwise <c>false</c></returns>
-		public bool HasAnyValuesSet() => Trakt > 0 || !string.IsNullOrEmpty(Slug);
+		public bool HasAnyValuesSet() => (Trakt > 0) || !string.IsNullOrEmpty(Slug);
 
-		/// <summary>Get the most reliable ID from those that have been set for this item, for use in methods where any ID type can be passed</summary>
+		/// <summary>
+		///     Get the most reliable ID from those that have been set for this item, for use in methods where any ID type can
+		///     be passed
+		/// </summary>
 		/// <returns>The ID as a string</returns>
 		public string GetBestId() {
-			if (Trakt.GetValueOrDefault() > 0) { return Trakt.GetValueOrDefault().ToString(CultureInfo.InvariantCulture); }
-			if (!string.IsNullOrEmpty(Slug)) { return Slug; }
+			if (Trakt.GetValueOrDefault() > 0) {
+				return Trakt.GetValueOrDefault().ToString(CultureInfo.InvariantCulture);
+			}
+
+			if (!string.IsNullOrEmpty(Slug)) {
+				return Slug;
+			}
+
 			return string.Empty;
 		}
 

@@ -1,21 +1,21 @@
 ﻿{
-	"added": {
-		"movies": 1,
-		"shows": 1,
-		"seasons": 1,
-		"episodes": 2
-	},
-	"not_found": {
-		"movies": [
-			{
-				"rating": 10,
-				"ids": {
-					"imdb": "tt0000111"
-				}
-			}
-		],
-		"shows": [ ],
-		"seasons": [ ],
-		"episodes": [ ]
-	}
+  "added": {
+    "movies": 1,
+    "shows": 1,
+    "seasons": 1,
+    "episodes": 2
+  },
+  "not_found": {
+    "movies": [
+      {
+        "rating": 10,
+        "ids": {
+          "imdb": "tt0000111"
+        }
+      }
+    ],
+    "shows": [],
+    "seasons": [],
+    "episodes": []
+  }
 }

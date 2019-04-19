@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TraktSharp.Entities.Response.Genres;
 using TraktSharp.Enums;
 using TraktSharp.Helpers;
@@ -13,7 +15,7 @@ namespace TraktSharp.Request.Genres {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-    internal TraktGenreTypeOptions Type { get; set; }
+		internal TraktGenreTypeOptions Type { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
 			new Dictionary<string, string> {

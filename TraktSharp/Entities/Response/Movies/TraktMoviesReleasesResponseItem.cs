@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities.Response.Movies {
@@ -19,7 +20,13 @@ namespace TraktSharp.Entities.Response.Movies {
 		/// <summary>The country in which this release date is applicable</summary>
 		[JsonIgnore]
 		public string Country {
-			get { try { return new RegionInfo(CountryCode).DisplayName; } catch { return string.Empty; } }
+			get {
+				try {
+					return new RegionInfo(CountryCode).DisplayName;
+				} catch {
+					return string.Empty;
+				}
+			}
 		}
 
 		/// <summary>The release date</summary>

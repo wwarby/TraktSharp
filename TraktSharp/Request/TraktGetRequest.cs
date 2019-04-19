@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
 
 namespace TraktSharp.Request {
 
@@ -8,6 +10,6 @@ namespace TraktSharp.Request {
 
 		protected override HttpMethod Method => HttpMethod.Get;
 
-  }
+	}
 
 }

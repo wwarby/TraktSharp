@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
 
-	/// <summary>A response sent by the trakt API with a 409: Conflict HTTP header. Indicates that the requested resource has already been previously created.</summary>
+	/// <summary>
+	///     A response sent by the trakt API with a 409: Conflict HTTP header. Indicates that the requested resource has
+	///     already been previously created.
+	/// </summary>
 	[Serializable]
 	public class TraktConflictErrorResponse {
 

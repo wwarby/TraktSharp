@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TraktSharp.Entities.Response.Sync;
 using TraktSharp.Enums;
 
@@ -12,6 +14,6 @@ namespace TraktSharp.Request.Sync {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-  }
+	}
 
 }

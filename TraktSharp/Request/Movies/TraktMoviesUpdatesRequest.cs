@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TraktSharp.Entities.Response.Movies;
 using TraktSharp.Enums;
 using TraktSharp.ExtensionMethods;
@@ -16,7 +17,7 @@ namespace TraktSharp.Request.Movies {
 
 		protected override bool SupportsPagination => true;
 
-    internal DateTime? StartDate { get; set; }
+		internal DateTime? StartDate { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
 			new Dictionary<string, string> {

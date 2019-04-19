@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
@@ -27,26 +28,34 @@ namespace TraktSharp.Modules {
 		/// <summary>Remove a rating for a show by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
-		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
+		/// <param name="seasonNumbers">
+		///     If set, the action will be applied to the specified season numbers instead of the show
+		///     itself
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktRemoveResponse> RemoveRatingByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId(showId, showIdType);
 			if (seasonNumbers != null) {
-				obj.Seasons = seasonNumbers.Select(s => new TraktSeason { SeasonNumber = s }).ToList();
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeason {SeasonNumber = s}).ToList();
 			}
+
 			return await RemoveRatingAsync(obj);
 		}
 
 		/// <summary>Remove a rating for a show by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
-		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
+		/// <param name="seasonNumbers">
+		///     If set, the action will be applied to the specified season numbers instead of the show
+		///     itself
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktRemoveResponse> RemoveRatingByShowIdAsync(int showId, TraktNumericShowIdType showIdType, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId(showId, showIdType);
 			if (seasonNumbers != null) {
-				obj.Seasons = seasonNumbers.Select(s => new TraktSeason { SeasonNumber = s }).ToList();
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeason {SeasonNumber = s}).ToList();
 			}
+
 			return await RemoveRatingAsync(obj);
 		}
 
@@ -65,17 +74,17 @@ namespace TraktSharp.Modules {
 		/// <summary>Remove a rating for a movie</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveRatingAsync(TraktMovie movie) => await RemoveRatingsAsync(new List<TraktMovie> { movie }, null, null);
+		public async Task<TraktRemoveResponse> RemoveRatingAsync(TraktMovie movie) => await RemoveRatingsAsync(new List<TraktMovie> {movie}, null, null);
 
 		/// <summary>Remove a rating for a show</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveRatingAsync(TraktShow show) => await RemoveRatingsAsync(null, new List<TraktShow> { show }, null);
+		public async Task<TraktRemoveResponse> RemoveRatingAsync(TraktShow show) => await RemoveRatingsAsync(null, new List<TraktShow> {show}, null);
 
 		/// <summary>Remove a rating for a an episode</summary>
 		/// <param name="episode">The episode</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveRatingAsync(TraktEpisode episode) => await RemoveRatingsAsync(null, null, new List<TraktEpisode> { episode });
+		public async Task<TraktRemoveResponse> RemoveRatingAsync(TraktEpisode episode) => await RemoveRatingsAsync(null, null, new List<TraktEpisode> {episode});
 
 		/// <summary>Remove ratings for one or more movies</summary>
 		/// <param name="movies">A collection of movies</param>

@@ -1,4 +1,6 @@
-﻿using TraktSharp.Entities;
+﻿using System;
+using System.Linq;
+using TraktSharp.Entities;
 using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Comments {
@@ -11,6 +13,6 @@ namespace TraktSharp.Request.Comments {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-  }
+	}
 
 }

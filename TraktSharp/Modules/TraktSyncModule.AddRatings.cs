@@ -44,15 +44,19 @@ namespace TraktSharp.Modules {
 		/// <param name="showIdType">The show ID type</param>
 		/// <param name="rating">The rating</param>
 		/// <param name="ratedAt">The UTC date when the rating was made</param>
-		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
+		/// <param name="seasonNumbers">
+		///     If set, the action will be applied to the specified season numbers instead of the show
+		///     itself
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddRatingByShowIdAsync(string showId, TraktTextShowIdType showIdType, TraktRating rating, DateTimeOffset? ratedAt = null, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId<TraktShowWithRatingsMetadata>(showId, showIdType);
 			obj.Rating = rating;
 			obj.RatedAt = ratedAt;
 			if (seasonNumbers != null) {
-				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithRatingsMetadata { SeasonNumber = s }).ToList();
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithRatingsMetadata {SeasonNumber = s}).ToList();
 			}
+
 			return await AddRatingsAsync(obj);
 		}
 
@@ -61,15 +65,19 @@ namespace TraktSharp.Modules {
 		/// <param name="showIdType">The show ID type</param>
 		/// <param name="rating">The rating</param>
 		/// <param name="ratedAt">The UTC date when the rating was made</param>
-		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
+		/// <param name="seasonNumbers">
+		///     If set, the action will be applied to the specified season numbers instead of the show
+		///     itself
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddRatingByShowIdAsync(int showId, TraktNumericShowIdType showIdType, TraktRating rating, DateTimeOffset? ratedAt = null, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId<TraktShowWithRatingsMetadata>(showId, showIdType);
 			obj.Rating = rating;
 			obj.RatedAt = ratedAt;
 			if (seasonNumbers != null) {
-				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithRatingsMetadata { SeasonNumber = s }).ToList();
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeasonWithRatingsMetadata {SeasonNumber = s}).ToList();
 			}
+
 			return await AddRatingsAsync(obj);
 		}
 
@@ -102,17 +110,17 @@ namespace TraktSharp.Modules {
 		/// <summary>Rate a movie</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddRatingsAsync(TraktMovieWithRatingsMetadata movie) => await AddRatingsAsync(new List<TraktMovieWithRatingsMetadata> { movie }, null, null);
+		public async Task<TraktAddResponse> AddRatingsAsync(TraktMovieWithRatingsMetadata movie) => await AddRatingsAsync(new List<TraktMovieWithRatingsMetadata> {movie}, null, null);
 
 		/// <summary>Rate a show</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddRatingsAsync(TraktShowWithRatingsMetadata show) => await AddRatingsAsync(null, new List<TraktShowWithRatingsMetadata> { show }, null);
+		public async Task<TraktAddResponse> AddRatingsAsync(TraktShowWithRatingsMetadata show) => await AddRatingsAsync(null, new List<TraktShowWithRatingsMetadata> {show}, null);
 
 		/// <summary>Rate an episode</summary>
 		/// <param name="episode">The episode with optional metadata</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddRatingsAsync(TraktEpisodeWithRatingsMetadata episode) => await AddRatingsAsync(null, null, new List<TraktEpisodeWithRatingsMetadata> { episode });
+		public async Task<TraktAddResponse> AddRatingsAsync(TraktEpisodeWithRatingsMetadata episode) => await AddRatingsAsync(null, null, new List<TraktEpisodeWithRatingsMetadata> {episode});
 
 		/// <summary>Rate one or more movies</summary>
 		/// <param name="movies">A collection of movies</param>

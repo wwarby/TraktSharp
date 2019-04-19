@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TraktSharp.Enums;
 
 namespace TraktSharp.Request {
@@ -10,7 +11,7 @@ namespace TraktSharp.Request {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Optional;
 
-    internal string Username { get; set; }
+		internal string Username { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
 			new Dictionary<string, string> {

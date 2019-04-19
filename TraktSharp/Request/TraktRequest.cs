@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
 using TraktSharp.EventArgs;
@@ -20,10 +20,9 @@ namespace TraktSharp.Request {
 
 	internal abstract class TraktRequest<TResponse, TRequestBody> : ITraktRequest<TResponse> where TRequestBody : class {
 
-		public event BeforeRequestEventHandler BeforeRequest;
-		public event AfterRequestEventHandler AfterRequest;
-
 		private readonly TraktClient _client;
+
+		private bool _authenticate;
 
 		protected TraktRequest(TraktClient client) {
 			_client = client;
@@ -34,11 +33,12 @@ namespace TraktSharp.Request {
 
 		internal TraktPaginationOptions Pagination { get; set; }
 
-		private bool _authenticate;
-
 		internal bool Authenticate {
 			get {
-				if (_client.Configuration.ForceAuthentication && AuthenticationRequirement != TraktAuthenticationRequirement.Forbidden) { return true; }
+				if (_client.Configuration.ForceAuthentication && (AuthenticationRequirement != TraktAuthenticationRequirement.Forbidden)) {
+					return true;
+				}
+
 				switch (AuthenticationRequirement) {
 					case TraktAuthenticationRequirement.Required:
 						return true;
@@ -53,8 +53,14 @@ namespace TraktSharp.Request {
 				}
 			}
 			set {
-				if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Required) { throw new InvalidOperationException("This request type requires authentication"); }
-				if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden) { throw new InvalidOperationException("This request type does not allow authentication"); }
+				if (!value && (AuthenticationRequirement == TraktAuthenticationRequirement.Required)) {
+					throw new InvalidOperationException("This request type requires authentication");
+				}
+
+				if (!value && (AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden)) {
+					throw new InvalidOperationException("This request type does not allow authentication");
+				}
+
 				_authenticate = value;
 			}
 		}
@@ -67,10 +73,6 @@ namespace TraktSharp.Request {
 
 		protected virtual bool SupportsPagination => false;
 
-    protected virtual void ValidateParameters() { }
-
-		protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) => pathParameters;
-
 		private string Path {
 			get {
 				return GetPathParameters(new Dictionary<string, string>())
@@ -79,22 +81,14 @@ namespace TraktSharp.Request {
 			}
 		}
 
-		protected virtual IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
-			if (Extended != TraktExtendedOption.Unspecified) {
-				queryStringParameters["extended"] = TraktEnumHelper.GetDescription(Extended);
-			}
-			if (SupportsPagination) {
-				if (Pagination.Page != null) { queryStringParameters["page"] = Pagination.Page.ToString(); }
-				if (Pagination.Limit != null) { queryStringParameters["limit"] = Pagination.Limit.ToString(); }
-			}
-			return queryStringParameters;
-		}
-
 		private string QueryString {
 			get {
 				using (var content = new FormUrlEncodedContent(GetQueryStringParameters(new Dictionary<string, string>()))) {
 					var ret = content.ReadAsStringAsync().Result;
-					if (!string.IsNullOrEmpty(ret)) { ret = $"?{ret}"; }
+					if (!string.IsNullOrEmpty(ret)) {
+						ret = $"?{ret}";
+					}
+
 					return ret;
 				}
 			}
@@ -102,7 +96,7 @@ namespace TraktSharp.Request {
 
 		internal string Url => $"{_client.Configuration.BaseUrl}{Path}{QueryString}";
 
-    internal TRequestBody RequestBody { get; set; }
+		internal TRequestBody RequestBody { get; set; }
 
 		protected HttpContent RequestBodyContent {
 			get {
@@ -113,47 +107,38 @@ namespace TraktSharp.Request {
 
 		protected string RequestBodyJson {
 			get {
-				if (RequestBody == null) { return null; }
-				return JsonConvert.SerializeObject(RequestBody, new JsonSerializerSettings {
-					Formatting = Formatting.Indented,
-					NullValueHandling = NullValueHandling.Ignore,
-					ContractResolver = new SkipDefaultPropertyValuesContractResolver()
-				});
+				if (RequestBody == null) {
+					return null;
+				}
+
+				return JsonConvert.SerializeObject(RequestBody,
+					new JsonSerializerSettings {
+						Formatting = Formatting.Indented,
+						NullValueHandling = NullValueHandling.Ignore,
+						ContractResolver = new SkipDefaultPropertyValuesContractResolver()
+					});
 			}
 		}
 
-		protected virtual void SetRequestHeaders(HttpRequestMessage request) {
-			request.Headers.Add("trakt-api-key", _client.Authentication.ClientId);
-			request.Headers.Add("trakt-api-version", _client.Configuration.ApiVersion.ToString(CultureInfo.InvariantCulture));
-			request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-			if (Authenticate) {
-				if (!_client.Authentication.Authenticated) {
-					throw new InvalidOperationException("Authentication is required for this request type but the authentication parameters for the current authentication mode are invalid");
-				}
-				switch (_client.Authentication.AuthenticationMode) {
-					case TraktAuthenticationMode.OAuth:
-						request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _client.Authentication.CurrentOAuthAccessToken.AccessToken);
-						break;
-					case TraktAuthenticationMode.Simple:
-						request.Headers.TryAddWithoutValidation("trakt-user-login", _client.Authentication.LoginUsernameOrEmail);
-						request.Headers.TryAddWithoutValidation("trakt-user-token", _client.Authentication.CurrentSimpleAccessToken);
-						break;
-				}
-			}
-		}
+		public event BeforeRequestEventHandler BeforeRequest;
+
+		public event AfterRequestEventHandler AfterRequest;
 
 		public async Task<TResponse> SendAsync() {
 			ValidateParameters(); //Expected to throw an exception on invalid parameters.
 
 			var cl = _client.HttpMessageHandler != null ? new HttpClient(_client.HttpMessageHandler) : new HttpClient();
-			var request = new HttpRequestMessage(Method, Url) { Content = RequestBodyContent };
+			var request = new HttpRequestMessage(Method, Url) {Content = RequestBodyContent};
 			SetRequestHeaders(request);
 
 			if (BeforeRequest != null) { //Raise event before request, and offer subscribers the opportunity to abort the request
 				var eventArgs = new TraktBeforeRequestEventArgs(request, RequestBodyJson ?? string.Empty, cl);
 				BeforeRequest(this, eventArgs);
-				if (eventArgs.Cancel) { return default; }
+				if (eventArgs.Cancel) {
+					return default;
+				}
 			}
+
 			var response = await cl.SendAsync(request);
 			var responseText = await response.Content.ReadAsStringAsync();
 			AfterRequest?.Invoke(this, new TraktAfterRequestEventArgs(response, responseText, request, RequestBodyJson ?? string.Empty, cl));
@@ -164,17 +149,19 @@ namespace TraktSharp.Request {
 				try {
 					traktErrorResponse = JsonConvert.DeserializeObject<TraktErrorResponse>(responseText);
 				} catch { }
-				if (traktErrorResponse == null || string.IsNullOrEmpty(traktErrorResponse.Description)) {
+
+				if ((traktErrorResponse == null) || string.IsNullOrEmpty(traktErrorResponse.Description)) {
 					try {
 						if (response.StatusCode == HttpStatusCode.Unauthorized) {
 							var traktLoginErrorResponse = JsonConvert.DeserializeObject<TraktLoginErrorResponse>(responseText);
-							traktErrorResponse = new TraktErrorResponse { Description = traktLoginErrorResponse.Message, Error = "login_failed" };
+							traktErrorResponse = new TraktErrorResponse {Description = traktLoginErrorResponse.Message, Error = "login_failed"};
 						}
 					} catch { }
 				}
+
 				traktErrorResponse = traktErrorResponse ?? new TraktErrorResponse();
 				var message = string.IsNullOrEmpty(traktErrorResponse.Description)
-					? $"The Trakt API threw an error with no content. The response status code was {(int)response.StatusCode}."
+					? $"The Trakt API threw an error with no content. The response status code was {(int) response.StatusCode}."
 					: traktErrorResponse.Description;
 				switch (response.StatusCode) {
 					case HttpStatusCode.NotFound:
@@ -192,11 +179,12 @@ namespace TraktSharp.Request {
 						try {
 							traktConflictErrorResponse = JsonConvert.DeserializeObject<TraktConflictErrorResponse>(responseText);
 						} catch { }
+
 						traktConflictErrorResponse = traktConflictErrorResponse ?? new TraktConflictErrorResponse();
 						throw new TraktConflictException(traktErrorResponse, Url, RequestBodyJson, responseText, traktConflictErrorResponse.ExpiresAt);
-					case (HttpStatusCode)422:
+					case (HttpStatusCode) 422:
 						throw new TraktUnprocessableEntityException(traktErrorResponse, Url, RequestBodyJson, responseText);
-					case (HttpStatusCode)429:
+					case (HttpStatusCode) 429:
 						throw new TraktRateLimitExceededException(traktErrorResponse, Url, RequestBodyJson, responseText);
 					case HttpStatusCode.InternalServerError:
 						throw new TraktServerErrorException(traktErrorResponse, Url, RequestBodyJson, responseText);
@@ -205,13 +193,58 @@ namespace TraktSharp.Request {
 					case HttpStatusCode.ServiceUnavailable:
 						throw new TraktServiceUnavailableException(traktErrorResponse, Url, RequestBodyJson, responseText);
 				}
+
 				throw new TraktException(message, response.StatusCode, traktErrorResponse, Url, RequestBodyJson, responseText);
 			}
 
-			if (string.IsNullOrEmpty(responseText) || response.StatusCode == HttpStatusCode.NoContent) {
+			if (string.IsNullOrEmpty(responseText) || (response.StatusCode == HttpStatusCode.NoContent)) {
 				return default;
 			}
+
 			return JsonConvert.DeserializeObject<TResponse>(responseText);
+		}
+
+		protected virtual void ValidateParameters() { }
+
+		protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) => pathParameters;
+
+		protected virtual IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) {
+			if (Extended != TraktExtendedOption.Unspecified) {
+				queryStringParameters["extended"] = TraktEnumHelper.GetDescription(Extended);
+			}
+
+			if (SupportsPagination) {
+				if (Pagination.Page != null) {
+					queryStringParameters["page"] = Pagination.Page.ToString();
+				}
+
+				if (Pagination.Limit != null) {
+					queryStringParameters["limit"] = Pagination.Limit.ToString();
+				}
+			}
+
+			return queryStringParameters;
+		}
+
+		protected virtual void SetRequestHeaders(HttpRequestMessage request) {
+			request.Headers.Add("trakt-api-key", _client.Authentication.ClientId);
+			request.Headers.Add("trakt-api-version", _client.Configuration.ApiVersion.ToString(CultureInfo.InvariantCulture));
+			request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			if (Authenticate) {
+				if (!_client.Authentication.Authenticated) {
+					throw new InvalidOperationException("Authentication is required for this request type but the authentication parameters for the current authentication mode are invalid");
+				}
+
+				switch (_client.Authentication.AuthenticationMode) {
+					case TraktAuthenticationMode.OAuth:
+						request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _client.Authentication.CurrentOAuthAccessToken.AccessToken);
+						break;
+					case TraktAuthenticationMode.Simple:
+						request.Headers.TryAddWithoutValidation("trakt-user-login", _client.Authentication.LoginUsernameOrEmail);
+						request.Headers.TryAddWithoutValidation("trakt-user-token", _client.Authentication.CurrentSimpleAccessToken);
+						break;
+				}
+			}
 		}
 
 	}

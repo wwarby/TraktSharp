@@ -1,4 +1,6 @@
-﻿using TraktSharp.Entities;
+﻿using System;
+using System.Linq;
+using TraktSharp.Entities;
 using TraktSharp.Enums;
 
 namespace TraktSharp.Request.People {
@@ -11,6 +13,6 @@ namespace TraktSharp.Request.People {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-  }
+	}
 
 }

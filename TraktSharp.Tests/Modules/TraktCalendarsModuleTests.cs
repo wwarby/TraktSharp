@@ -17,7 +17,6 @@ namespace TraktSharp.Tests.Modules {
 		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCalendarsGetMoviesAsync() {
-
 			FakeResponsePath = @"Calendars\Shows.json";
 			var result = await Client.Calendars.GetShowsAsync();
 
@@ -34,13 +33,11 @@ namespace TraktSharp.Tests.Modules {
 			result.First().Value.First().Episode.Ids.Tmdb.Should().Be(988123);
 			result.First().Value.First().Episode.Ids.TvRage.Should().NotHaveValue();
 			result.First().Value.First().Episode.Rating.Should().NotHaveValue();
-
 		}
 
 		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCalendarsGetNewShowsAsync() {
-
 			FakeResponsePath = @"Calendars\ShowsNew.json";
 			var result = await Client.Calendars.GetShowsAsync();
 
@@ -57,13 +54,11 @@ namespace TraktSharp.Tests.Modules {
 			result.First().Value.First().Episode.Ids.Tmdb.Should().Be(983732);
 			result.First().Value.First().Episode.Ids.TvRage.Should().NotHaveValue();
 			result.First().Value.First().Episode.Rating.Should().NotHaveValue();
-
 		}
 
 		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCalendarsGetPremiereShowsAsync() {
-
 			FakeResponsePath = @"Calendars\ShowsPremieres.json";
 			var result = await Client.Calendars.GetShowsAsync();
 
@@ -80,13 +75,11 @@ namespace TraktSharp.Tests.Modules {
 			result.First().Value.First().Episode.Ids.Tmdb.Should().Be(983732);
 			result.First().Value.First().Episode.Ids.TvRage.Should().NotHaveValue();
 			result.First().Value.First().Episode.Rating.Should().NotHaveValue();
-
 		}
 
 		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestCalendarsGetShowsAsync() {
-
 			FakeResponsePath = @"Calendars\Movies.json";
 			var result = await Client.Calendars.GetMoviesAsync();
 
@@ -100,7 +93,6 @@ namespace TraktSharp.Tests.Modules {
 			result.First().Value.First().Movie.Ids.Imdb.Should().Be("tt2015381");
 			result.First().Value.First().Movie.Ids.Tmdb.Should().Be(118340);
 			result.First().Value.First().Movie.Rating.Should().NotHaveValue();
-
 		}
 
 	}

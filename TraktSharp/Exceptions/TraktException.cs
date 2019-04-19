@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
 using TraktSharp.Entities;
@@ -7,7 +8,8 @@ using TraktSharp.Entities;
 namespace TraktSharp.Exceptions {
 
 	/// <summary>A custom exception arising from a request to the Trakt API</summary>
-	[Serializable, DataContract]
+	[Serializable]
+	[DataContract]
 	public class TraktException : Exception {
 
 		/// <summary>Default constructor for the class</summary>
@@ -50,27 +52,21 @@ namespace TraktSharp.Exceptions {
 		[DataMember]
 		public override string Message => base.Message;
 
-    /// <summary>The error source associated with the error</summary>
+		/// <summary>The error source associated with the error</summary>
 		[DataMember]
-		public override string Source {
-			get => base.Source;
-			set => base.Source = value;
-		}
+		public override string Source { get => base.Source; set => base.Source = value; }
 
 		/// <summary>Data associated with the error</summary>
 		[DataMember]
 		public override IDictionary Data => base.Data;
 
-    /// <summary>The stack trace associated with the error</summary>
+		/// <summary>The stack trace associated with the error</summary>
 		[DataMember]
 		public override string StackTrace => base.StackTrace;
 
-    /// <summary>A help link associated with the error</summary>
+		/// <summary>A help link associated with the error</summary>
 		[DataMember]
-		public override string HelpLink {
-			get => base.HelpLink;
-			set => base.HelpLink = value;
-		}
+		public override string HelpLink { get => base.HelpLink; set => base.HelpLink = value; }
 
 	}
 

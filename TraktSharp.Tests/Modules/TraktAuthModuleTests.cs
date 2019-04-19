@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TraktSharp.Entities.Response.Auth;
@@ -13,7 +15,6 @@ namespace TraktSharp.Tests.Modules {
 		/// <summary>Test</summary>
 		[TestMethod]
 		public async Task TestLoginAsync() {
-
 			FakeResponsePath = @"Auth\Login.json";
 			var result = await Client.Auth.LoginAsync("foo", "bar");
 
@@ -21,16 +22,11 @@ namespace TraktSharp.Tests.Modules {
 			// ReSharper disable StringLiteralTypo
 			result.Token.Should().Be("98ausd98SAUD98kzxjl");
 			// ReSharper restore StringLiteralTypo
-
 		}
 
 		/// <summary>Test</summary>
 		[TestMethod]
-		public async Task TestLogoutAsync() {
-
-			await Client.Auth.LogoutAsync();
-
-		}
+		public async Task TestLogoutAsync() { await Client.Auth.LogoutAsync(); }
 
 	}
 

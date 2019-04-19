@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using TraktSharp.Examples.Wpf.ViewModels;
@@ -7,13 +9,13 @@ namespace TraktSharp.Examples.Wpf.Views {
 
 	internal partial class MainView {
 
-		private MainViewModel ViewModel { get; }
-
 		public MainView() {
 			InitializeComponent();
 			ViewModel = new MainViewModel(this);
 			DataContext = ViewModel;
 		}
+
+		private MainViewModel ViewModel { get; }
 
 		private void AuthorizeClick(object sender, RoutedEventArgs e) => ViewModel.Authorize();
 
@@ -32,11 +34,15 @@ namespace TraktSharp.Examples.Wpf.Views {
 		private void WindowClosing(object sender, CancelEventArgs e) { ViewModel.Closing(); }
 
 		private void SettingsKeyDown(object sender, KeyEventArgs e) {
-			if (e.Key == Key.Return) { ViewModel.TestRequest(); }
+			if (e.Key == Key.Return) {
+				ViewModel.TestRequest();
+			}
 		}
 
 		private void SearchKeyDown(object sender, KeyEventArgs e) {
-			if (e.Key == Key.Return) { ViewModel.Search(); }
+			if (e.Key == Key.Return) {
+				ViewModel.Search();
+			}
 		}
 
 	}

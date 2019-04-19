@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TraktSharp.Entities.Response.Shows;
 using TraktSharp.Enums;
 using TraktSharp.ExtensionMethods;
@@ -14,15 +15,15 @@ namespace TraktSharp.Request.Shows {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-    internal DateTime? StartDate { get; set; }
+		internal DateTime? StartDate { get; set; }
+
+		protected override bool SupportsPagination => true;
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
 			new Dictionary<string, string> {
 				{"start_date", StartDate.ToTraktApiFormat()}
 			};
 
-		protected override bool SupportsPagination => true;
-
-  }
+	}
 
 }

@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
 
 namespace TraktSharp.EventArgs {
 
@@ -8,7 +10,7 @@ namespace TraktSharp.EventArgs {
 		/// <summary>Default constructor for the event arguments</summary>
 		/// <param name="request">The raw HTTP request</param>
 		/// <param name="requestBody">The HTTP request body</param>
-		/// <param name="client">The <see cref="HttpClient"/> used to execute the request</param>
+		/// <param name="client">The <see cref="HttpClient" /> used to execute the request</param>
 		public TraktBeforeRequestEventArgs(HttpRequestMessage request, string requestBody, HttpClient client) {
 			Request = request;
 			RequestBody = requestBody;
@@ -21,7 +23,7 @@ namespace TraktSharp.EventArgs {
 		/// <summary>The HTTP request body</summary>
 		public string RequestBody { get; set; }
 
-		/// <summary>The <see cref="HttpClient"/> used to execute the request</summary>
+		/// <summary>The <see cref="HttpClient" /> used to execute the request</summary>
 		public HttpClient Client { get; set; }
 
 		/// <summary>Set to <c>true</c> to prevent the request from being executed</summary>

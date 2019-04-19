@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using TraktSharp.Entities;
@@ -14,7 +15,7 @@ namespace TraktSharp.Request.Seasons {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-    internal int Season { get; set; }
+		internal int Season { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
 			base.GetPathParameters(pathParameters).Union(new Dictionary<string, string> {

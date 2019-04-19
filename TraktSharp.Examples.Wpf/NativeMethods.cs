@@ -1,10 +1,13 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace TraktSharp.Examples.Wpf {
 
 	internal static class NativeMethods {
 
-		[DllImport("urlmon.dll"), PreserveSig]
+		[DllImport("urlmon.dll")]
+		[PreserveSig]
 		[return: MarshalAs(UnmanagedType.Error)]
 		private static extern int CoInternetSetFeatureEnabled(int featureEntry, [MarshalAs(UnmanagedType.U4)] int dwFlags, bool fEnable);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
 using TraktSharp.Entities;
@@ -6,7 +7,8 @@ using TraktSharp.Entities;
 namespace TraktSharp.Exceptions {
 
 	/// <summary>An exception thrown when the Trakt API returns a <c>400: Bad Request</c> response status code</summary>
-	[Serializable, DataContract]
+	[Serializable]
+	[DataContract]
 	public class TraktBadRequestException : TraktException {
 
 		/// <summary>Default constructor for the class</summary>

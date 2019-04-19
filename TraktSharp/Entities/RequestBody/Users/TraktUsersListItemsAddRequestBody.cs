@@ -30,11 +30,11 @@ namespace TraktSharp.Entities.RequestBody.Users {
 		public IEnumerable<TraktPerson> People { get; set; }
 
 		internal bool IsPostable() =>
-			(Movies != null && Movies.Any())
-			|| (Shows != null && Shows.Any())
-			|| (Seasons != null && Seasons.Any())
-			|| (Episodes != null && Episodes.Any())
-			|| (People != null && People.Any());
+			((Movies != null) && Movies.Any())
+			|| ((Shows != null) && Shows.Any())
+			|| ((Seasons != null) && Seasons.Any())
+			|| ((Episodes != null) && Episodes.Any())
+			|| ((People != null) && People.Any());
 
 	}
 

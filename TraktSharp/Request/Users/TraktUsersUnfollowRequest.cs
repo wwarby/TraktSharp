@@ -1,4 +1,7 @@
-﻿namespace TraktSharp.Request.Users {
+﻿using System;
+using System.Linq;
+
+namespace TraktSharp.Request.Users {
 
 	internal class TraktUsersUnfollowRequest : TraktDeleteByUsernameRequest {
 
@@ -6,6 +9,6 @@
 
 		protected override string PathTemplate => "users/{username}/follow";
 
-  }
+	}
 
 }

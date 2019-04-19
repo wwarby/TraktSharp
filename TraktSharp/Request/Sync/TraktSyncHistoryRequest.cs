@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using TraktSharp.Entities.Response.Sync;
 using TraktSharp.Enums;
+using TraktSharp.Helpers;
 
 namespace TraktSharp.Request.Sync {
+
 	internal class TraktSyncHistoryRequest : TraktGetRequest<IEnumerable<TraktSyncHistoryResponse>> {
+
 		internal TraktSyncHistoryRequest(
 			TraktClient client,
 			TraktHistoryItemType type = TraktHistoryItemType.Unspecified,
 			int? id = null,
 			int? page = null,
 			int? limit = null,
-			DateTimeOffset? from = null, 
+			DateTimeOffset? from = null,
 			DateTimeOffset? to = null
 		) : base(client) {
 			Id = id;
@@ -25,7 +29,7 @@ namespace TraktSharp.Request.Sync {
 			Template = "sync/history";
 
 			if (type != TraktHistoryItemType.Unspecified) {
-				Template += $"/{Helpers.TraktEnumHelper.GetDescription(type)}";
+				Template += $"/{TraktEnumHelper.GetDescription(type)}";
 			}
 
 			if (id != null) {
@@ -35,11 +39,11 @@ namespace TraktSharp.Request.Sync {
 			var querySet = new Dictionary<string, string>();
 
 			if (from != null) {
-				querySet.Add("start_at", from.Value.ToString("yyyy-MM-ddTHH:mm:ssK", System.Globalization.CultureInfo.InvariantCulture));
+				querySet.Add("start_at", from.Value.ToString("yyyy-MM-ddTHH:mm:ssK", CultureInfo.InvariantCulture));
 			}
 
 			if (to != null) {
-				querySet.Add("end_at", to.Value.ToString("yyyy-MM-ddTHH:mm:ssK", System.Globalization.CultureInfo.InvariantCulture));
+				querySet.Add("end_at", to.Value.ToString("yyyy-MM-ddTHH:mm:ssK", CultureInfo.InvariantCulture));
 			}
 
 			if (page != null) {
@@ -56,18 +60,24 @@ namespace TraktSharp.Request.Sync {
 			}
 		}
 
-		private string Template { get; set; }
+		private string Template { get; }
+
 		protected override string PathTemplate => Template;
 
 		public TraktHistoryItemType Type { get; }
+
 		public int? Id { get; }
+
 		public int? Page { get; }
+
 		public int? Limit { get; }
 
 		public DateTimeOffset? From { get; set; }
+
 		public DateTimeOffset? To { get; set; }
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
 	}
+
 }

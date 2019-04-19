@@ -1,20 +1,20 @@
 ﻿[
-	{
-		"friends_at": "2014-09-01T09:10:11.000Z",
-		"user": {
-			"username": "sean",
-			"private": false,
-			"name": "Sean Rudford",
-			"vip": true
-		}
-	},
-	{
-		"friends_at": "2014-09-01T09:10:11.000Z",
-		"user": {
-			"username": "justin",
-			"private": false,
-			"name": "Justin Nemeth",
-			"vip": true
-		}
-	}
+  {
+    "friends_at": "2014-09-01T09:10:11.000Z",
+    "user": {
+      "username": "sean",
+      "private": false,
+      "name": "Sean Rudford",
+      "vip": true
+    }
+  },
+  {
+    "friends_at": "2014-09-01T09:10:11.000Z",
+    "user": {
+      "username": "justin",
+      "private": false,
+      "name": "Justin Nemeth",
+      "vip": true
+    }
+  }
 ]

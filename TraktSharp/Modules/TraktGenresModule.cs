@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities.Response.Genres;
 using TraktSharp.Enums;
@@ -9,8 +11,8 @@ namespace TraktSharp.Modules {
 	/// <summary>Provides API methods in the Genres namespace</summary>
 	public class TraktGenresModule : TraktModuleBase {
 
-		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
-		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient" />.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient" /></param>
 		public TraktGenresModule(TraktClient client) : base(client) { }
 
 		/// <summary>Get a list of all genres, including names and slugs</summary>

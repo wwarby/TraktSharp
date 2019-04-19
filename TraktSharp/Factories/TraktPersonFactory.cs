@@ -6,17 +6,17 @@ using TraktSharp.Enums;
 
 namespace TraktSharp.Factories {
 
-	/// <summary>A factory for generating <see cref="TraktPerson"/> instances</summary>
+	/// <summary>A factory for generating <see cref="TraktPerson" /> instances</summary>
 	public static class TraktPersonFactory {
 
-		/// <summary>Create an instance of <see cref="TraktPerson"/> from an ID</summary>
+		/// <summary>Create an instance of <see cref="TraktPerson" /> from an ID</summary>
 		/// <param name="personId">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
 		public static TraktPerson FromId(string personId, TraktTextPersonIdType personIdType = TraktTextPersonIdType.Auto) => FromId<TraktPerson>(personId, personIdType);
 
-		/// <summary>Create an instance of a <see cref="TraktPerson"/> subclass from an ID</summary>
-		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
+		/// <summary>Create an instance of a <see cref="TraktPerson" /> subclass from an ID</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktPerson" /> to be created</typeparam>
 		/// <param name="personId">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
@@ -47,14 +47,14 @@ namespace TraktSharp.Factories {
 			return ret;
 		}
 
-		/// <summary>Create an instance of <see cref="TraktPerson"/> from an ID</summary>
+		/// <summary>Create an instance of <see cref="TraktPerson" /> from an ID</summary>
 		/// <param name="personId">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
 		public static TraktPerson FromId(int personId, TraktNumericPersonIdType personIdType) => FromId<TraktPerson>(personId, personIdType);
 
-		/// <summary>Create an instance of a <see cref="TraktPerson"/> subclass from an ID</summary>
-		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
+		/// <summary>Create an instance of a <see cref="TraktPerson" /> subclass from an ID</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktPerson" /> to be created</typeparam>
 		/// <param name="personId">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
@@ -79,39 +79,31 @@ namespace TraktSharp.Factories {
 			return ret;
 		}
 
-		/// <summary>Create an collection of <see cref="TraktPerson"/> instances from a collection of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktPerson" /> instances from a collection of IDs</summary>
 		/// <param name="personIds">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktPerson> FromIds(IEnumerable<string> personIds, TraktTextPersonIdType personIdType = TraktTextPersonIdType.Auto) {
-			return personIds?.Select(personId => FromId<TraktPerson>(personId, personIdType));
-		}
+		public static IEnumerable<TraktPerson> FromIds(IEnumerable<string> personIds, TraktTextPersonIdType personIdType = TraktTextPersonIdType.Auto) { return personIds?.Select(personId => FromId<TraktPerson>(personId, personIdType)); }
 
-		/// <summary>Create an collection of <see cref="TraktPerson"/> subclass instances from a collection of IDs</summary>
-		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
+		/// <summary>Create an collection of <see cref="TraktPerson" /> subclass instances from a collection of IDs</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktPerson" /> to be created</typeparam>
 		/// <param name="personIds">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<string> personIds, TraktTextPersonIdType personIdType = TraktTextPersonIdType.Auto) where T : TraktPerson {
-			return personIds?.Select(personId => FromId<T>(personId, personIdType));
-		}
+		public static IEnumerable<T> FromIds<T>(IEnumerable<string> personIds, TraktTextPersonIdType personIdType = TraktTextPersonIdType.Auto) where T : TraktPerson { return personIds?.Select(personId => FromId<T>(personId, personIdType)); }
 
-		/// <summary>Create an collection of <see cref="TraktPerson"/> instances from a collection of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktPerson" /> instances from a collection of IDs</summary>
 		/// <param name="personIds">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<TraktPerson> FromIds(IEnumerable<int> personIds, TraktNumericPersonIdType personIdType) {
-			return personIds?.Select(personId => FromId<TraktPerson>(personId, personIdType));
-		}
+		public static IEnumerable<TraktPerson> FromIds(IEnumerable<int> personIds, TraktNumericPersonIdType personIdType) { return personIds?.Select(personId => FromId<TraktPerson>(personId, personIdType)); }
 
-		/// <summary>Create an collection of <see cref="TraktPerson"/> subclass instances from a collection of IDs</summary>
-		/// <typeparam name="T">A subclass of <see cref="TraktPerson"/> to be created</typeparam>
+		/// <summary>Create an collection of <see cref="TraktPerson" /> subclass instances from a collection of IDs</summary>
+		/// <typeparam name="T">A subclass of <see cref="TraktPerson" /> to be created</typeparam>
 		/// <param name="personIds">The person ID</param>
 		/// <param name="personIdType">The person ID type</param>
 		/// <returns>See summary</returns>
-		public static IEnumerable<T> FromIds<T>(IEnumerable<int> personIds, TraktNumericPersonIdType personIdType) where T : TraktPerson {
-			return personIds?.Select(personId => FromId<T>(personId, personIdType));
-		}
+		public static IEnumerable<T> FromIds<T>(IEnumerable<int> personIds, TraktNumericPersonIdType personIdType) where T : TraktPerson { return personIds?.Select(personId => FromId<T>(personId, personIdType)); }
 
 	}
 

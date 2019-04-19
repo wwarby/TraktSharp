@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TraktSharp.Enums;
 using TraktSharp.Helpers;
@@ -9,399 +7,6 @@ using TraktSharp.Helpers;
 namespace TraktSharp.Examples.Wpf {
 
 	internal static class TestRequests {
-
-		private static Dictionary<string, Expression> _testRequests = new Dictionary<string, Expression>();
-
-		internal enum TestRequestType {
-
-			// Auth module
-			[Description("TraktClient.Auth.LoginAsync()")]
-			AuthLoginAsync,
-			[Description("TraktClient.Auth.LogoutAsync()")]
-			AuthLogoutAsync,
-
-			// Calendars module
-			[Description("TraktClient.Calendars.GetShowsAsync()")]
-			CalendarsGetShowsAsync,
-			[Description("TraktClient.Calendars.GetNewShowsAsync()")]
-			CalendarsGetNewShowsAsync,
-			[Description("TraktClient.Calendars.GetPremiereShowsAsync()")]
-			CalendarsGetPremiereShowsAsync,
-			[Description("TraktClient.Calendars.GetMoviesAsync()")]
-			CalendarsGetMoviesAsync,
-
-			// Checkin module
-			[Description("TraktClient.Checkin.CheckinMovieAsync()")]
-			CheckinCheckinMovieAsync,
-			[Description("TraktClient.Checkin.CheckinEpisodeAsync()")]
-			CheckinCheckinEpisodeAsync,
-			[Description("TraktClient.Checkin.RemoveActiveCheckinAsync()")]
-			CheckinRemoveActiveCheckinAsync,
-
-			// Comments module
-			[Description("TraktClient.Comments.PostMovieCommentAsync()")]
-			CommentsPostMovieCommentAsync,
-			[Description("TraktClient.Comments.PostShowCommentAsync()")]
-			CommentsPostShowCommentAsync,
-			[Description("TraktClient.Comments.PostEpisodeCommentAsync()")]
-			CommentsPostEpisodeCommentAsync,
-			[Description("TraktClient.Comments.PostListCommentAsync()")]
-			CommentsPostListCommentAsync,
-			[Description("TraktClient.Comments.GetCommentAsync()")]
-			CommentsGetCommentAsync,
-			[Description("TraktClient.Comments.UpdateCommentAsync()")]
-			CommentsUpdateCommentAsync,
-			[Description("TraktClient.Comments.DeleteCommentAsync()")]
-			CommentsDeleteCommentAsync,
-			[Description("TraktClient.Comments.LikeCommentAsync()")]
-			CommentsLikeCommentAsync,
-			[Description("TraktClient.Comments.UnlikeCommentAsync()")]
-			CommentsUnlikeCommentAsync,
-
-			// Episodes module
-			[Description("TraktClient.Episodes.GetEpisodeAsync()")]
-			EpisodesGetEpisodeAsync,
-			[Description("TraktClient.Episodes.GetCommentsAsync()")]
-			EpisodesGetCommentsAsync,
-			[Description("TraktClient.Episodes.GetRatingsAsync()")]
-			EpisodesGetRatingsAsync,
-			[Description("TraktClient.Episodes.GetStatsAsync()")]
-			EpisodesGetStatsAsync,
-			[Description("TraktClient.Episodes.GetUsersWatchingEpisodeAsync()")]
-			EpisodesGetUsersWatchingEpisodeAsync,
-
-			// Genres module
-			[Description("TraktClient.Genres.GetGenresAsync(Movies)")]
-			GenresGetGenresAsyncMovies,
-			[Description("TraktClient.Genres.GetGenresAsync(Shows)")]
-			GenresGetGenresAsyncShows,
-
-			// Movies module
-			[Description("TraktClient.Movies.GetAnticipatedMoviesAsync()")]
-			MoviesGetAnticipatedMoviesAsync,
-			[Description("TraktClient.Movies.GetBoxOfficeMoviesAsync()")]
-			MoviesGetBoxOfficeMoviesAsync,
-			[Description("TraktClient.Movies.GetCollectedMoviesAsync()")]
-			MoviesGetCollectedMoviesAsync,
-			[Description("TraktClient.Movies.GetPlayedMoviesAsync()")]
-			MoviesGetPlayedMoviesAsync,
-			[Description("TraktClient.Movies.GetPopularMoviesAsync()")]
-			MoviesGetPopularMoviesAsync,
-			[Description("TraktClient.Movies.GetTrendingMoviesAsync()")]
-			MoviesGetTrendingMoviesAsync,
-			[Description("TraktClient.Movies.GetUpdatedMoviesAsync()")]
-			MoviesGetUpdatedMoviesAsync,
-			[Description("TraktClient.Movies.GetWatchedMoviesAsync()")]
-			MoviesGetWatchedMoviesAsync,
-			[Description("TraktClient.Movies.GetMovieAsync()")]
-			MoviesGetMovieAsync,
-			[Description("TraktClient.Movies.GetAliasesAsync()")]
-			MoviesGetAliasesAsync,
-			[Description("TraktClient.Movies.GetReleasesAsync()")]
-			MoviesGetReleasesAsync,
-			[Description("TraktClient.Movies.GetTranslationsAsync()")]
-			MoviesGetTranslationsAsync,
-			[Description("TraktClient.Movies.GetCommentsAsync()")]
-			MoviesGetCommentsAsync,
-			[Description("TraktClient.Movies.GetCastAndCrewAsync()")]
-			MoviesGetCastAndCrewAsync,
-			[Description("TraktClient.Movies.GetRatingsAsync()")]
-			MoviesGetRatingsAsync,
-			[Description("TraktClient.Movies.GetRelatedMoviesAsync()")]
-			MoviesGetRelatedMoviesAsync,
-			[Description("TraktClient.Movies.GetStatsAsync()")]
-			MoviesGetStatsAsync,
-			[Description("TraktClient.Movies.GetUsersWatchingMovieAsync()")]
-			MoviesGetUsersWatchingMovieAsync,
-
-			// People module
-			[Description("TraktClient.People.GetPersonAsync()")]
-			PeopleGetPersonAsync,
-			[Description("TraktClient.People.GetMoviesForPersonAsync()")]
-			PeopleGetMoviesForPersonAsync,
-			[Description("TraktClient.People.GetShowsForPersonAsync()")]
-			PeopleGetShowsForPersonAsync,
-
-			// Recommendations module
-			[Description("TraktClient.Recommendations.GetRecommendedMoviesAsync()")]
-			RecommendationsGetRecommendedMoviesAsync,
-			[Description("TraktClient.Recommendations.DismissMovieRecommendationAsync()")]
-			RecommendationsDismissMovieRecommendationAsync,
-			[Description("TraktClient.Recommendations.GetRecommendedShowsAsync()")]
-			RecommendationsGetRecommendedShowsAsync,
-			[Description("TraktClient.Recommendations.DismissShowRecommendationAsync()")]
-			RecommendationsDismissShowRecommendationAsync,
-
-			// Scrobble module
-			[Description("TraktClient.Scrobble.StartMovieAsync()")]
-			ScrobbleStartMovieAsync,
-			[Description("TraktClient.Scrobble.StartEpisodeAsync()")]
-			ScrobbleStartEpisodeAsync,
-			[Description("TraktClient.Scrobble.PauseMovieAsync()")]
-			ScrobblePauseMovieAsync,
-			[Description("TraktClient.Scrobble.PauseEpisodeAsync()")]
-			ScrobblePauseEpisodeAsync,
-			[Description("TraktClient.Scrobble.StopMovieAsync()")]
-			ScrobbleStopMovieAsync,
-			[Description("TraktClient.Scrobble.StopEpisodeAsync()")]
-			ScrobbleStopEpisodeAsync,
-
-			// Seasons module
-			[Description("TraktClient.Seasons.GetSeasonOverviewAsync()")]
-			SeasonsGetSeasonOverviewAsync,
-			[Description("TraktClient.Seasons.SeasonsGetEpisodesForSeasonAsync()")]
-			SeasonsGetEpisodesForSeasonAsync,
-			[Description("TraktClient.Seasons.GetCommentsAsync()")]
-			SeasonsGetCommentsAsync,
-			[Description("TraktClient.Seasons.GetRatingsAsync()")]
-			SeasonsGetRatingsAsync,
-			[Description("TraktClient.Seasons.GetUsersWatchingSeasonAsync()")]
-			SeasonsGetUsersWatchingSeasonAsync,
-
-			// Shows module
-			[Description("TraktClient.Shows.GetAnticipatedShowsAsync()")]
-			ShowsGetAnticipatedShowsAsync,
-			[Description("TraktClient.Shows.GetCollectedShowsAsync()")]
-			ShowsGetCollectedShowsAsync,
-			[Description("TraktClient.Shows.GetPlayedShowsAsync()")]
-			ShowsGetPlayedShowsAsync,
-			[Description("TraktClient.Shows.GetPopularShowsAsync()")]
-			ShowsGetPopularShowsAsync,
-			[Description("TraktClient.Shows.GetTrendingShowsAsync()")]
-			ShowsGetTrendingShowsAsync,
-			[Description("TraktClient.Shows.GetUpdatedShowsAsync()")]
-			ShowsGetUpdatedShowsAsync,
-			[Description("TraktClient.Shows.GetWatchedShowsAsync()")]
-			ShowsGetWatchedShowsAsync,
-			[Description("TraktClient.Shows.GetShowAsync()")]
-			ShowsGetShowAsync,
-			[Description("TraktClient.Shows.GetAliasesAsync()")]
-			ShowsGetAliasesAsync,
-			[Description("TraktClient.Shows.GetTranslationsAsync()")]
-			ShowsGetTranslationsAsync,
-			[Description("TraktClient.Shows.GetCommentsAsync()")]
-			ShowsGetCommentsAsync,
-			[Description("TraktClient.Shows.GetCollectionProgressAsync()")]
-			ShowsGetCollectionProgressAsync,
-			[Description("TraktClient.Shows.GetWatchedProgressAsync()")]
-			ShowsGetWatchedProgressAsync,
-			[Description("TraktClient.Shows.GetCastAndCrewAsync()")]
-			ShowsGetCastAndCrewAsync,
-			[Description("TraktClient.Shows.GetRatingsAsync()")]
-			ShowsGetRatingsAsync,
-			[Description("TraktClient.Shows.GetRelatedShowsAsync()")]
-			ShowsGetRelatedShowsAsync,
-			[Description("TraktClient.Shows.GetStatsAsync()")]
-			ShowsGetStatsAsync,
-			[Description("TraktClient.Shows.GetUsersWatchingShowAsync()")]
-			ShowsGetUsersWatchingShowAsync,
-
-			// Sync module
-
-			[Description("TraktClient.Sync.GetLastActivitiesAsync()")]
-			SyncGetLastActivitiesAsync,
-			[Description("TraktClient.Sync.GetPlaybackStateAsync()")]
-			SyncGetPlaybackStateAsync,
-			[Description("TraktClient.Sync.GetMoviesCollectionAsync()")]
-			SyncGetMoviesCollectionAsync,
-			[Description("TraktClient.Sync.GetShowsCollectionAsync()")]
-			SyncGetShowsCollectionAsync,
-
-			[Description("TraktClient.Sync.AddToCollectionByMovieIdAsync()")]
-			SyncAddToCollectionByMovieIdAsync,
-			[Description("TraktClient.Sync.AddToCollectionByShowIdAsync()")]
-			SyncAddToCollectionByShowIdAsync,
-			[Description("TraktClient.Sync.AddToCollectionByShowIdAsync(SeasonNumbers)")]
-			SyncAddToCollectionByShowIdAsyncSeasonNumbers,
-			[Description("TraktClient.Sync.AddToCollectionByEpisodeIdAsync()")]
-			SyncAddToCollectionByEpisodeIdAsync,
-
-			[Description("TraktClient.Sync.RemoveFromCollectionByMovieIdAsync()")]
-			SyncRemoveFromCollectionByMovieIdAsync,
-			[Description("TraktClient.Sync.RemoveFromCollectionByShowIdAsync()")]
-			SyncRemoveFromCollectionByShowIdAsync,
-			[Description("TraktClient.Sync.RemoveFromCollectionByShowIdAsync(SeasonNumbers)")]
-			SyncRemoveFromCollectionByShowIdAsyncSeasonNumbers,
-			[Description("TraktClient.Sync.RemoveFromCollectionByEpisodeIdAsync()")]
-			SyncRemoveFromCollectionByEpisodeIdAsync,
-
-			[Description("TraktClient.Sync.GetWatchedMoviesAsync()")]
-			SyncGetWatchedMoviesAsync,
-			[Description("TraktClient.Sync.GetWatchedShowsAsync()")]
-			SyncGetWatchedShowsAsync,
-
-			[Description("TraktClient.Sync.MarkWatchedByMovieIdAsync()")]
-			SyncMarkWatchedByMovieIdAsync,
-			[Description("TraktClient.Sync.MarkWatchedByShowIdAsync()")]
-			SyncMarkWatchedByShowIdAsync,
-			[Description("TraktClient.Sync.MarkWatchedByShowIdAsync(SeasonNumbers)")]
-			SyncMarkWatchedByShowIdAsyncSeasonNumbers,
-			[Description("TraktClient.Sync.MarkWatchedByEpisodeIdAsync()")]
-			SyncMarkWatchedByEpisodeIdAsync,
-
-			[Description("TraktClient.Sync.MarkUnwatchedByMovieIdAsync()")]
-			SyncMarkUnwatchedByMovieIdAsync,
-			[Description("TraktClient.Sync.MarkUnwatchedByShowIdAsync()")]
-			SyncMarkUnwatchedByShowIdAsync,
-			[Description("TraktClient.Sync.MarkUnwatchedByShowIdAsync(SeasonNumbers)")]
-			SyncMarkUnwatchedByShowIdAsyncSeasonNumbers,
-			[Description("TraktClient.Sync.MarkUnwatchedByEpisodeIdAsync()")]
-			SyncMarkUnwatchedByEpisodeIdAsync,
-
-			[Description("TraktClient.Sync.GetMovieRatingsAsync()")]
-			SyncGetMovieRatingsAsync,
-			[Description("TraktClient.Sync.GetShowRatingsAsync()")]
-			SyncGetShowRatingsAsync,
-			[Description("TraktClient.Sync.GetSeasonRatingsAsync()")]
-			SyncGetSeasonRatingsAsync,
-			[Description("TraktClient.Sync.GetEpisodeRatingsAsync()")]
-			SyncGetEpisodeRatingsAsync,
-
-			[Description("TraktClient.Sync.AddRatingByMovieIdAsync()")]
-			SyncAddRatingByMovieIdAsync,
-			[Description("TraktClient.Sync.AddRatingByShowIdAsync()")]
-			SyncAddRatingByShowIdAsync,
-			[Description("TraktClient.Sync.AddRatingByShowIdAsync(SeasonNumbers)")]
-			SyncAddRatingByShowIdAsyncSeasonNumbers,
-			[Description("TraktClient.Sync.AddRatingByEpisodeIdAsync()")]
-			SyncAddRatingByEpisodeIdAsync,
-
-			[Description("TraktClient.Sync.RemoveRatingByMovieIdAsync()")]
-			SyncRemoveRatingByMovieIdAsync,
-			[Description("TraktClient.Sync.RemoveRatingByShowIdAsync()")]
-			SyncRemoveRatingByShowIdAsync,
-			[Description("TraktClient.Sync.RemoveRatingByShowIdAsync(SeasonNumbers)")]
-			SyncRemoveRatingByShowIdAsyncSeasonNumbers,
-			[Description("TraktClient.Sync.RemoveRatingByEpisodeIdAsync()")]
-			SyncRemoveRatingByEpisodeIdAsync,
-
-			[Description("TraktClient.Sync.GetWatchlistMoviesAsync()")]
-			SyncGetWatchlistMoviesAsync,
-			[Description("TraktClient.Sync.GetWatchlistShowsAsync()")]
-			SyncGetWatchlistShowsAsync,
-			[Description("TraktClient.Sync.GetWatchlistSeasonsAsync()")]
-			SyncGetWatchlistSeasonsAsync,
-			[Description("TraktClient.Sync.GetWatchlistEpisodesAsync()")]
-			SyncGetWatchlistEpisodesAsync,
-
-			[Description("TraktClient.Sync.AddToWatchlistByMovieIdAsync()")]
-			SyncAddToWatchlistByMovieIdAsync,
-			[Description("TraktClient.Sync.AddToWatchlistByShowIdAsync()")]
-			SyncAddToWatchlistByShowIdAsync,
-			[Description("TraktClient.Sync.AddToWatchlistByShowIdAsync(SeasonNumbers)")]
-			SyncAddToWatchlistByShowIdAsyncSeasonNumbers,
-			[Description("TraktClient.Sync.AddToWatchlistByEpisodeIdAsync()")]
-			SyncAddToWatchlistByEpisodeIdAsync,
-
-			[Description("TraktClient.Sync.RemoveFromWatchlistByMovieIdAsync()")]
-			SyncRemoveFromWatchlistByMovieIdAsync,
-			[Description("TraktClient.Sync.RemoveFromWatchlistByShowIdAsync()")]
-			SyncRemoveFromWatchlistByShowIdAsync,
-			[Description("TraktClient.Sync.RemoveFromWatchlistByShowIdAsync(SeasonNumbers)")]
-			SyncRemoveFromWatchlistByShowIdAsyncSeasonNumbers,
-			[Description("TraktClient.Sync.RemoveFromWatchlistByEpisodeIdAsync()")]
-			SyncRemoveFromWatchlistByEpisodeIdAsync,
-
-			// Users module
-
-			[Description("TraktClient.Users.GetSettingsAsync()")]
-			UsersGetSettingsAsync,
-			[Description("TraktClient.Users.UpdateSettingsAsync()")]
-			UsersUpdateSettingsAsync,
-			[Description("TraktClient.Users.GetFollowRequestsAsync()")]
-			UsersGetFollowRequestsAsync,
-			[Description("TraktClient.Users.ApproveFollowRequestAsync()")]
-			UsersApproveFollowRequestAsync,
-			[Description("TraktClient.Users.DenyFollowRequestAsync()")]
-			UsersDenyFollowRequestAsync,
-
-			[Description("TraktClient.Users.GetUserAsync()")]
-			UsersGetUserAsync,
-			[Description("TraktClient.Users.GetMoviesCollectionAsync()")]
-			UsersGetMoviesCollectionAsync,
-			[Description("TraktClient.Users.GetShowsCollectionAsync()")]
-			UsersGetShowsCollectionAsync,
-
-			[Description("TraktClient.Users.GetListsAsync()")]
-			UsersGetListsAsync,
-			[Description("TraktClient.Users.CreateListAsync()")]
-			UsersCreateListAsync,
-			[Description("TraktClient.Users.GetListAsync()")]
-			UsersGetListAsync,
-
-			[Description("TraktClient.Users.AddToListByMovieIdAsync()")]
-			UsersAddToListByMovieIdAsync,
-			[Description("TraktClient.Users.AddToListByShowIdAsync()")]
-			UsersAddToListByShowIdAsync,
-			[Description("TraktClient.Users.AddToListByEpisodeIdAsync()")]
-			UsersAddToListByEpisodeIdAsync,
-
-			[Description("TraktClient.Users.RemoveFromListByMovieIdAsync()")]
-			UsersRemoveFromListByMovieIdAsync,
-			[Description("TraktClient.Users.RemoveFromListByShowIdAsync()")]
-			UsersRemoveFromListByShowIdAsync,
-			[Description("TraktClient.Users.RemoveFromListByEpisodeIdAsync()")]
-			UsersRemoveFromListByEpisodeIdAsync,
-
-			[Description("TraktClient.Users.UpdateListAsync()")]
-			UsersUpdateListAsync,
-			[Description("TraktClient.Users.DeleteListAsync()")]
-			UsersDeleteListAsync,
-
-			[Description("TraktClient.Users.LikeListAsync()")]
-			UsersLikeListAsync,
-			[Description("TraktClient.Users.UnlikeListAsync()")]
-			UsersUnlikeListAsync,
-			[Description("TraktClient.Users.GetListItemsAsync()")]
-			UsersGetListItemsAsync,
-
-			[Description("TraktClient.Users.FollowAsync()")]
-			UsersFollowAsync,
-			[Description("TraktClient.Users.UnfollowAsync()")]
-			UsersUnfollowAsync,
-			[Description("TraktClient.Users.GetFollowersAsync()")]
-			UsersGetFollowersAsync,
-			[Description("TraktClient.Users.GetFollowingAsync()")]
-			UsersGetFollowingAsync,
-			[Description("TraktClient.Users.GetFriendsAsync()")]
-			UsersGetFriendsAsync,
-
-			[Description("TraktClient.Users.GetMoviesHistoryAsync()")]
-			UsersGetMoviesHistoryAsync,
-			[Description("TraktClient.Users.GetEpisodesHistoryAsync()")]
-			UsersGetEpisodesHistoryAsync,
-
-			[Description("TraktClient.Users.GetMovieRatingsAsync()")]
-			UsersGetMovieRatingsAsync,
-			[Description("TraktClient.Users.GetShowRatingsAsync()")]
-			UsersGetShowRatingsAsync,
-			[Description("TraktClient.Users.GetSeasonRatingsAsync()")]
-			UsersGetSeasonRatingsAsync,
-			[Description("TraktClient.Users.GetEpisodeRatingsAsync()")]
-			UsersGetEpisodeRatingsAsync,
-
-			[Description("TraktClient.Users.GetWatchlistMoviesAsync()")]
-			UsersGetWatchlistMoviesAsync,
-			[Description("TraktClient.Users.GetWatchlistShowsAsync()")]
-			UsersGetWatchlistShowsAsync,
-			[Description("TraktClient.Users.GetWatchlistSeasonsAsync()")]
-			UsersGetWatchlistSeasonsAsync,
-			[Description("TraktClient.Users.GetWatchlistEpisodesAsync()")]
-			UsersGetWatchlistEpisodesAsync,
-
-			[Description("TraktClient.Users.GetCurrentlyWatchingAsync()")]
-			UsersGetCurrentlyWatchingAsync,
-			[Description("TraktClient.Users.GetWatchedMoviesAsync()")]
-			UsersGetWatchedMoviesAsync,
-			[Description("TraktClient.Users.GetWatchedShowsAsync()")]
-			UsersGetWatchedShowsAsync,
-
-			[Description("TraktClient.Users.GetActivitiesAsync()")]
-			UsersGetActivitiesAsync,
-			[Description("TraktClient.Users.GetFriendActivitiesAsync()")]
-			UsersGetFriendActivitiesAsync
-
-		}
 
 		public static async Task<object> ExecuteTestRequest(
 			TraktClient client,
@@ -412,16 +17,20 @@ namespace TraktSharp.Examples.Wpf {
 			string testUsername = null,
 			bool authenticateIfOptional = true
 		) {
-
 			//Uncomment if required
 			var testIdInt = 0;
-			try { if (testId != null) { testIdInt = int.Parse(testId); } } catch { }
+			try {
+				if (testId != null) {
+					testIdInt = int.Parse(testId);
+				}
+			} catch { }
 
 			//Default to current user if no test username provided
-			if (testUsername == null) { testUsername = client.Authentication.Username ?? string.Empty; }
+			if (testUsername == null) {
+				testUsername = client.Authentication.Username ?? string.Empty;
+			}
 
 			switch (requestType) {
-
 				// Auth module
 				case TestRequestType.AuthLoginAsync:
 					return await client.Auth.LoginAsync("username", "password");
@@ -625,7 +234,7 @@ namespace TraktSharp.Examples.Wpf {
 				case TestRequestType.SyncAddToCollectionByShowIdAsync:
 					return await client.Sync.AddToCollectionByShowIdAsync(testId ?? "breaking-bad");
 				case TestRequestType.SyncAddToCollectionByShowIdAsyncSeasonNumbers:
-					return await client.Sync.AddToCollectionByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+					return await client.Sync.AddToCollectionByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] {1});
 				case TestRequestType.SyncAddToCollectionByEpisodeIdAsync:
 					return await client.Sync.AddToCollectionByEpisodeIdAsync(testId ?? "tt0959621");
 
@@ -634,7 +243,7 @@ namespace TraktSharp.Examples.Wpf {
 				case TestRequestType.SyncRemoveFromCollectionByShowIdAsync:
 					return await client.Sync.RemoveFromCollectionByShowIdAsync(testId ?? "breaking-bad");
 				case TestRequestType.SyncRemoveFromCollectionByShowIdAsyncSeasonNumbers:
-					return await client.Sync.RemoveFromCollectionByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+					return await client.Sync.RemoveFromCollectionByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] {1});
 				case TestRequestType.SyncRemoveFromCollectionByEpisodeIdAsync:
 					return await client.Sync.RemoveFromCollectionByEpisodeIdAsync(testId ?? "tt0959621");
 
@@ -648,7 +257,7 @@ namespace TraktSharp.Examples.Wpf {
 				case TestRequestType.SyncMarkWatchedByShowIdAsync:
 					return await client.Sync.MarkWatchedByShowIdAsync(testId ?? "breaking-bad");
 				case TestRequestType.SyncMarkWatchedByShowIdAsyncSeasonNumbers:
-					return await client.Sync.MarkWatchedByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+					return await client.Sync.MarkWatchedByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] {1});
 				case TestRequestType.SyncMarkWatchedByEpisodeIdAsync:
 					return await client.Sync.MarkWatchedByEpisodeIdAsync(testId ?? "tt0959621");
 
@@ -657,7 +266,7 @@ namespace TraktSharp.Examples.Wpf {
 				case TestRequestType.SyncMarkUnwatchedByShowIdAsync:
 					return await client.Sync.MarkUnwatchedByShowIdAsync(testId ?? "breaking-bad");
 				case TestRequestType.SyncMarkUnwatchedByShowIdAsyncSeasonNumbers:
-					return await client.Sync.MarkUnwatchedByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+					return await client.Sync.MarkUnwatchedByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] {1});
 				case TestRequestType.SyncMarkUnwatchedByEpisodeIdAsync:
 					return await client.Sync.MarkUnwatchedByEpisodeIdAsync(testId ?? "tt0959621");
 
@@ -675,7 +284,7 @@ namespace TraktSharp.Examples.Wpf {
 				case TestRequestType.SyncAddRatingByShowIdAsync:
 					return await client.Sync.AddRatingByShowIdAsync(testId ?? "breaking-bad", TraktTextShowIdType.Auto, TraktRating.Rating7);
 				case TestRequestType.SyncAddRatingByShowIdAsyncSeasonNumbers:
-					return await client.Sync.AddRatingByShowIdAsync(testId ?? "breaking-bad", TraktTextShowIdType.Auto, TraktRating.Rating7, seasonNumbers: new[] { 1 });
+					return await client.Sync.AddRatingByShowIdAsync(testId ?? "breaking-bad", TraktTextShowIdType.Auto, TraktRating.Rating7, seasonNumbers: new[] {1});
 				case TestRequestType.SyncAddRatingByEpisodeIdAsync:
 					return await client.Sync.AddRatingByEpisodeIdAsync(testId ?? "tt0959621", TraktTextEpisodeIdType.Auto, TraktRating.Rating7);
 
@@ -684,7 +293,7 @@ namespace TraktSharp.Examples.Wpf {
 				case TestRequestType.SyncRemoveRatingByShowIdAsync:
 					return await client.Sync.RemoveRatingByShowIdAsync(testId ?? "breaking-bad");
 				case TestRequestType.SyncRemoveRatingByShowIdAsyncSeasonNumbers:
-					return await client.Sync.RemoveRatingByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+					return await client.Sync.RemoveRatingByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] {1});
 				case TestRequestType.SyncRemoveRatingByEpisodeIdAsync:
 					return await client.Sync.RemoveRatingByEpisodeIdAsync(testId ?? "tt0959621");
 
@@ -702,7 +311,7 @@ namespace TraktSharp.Examples.Wpf {
 				case TestRequestType.SyncAddToWatchlistByShowIdAsync:
 					return await client.Sync.AddToWatchlistByShowIdAsync(testId ?? "breaking-bad");
 				case TestRequestType.SyncAddToWatchlistByShowIdAsyncSeasonNumbers:
-					return await client.Sync.AddToWatchlistByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+					return await client.Sync.AddToWatchlistByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] {1});
 				case TestRequestType.SyncAddToWatchlistByEpisodeIdAsync:
 					return await client.Sync.AddToWatchlistByEpisodeIdAsync(testId ?? "tt0959621");
 
@@ -711,7 +320,7 @@ namespace TraktSharp.Examples.Wpf {
 				case TestRequestType.SyncRemoveFromWatchlistByShowIdAsync:
 					return await client.Sync.RemoveFromWatchlistByShowIdAsync(testId ?? "breaking-bad");
 				case TestRequestType.SyncRemoveFromWatchlistByShowIdAsyncSeasonNumbers:
-					return await client.Sync.RemoveFromWatchlistByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] { 1 });
+					return await client.Sync.RemoveFromWatchlistByShowIdAsync(testId ?? "breaking-bad", seasonNumbers: new[] {1});
 				case TestRequestType.SyncRemoveFromWatchlistByEpisodeIdAsync:
 					return await client.Sync.RemoveFromWatchlistByEpisodeIdAsync(testId ?? "tt0959621");
 
@@ -823,6 +432,526 @@ namespace TraktSharp.Examples.Wpf {
 					throw new ArgumentOutOfRangeException(nameof(requestType),
 						$"A test case has not been implemented for the requested method type: {TraktEnumHelper.GetDescription(requestType)}");
 			}
+		}
+
+		internal enum TestRequestType {
+
+			// Auth module
+			[Description("TraktClient.Auth.LoginAsync()")]
+			AuthLoginAsync,
+
+			[Description("TraktClient.Auth.LogoutAsync()")]
+			AuthLogoutAsync,
+
+			// Calendars module
+			[Description("TraktClient.Calendars.GetShowsAsync()")]
+			CalendarsGetShowsAsync,
+
+			[Description("TraktClient.Calendars.GetNewShowsAsync()")]
+			CalendarsGetNewShowsAsync,
+
+			[Description("TraktClient.Calendars.GetPremiereShowsAsync()")]
+			CalendarsGetPremiereShowsAsync,
+
+			[Description("TraktClient.Calendars.GetMoviesAsync()")]
+			CalendarsGetMoviesAsync,
+
+			// Checkin module
+			[Description("TraktClient.Checkin.CheckinMovieAsync()")]
+			CheckinCheckinMovieAsync,
+
+			[Description("TraktClient.Checkin.CheckinEpisodeAsync()")]
+			CheckinCheckinEpisodeAsync,
+
+			[Description("TraktClient.Checkin.RemoveActiveCheckinAsync()")]
+			CheckinRemoveActiveCheckinAsync,
+
+			// Comments module
+			[Description("TraktClient.Comments.PostMovieCommentAsync()")]
+			CommentsPostMovieCommentAsync,
+
+			[Description("TraktClient.Comments.PostShowCommentAsync()")]
+			CommentsPostShowCommentAsync,
+
+			[Description("TraktClient.Comments.PostEpisodeCommentAsync()")]
+			CommentsPostEpisodeCommentAsync,
+
+			[Description("TraktClient.Comments.PostListCommentAsync()")]
+			CommentsPostListCommentAsync,
+
+			[Description("TraktClient.Comments.GetCommentAsync()")]
+			CommentsGetCommentAsync,
+
+			[Description("TraktClient.Comments.UpdateCommentAsync()")]
+			CommentsUpdateCommentAsync,
+
+			[Description("TraktClient.Comments.DeleteCommentAsync()")]
+			CommentsDeleteCommentAsync,
+
+			[Description("TraktClient.Comments.LikeCommentAsync()")]
+			CommentsLikeCommentAsync,
+
+			[Description("TraktClient.Comments.UnlikeCommentAsync()")]
+			CommentsUnlikeCommentAsync,
+
+			// Episodes module
+			[Description("TraktClient.Episodes.GetEpisodeAsync()")]
+			EpisodesGetEpisodeAsync,
+
+			[Description("TraktClient.Episodes.GetCommentsAsync()")]
+			EpisodesGetCommentsAsync,
+
+			[Description("TraktClient.Episodes.GetRatingsAsync()")]
+			EpisodesGetRatingsAsync,
+
+			[Description("TraktClient.Episodes.GetStatsAsync()")]
+			EpisodesGetStatsAsync,
+
+			[Description("TraktClient.Episodes.GetUsersWatchingEpisodeAsync()")]
+			EpisodesGetUsersWatchingEpisodeAsync,
+
+			// Genres module
+			[Description("TraktClient.Genres.GetGenresAsync(Movies)")]
+			GenresGetGenresAsyncMovies,
+
+			[Description("TraktClient.Genres.GetGenresAsync(Shows)")]
+			GenresGetGenresAsyncShows,
+
+			// Movies module
+			[Description("TraktClient.Movies.GetAnticipatedMoviesAsync()")]
+			MoviesGetAnticipatedMoviesAsync,
+
+			[Description("TraktClient.Movies.GetBoxOfficeMoviesAsync()")]
+			MoviesGetBoxOfficeMoviesAsync,
+
+			[Description("TraktClient.Movies.GetCollectedMoviesAsync()")]
+			MoviesGetCollectedMoviesAsync,
+
+			[Description("TraktClient.Movies.GetPlayedMoviesAsync()")]
+			MoviesGetPlayedMoviesAsync,
+
+			[Description("TraktClient.Movies.GetPopularMoviesAsync()")]
+			MoviesGetPopularMoviesAsync,
+
+			[Description("TraktClient.Movies.GetTrendingMoviesAsync()")]
+			MoviesGetTrendingMoviesAsync,
+
+			[Description("TraktClient.Movies.GetUpdatedMoviesAsync()")]
+			MoviesGetUpdatedMoviesAsync,
+
+			[Description("TraktClient.Movies.GetWatchedMoviesAsync()")]
+			MoviesGetWatchedMoviesAsync,
+
+			[Description("TraktClient.Movies.GetMovieAsync()")]
+			MoviesGetMovieAsync,
+
+			[Description("TraktClient.Movies.GetAliasesAsync()")]
+			MoviesGetAliasesAsync,
+
+			[Description("TraktClient.Movies.GetReleasesAsync()")]
+			MoviesGetReleasesAsync,
+
+			[Description("TraktClient.Movies.GetTranslationsAsync()")]
+			MoviesGetTranslationsAsync,
+
+			[Description("TraktClient.Movies.GetCommentsAsync()")]
+			MoviesGetCommentsAsync,
+
+			[Description("TraktClient.Movies.GetCastAndCrewAsync()")]
+			MoviesGetCastAndCrewAsync,
+
+			[Description("TraktClient.Movies.GetRatingsAsync()")]
+			MoviesGetRatingsAsync,
+
+			[Description("TraktClient.Movies.GetRelatedMoviesAsync()")]
+			MoviesGetRelatedMoviesAsync,
+
+			[Description("TraktClient.Movies.GetStatsAsync()")]
+			MoviesGetStatsAsync,
+
+			[Description("TraktClient.Movies.GetUsersWatchingMovieAsync()")]
+			MoviesGetUsersWatchingMovieAsync,
+
+			// People module
+			[Description("TraktClient.People.GetPersonAsync()")]
+			PeopleGetPersonAsync,
+
+			[Description("TraktClient.People.GetMoviesForPersonAsync()")]
+			PeopleGetMoviesForPersonAsync,
+
+			[Description("TraktClient.People.GetShowsForPersonAsync()")]
+			PeopleGetShowsForPersonAsync,
+
+			// Recommendations module
+			[Description("TraktClient.Recommendations.GetRecommendedMoviesAsync()")]
+			RecommendationsGetRecommendedMoviesAsync,
+
+			[Description("TraktClient.Recommendations.DismissMovieRecommendationAsync()")]
+			RecommendationsDismissMovieRecommendationAsync,
+
+			[Description("TraktClient.Recommendations.GetRecommendedShowsAsync()")]
+			RecommendationsGetRecommendedShowsAsync,
+
+			[Description("TraktClient.Recommendations.DismissShowRecommendationAsync()")]
+			RecommendationsDismissShowRecommendationAsync,
+
+			// Scrobble module
+			[Description("TraktClient.Scrobble.StartMovieAsync()")]
+			ScrobbleStartMovieAsync,
+
+			[Description("TraktClient.Scrobble.StartEpisodeAsync()")]
+			ScrobbleStartEpisodeAsync,
+
+			[Description("TraktClient.Scrobble.PauseMovieAsync()")]
+			ScrobblePauseMovieAsync,
+
+			[Description("TraktClient.Scrobble.PauseEpisodeAsync()")]
+			ScrobblePauseEpisodeAsync,
+
+			[Description("TraktClient.Scrobble.StopMovieAsync()")]
+			ScrobbleStopMovieAsync,
+
+			[Description("TraktClient.Scrobble.StopEpisodeAsync()")]
+			ScrobbleStopEpisodeAsync,
+
+			// Seasons module
+			[Description("TraktClient.Seasons.GetSeasonOverviewAsync()")]
+			SeasonsGetSeasonOverviewAsync,
+
+			[Description("TraktClient.Seasons.SeasonsGetEpisodesForSeasonAsync()")]
+			SeasonsGetEpisodesForSeasonAsync,
+
+			[Description("TraktClient.Seasons.GetCommentsAsync()")]
+			SeasonsGetCommentsAsync,
+
+			[Description("TraktClient.Seasons.GetRatingsAsync()")]
+			SeasonsGetRatingsAsync,
+
+			[Description("TraktClient.Seasons.GetUsersWatchingSeasonAsync()")]
+			SeasonsGetUsersWatchingSeasonAsync,
+
+			// Shows module
+			[Description("TraktClient.Shows.GetAnticipatedShowsAsync()")]
+			ShowsGetAnticipatedShowsAsync,
+
+			[Description("TraktClient.Shows.GetCollectedShowsAsync()")]
+			ShowsGetCollectedShowsAsync,
+
+			[Description("TraktClient.Shows.GetPlayedShowsAsync()")]
+			ShowsGetPlayedShowsAsync,
+
+			[Description("TraktClient.Shows.GetPopularShowsAsync()")]
+			ShowsGetPopularShowsAsync,
+
+			[Description("TraktClient.Shows.GetTrendingShowsAsync()")]
+			ShowsGetTrendingShowsAsync,
+
+			[Description("TraktClient.Shows.GetUpdatedShowsAsync()")]
+			ShowsGetUpdatedShowsAsync,
+
+			[Description("TraktClient.Shows.GetWatchedShowsAsync()")]
+			ShowsGetWatchedShowsAsync,
+
+			[Description("TraktClient.Shows.GetShowAsync()")]
+			ShowsGetShowAsync,
+
+			[Description("TraktClient.Shows.GetAliasesAsync()")]
+			ShowsGetAliasesAsync,
+
+			[Description("TraktClient.Shows.GetTranslationsAsync()")]
+			ShowsGetTranslationsAsync,
+
+			[Description("TraktClient.Shows.GetCommentsAsync()")]
+			ShowsGetCommentsAsync,
+
+			[Description("TraktClient.Shows.GetCollectionProgressAsync()")]
+			ShowsGetCollectionProgressAsync,
+
+			[Description("TraktClient.Shows.GetWatchedProgressAsync()")]
+			ShowsGetWatchedProgressAsync,
+
+			[Description("TraktClient.Shows.GetCastAndCrewAsync()")]
+			ShowsGetCastAndCrewAsync,
+
+			[Description("TraktClient.Shows.GetRatingsAsync()")]
+			ShowsGetRatingsAsync,
+
+			[Description("TraktClient.Shows.GetRelatedShowsAsync()")]
+			ShowsGetRelatedShowsAsync,
+
+			[Description("TraktClient.Shows.GetStatsAsync()")]
+			ShowsGetStatsAsync,
+
+			[Description("TraktClient.Shows.GetUsersWatchingShowAsync()")]
+			ShowsGetUsersWatchingShowAsync,
+
+			// Sync module
+
+			[Description("TraktClient.Sync.GetLastActivitiesAsync()")]
+			SyncGetLastActivitiesAsync,
+
+			[Description("TraktClient.Sync.GetPlaybackStateAsync()")]
+			SyncGetPlaybackStateAsync,
+
+			[Description("TraktClient.Sync.GetMoviesCollectionAsync()")]
+			SyncGetMoviesCollectionAsync,
+
+			[Description("TraktClient.Sync.GetShowsCollectionAsync()")]
+			SyncGetShowsCollectionAsync,
+
+			[Description("TraktClient.Sync.AddToCollectionByMovieIdAsync()")]
+			SyncAddToCollectionByMovieIdAsync,
+
+			[Description("TraktClient.Sync.AddToCollectionByShowIdAsync()")]
+			SyncAddToCollectionByShowIdAsync,
+
+			[Description("TraktClient.Sync.AddToCollectionByShowIdAsync(SeasonNumbers)")]
+			SyncAddToCollectionByShowIdAsyncSeasonNumbers,
+
+			[Description("TraktClient.Sync.AddToCollectionByEpisodeIdAsync()")]
+			SyncAddToCollectionByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.RemoveFromCollectionByMovieIdAsync()")]
+			SyncRemoveFromCollectionByMovieIdAsync,
+
+			[Description("TraktClient.Sync.RemoveFromCollectionByShowIdAsync()")]
+			SyncRemoveFromCollectionByShowIdAsync,
+
+			[Description("TraktClient.Sync.RemoveFromCollectionByShowIdAsync(SeasonNumbers)")]
+			SyncRemoveFromCollectionByShowIdAsyncSeasonNumbers,
+
+			[Description("TraktClient.Sync.RemoveFromCollectionByEpisodeIdAsync()")]
+			SyncRemoveFromCollectionByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.GetWatchedMoviesAsync()")]
+			SyncGetWatchedMoviesAsync,
+
+			[Description("TraktClient.Sync.GetWatchedShowsAsync()")]
+			SyncGetWatchedShowsAsync,
+
+			[Description("TraktClient.Sync.MarkWatchedByMovieIdAsync()")]
+			SyncMarkWatchedByMovieIdAsync,
+
+			[Description("TraktClient.Sync.MarkWatchedByShowIdAsync()")]
+			SyncMarkWatchedByShowIdAsync,
+
+			[Description("TraktClient.Sync.MarkWatchedByShowIdAsync(SeasonNumbers)")]
+			SyncMarkWatchedByShowIdAsyncSeasonNumbers,
+
+			[Description("TraktClient.Sync.MarkWatchedByEpisodeIdAsync()")]
+			SyncMarkWatchedByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.MarkUnwatchedByMovieIdAsync()")]
+			SyncMarkUnwatchedByMovieIdAsync,
+
+			[Description("TraktClient.Sync.MarkUnwatchedByShowIdAsync()")]
+			SyncMarkUnwatchedByShowIdAsync,
+
+			[Description("TraktClient.Sync.MarkUnwatchedByShowIdAsync(SeasonNumbers)")]
+			SyncMarkUnwatchedByShowIdAsyncSeasonNumbers,
+
+			[Description("TraktClient.Sync.MarkUnwatchedByEpisodeIdAsync()")]
+			SyncMarkUnwatchedByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.GetMovieRatingsAsync()")]
+			SyncGetMovieRatingsAsync,
+
+			[Description("TraktClient.Sync.GetShowRatingsAsync()")]
+			SyncGetShowRatingsAsync,
+
+			[Description("TraktClient.Sync.GetSeasonRatingsAsync()")]
+			SyncGetSeasonRatingsAsync,
+
+			[Description("TraktClient.Sync.GetEpisodeRatingsAsync()")]
+			SyncGetEpisodeRatingsAsync,
+
+			[Description("TraktClient.Sync.AddRatingByMovieIdAsync()")]
+			SyncAddRatingByMovieIdAsync,
+
+			[Description("TraktClient.Sync.AddRatingByShowIdAsync()")]
+			SyncAddRatingByShowIdAsync,
+
+			[Description("TraktClient.Sync.AddRatingByShowIdAsync(SeasonNumbers)")]
+			SyncAddRatingByShowIdAsyncSeasonNumbers,
+
+			[Description("TraktClient.Sync.AddRatingByEpisodeIdAsync()")]
+			SyncAddRatingByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.RemoveRatingByMovieIdAsync()")]
+			SyncRemoveRatingByMovieIdAsync,
+
+			[Description("TraktClient.Sync.RemoveRatingByShowIdAsync()")]
+			SyncRemoveRatingByShowIdAsync,
+
+			[Description("TraktClient.Sync.RemoveRatingByShowIdAsync(SeasonNumbers)")]
+			SyncRemoveRatingByShowIdAsyncSeasonNumbers,
+
+			[Description("TraktClient.Sync.RemoveRatingByEpisodeIdAsync()")]
+			SyncRemoveRatingByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.GetWatchlistMoviesAsync()")]
+			SyncGetWatchlistMoviesAsync,
+
+			[Description("TraktClient.Sync.GetWatchlistShowsAsync()")]
+			SyncGetWatchlistShowsAsync,
+
+			[Description("TraktClient.Sync.GetWatchlistSeasonsAsync()")]
+			SyncGetWatchlistSeasonsAsync,
+
+			[Description("TraktClient.Sync.GetWatchlistEpisodesAsync()")]
+			SyncGetWatchlistEpisodesAsync,
+
+			[Description("TraktClient.Sync.AddToWatchlistByMovieIdAsync()")]
+			SyncAddToWatchlistByMovieIdAsync,
+
+			[Description("TraktClient.Sync.AddToWatchlistByShowIdAsync()")]
+			SyncAddToWatchlistByShowIdAsync,
+
+			[Description("TraktClient.Sync.AddToWatchlistByShowIdAsync(SeasonNumbers)")]
+			SyncAddToWatchlistByShowIdAsyncSeasonNumbers,
+
+			[Description("TraktClient.Sync.AddToWatchlistByEpisodeIdAsync()")]
+			SyncAddToWatchlistByEpisodeIdAsync,
+
+			[Description("TraktClient.Sync.RemoveFromWatchlistByMovieIdAsync()")]
+			SyncRemoveFromWatchlistByMovieIdAsync,
+
+			[Description("TraktClient.Sync.RemoveFromWatchlistByShowIdAsync()")]
+			SyncRemoveFromWatchlistByShowIdAsync,
+
+			[Description("TraktClient.Sync.RemoveFromWatchlistByShowIdAsync(SeasonNumbers)")]
+			SyncRemoveFromWatchlistByShowIdAsyncSeasonNumbers,
+
+			[Description("TraktClient.Sync.RemoveFromWatchlistByEpisodeIdAsync()")]
+			SyncRemoveFromWatchlistByEpisodeIdAsync,
+
+			// Users module
+
+			[Description("TraktClient.Users.GetSettingsAsync()")]
+			UsersGetSettingsAsync,
+
+			[Description("TraktClient.Users.UpdateSettingsAsync()")]
+			UsersUpdateSettingsAsync,
+
+			[Description("TraktClient.Users.GetFollowRequestsAsync()")]
+			UsersGetFollowRequestsAsync,
+
+			[Description("TraktClient.Users.ApproveFollowRequestAsync()")]
+			UsersApproveFollowRequestAsync,
+
+			[Description("TraktClient.Users.DenyFollowRequestAsync()")]
+			UsersDenyFollowRequestAsync,
+
+			[Description("TraktClient.Users.GetUserAsync()")]
+			UsersGetUserAsync,
+
+			[Description("TraktClient.Users.GetMoviesCollectionAsync()")]
+			UsersGetMoviesCollectionAsync,
+
+			[Description("TraktClient.Users.GetShowsCollectionAsync()")]
+			UsersGetShowsCollectionAsync,
+
+			[Description("TraktClient.Users.GetListsAsync()")]
+			UsersGetListsAsync,
+
+			[Description("TraktClient.Users.CreateListAsync()")]
+			UsersCreateListAsync,
+
+			[Description("TraktClient.Users.GetListAsync()")]
+			UsersGetListAsync,
+
+			[Description("TraktClient.Users.AddToListByMovieIdAsync()")]
+			UsersAddToListByMovieIdAsync,
+
+			[Description("TraktClient.Users.AddToListByShowIdAsync()")]
+			UsersAddToListByShowIdAsync,
+
+			[Description("TraktClient.Users.AddToListByEpisodeIdAsync()")]
+			UsersAddToListByEpisodeIdAsync,
+
+			[Description("TraktClient.Users.RemoveFromListByMovieIdAsync()")]
+			UsersRemoveFromListByMovieIdAsync,
+
+			[Description("TraktClient.Users.RemoveFromListByShowIdAsync()")]
+			UsersRemoveFromListByShowIdAsync,
+
+			[Description("TraktClient.Users.RemoveFromListByEpisodeIdAsync()")]
+			UsersRemoveFromListByEpisodeIdAsync,
+
+			[Description("TraktClient.Users.UpdateListAsync()")]
+			UsersUpdateListAsync,
+
+			[Description("TraktClient.Users.DeleteListAsync()")]
+			UsersDeleteListAsync,
+
+			[Description("TraktClient.Users.LikeListAsync()")]
+			UsersLikeListAsync,
+
+			[Description("TraktClient.Users.UnlikeListAsync()")]
+			UsersUnlikeListAsync,
+
+			[Description("TraktClient.Users.GetListItemsAsync()")]
+			UsersGetListItemsAsync,
+
+			[Description("TraktClient.Users.FollowAsync()")]
+			UsersFollowAsync,
+
+			[Description("TraktClient.Users.UnfollowAsync()")]
+			UsersUnfollowAsync,
+
+			[Description("TraktClient.Users.GetFollowersAsync()")]
+			UsersGetFollowersAsync,
+
+			[Description("TraktClient.Users.GetFollowingAsync()")]
+			UsersGetFollowingAsync,
+
+			[Description("TraktClient.Users.GetFriendsAsync()")]
+			UsersGetFriendsAsync,
+
+			[Description("TraktClient.Users.GetMoviesHistoryAsync()")]
+			UsersGetMoviesHistoryAsync,
+
+			[Description("TraktClient.Users.GetEpisodesHistoryAsync()")]
+			UsersGetEpisodesHistoryAsync,
+
+			[Description("TraktClient.Users.GetMovieRatingsAsync()")]
+			UsersGetMovieRatingsAsync,
+
+			[Description("TraktClient.Users.GetShowRatingsAsync()")]
+			UsersGetShowRatingsAsync,
+
+			[Description("TraktClient.Users.GetSeasonRatingsAsync()")]
+			UsersGetSeasonRatingsAsync,
+
+			[Description("TraktClient.Users.GetEpisodeRatingsAsync()")]
+			UsersGetEpisodeRatingsAsync,
+
+			[Description("TraktClient.Users.GetWatchlistMoviesAsync()")]
+			UsersGetWatchlistMoviesAsync,
+
+			[Description("TraktClient.Users.GetWatchlistShowsAsync()")]
+			UsersGetWatchlistShowsAsync,
+
+			[Description("TraktClient.Users.GetWatchlistSeasonsAsync()")]
+			UsersGetWatchlistSeasonsAsync,
+
+			[Description("TraktClient.Users.GetWatchlistEpisodesAsync()")]
+			UsersGetWatchlistEpisodesAsync,
+
+			[Description("TraktClient.Users.GetCurrentlyWatchingAsync()")]
+			UsersGetCurrentlyWatchingAsync,
+
+			[Description("TraktClient.Users.GetWatchedMoviesAsync()")]
+			UsersGetWatchedMoviesAsync,
+
+			[Description("TraktClient.Users.GetWatchedShowsAsync()")]
+			UsersGetWatchedShowsAsync,
+
+			[Description("TraktClient.Users.GetActivitiesAsync()")]
+			UsersGetActivitiesAsync,
+
+			[Description("TraktClient.Users.GetFriendActivitiesAsync()")]
+			UsersGetFriendActivitiesAsync
 
 		}
 

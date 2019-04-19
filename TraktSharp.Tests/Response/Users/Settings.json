@@ -1,26 +1,26 @@
 ﻿{
-	"user": {
-		"username": "justin",
-		"private": false,
-		"name": "Justin Nemeth",
-		"vip": true,
-		"joined_at": "2010-09-25T17:49:25.000Z",
-		"location": "San Diego, CA",
-		"about": "Co-founder of trakt.",
-		"gender": "male",
-		"age": 32
-	},
-	"account": {
-		"timezone": null,
-		"cover_image": null
-	},
-	"connections": {
-		"facebook": false,
-		"twitter": false,
-		"tumblr": false
-	},
-	"sharing_text": {
-		"watching": "I'm watching [item]",
-		"watched": "I just watched [item]"
-	}
+  "user": {
+    "username": "justin",
+    "private": false,
+    "name": "Justin Nemeth",
+    "vip": true,
+    "joined_at": "2010-09-25T17:49:25.000Z",
+    "location": "San Diego, CA",
+    "about": "Co-founder of trakt.",
+    "gender": "male",
+    "age": 32
+  },
+  "account": {
+    "timezone": null,
+    "cover_image": null
+  },
+  "connections": {
+    "facebook": false,
+    "twitter": false,
+    "tumblr": false
+  },
+  "sharing_text": {
+    "watching": "I'm watching [item]",
+    "watched": "I just watched [item]"
+  }
 }

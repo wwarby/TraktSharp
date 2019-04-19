@@ -1,19 +1,23 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 
-namespace TraktSharp.Enums
-{
-    public enum TraktCommentSortOrder
-    {
-        [Description("newest")]
-        Newest,
+namespace TraktSharp.Enums {
 
-        [Description("oldest")]
-        Oldest,
+	public enum TraktCommentSortOrder {
 
-        [Description("likes")]
-        Likes,
+		[Description("newest")]
+		Newest,
 
-        [Description("replies")]
-        Replies
-    }
+		[Description("oldest")]
+		Oldest,
+
+		[Description("likes")]
+		Likes,
+
+		[Description("replies")]
+		Replies
+
+	}
+
 }

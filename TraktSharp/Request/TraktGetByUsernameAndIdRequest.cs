@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TraktSharp.Enums;
 
 namespace TraktSharp.Request {
@@ -10,7 +11,7 @@ namespace TraktSharp.Request {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Optional;
 
-    internal string Username { get; set; }
+		internal string Username { get; set; }
 
 		internal string Id { get; set; }
 
@@ -24,6 +25,7 @@ namespace TraktSharp.Request {
 			if (string.IsNullOrEmpty(Username)) {
 				throw new ArgumentException("Username not set.");
 			}
+
 			if (string.IsNullOrEmpty(Id)) {
 				throw new ArgumentException("Id not set.");
 			}

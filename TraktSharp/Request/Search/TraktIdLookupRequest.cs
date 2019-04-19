@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
@@ -16,7 +17,7 @@ namespace TraktSharp.Request.Search {
 
 		protected override bool SupportsPagination => true;
 
-    internal TraktIdLookupType IdType { get; set; }
+		internal TraktIdLookupType IdType { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetQueryStringParameters(Dictionary<string, string> queryStringParameters) =>
 			base.GetPathParameters(queryStringParameters).Union(new Dictionary<string, string> {

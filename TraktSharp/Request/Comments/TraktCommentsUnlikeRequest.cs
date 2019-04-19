@@ -1,4 +1,7 @@
-﻿namespace TraktSharp.Request.Comments {
+﻿using System;
+using System.Linq;
+
+namespace TraktSharp.Request.Comments {
 
 	internal class TraktCommentsUnlikeRequest : TraktDeleteByIdRequest {
 
@@ -6,6 +9,6 @@
 
 		protected override string PathTemplate => "comments/{id}/like";
 
-  }
+	}
 
 }

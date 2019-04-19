@@ -7,206 +7,225 @@
         xmlns:viewModels="clr-namespace:TraktSharp.Examples.Wpf.ViewModels"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-		Closing="WindowClosing"
+        Closing="WindowClosing"
         Title="{Binding WindowTitle}"
-		MinWidth="1000" MinHeight="600" d:DesignWidth="1000" d:DesignHeight="800"
-		Icon="/Icons/TraktSharp.ico"
+        MinWidth="1000" MinHeight="600" d:DesignWidth="1000" d:DesignHeight="800"
+        Icon="/Icons/TraktSharp.ico"
         x:ClassModifier="internal">
 
-	<Window.Resources>
+  <Window.Resources>
 
-		<system:Double x:Key="ControlHeight">28</system:Double>
+    <system:Double x:Key="ControlHeight">28</system:Double>
 
-		<Style TargetType="TextBox">
-			<Setter Property="Height" Value="{StaticResource ControlHeight}" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
-			<Setter Property="Padding" Value="5,0" />
-		</Style>
+    <Style TargetType="TextBox">
+      <Setter Property="Height" Value="{StaticResource ControlHeight}" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Padding" Value="5,0" />
+    </Style>
 
-		<Style TargetType="ComboBox">
-			<Setter Property="Height" Value="{StaticResource ControlHeight}" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
-		</Style>
+    <Style TargetType="ComboBox">
+      <Setter Property="Height" Value="{StaticResource ControlHeight}" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
 
-		<Style TargetType="CheckBox">
-			<Setter Property="VerticalContentAlignment" Value="Center" />
-		</Style>
+    <Style TargetType="CheckBox">
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
 
-		<Style TargetType="Button">
-			<Setter Property="Height" Value="{StaticResource ControlHeight}" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
-			<Setter Property="Padding" Value="20,0" />
-		</Style>
+    <Style TargetType="Button">
+      <Setter Property="Height" Value="{StaticResource ControlHeight}" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Padding" Value="20,0" />
+    </Style>
 
-		<Style TargetType="Label">
-			<Setter Property="Width" Value="120" />
-			<Setter Property="Height" Value="{StaticResource ControlHeight}" />
-			<Setter Property="Padding" Value="0,0,10,0"/>
-			<Setter Property="VerticalContentAlignment" Value="Center" />
-			<Setter Property="HorizontalContentAlignment" Value="Right" />
-		</Style>
+    <Style TargetType="Label">
+      <Setter Property="Width" Value="120" />
+      <Setter Property="Height" Value="{StaticResource ControlHeight}" />
+      <Setter Property="Padding" Value="0,0,10,0" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="HorizontalContentAlignment" Value="Right" />
+    </Style>
 
-		<Style x:Key="OutputTextBoxStyle" TargetType="TextBox">
-			<Setter Property="IsReadOnly" Value="True" />
-			<Setter Property="Padding" Value="10" />
-			<Setter Property="Background" Value="Transparent" />
-			<Setter Property="BorderThickness" Value="0" />
-			<Setter Property="FontFamily" Value="Consolas" />
-		</Style>
+    <Style x:Key="OutputTextBoxStyle" TargetType="TextBox">
+      <Setter Property="IsReadOnly" Value="True" />
+      <Setter Property="Padding" Value="10" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="FontFamily" Value="Consolas" />
+    </Style>
 
-		<Style x:Key="OutputScrollViewerStyle" TargetType="ScrollViewer">
-			<Setter Property="VerticalScrollBarVisibility" Value="Auto" />
-			<Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
-			<Setter Property="Background" Value="White" />
-		</Style>
+    <Style x:Key="OutputScrollViewerStyle" TargetType="ScrollViewer">
+      <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+      <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+      <Setter Property="Background" Value="White" />
+    </Style>
 
-	</Window.Resources>
+  </Window.Resources>
 
-	<Grid>
-		<TabControl Margin="10" SelectedIndex="{Binding SelectedMainTab}">
-			<TabItem Header="Authenticate">
-				<DockPanel Margin="10">
-					<GroupBox DockPanel.Dock="Top" Padding="10" Header="Authentication settings">
-						<StackPanel>
-							<WrapPanel>
-								<Label Width="Auto" Content="Current Authentication Mode:" Padding="0,0,10,0"/>
-								<ComboBox ItemsSource="{Binding AuthenticationModes}" SelectedValue="{Binding SelectedAuthenticationMode}" Margin="0,0,10,0" Width="400" />
-							</WrapPanel>
-							<CheckBox Content="Use sandpit" VerticalAlignment="Center" Margin="0,10,0,0" IsChecked="{Binding UseSandpit}" />
-						</StackPanel>
-					</GroupBox>
-					<StackPanel>
-						<StackPanel Margin="10" VerticalAlignment="Top" Visibility="{Binding IsOAuthAuthenticationMode, Converter={StaticResource BoolToVisConverter}}">
-							<WrapPanel Margin="5">
-								<Label Width="130" HorizontalContentAlignment="Right" Content="Username:" />
-								<TextBox Width="500" Text="{Binding Username}" />
-							</WrapPanel>
-							<WrapPanel Margin="5">
-								<Label Width="130" HorizontalContentAlignment="Right" Content="Client ID:" />
-								<TextBox Width="500" Text="{Binding ClientId, UpdateSourceTrigger=PropertyChanged}" />
-							</WrapPanel>
-							<WrapPanel Margin="5">
-								<Label Width="130" HorizontalContentAlignment="Right" Content="Client Secret:" />
-								<TextBox Width="500" Text="{Binding ClientSecret, UpdateSourceTrigger=PropertyChanged}" />
-							</WrapPanel>
-							<WrapPanel  Margin="135,5,5,5">
-								<Button Content="Authorize" Width="Auto" Padding="20,0" Click="AuthorizeClick" IsEnabled="{Binding CanAuthorize}" />
-								<Label Width="Auto" Margin="10,0,0,0" Content="Enter client ID and client secret to enable authorization"
-									Visibility="{Binding CanAuthorize, Converter={StaticResource InverseBoolToVisConverter}}" />
-							</WrapPanel>
-							<WrapPanel  Margin="135,5,5,5">
-								<Button Content="Refresh Access Token" Width="Auto" Padding="20,0" Click="RefreshAccessTokenClick" IsEnabled="{Binding CanRefreshAccessToken}" />
-								<Button Content="Discard Access Token" Width="Auto" Padding="20,0" Margin="10 0 0 0" Click="DiscardAccessTokenClick" IsEnabled="{Binding CanDiscardAccessToken}" />
-							</WrapPanel>
-							<WrapPanel Margin="5">
-								<Label Width="130" HorizontalContentAlignment="Right" Content="Authorization Code:" />
-								<TextBox Width="500" Text="{Binding AuthorizationCode, Mode=OneWay}" IsReadOnly="True" />
-							</WrapPanel>
-							<WrapPanel Margin="5">
-								<Label Width="130" Content="OAuth Access Token:" />
-								<TextBox Width="500" Text="{Binding OAuthAccessToken.AccessToken, Mode=OneWay}" IsReadOnly="True" />
-							</WrapPanel>
-						</StackPanel>
-						<StackPanel Margin="10" VerticalAlignment="Top" Visibility="{Binding IsSimpleAuthenticationMode, Converter={StaticResource BoolToVisConverter}}">
-							<WrapPanel Margin="5">
-								<Label Width="130" HorizontalContentAlignment="Right" Content="Username/Email:" />
-								<TextBox Width="500" Text="{Binding LoginUsernameOrEmail, UpdateSourceTrigger=PropertyChanged}" />
-							</WrapPanel>
-							<WrapPanel Margin="5">
-								<Label Width="130" HorizontalContentAlignment="Right" Content="Password:" />
-								<TextBox Width="500" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" />
-							</WrapPanel>
-							<WrapPanel Margin="135,-5,5,5">
-								<Label Width="Auto" HorizontalContentAlignment="Left" FontStyle="Italic" Foreground="Gray"
-									   Content="Note: TextBox with binding used for demo simplicity. NEVER do this in production." />
-							</WrapPanel>
-							<WrapPanel  Margin="135,5,5,5">
-								<Button Content="Login" Width="Auto" Padding="20,0" Click="LoginClick" IsEnabled="{Binding CanLogin}" />
-								<Label Width="Auto" Margin="10,0,0,0" Content="Enter username/email and password to enable login"
-									   Visibility="{Binding CanLogin, Converter={StaticResource InverseBoolToVisConverter}}" />
-							</WrapPanel>
-							<WrapPanel  Margin="135,5,5,5">
-								<Button Content="Logout" Width="Auto" Padding="20,0" Click="LogoutClick" IsEnabled="{Binding CanLogout}" />
-							</WrapPanel>
-							<WrapPanel Margin="5">
-								<Label Width="130" Content="Simple Access Token:" />
-								<TextBox Width="500" Text="{Binding SimpleAccessToken, Mode=OneWay}" IsReadOnly="True" />
-							</WrapPanel>
-						</StackPanel>
-					</StackPanel>
-				</DockPanel>
-			</TabItem>
-			<TabItem Header="Test API Methods">
-				<DockPanel Margin="10">
-					<GroupBox DockPanel.Dock="Top" Padding="10" Header="Issue a test request to the Trakt API">
-						<DockPanel>
-							<StackPanel DockPanel.Dock="Left" HorizontalAlignment="Left">
-								<WrapPanel>
-									<Label Width="60" Content="Request:" Padding="0,0,10,0"/>
-									<ComboBox ItemsSource="{Binding TestRequestTypes}" SelectedValue="{Binding SelectedTestRequestType}" Margin="0,0,10,0" Width="400" />
-									<Button Content="Test Request" Width="Auto" Padding="10,0" Click="TestRequestClick" HorizontalAlignment="Left" />
-								</WrapPanel>
-								<WrapPanel Margin="0,10,0,0">
-									<Label Width="60" Content="Search:" Padding="0,0,10,0"/>
-									<TextBox Width="120" Margin="0,0,10,0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" KeyDown="SearchKeyDown" />
-									<ComboBox ItemsSource="{Binding TextQueryTypes}" SelectedValue="{Binding SelectedTextQueryType}" Margin="0,0,10,0" Width="100" 
-												Visibility="{Binding IdLookup, Converter={StaticResource InverseBoolToVisConverter}}" />
-									<ComboBox ItemsSource="{Binding IdLookupTypes}" SelectedValue="{Binding SelectedIdLookupType}" Margin="0,0,10,0" Width="100"
-												Visibility="{Binding IdLookup, Converter={StaticResource BoolToVisConverter}}" />
-									<CheckBox Content="ID lookup" VerticalAlignment="Center" Margin="0,0,10,0" IsChecked="{Binding IdLookup}" />
-									<Button Content="Search" Width="Auto" Click="SearchClick" HorizontalAlignment="Left" IsEnabled="{Binding CanSearch}" />
-								</WrapPanel>
-							</StackPanel>
-							<GroupBox Header="Settings to use in the request" HorizontalAlignment="Right" Padding="10">
-								<StackPanel HorizontalAlignment="Right">
-									<WrapPanel>
-										<Label Width="70" Content="ID:" />
-										<TextBox Text="{Binding TestId}" Width="120" KeyDown="SettingsKeyDown" />
-									</WrapPanel>
-									<WrapPanel Margin="0,10,0,0">
-										<Label Width="70" Content="Username:" />
-										<TextBox Text="{Binding TestUsername}" Width="120" KeyDown="SettingsKeyDown" />
-									</WrapPanel>
-                  <WrapPanel Margin="0,10,0,0">
-                    <Label Width="70" Content="Extended:"/>
-                    <ComboBox ItemsSource="{Binding ExtendedOptions}" SelectedValue="{Binding SelectedExtendedOption}" Width="120" />
+  <Grid>
+    <TabControl Margin="10" SelectedIndex="{Binding SelectedMainTab}">
+      <TabItem Header="Authenticate">
+        <DockPanel Margin="10">
+          <GroupBox DockPanel.Dock="Top" Padding="10" Header="Authentication settings">
+            <StackPanel>
+              <WrapPanel>
+                <Label Width="Auto" Content="Current Authentication Mode:" Padding="0,0,10,0" />
+                <ComboBox ItemsSource="{Binding AuthenticationModes}"
+                          SelectedValue="{Binding SelectedAuthenticationMode}" Margin="0,0,10,0" Width="400" />
+              </WrapPanel>
+              <CheckBox Content="Use sandpit" VerticalAlignment="Center" Margin="0,10,0,0"
+                        IsChecked="{Binding UseSandpit}" />
+            </StackPanel>
+          </GroupBox>
+          <StackPanel>
+            <StackPanel Margin="10" VerticalAlignment="Top"
+                        Visibility="{Binding IsOAuthAuthenticationMode, Converter={StaticResource BoolToVisConverter}}">
+              <WrapPanel Margin="5">
+                <Label Width="130" HorizontalContentAlignment="Right" Content="Username:" />
+                <TextBox Width="500" Text="{Binding Username}" />
+              </WrapPanel>
+              <WrapPanel Margin="5">
+                <Label Width="130" HorizontalContentAlignment="Right" Content="Client ID:" />
+                <TextBox Width="500" Text="{Binding ClientId, UpdateSourceTrigger=PropertyChanged}" />
+              </WrapPanel>
+              <WrapPanel Margin="5">
+                <Label Width="130" HorizontalContentAlignment="Right" Content="Client Secret:" />
+                <TextBox Width="500" Text="{Binding ClientSecret, UpdateSourceTrigger=PropertyChanged}" />
+              </WrapPanel>
+              <WrapPanel Margin="135,5,5,5">
+                <Button Content="Authorize" Width="Auto" Padding="20,0" Click="AuthorizeClick"
+                        IsEnabled="{Binding CanAuthorize}" />
+                <Label Width="Auto" Margin="10,0,0,0"
+                       Content="Enter client ID and client secret to enable authorization"
+                       Visibility="{Binding CanAuthorize, Converter={StaticResource InverseBoolToVisConverter}}" />
+              </WrapPanel>
+              <WrapPanel Margin="135,5,5,5">
+                <Button Content="Refresh Access Token" Width="Auto" Padding="20,0" Click="RefreshAccessTokenClick"
+                        IsEnabled="{Binding CanRefreshAccessToken}" />
+                <Button Content="Discard Access Token" Width="Auto" Padding="20,0" Margin="10 0 0 0"
+                        Click="DiscardAccessTokenClick" IsEnabled="{Binding CanDiscardAccessToken}" />
+              </WrapPanel>
+              <WrapPanel Margin="5">
+                <Label Width="130" HorizontalContentAlignment="Right" Content="Authorization Code:" />
+                <TextBox Width="500" Text="{Binding AuthorizationCode, Mode=OneWay}" IsReadOnly="True" />
+              </WrapPanel>
+              <WrapPanel Margin="5">
+                <Label Width="130" Content="OAuth Access Token:" />
+                <TextBox Width="500" Text="{Binding OAuthAccessToken.AccessToken, Mode=OneWay}" IsReadOnly="True" />
+              </WrapPanel>
+            </StackPanel>
+            <StackPanel Margin="10" VerticalAlignment="Top"
+                        Visibility="{Binding IsSimpleAuthenticationMode, Converter={StaticResource BoolToVisConverter}}">
+              <WrapPanel Margin="5">
+                <Label Width="130" HorizontalContentAlignment="Right" Content="Username/Email:" />
+                <TextBox Width="500" Text="{Binding LoginUsernameOrEmail, UpdateSourceTrigger=PropertyChanged}" />
+              </WrapPanel>
+              <WrapPanel Margin="5">
+                <Label Width="130" HorizontalContentAlignment="Right" Content="Password:" />
+                <TextBox Width="500" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" />
+              </WrapPanel>
+              <WrapPanel Margin="135,-5,5,5">
+                <Label Width="Auto" HorizontalContentAlignment="Left" FontStyle="Italic" Foreground="Gray"
+                       Content="Note: TextBox with binding used for demo simplicity. NEVER do this in production." />
+              </WrapPanel>
+              <WrapPanel Margin="135,5,5,5">
+                <Button Content="Login" Width="Auto" Padding="20,0" Click="LoginClick" IsEnabled="{Binding CanLogin}" />
+                <Label Width="Auto" Margin="10,0,0,0" Content="Enter username/email and password to enable login"
+                       Visibility="{Binding CanLogin, Converter={StaticResource InverseBoolToVisConverter}}" />
+              </WrapPanel>
+              <WrapPanel Margin="135,5,5,5">
+                <Button Content="Logout" Width="Auto" Padding="20,0" Click="LogoutClick"
+                        IsEnabled="{Binding CanLogout}" />
+              </WrapPanel>
+              <WrapPanel Margin="5">
+                <Label Width="130" Content="Simple Access Token:" />
+                <TextBox Width="500" Text="{Binding SimpleAccessToken, Mode=OneWay}" IsReadOnly="True" />
+              </WrapPanel>
+            </StackPanel>
+          </StackPanel>
+        </DockPanel>
+      </TabItem>
+      <TabItem Header="Test API Methods">
+        <DockPanel Margin="10">
+          <GroupBox DockPanel.Dock="Top" Padding="10" Header="Issue a test request to the Trakt API">
+            <DockPanel>
+              <StackPanel DockPanel.Dock="Left" HorizontalAlignment="Left">
+                <WrapPanel>
+                  <Label Width="60" Content="Request:" Padding="0,0,10,0" />
+                  <ComboBox ItemsSource="{Binding TestRequestTypes}" SelectedValue="{Binding SelectedTestRequestType}"
+                            Margin="0,0,10,0" Width="400" />
+                  <Button Content="Test Request" Width="Auto" Padding="10,0" Click="TestRequestClick"
+                          HorizontalAlignment="Left" />
+                </WrapPanel>
+                <WrapPanel Margin="0,10,0,0">
+                  <Label Width="60" Content="Search:" Padding="0,0,10,0" />
+                  <TextBox Width="120" Margin="0,0,10,0"
+                           Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" KeyDown="SearchKeyDown" />
+                  <ComboBox ItemsSource="{Binding TextQueryTypes}" SelectedValue="{Binding SelectedTextQueryType}"
+                            Margin="0,0,10,0" Width="100"
+                            Visibility="{Binding IdLookup, Converter={StaticResource InverseBoolToVisConverter}}" />
+                  <ComboBox ItemsSource="{Binding IdLookupTypes}" SelectedValue="{Binding SelectedIdLookupType}"
+                            Margin="0,0,10,0" Width="100"
+                            Visibility="{Binding IdLookup, Converter={StaticResource BoolToVisConverter}}" />
+                  <CheckBox Content="ID lookup" VerticalAlignment="Center" Margin="0,0,10,0"
+                            IsChecked="{Binding IdLookup}" />
+                  <Button Content="Search" Width="Auto" Click="SearchClick" HorizontalAlignment="Left"
+                          IsEnabled="{Binding CanSearch}" />
+                </WrapPanel>
+              </StackPanel>
+              <GroupBox Header="Settings to use in the request" HorizontalAlignment="Right" Padding="10">
+                <StackPanel HorizontalAlignment="Right">
+                  <WrapPanel>
+                    <Label Width="110" Content="ID:" />
+                    <TextBox Text="{Binding TestId}" Width="120" KeyDown="SettingsKeyDown" />
                   </WrapPanel>
                   <WrapPanel Margin="0,10,0,0">
-                    <Label Width="70" Content="Extended:"/>
-                    <ComboBox ItemsSource="{Binding ReportingPeriods}" SelectedValue="{Binding SelectedReportingPeriod}" Width="120" />
+                    <Label Width="110" Content="Username:" />
+                    <TextBox Text="{Binding TestUsername}" Width="120" KeyDown="SettingsKeyDown" />
                   </WrapPanel>
-									<WrapPanel Margin="0,10,0,0" HorizontalAlignment="Right">
-										<Label Content="Authenticate if optional:" Width="Auto" />
-										<CheckBox IsChecked="{Binding AuthenticateIfOptional}" VerticalAlignment="Center" />
-									</WrapPanel>
-								</StackPanel>
-							</GroupBox>
-						</DockPanel>
-					</GroupBox>
-					<TabControl Margin="0,10,0,0" SelectedIndex="{Binding SelectedResponseTab}">
-						<TabItem Header="Raw Request">
-							<ScrollViewer Style="{StaticResource OutputScrollViewerStyle}">
-								<TextBox Text="{Binding LastRequest, Mode=OneWay}" Style="{StaticResource OutputTextBoxStyle}"/>
-							</ScrollViewer>
-						</TabItem>
-						<TabItem Header="Raw Response">
-							<ScrollViewer Style="{StaticResource OutputScrollViewerStyle}">
-								<TextBox Text="{Binding LastResponse, Mode=OneWay}" Style="{StaticResource OutputTextBoxStyle}" TextWrapping="Wrap"/>
-							</ScrollViewer>
-						</TabItem>
-						<TabItem Header="Response JSON">
-							<ScrollViewer Style="{StaticResource OutputScrollViewerStyle}">
-								<TextBox Text="{Binding LastResponseJson, Mode=OneWay}" Style="{StaticResource OutputTextBoxStyle}"/>
-							</ScrollViewer>
-						</TabItem>
-						<TabItem Header="Returned Value">
-							<ScrollViewer Style="{StaticResource OutputScrollViewerStyle}">
-								<TextBox Text="{Binding LastReturnedValue, Mode=OneWay}" Style="{StaticResource OutputTextBoxStyle}"/>
-							</ScrollViewer>
-						</TabItem>
-					</TabControl>
-				</DockPanel>
-			</TabItem>
-		</TabControl>
-	</Grid>
+                  <WrapPanel Margin="0,10,0,0">
+                    <Label Width="110" Content="Extended:" />
+                    <ComboBox ItemsSource="{Binding ExtendedOptions}" SelectedValue="{Binding SelectedExtendedOption}"
+                              Width="120" />
+                  </WrapPanel>
+                  <WrapPanel Margin="0,10,0,0">
+                    <Label Width="110" Content="Reporting period:" />
+                    <ComboBox ItemsSource="{Binding ReportingPeriods}"
+                              SelectedValue="{Binding SelectedReportingPeriod}" Width="120" />
+                  </WrapPanel>
+                  <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Right">
+                    <Label Content="Authenticate if optional:" Width="Auto" />
+                    <CheckBox IsChecked="{Binding AuthenticateIfOptional}" VerticalAlignment="Center" />
+                  </WrapPanel>
+                </StackPanel>
+              </GroupBox>
+            </DockPanel>
+          </GroupBox>
+          <TabControl Margin="0,10,0,0" SelectedIndex="{Binding SelectedResponseTab}">
+            <TabItem Header="Raw Request">
+              <ScrollViewer Style="{StaticResource OutputScrollViewerStyle}">
+                <TextBox Text="{Binding LastRequest, Mode=OneWay}" Style="{StaticResource OutputTextBoxStyle}" />
+              </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Raw Response">
+              <ScrollViewer Style="{StaticResource OutputScrollViewerStyle}">
+                <TextBox Text="{Binding LastResponse, Mode=OneWay}" Style="{StaticResource OutputTextBoxStyle}"
+                         TextWrapping="Wrap" />
+              </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Response JSON">
+              <ScrollViewer Style="{StaticResource OutputScrollViewerStyle}">
+                <TextBox Text="{Binding LastResponseJson, Mode=OneWay}" Style="{StaticResource OutputTextBoxStyle}" />
+              </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Returned Value">
+              <ScrollViewer Style="{StaticResource OutputScrollViewerStyle}">
+                <TextBox Text="{Binding LastReturnedValue, Mode=OneWay}" Style="{StaticResource OutputTextBoxStyle}" />
+              </ScrollViewer>
+            </TabItem>
+          </TabControl>
+        </DockPanel>
+      </TabItem>
+    </TabControl>
+  </Grid>
 </Window>

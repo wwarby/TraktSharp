@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using TraktSharp.Entities;
 using TraktSharp.Entities.RequestBody.OAuth;
 using TraktSharp.Entities.Response.OAuth;
 using TraktSharp.Enums;
@@ -11,8 +14,8 @@ namespace TraktSharp.Modules {
 	/// <summary>Provides API methods in the OAuth namespace</summary>
 	public class TraktOAuthModule : TraktModuleBase {
 
-		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
-		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient" />.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient" /></param>
 		public TraktOAuthModule(TraktClient client) : base(client) { }
 
 		/// <summary>Requests Device codes from Trakt for Authentication on a separate device.</summary>
@@ -36,42 +39,50 @@ namespace TraktSharp.Modules {
 					}
 				});
 			} catch (TraktException ex) {
-				var errorcode = (int)ex.StatusCode;
+				var errorcode = (int) ex.StatusCode;
 				switch (errorcode) {
 					case 400:
-						throw new TraktException("Authentication Pending", ex.StatusCode, new Entities.TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
+						throw new TraktException("Authentication Pending", ex.StatusCode, new TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
 					case 404:
-						throw new TraktException("Device Not Found", ex.StatusCode, new Entities.TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
+						throw new TraktException("Device Not Found", ex.StatusCode, new TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
 					case 409:
-						throw new TraktException("User already approved this code", ex.StatusCode, new Entities.TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
+						throw new TraktException("User already approved this code", ex.StatusCode, new TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
 					case 410:
-						throw new TraktException("Token Expired", ex.StatusCode, new Entities.TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
+						throw new TraktException("Token Expired", ex.StatusCode, new TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
 					case 418:
-						throw new TraktException("Token Denied", ex.StatusCode, new Entities.TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
+						throw new TraktException("Token Denied", ex.StatusCode, new TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
 					case 429:
-						throw new TraktException("Your app is polling too quickly", ex.StatusCode, new Entities.TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
+						throw new TraktException("Your app is polling too quickly", ex.StatusCode, new TraktErrorResponse(), ex.RequestUrl, ex.ResponseBody, ex.ResponseBody);
 				}
 			}
+
 			return null;
 		}
 
 		/// <summary>
-		/// Use the authorization code parameter sent back to <see cref="TraktAuthentication.OAuthRedirectUri"/> to get a <see cref="Entities.TraktOAuthAccessToken"/>
-		/// (stored in <see cref="TraktAuthentication.CurrentOAuthAccessToken"/>. Save the <see cref="Entities.TraktOAuthAccessToken"/> and restore it to
-		/// <see cref="TraktAuthentication.CurrentOAuthAccessToken"/> during initialization.
+		///     Use the authorization code parameter sent back to <see cref="TraktAuthentication.OAuthRedirectUri" /> to get a
+		///     <see cref="Entities.TraktOAuthAccessToken" />
+		///     (stored in <see cref="TraktAuthentication.CurrentOAuthAccessToken" />. Save the
+		///     <see cref="Entities.TraktOAuthAccessToken" /> and restore it to
+		///     <see cref="TraktAuthentication.CurrentOAuthAccessToken" /> during initialization.
 		/// </summary>
 		/// <returns>See summary</returns>
 		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync() => await GetOAuthTokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.OAuthRedirectUri, TraktOAuthTokenGrantType.AuthorizationCode);
 
 		/// <summary>
-		/// Use the authorization code parameter sent back to <see cref="TraktAuthentication.OAuthRedirectUri"/> to get a <see cref="Entities.TraktOAuthAccessToken"/>
-		/// (stored in <see cref="TraktAuthentication.CurrentOAuthAccessToken"/>. Save the <see cref="Entities.TraktOAuthAccessToken"/> and restore it to
-		/// <see cref="TraktAuthentication.CurrentOAuthAccessToken"/> during initialization.
+		///     Use the authorization code parameter sent back to <see cref="TraktAuthentication.OAuthRedirectUri" /> to get a
+		///     <see cref="Entities.TraktOAuthAccessToken" />
+		///     (stored in <see cref="TraktAuthentication.CurrentOAuthAccessToken" />. Save the
+		///     <see cref="Entities.TraktOAuthAccessToken" /> and restore it to
+		///     <see cref="TraktAuthentication.CurrentOAuthAccessToken" /> during initialization.
 		/// </summary>
 		/// <param name="code">The authorization code returned from OAuth</param>
 		/// <param name="clientId">Get this from your app settings</param>
 		/// <param name="clientSecret">Get this from your app settings</param>
-		/// <param name="redirectUri">The uri to which Trakt should redirect upon successful authentication. Refer to <see cref="TraktAuthentication.OAuthRedirectUri"/> for further details.</param>
+		/// <param name="redirectUri">
+		///     The uri to which Trakt should redirect upon successful authentication. Refer to
+		///     <see cref="TraktAuthentication.OAuthRedirectUri" /> for further details.
+		/// </param>
 		/// <param name="grantType">The requested grant type</param>
 		/// <returns>See summary</returns>
 		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync(string code, string clientId, string clientSecret, string redirectUri, TraktOAuthTokenGrantType grantType) {
@@ -100,4 +111,5 @@ namespace TraktSharp.Modules {
 		}
 
 	}
+
 }

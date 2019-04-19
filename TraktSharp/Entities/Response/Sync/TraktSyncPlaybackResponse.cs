@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.Enums;
 using TraktSharp.Helpers;
@@ -13,10 +14,9 @@ namespace TraktSharp.Entities.Response.Sync {
 		[JsonProperty(PropertyName = "progress")]
 		public float Progress { get; set; }
 
-		[JsonProperty(PropertyName = "type")]
-		private string TypeString => TraktEnumHelper.GetDescription(Type);
+		[JsonProperty(PropertyName = "type")] private string TypeString => TraktEnumHelper.GetDescription(Type);
 
-    /// <summary>The type of media item</summary>
+		/// <summary>The type of media item</summary>
 		[JsonIgnore]
 		public TraktWatchingItemType Type { get; set; }
 

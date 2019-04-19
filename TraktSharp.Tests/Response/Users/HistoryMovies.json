@@ -1,44 +1,44 @@
 ﻿[
-	{
-		"watched_at": "2014-03-31T09:28:53.000Z",
-		"action": "scrobble",
-		"movie": {
-			"title": "The Dark Knight",
-			"year": 2008,
-			"ids": {
-				"trakt": 4,
-				"slug": "the-dark-knight-2008",
-				"imdb": "tt0468569",
-				"tmdb": 155
-			}
-		}
-	},
-	{
-		"watched_at": "2013-12-07T09:04:59.000Z",
-		"action": "checkin",
-		"movie": {
-			"title": "Thor: The Dark World",
-			"year": 2013,
-			"ids": {
-				"trakt": 10,
-				"slug": "thor-the-dark-world-2013",
-				"imdb": "tt1981115",
-				"tmdb": 76338
-			}
-		}
-	},
-	{
-		"watched_at": "2013-06-15T05:54:27.000Z",
-		"action": "watch",
-		"movie": {
-			"title": "TRON: Legacy",
-			"year": 2010,
-			"ids": {
-				"trakt": 1,
-				"slug": "tron-legacy-2010",
-				"imdb": "tt1104001",
-				"tmdb": 20526
-			}
-		}
-	}
+  {
+    "watched_at": "2014-03-31T09:28:53.000Z",
+    "action": "scrobble",
+    "movie": {
+      "title": "The Dark Knight",
+      "year": 2008,
+      "ids": {
+        "trakt": 4,
+        "slug": "the-dark-knight-2008",
+        "imdb": "tt0468569",
+        "tmdb": 155
+      }
+    }
+  },
+  {
+    "watched_at": "2013-12-07T09:04:59.000Z",
+    "action": "checkin",
+    "movie": {
+      "title": "Thor: The Dark World",
+      "year": 2013,
+      "ids": {
+        "trakt": 10,
+        "slug": "thor-the-dark-world-2013",
+        "imdb": "tt1981115",
+        "tmdb": 76338
+      }
+    }
+  },
+  {
+    "watched_at": "2013-06-15T05:54:27.000Z",
+    "action": "watch",
+    "movie": {
+      "title": "TRON: Legacy",
+      "year": 2010,
+      "ids": {
+        "trakt": 1,
+        "slug": "tron-legacy-2010",
+        "imdb": "tt1104001",
+        "tmdb": 20526
+      }
+    }
+  }
 ]

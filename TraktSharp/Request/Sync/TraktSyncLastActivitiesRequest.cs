@@ -1,4 +1,6 @@
-﻿using TraktSharp.Entities.Response.Sync;
+﻿using System;
+using System.Linq;
+using TraktSharp.Entities.Response.Sync;
 using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Sync {
@@ -11,6 +13,6 @@ namespace TraktSharp.Request.Sync {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-  }
+	}
 
 }

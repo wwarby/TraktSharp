@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
@@ -27,26 +28,34 @@ namespace TraktSharp.Modules {
 		/// <summary>Add a show to the user's watchlist by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
-		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
+		/// <param name="seasonNumbers">
+		///     If set, the action will be applied to the specified season numbers instead of the show
+		///     itself
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToWatchlistByShowIdAsync(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId(showId, showIdType);
 			if (seasonNumbers != null) {
-				obj.Seasons = seasonNumbers.Select(s => new TraktSeason { SeasonNumber = s }).ToList();
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeason {SeasonNumber = s}).ToList();
 			}
+
 			return await AddToWatchlistAsync(obj);
 		}
 
 		/// <summary>Add a show to the user's watchlist by ID</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
-		/// <param name="seasonNumbers">If set, the action will be applied to the specified season numbers instead of the show itself</param>
+		/// <param name="seasonNumbers">
+		///     If set, the action will be applied to the specified season numbers instead of the show
+		///     itself
+		/// </param>
 		/// <returns>See summary</returns>
 		public async Task<TraktAddResponse> AddToWatchlistByShowIdAsync(int showId, TraktNumericShowIdType showIdType, IEnumerable<int> seasonNumbers = null) {
 			var obj = TraktShowFactory.FromId(showId, showIdType);
 			if (seasonNumbers != null) {
-				obj.Seasons = seasonNumbers.Select(s => new TraktSeason { SeasonNumber = s }).ToList();
+				obj.Seasons = seasonNumbers.Select(s => new TraktSeason {SeasonNumber = s}).ToList();
 			}
+
 			return await AddToWatchlistAsync(obj);
 		}
 
@@ -65,17 +74,17 @@ namespace TraktSharp.Modules {
 		/// <summary>Add a movie to the user's watchlist</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktMovie movie) => await AddToWatchlistAsync(new List<TraktMovie> { movie }, null, null);
+		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktMovie movie) => await AddToWatchlistAsync(new List<TraktMovie> {movie}, null, null);
 
 		/// <summary>Add a show to the user's watchlist</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktShow show) => await AddToWatchlistAsync(null, new List<TraktShow> { show }, null);
+		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktShow show) => await AddToWatchlistAsync(null, new List<TraktShow> {show}, null);
 
 		/// <summary>Add an episode to the user's watchlist</summary>
 		/// <param name="episode">The episode</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktEpisode episode) => await AddToWatchlistAsync(null, null, new List<TraktEpisode> { episode });
+		public async Task<TraktAddResponse> AddToWatchlistAsync(TraktEpisode episode) => await AddToWatchlistAsync(null, null, new List<TraktEpisode> {episode});
 
 		/// <summary>Add one or more movies to the user's watchlist</summary>
 		/// <param name="movies">A collection of movies</param>

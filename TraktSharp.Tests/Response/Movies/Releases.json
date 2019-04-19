@@ -1,87 +1,87 @@
 ﻿[
-	{
-		"country": "us",
-		"certification": "R",
-		"release_date": "1999-03-30"
-	},
-	{
-		"country": "cz",
-		"certification": "12",
-		"release_date": "1999-08-05"
-	},
-	{
-		"country": "no",
-		"certification": "A",
-		"release_date": "1999-07-09"
-	},
-	{
-		"country": "gb",
-		"certification": "15",
-		"release_date": "1999-06-11"
-	},
-	{
-		"country": "it",
-		"certification": "T",
-		"release_date": "1999-05-07"
-	},
-	{
-		"country": "de",
-		"certification": "16",
-		"release_date": "1999-06-16"
-	},
-	{
-		"country": "fi",
-		"certification": "K-16",
-		"release_date": "1999-07-09"
-	},
-	{
-		"country": "br",
-		"certification": "12 anos",
-		"release_date": "1999-05-21"
-	},
-	{
-		"country": "hu",
-		"certification": "12",
-		"release_date": "1999-08-05"
-	},
-	{
-		"country": "nl",
-		"certification": "12",
-		"release_date": "1999-06-17"
-	},
-	{
-		"country": "jp",
-		"certification": "PG-12",
-		"release_date": "1999-09-11"
-	},
-	{
-		"country": "ca",
-		"certification": "14A",
-		"release_date": "1999-03-30"
-	},
-	{
-		"country": "aq",
-		"certification": "",
-		"release_date": "1999-06-23"
-	},
-	{
-		"country": "fr",
-		"certification": "U",
-		"release_date": "1999-06-23"
-	},
-	{
-		"country": "bg",
-		"certification": "C",
-		"release_date": "1999-09-03"
-	},
-	{
-		"country": "kr",
-		"certification": "12세 관람가",
-		"release_date": "1999-05-15"
-	},
-	{
-		"country": "au",
-		"certification": "M",
-		"release_date": "1999-04-08"
-	}
+  {
+    "country": "us",
+    "certification": "R",
+    "release_date": "1999-03-30"
+  },
+  {
+    "country": "cz",
+    "certification": "12",
+    "release_date": "1999-08-05"
+  },
+  {
+    "country": "no",
+    "certification": "A",
+    "release_date": "1999-07-09"
+  },
+  {
+    "country": "gb",
+    "certification": "15",
+    "release_date": "1999-06-11"
+  },
+  {
+    "country": "it",
+    "certification": "T",
+    "release_date": "1999-05-07"
+  },
+  {
+    "country": "de",
+    "certification": "16",
+    "release_date": "1999-06-16"
+  },
+  {
+    "country": "fi",
+    "certification": "K-16",
+    "release_date": "1999-07-09"
+  },
+  {
+    "country": "br",
+    "certification": "12 anos",
+    "release_date": "1999-05-21"
+  },
+  {
+    "country": "hu",
+    "certification": "12",
+    "release_date": "1999-08-05"
+  },
+  {
+    "country": "nl",
+    "certification": "12",
+    "release_date": "1999-06-17"
+  },
+  {
+    "country": "jp",
+    "certification": "PG-12",
+    "release_date": "1999-09-11"
+  },
+  {
+    "country": "ca",
+    "certification": "14A",
+    "release_date": "1999-03-30"
+  },
+  {
+    "country": "aq",
+    "certification": "",
+    "release_date": "1999-06-23"
+  },
+  {
+    "country": "fr",
+    "certification": "U",
+    "release_date": "1999-06-23"
+  },
+  {
+    "country": "bg",
+    "certification": "C",
+    "release_date": "1999-09-03"
+  },
+  {
+    "country": "kr",
+    "certification": "12세 관람가",
+    "release_date": "1999-05-15"
+  },
+  {
+    "country": "au",
+    "certification": "M",
+    "release_date": "1999-04-08"
+  }
 ]

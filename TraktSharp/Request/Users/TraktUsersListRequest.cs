@@ -1,4 +1,6 @@
-﻿using TraktSharp.Entities;
+﻿using System;
+using System.Linq;
+using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Users {
 
@@ -8,6 +10,6 @@ namespace TraktSharp.Request.Users {
 
 		protected override string PathTemplate => "users/{username}/lists/{id}";
 
-  }
+	}
 
 }

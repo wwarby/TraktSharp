@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
@@ -43,20 +44,14 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The URI of a trailer for the movie</summary>
 		[JsonIgnore]
-		public Uri Trailer {
-			get => !string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null;
-			set => TrailerString = value.AbsoluteUri;
-		}
+		public Uri Trailer { get => !string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null; set => TrailerString = value.AbsoluteUri; }
 
 		[JsonProperty(PropertyName = "trailer")]
 		private string TrailerString { get; set; }
 
 		/// <summary>The URI of the movie's homepage</summary>
 		[JsonIgnore]
-		public Uri Homepage {
-			get => !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null;
-			set => HomepageString = value.AbsoluteUri;
-		}
+		public Uri Homepage { get => !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; set => HomepageString = value.AbsoluteUri; }
 
 		[JsonProperty(PropertyName = "homepage")]
 		private string HomepageString { get; set; }
@@ -72,7 +67,13 @@ namespace TraktSharp.Entities {
 		/// <summary>>The language of the movie</summary>
 		[JsonIgnore]
 		public string Language {
-			get { try { return new CultureInfo(LanguageCode).DisplayName; } catch { return string.Empty; } }
+			get {
+				try {
+					return new CultureInfo(LanguageCode).DisplayName;
+				} catch {
+					return string.Empty;
+				}
+			}
 		}
 
 		/// <summary>A list of translation languages available for the movie in the form of two-letter language codes</summary>
@@ -89,6 +90,7 @@ namespace TraktSharp.Entities {
 						ret.Add(new RegionInfo(code).DisplayName);
 					} catch { }
 				}
+
 				return ret;
 			}
 		}
@@ -97,9 +99,12 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "genres")]
 		public IEnumerable<string> Genres { get; set; }
 
-		/// <summary>Indicates if the instance contains the data required for it to be sent as part of a request body in a <c>POST</c> HTTP method</summary>
+		/// <summary>
+		///     Indicates if the instance contains the data required for it to be sent as part of a request body in a
+		///     <c>POST</c> HTTP method
+		/// </summary>
 		/// <returns><c>true</c> if the instance is in a fit state to be <c>POSTed</c>, otherwise <c>false</c></returns>
-		internal bool IsPostable() => (!string.IsNullOrEmpty(Title) && Year.HasValue) || (Ids != null && Ids.HasAnyValuesSet());
+		internal bool IsPostable() => (!string.IsNullOrEmpty(Title) && Year.HasValue) || ((Ids != null) && Ids.HasAnyValuesSet());
 
 	}
 

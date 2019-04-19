@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.Enums;
 using TraktSharp.Helpers;
@@ -24,7 +25,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "privacy")]
 		private string PrivacyString => TraktEnumHelper.GetDescription(Privacy);
 
-    /// <summary>Indicates whether numbers are displayed for the items in this list</summary>
+		/// <summary>Indicates whether numbers are displayed for the items in this list</summary>
 		[JsonProperty(PropertyName = "display_numbers")]
 		public bool? DisplayNumbers { get; set; }
 
@@ -48,9 +49,12 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "ids")]
 		public TraktListIds Ids { get; set; }
 
-		/// <summary>Indicates if the instance contains the data required for it to be sent as part of a request body in a <c>POST</c> HTTP method</summary>
+		/// <summary>
+		///     Indicates if the instance contains the data required for it to be sent as part of a request body in a
+		///     <c>POST</c> HTTP method
+		/// </summary>
 		/// <returns><c>true</c> if the instance is in a fit state to be <c>POSTed</c>, otherwise <c>false</c></returns>
-		internal bool IsPostable() => Ids != null && Ids.HasAnyValuesSet();
+		internal bool IsPostable() => (Ids != null) && Ids.HasAnyValuesSet();
 
 	}
 
