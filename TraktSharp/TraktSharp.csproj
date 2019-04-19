@@ -26,6 +26,9 @@
     <PackageId>TraktSharp.NetStandard2</PackageId>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIconUrl>https://github.com/wwarby/TraktSharp/raw/master/TraktSharp/Icon.png</PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <RepositoryType>GIT</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
