@@ -8,6 +8,6 @@ namespace TraktSharp.Request.Comments {
 
 		protected override string PathTemplate => "comments/{id}/like";
 
-	}
+  }
 
 }

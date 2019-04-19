@@ -10,7 +10,7 @@ namespace TraktSharp.Entities.Response {
 
 		/// <summary>The UTC date when the item was last collected</summary>
 		[JsonProperty(PropertyName = "last_collected_at")]
-		public DateTime? LastCollectedAt { get; set; }
+		public DateTimeOffset? LastCollectedAt { get; set; }
 
 		/// <summary>The show</summary>
 		[JsonProperty(PropertyName = "show")]

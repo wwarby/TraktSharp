@@ -13,7 +13,7 @@ namespace TraktSharp.Request.Auth {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Forbidden;
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (string.IsNullOrEmpty(RequestBody.Login)) {
 				throw new ArgumentException("Login not set");

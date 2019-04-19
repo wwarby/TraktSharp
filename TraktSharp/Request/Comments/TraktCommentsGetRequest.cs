@@ -11,6 +11,6 @@ namespace TraktSharp.Request.Comments {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-	}
+  }
 
 }

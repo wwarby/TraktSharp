@@ -17,7 +17,7 @@ namespace TraktSharp.Request.Search {
 
 		protected override bool SupportsPagination => true;
 
-		internal string Query { get; set; }
+    internal string Query { get; set; }
 
 		internal TraktSearchItemType Type { get; set; }
 

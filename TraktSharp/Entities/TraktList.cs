@@ -24,7 +24,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "privacy")]
 		private string PrivacyString => TraktEnumHelper.GetDescription(Privacy);
 
-		/// <summary>Indicates whether numbers are displayed for the items in this list</summary>
+    /// <summary>Indicates whether numbers are displayed for the items in this list</summary>
 		[JsonProperty(PropertyName = "display_numbers")]
 		public bool? DisplayNumbers { get; set; }
 
@@ -34,7 +34,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when this list was updated</summary>
 		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime? UpdatedAt { get; set; }
+		public DateTimeOffset? UpdatedAt { get; set; }
 
 		/// <summary>The number of items in this list</summary>
 		[JsonProperty(PropertyName = "item_count")]

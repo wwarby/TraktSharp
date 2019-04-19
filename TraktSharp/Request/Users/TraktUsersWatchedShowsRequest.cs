@@ -9,6 +9,6 @@ namespace TraktSharp.Request.Users {
 
 		protected override string PathTemplate => "users/{username}/watched/shows";
 
-	}
+  }
 
 }

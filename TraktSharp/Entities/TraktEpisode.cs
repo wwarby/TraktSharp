@@ -28,15 +28,11 @@ namespace TraktSharp.Entities {
 		}
 		/// <summary>The UTC date when the episode was first aired</summary>
 		[JsonProperty(PropertyName = "first_aired")]
-		public DateTime? FirstAired { get; set; }
+		public DateTimeOffset? FirstAired { get; set; }
 
 		/// <summary>A collection of unique identifiers for the episode in various web services</summary>
 		[JsonProperty(PropertyName = "ids")]
 		public TraktEpisodeIds Ids { get; set; }
-
-		/// <summary>A collection of images related to the episode</summary>
-		[JsonProperty(PropertyName = "images")]
-		public TraktEpisodeImages Images { get; set; }
 
 		/// <summary>The episode number within the season to which it belongs</summary>
 		[JsonProperty(PropertyName = "number")]
@@ -64,7 +60,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the episode was last updated</summary>
 		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime? UpdatedAt { get; set; }
+		public DateTimeOffset? UpdatedAt { get; set; }
 
 		/// <summary>Indicates if the instance contains the data required for it to be sent as part of a request body in a <c>POST</c> HTTP method</summary>
 		/// <param name="show">A <see cref="TraktShow"/> instance that would be <c>POSTed</c> alongside the episode</param>

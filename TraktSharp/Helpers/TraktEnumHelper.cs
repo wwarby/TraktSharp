@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using TraktSharp.Enums;
+using System.Reflection;
 
 namespace TraktSharp.Helpers {
 
@@ -14,9 +13,8 @@ namespace TraktSharp.Helpers {
 		/// <param name="value">The enumeration value</param>
 		/// <returns>The description text</returns>
 		public static string GetDescription(Enum value) {
-			var fi = value.GetType().GetField(value.ToString());
-			var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
-			return attributes.Length > 0 ? attributes[0].Description : value.ToString();
+            var descriptionattr = value.GetAttribute<DescriptionAttribute>();
+            return descriptionattr != null ? descriptionattr.Description : value.ToString();
 		}
 
 		/// <summary>Get the text label for the specified enumeration value</summary>
@@ -24,17 +22,29 @@ namespace TraktSharp.Helpers {
 		/// <returns>The text label</returns>
 		public static string GetLabel(Enum value) => value.ToString();
 
-		/// <summary>Gets metadata about the members of an enumeration</summary>
-		/// <param name="type">The enumeration type</param>
-		/// <returns>A collection of <see cref="TraktEnumMemberInfo"/> instances describing the enumeration members</returns>
-		public static Dictionary<string, TraktEnumMemberInfo> GetEnumMembers(Type type) {
-			return type.GetFields().Where(v => v.FieldType == type).Select(v => {
-				var ret = new TraktEnumMemberInfo { Label = v.Name, Value = (int)v.GetRawConstantValue() };
-				var attributes = (DescriptionAttribute[])v.GetCustomAttributes(typeof(DescriptionAttribute), false);
-				ret.Description = attributes.Length > 0 ? attributes[0].Description : v.Name;
-				return ret;
-			}).ToDictionary(v => v.Label);
-		}
+		/// <summary>
+        /// Gets a List of Labels for the current type.
+        /// </summary>
+        /// <param name="type">Enum Type.</param>
+        /// <returns>Labels.</returns>
+        public static IEnumerable<string> GetEnumLabels(Type type) => Enum.GetNames(type);
+
+		/// <summary>
+        /// Gets a list of Descriptions for the current Type.
+        /// </summary>
+        /// <param name="type">Enum Type.</param>
+        /// <returns>Descriptions.</returns>
+        public static IEnumerable<string> GetEnumDescriptions(Type type)
+        {
+            var result = new List<string>();
+            var enumArray = Enum.GetValues(type);
+            foreach(var item in enumArray)
+            {
+                var description = GetDescription((Enum)item);
+                result.Add(description);
+            }
+            return result;
+        }
 
 		/// <summary>Parses an integer to a specified enumeration type</summary>
 		/// <typeparam name="T">The enumeration type</typeparam>
@@ -78,7 +88,7 @@ namespace TraktSharp.Helpers {
 		/// <typeparam name="T">The enumeration type</typeparam>
 		/// <param name="value">The description value</param>
 		/// <returns>An instance of the specified enumeration type, or throws an exception if <paramref name="value"/> is not a valid description for the specified enumeration type</returns>
-		public static T FromDescription<T>(string value) { return (T)(object)GetEnumMembers(typeof(T)).Values.First(e => value.Equals(e.Description, StringComparison.InvariantCultureIgnoreCase)).Value; }
+		public static T FromDescription<T>(string value) => FromDescription(value, default(T));
 
 		/// <summary>Parses a description (from <see cref="DescriptionAttribute"/>) to a specified enumeration type, allowing silent fallback to a default value of parsing fails</summary>
 		/// <typeparam name="T">The enumeration type</typeparam>
@@ -86,13 +96,23 @@ namespace TraktSharp.Helpers {
 		/// <param name="defaultValue">The value to be returned if <paramref name="value"/> is not a valid description for the specified enumeration type</param>
 		/// <returns>An instance of the specified enumeration type</returns>
 		public static T FromDescription<T>(string value, T defaultValue) {
-			try {
-				return FromDescription<T>(value);
-			} catch {
-				return defaultValue;
+            var enumType = typeof(T);
+            var values = Enum.GetValues(enumType);
+            for (var i = 0; i < values.Length; i++)
+            {
+                if (value == ((Enum)Enum.ToObject(enumType, i)).GetAttribute<DescriptionAttribute>().Description) {
+					return (T)(object)i;
+				}
 			}
-		}
+            return defaultValue;
+        }
+
+        public static T GetAttribute<T>(this Enum enumValue) where T : Attribute =>
+			enumValue
+				.GetType()
+				.GetTypeInfo()
+				.GetDeclaredField(enumValue.ToString())
+				.GetCustomAttribute<T>();
 
 	}
-
 }

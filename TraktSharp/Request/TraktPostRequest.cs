@@ -12,7 +12,7 @@ namespace TraktSharp.Request {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			if (RequestBody == null) {
 				throw new ArgumentException("Request body not set.");
 			}

@@ -10,7 +10,7 @@ namespace TraktSharp.Request.Scrobble {
 
 		protected override string PathTemplate => "scrobble/stop";
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (RequestBody.Episode == null) {
 				throw new ArgumentException("Episode not set");

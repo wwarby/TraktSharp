@@ -16,7 +16,7 @@ namespace TraktSharp.Request.Movies {
 
 		protected override bool SupportsPagination => true;
 
-		internal DateTime? StartDate { get; set; }
+    internal DateTime? StartDate { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
 			new Dictionary<string, string> {

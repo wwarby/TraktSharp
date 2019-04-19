@@ -8,12 +8,12 @@ using TraktSharp.Structs;
 
 namespace TraktSharp.Modules {
 
-	/// <summary>Provides API methods in the Episodes namespace</summary>
-	public class TraktEpisodesModule : TraktModuleBase {
+    /// <summary>Provides API methods in the Episodes namespace</summary>
+    public class TraktEpisodesModule : TraktModuleBase {
 
-		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
-		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
-		public TraktEpisodesModule(TraktClient client) : base(client) { }
+        /// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+        /// <param name="client">The owning instance of <see cref="TraktClient"/></param>
+        public TraktEpisodesModule(TraktClient client) : base(client) { }
 
 		/// <summary>Returns a single episode's details. All date and times are in UTC and were calculated using the episode's air_date and show's country and air_time.</summary>
 		/// <param name="show">The show</param>
@@ -39,6 +39,7 @@ namespace TraktSharp.Modules {
 		/// <summary>Returns all top level comments for an episode. Most recent comments returned first.</summary>
 		/// <param name="show">The show</param>
 		/// <param name="episode">The episode</param>
+		/// <param name="order">The order in which to sort the results</param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -48,6 +49,7 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="seasonNumber">The season number</param>
 		/// <param name="episodeNumber">The episode number within the specified season</param>
+		/// <param name="order">The order in which to sort the results</param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
@@ -56,6 +58,7 @@ namespace TraktSharp.Modules {
 				Id = showId,
 				Season = seasonNumber,
 				Episode = episodeNumber,
+				Order = order,
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
 
@@ -115,5 +118,4 @@ namespace TraktSharp.Modules {
 			});
 
 	}
-
 }

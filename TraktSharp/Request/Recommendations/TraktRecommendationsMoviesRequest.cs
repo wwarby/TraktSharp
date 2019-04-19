@@ -12,6 +12,6 @@ namespace TraktSharp.Request.Recommendations {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-	}
+  }
 
 }

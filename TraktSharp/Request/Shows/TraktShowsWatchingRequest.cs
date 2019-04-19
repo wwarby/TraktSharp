@@ -12,6 +12,6 @@ namespace TraktSharp.Request.Shows {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-	}
+  }
 
 }

@@ -4,7 +4,7 @@ namespace TraktSharp.Enums {
 	public enum TraktTextEpisodeIdType {
 		/// <summary>Automatically detect ID type</summary>
 		Auto,
-		/// <summary>Internet Movie Database ID</summary>
+		/// <summary>IMDb ID</summary>
 		Imdb
 	}
 

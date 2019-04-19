@@ -11,11 +11,11 @@ namespace TraktSharp.Entities.Response.Users {
 
 		/// <summary>The UTC date when the current checkin or scrobble expires</summary>
 		[JsonProperty(PropertyName = "expires_at")]
-		public DateTime? ExpiresAt { get; set; }
+		public DateTimeOffset? ExpiresAt { get; set; }
 
 		/// <summary>The UTC date when the current checkin or scrobble was started</summary>
 		[JsonProperty(PropertyName = "started_at")]
-		public DateTime? StartedAt { get; set; }
+		public DateTimeOffset? StartedAt { get; set; }
 
 		/// <summary>The action associated with the current checkin or scrobble</summary>
 		[JsonIgnore]
@@ -24,14 +24,14 @@ namespace TraktSharp.Entities.Response.Users {
 		[JsonProperty(PropertyName = "action")]
 		private string ActionString => TraktEnumHelper.GetDescription(Action);
 
-		/// <summary>The type of media item</summary>
+    /// <summary>The type of media item</summary>
 		[JsonIgnore]
 		public TraktWatchingItemType Type { get; set; }
 
 		[JsonProperty(PropertyName = "type")]
 		private string TypeString => TraktEnumHelper.GetDescription(Type);
 
-		/// <summary>The movie</summary>
+    /// <summary>The movie</summary>
 		[JsonProperty(PropertyName = "movie")]
 		public TraktMovie Movie { get; set; }
 

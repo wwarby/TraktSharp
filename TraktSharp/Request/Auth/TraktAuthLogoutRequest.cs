@@ -6,6 +6,6 @@
 
 		protected override string PathTemplate => "auth/logout";
 
-	}
+  }
 
 }

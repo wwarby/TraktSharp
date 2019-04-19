@@ -14,7 +14,7 @@ namespace TraktSharp.Request.Shows {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-		internal DateTime? StartDate { get; set; }
+    internal DateTime? StartDate { get; set; }
 
 		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
 			new Dictionary<string, string> {
@@ -23,6 +23,6 @@ namespace TraktSharp.Request.Shows {
 
 		protected override bool SupportsPagination => true;
 
-	}
+  }
 
 }

@@ -6,29 +6,5 @@
 		"slug": "tron-legacy-2010",
 		"imdb": "tt1104001",
 		"tmdb": 20526
-	},
-	"images": {
-		"fanart": {
-			"full": "https://walter.trakt.us/images/movies/000/000/343/fanarts/original/7aa6017900.jpg?1406084931",
-			"medium": "https://walter.trakt.us/images/movies/000/000/343/fanarts/medium/7aa6017900.jpg?1406084931",
-			"thumb": "https://walter.trakt.us/images/movies/000/000/343/fanarts/thumb/7aa6017900.jpg?1406084931"
-		},
-		"poster": {
-			"full": "https://walter.trakt.us/images/movies/000/000/343/posters/original/e0d9dd35c5.jpg?1406084929",
-			"medium": "https://walter.trakt.us/images/movies/000/000/343/posters/medium/e0d9dd35c5.jpg?1406084929",
-			"thumb": "https://walter.trakt.us/images/movies/000/000/343/posters/thumb/e0d9dd35c5.jpg?1406084929"
-		},
-		"logo": {
-			"full": "https://walter.trakt.us/images/movies/000/000/343/logos/original/c7439207c5.png?1406084931"
-		},
-		"clearart": {
-			"full": "https://walter.trakt.us/images/movies/000/000/343/cleararts/original/056e86d791.png?1406084932"
-		},
-		"banner": {
-			"full": "https://walter.trakt.us/images/movies/000/000/343/banners/original/a309b7d5b1.jpg?1406084932"
-		},
-		"thumb": {
-			"full": "https://walter.trakt.us/images/movies/000/000/343/thumbs/original/8121fa80c5.jpg?1406084933"
-		}
 	}
 }

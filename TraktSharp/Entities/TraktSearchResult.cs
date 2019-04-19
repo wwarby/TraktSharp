@@ -16,7 +16,7 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "type")]
 		private string TypeString => TraktEnumHelper.GetDescription(Type);
 
-		/// <summary>The relevance score for the entry</summary>
+    /// <summary>The relevance score for the entry</summary>
 		[JsonProperty(PropertyName = "score")]
 		public decimal? Score { get; set; }
 

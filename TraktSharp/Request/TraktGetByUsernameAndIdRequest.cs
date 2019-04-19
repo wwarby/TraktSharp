@@ -10,7 +10,7 @@ namespace TraktSharp.Request {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Optional;
 
-		internal string Username { get; set; }
+    internal string Username { get; set; }
 
 		internal string Id { get; set; }
 

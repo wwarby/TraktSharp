@@ -16,7 +16,7 @@ namespace TraktSharp.Entities.Response.Scrobble {
 		[JsonProperty(PropertyName = "action")]
 		private string ActionString => TraktEnumHelper.GetDescription(Action);
 
-		/// <summary>The user's current playback progress through this item as a percentage between 0 and 100</summary>
+    /// <summary>The user's current playback progress through this item as a percentage between 0 and 100</summary>
 		[JsonProperty(PropertyName = "progress")]
 		public float Progress { get; set; }
 

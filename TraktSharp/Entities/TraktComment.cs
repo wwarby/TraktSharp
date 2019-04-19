@@ -17,7 +17,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the comment was posted</summary>
 		[JsonProperty(PropertyName = "created_at")]
-		public DateTime? CreatedAt { get; set; }
+		public DateTimeOffset? CreatedAt { get; set; }
 
 		/// <summary>The comment text</summary>
 		[JsonProperty(PropertyName = "comment")]

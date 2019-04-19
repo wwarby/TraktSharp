@@ -6,6 +6,6 @@
 
 		protected override string PathTemplate => "users/{username}/lists/{id}";
 
-	}
+  }
 
 }

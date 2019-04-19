@@ -9,23 +9,23 @@ namespace TraktSharp.Entities.Response.Sync {
 
 		/// <summary>The UTC date when the user most recently watched a movie</summary>
 		[JsonProperty(PropertyName = "watched_at")]
-		public DateTime? WatchedAt { get; set; }
+		public DateTimeOffset? WatchedAt { get; set; }
 
 		/// <summary>The UTC date when the user most recently collected a movie</summary>
 		[JsonProperty(PropertyName = "collected_at")]
-		public DateTime? CollectedAt { get; set; }
+		public DateTimeOffset? CollectedAt { get; set; }
 
 		/// <summary>The UTC date when the user most recently rated a movie</summary>
 		[JsonProperty(PropertyName = "rated_at")]
-		public DateTime? RatedAt { get; set; }
+		public DateTimeOffset? RatedAt { get; set; }
 
 		/// <summary>The UTC date when the user most recently watchlisted a movie</summary>
 		[JsonProperty(PropertyName = "watchlisted_at")]
-		public DateTime? WatchlistedAt { get; set; }
+		public DateTimeOffset? WatchlistedAt { get; set; }
 
 		/// <summary>The UTC date when the user most recently commented on a movie</summary>
 		[JsonProperty(PropertyName = "commented_at")]
-		public DateTime? CommentedAt { get; set; }
+		public DateTimeOffset? CommentedAt { get; set; }
 
 	}
 

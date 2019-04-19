@@ -9,7 +9,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>Indicates when the conflicting resource will expire and the request can be resubmitted</summary>
 		[JsonProperty(PropertyName = "expires_at")]
-		public DateTime? ExpiresAt { get; set; }
+		public DateTimeOffset? ExpiresAt { get; set; }
 
 	}
 

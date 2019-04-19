@@ -9,7 +9,7 @@ namespace TraktSharp.Entities.Response.Calendars {
 
 		/// <summary>The day and time when the show airs</summary>
 		[JsonProperty(PropertyName = "airs_at")]
-		public DateTime AirsAt { get; set; }
+		public DateTimeOffset AirsAt { get; set; }
 
 		/// <summary>The episode</summary>
 		[JsonProperty(PropertyName = "episode")]

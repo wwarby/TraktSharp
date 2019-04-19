@@ -9,7 +9,7 @@ namespace TraktSharp.Entities.Response.Users {
 
 		/// <summary>The UTC date when the friendship was established</summary>
 		[JsonProperty(PropertyName = "friends_at")]
-		public DateTime? FriendsAt { get; set; }
+		public DateTimeOffset? FriendsAt { get; set; }
 
 		/// <summary>The user with whom the friendship is established</summary>
 		[JsonProperty(PropertyName = "user")]

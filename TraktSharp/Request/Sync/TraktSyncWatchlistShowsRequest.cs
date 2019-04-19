@@ -12,6 +12,6 @@ namespace TraktSharp.Request.Sync {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
-	}
+  }
 
 }

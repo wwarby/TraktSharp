@@ -26,7 +26,7 @@ namespace TraktSharp.Factories {
 			}
 
 			if (episodeIdType == TraktTextEpisodeIdType.Auto) {
-				if (episodeId.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase)) {
+				if (episodeId.StartsWith("tt", StringComparison.OrdinalIgnoreCase)) {
 					episodeIdType = TraktTextEpisodeIdType.Imdb;
 				} else {
 					throw new ArgumentException("Unable to detect id type", nameof(episodeIdType));

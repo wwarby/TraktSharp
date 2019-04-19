@@ -8,12 +8,5 @@
 		"imdb": "tt1480055",
 		"tmdb": 63056,
 		"tvrage": null
-	},
-	"images": {
-		"screenshot": {
-			"full": "https://walter.trakt.us/images/episodes/000/036/440/screenshots/original/529938d3cd.jpg?1409354198",
-			"medium": "https://walter.trakt.us/images/episodes/000/036/440/screenshots/medium/529938d3cd.jpg?1409354198",
-			"thumb": "https://walter.trakt.us/images/episodes/000/036/440/screenshots/thumb/529938d3cd.jpg?1409354198"
-		}
 	}
 }

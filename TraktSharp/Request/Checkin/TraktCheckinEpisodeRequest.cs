@@ -10,7 +10,7 @@ namespace TraktSharp.Request.Checkin {
 
 		protected override string PathTemplate => "checkin";
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (RequestBody.Episode == null) {
 				throw new ArgumentException("Episode not set");

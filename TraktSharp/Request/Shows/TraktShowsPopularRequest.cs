@@ -14,6 +14,6 @@ namespace TraktSharp.Request.Shows {
 
 		protected override bool SupportsPagination => true;
 
-	}
+  }
 
 }

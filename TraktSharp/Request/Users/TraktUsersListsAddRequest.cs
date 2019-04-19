@@ -10,7 +10,7 @@ namespace TraktSharp.Request.Users {
 
 		protected override string PathTemplate => "users/{username}/lists";
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (RequestBody != null && string.IsNullOrEmpty(RequestBody.Name)) {
 				throw new ArgumentException("List name not set.");

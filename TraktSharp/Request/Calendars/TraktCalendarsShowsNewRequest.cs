@@ -14,7 +14,7 @@ namespace TraktSharp.Request.Calendars {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Optional;
 
-		internal DateTime? StartDate { get; set; }
+    internal DateTime? StartDate { get; set; }
 
 		internal int? Days { get; set; }
 

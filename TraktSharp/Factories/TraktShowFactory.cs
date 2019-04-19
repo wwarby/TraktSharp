@@ -26,7 +26,7 @@ namespace TraktSharp.Factories {
 			}
 
 			if (showIdType == TraktTextShowIdType.Auto) {
-				showIdType = showId.StartsWith("tt", StringComparison.InvariantCultureIgnoreCase) ? TraktTextShowIdType.Imdb : TraktTextShowIdType.Slug;
+				showIdType = showId.StartsWith("tt", StringComparison.OrdinalIgnoreCase) ? TraktTextShowIdType.Imdb : TraktTextShowIdType.Slug;
 			}
 
 			var ret = Activator.CreateInstance<T>();

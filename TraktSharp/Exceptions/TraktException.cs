@@ -50,7 +50,7 @@ namespace TraktSharp.Exceptions {
 		[DataMember]
 		public override string Message => base.Message;
 
-		/// <summary>The error source associated with the error</summary>
+    /// <summary>The error source associated with the error</summary>
 		[DataMember]
 		public override string Source {
 			get => base.Source;
@@ -61,11 +61,11 @@ namespace TraktSharp.Exceptions {
 		[DataMember]
 		public override IDictionary Data => base.Data;
 
-		/// <summary>The stack trace associated with the error</summary>
+    /// <summary>The stack trace associated with the error</summary>
 		[DataMember]
 		public override string StackTrace => base.StackTrace;
 
-		/// <summary>A help link associated with the error</summary>
+    /// <summary>A help link associated with the error</summary>
 		[DataMember]
 		public override string HelpLink {
 			get => base.HelpLink;

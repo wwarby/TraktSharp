@@ -49,7 +49,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the first episode of the first season was first aired</summary>
 		[JsonProperty(PropertyName = "first_aired")]
-		public DateTime? FirstAired { get; set; }
+		public DateTimeOffset? FirstAired { get; set; }
 
 		/// <summary>The genres to the show is tagged with</summary>
 		[JsonProperty(PropertyName = "genres")]
@@ -78,10 +78,6 @@ namespace TraktSharp.Entities {
 		/// <summary>A collection of unique identifiers for the show in various web services</summary>
 		[JsonProperty(PropertyName = "ids")]
 		public TraktShowIds Ids { get; set; }
-
-		/// <summary>A collection of images related to the show</summary>
-		[JsonProperty(PropertyName = "images")]
-		public TraktShowImages Images { get; set; }
 
 		/// <summary>The language of the show in the form of a two-letter language code</summary>
 		[JsonProperty(PropertyName = "language")]
@@ -113,7 +109,7 @@ namespace TraktSharp.Entities {
 		[JsonIgnore]
 		public TraktShowStatus Status => TraktEnumHelper.FromDescription(StatusString, TraktShowStatus.Unspecified);
 
-		/// <summary>The show's current status</summary>
+    /// <summary>The show's current status</summary>
 		[JsonProperty(PropertyName = "status")]
 		private string StatusString { get; set; }
 
@@ -123,7 +119,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the show was last updated</summary>
 		[JsonProperty(PropertyName = "updated_at")]
-		public DateTime? UpdatedAt { get; set; }
+		public DateTimeOffset? UpdatedAt { get; set; }
 
 		/// <summary>The show's release year (first episode of the first season)</summary>
 		[JsonProperty(PropertyName = "year")]

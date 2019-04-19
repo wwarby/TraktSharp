@@ -22,7 +22,7 @@ namespace TraktSharp.Modules {
 		public async Task<TraktSyncLastActivitiesResponse> GetLastActivitiesAsync() => await SendAsync(new TraktSyncLastActivitiesRequest(Client));
 
 		/// <summary>
-		/// Whenever a scrobble is paused, the playback progress is saved. Use this progress to sync up playback across different media centers or apps. For example, you can start
+		/// Whenever a scrobble is paused, the playback progress is saved. Use this progress to sync up playback across different media centres or apps. For example, you can start
 		/// watching a movie in a media center, stop it, then resume on your tablet from the same spot. Each item will have the progress percentage between 0 and 100.
 		/// </summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>

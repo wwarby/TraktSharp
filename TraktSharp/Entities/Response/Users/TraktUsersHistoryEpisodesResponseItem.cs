@@ -11,7 +11,7 @@ namespace TraktSharp.Entities.Response.Users {
 
 		/// <summary>The UTC date when the item was watched</summary>
 		[JsonProperty(PropertyName = "watched_at")]
-		public DateTime? WatchedAt { get; set; }
+		public DateTimeOffset? WatchedAt { get; set; }
 
 		/// <summary>The action that generated this history item</summary>
 		[JsonIgnore]
@@ -20,7 +20,7 @@ namespace TraktSharp.Entities.Response.Users {
 		[JsonProperty(PropertyName = "action")]
 		private string ActionString => TraktEnumHelper.GetDescription(Action);
 
-		/// <summary>The show</summary>
+    /// <summary>The show</summary>
 		[JsonProperty(PropertyName = "show")]
 		public TraktShow Show { get; set; }
 

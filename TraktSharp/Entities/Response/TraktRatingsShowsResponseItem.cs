@@ -14,7 +14,7 @@ namespace TraktSharp.Entities.Response {
 
 		/// <summary>The UTC date when the item was rated</summary>
 		[JsonProperty(PropertyName = "rated_at")]
-		public DateTime? RatedAt { get; set; }
+		public DateTimeOffset? RatedAt { get; set; }
 
 		/// <summary>The show</summary>
 		[JsonProperty(PropertyName = "show")]

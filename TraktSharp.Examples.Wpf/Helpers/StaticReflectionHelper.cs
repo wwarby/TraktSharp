@@ -8,14 +8,16 @@ namespace TraktSharp.Examples.Wpf.Helpers {
 
 	internal static class StaticReflectionHelper {
 
-		internal static string GetMemberName<T>(this T instance, Expression<Func<T, object>> expression, bool includeParameters = false) => GetMemberName(expression, includeParameters);
+		internal static string GetMemberName<T>(this T instance, Expression<Func<T, object>> expression, bool includeParameters = false)
+			=> GetMemberName(expression, includeParameters);
 
 		internal static string GetMemberName<T>(Expression<Func<T, object>> expression, bool includeParameters = false) {
 			if (expression == null) { throw new ArgumentException("The expression cannot be null."); }
 			return GetMemberName(expression.Body, includeParameters);
 		}
 
-		internal static string GetMemberName<T>(this T instance, Expression<Action<T>> expression, bool includeParameters = false) => GetMemberName(expression, includeParameters);
+		internal static string GetMemberName<T>(this T instance, Expression<Action<T>> expression, bool includeParameters = false)
+			=> GetMemberName(expression, includeParameters);
 
 		internal static string GetMemberName<T>(Expression<Action<T>> expression, bool includeParameters = false) {
 			if (expression == null) { throw new ArgumentException("The expression cannot be null."); }

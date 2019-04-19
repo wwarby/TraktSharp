@@ -12,6 +12,6 @@ namespace TraktSharp.Request.Seasons {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-	}
+  }
 
 }

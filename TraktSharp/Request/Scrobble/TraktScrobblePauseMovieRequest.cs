@@ -10,7 +10,7 @@ namespace TraktSharp.Request.Scrobble {
 
 		protected override string PathTemplate => "scrobble/pause";
 
-		protected override void ValidateParameters() {
+    protected override void ValidateParameters() {
 			base.ValidateParameters();
 			if (RequestBody.Movie == null) {
 				throw new ArgumentException("Movie not set");

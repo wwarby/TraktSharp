@@ -39,9 +39,18 @@ namespace TraktSharp.Request {
 		internal bool Authenticate {
 			get {
 				if (_client.Configuration.ForceAuthentication && AuthenticationRequirement != TraktAuthenticationRequirement.Forbidden) { return true; }
-				if (AuthenticationRequirement == TraktAuthenticationRequirement.Required) { return true; }
-				if (AuthenticationRequirement == TraktAuthenticationRequirement.Forbidden) { return false; }
-				return _authenticate;
+				switch (AuthenticationRequirement) {
+					case TraktAuthenticationRequirement.Required:
+						return true;
+					case TraktAuthenticationRequirement.Forbidden:
+						return false;
+					case TraktAuthenticationRequirement.NotRequired:
+						return _authenticate;
+					case TraktAuthenticationRequirement.Optional:
+						return _authenticate;
+					default:
+						return _authenticate;
+				}
 			}
 			set {
 				if (!value && AuthenticationRequirement == TraktAuthenticationRequirement.Required) { throw new InvalidOperationException("This request type requires authentication"); }
@@ -58,7 +67,7 @@ namespace TraktSharp.Request {
 
 		protected virtual bool SupportsPagination => false;
 
-		protected virtual void ValidateParameters() { }
+    protected virtual void ValidateParameters() { }
 
 		protected virtual IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) => pathParameters;
 
@@ -93,7 +102,7 @@ namespace TraktSharp.Request {
 
 		internal string Url => $"{_client.Configuration.BaseUrl}{Path}{QueryString}";
 
-		internal TRequestBody RequestBody { get; set; }
+    internal TRequestBody RequestBody { get; set; }
 
 		protected HttpContent RequestBodyContent {
 			get {

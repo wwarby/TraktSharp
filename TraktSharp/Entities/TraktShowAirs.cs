@@ -27,7 +27,7 @@ namespace TraktSharp.Entities {
 		[JsonIgnore]
 		public TimeZoneInfo TimeZone => !string.IsNullOrEmpty(OlsonTimeZoneId) ? TraktTimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId) : default;
 
-		/// <summary>The day of the week on which the show airs in local time</summary>
+    /// <summary>The day of the week on which the show airs in local time</summary>
 		[JsonIgnore]
 		public string LocalDay {
 			get {
@@ -69,6 +69,6 @@ namespace TraktSharp.Entities {
 
 		private double TimeZoneOffsetMinutes => TimeZone == null ? 0 : TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).TotalMinutes - TimeZone.GetUtcOffset(DateTime.Now).TotalMinutes;
 
-	}
+  }
 
 }

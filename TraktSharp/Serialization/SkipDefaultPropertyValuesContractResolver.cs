@@ -3,8 +3,7 @@ using Newtonsoft.Json.Serialization;
 using System.Reflection;
 
 namespace TraktSharp.Serialization {
-
-	internal class SkipDefaultPropertyValuesContractResolver : DefaultContractResolver {
+    internal class SkipDefaultPropertyValuesContractResolver : DefaultContractResolver {
 
 		protected override JsonProperty CreateProperty(MemberInfo member,
 			MemberSerialization memberSerialization) {

@@ -16,10 +16,6 @@ namespace TraktSharp.Entities {
 		[JsonProperty(PropertyName = "ids")]
 		public TraktSeasonIds Ids { get; set; }
 
-		/// <summary>A collection of images related to the season</summary>
-		[JsonProperty(PropertyName = "images")]
-		public TraktSeasonImages Images { get; set; }
-
 		/// <summary>A collection of episodes in the season</summary>
 		[JsonProperty(PropertyName = "episodes")]
 		public IEnumerable<TraktEpisode> Episodes { get; set; }

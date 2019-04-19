@@ -35,7 +35,7 @@ namespace TraktSharp.Entities.RequestBody.Checkin {
 		[JsonProperty(PropertyName = "app_date")]
 		private string AppDateString => AppDate.ToTraktApiFormat();
 
-		/// <summary>Foursquare venue ID</summary>
+    /// <summary>Foursquare venue ID</summary>
 		[JsonProperty(PropertyName = "venue_id")]
 		public string VenueId { get; set; }
 

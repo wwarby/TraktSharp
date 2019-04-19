@@ -13,7 +13,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>The UTC date when the request was made</summary>
 		[JsonProperty(PropertyName = "requested_at")]
-		public DateTime? RequestedAt { get; set; }
+		public DateTimeOffset? RequestedAt { get; set; }
 
 		/// <summary>The user who has requested to be followed</summary>
 		[JsonProperty(PropertyName = "user")]

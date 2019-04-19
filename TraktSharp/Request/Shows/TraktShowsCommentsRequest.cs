@@ -1,19 +1,21 @@
 ﻿using System.Collections.Generic;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
+using TraktSharp.Helpers;
 
 namespace TraktSharp.Request.Shows {
 
-	internal class TraktShowsCommentsRequest : TraktGetByIdRequest<IEnumerable<TraktComment>> {
+    internal class TraktShowsCommentsRequest : TraktGetByIdRequest<IEnumerable<TraktComment>> {
 
-		internal TraktShowsCommentsRequest(TraktClient client) : base(client) { }
+        internal TraktShowsCommentsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate => "shows/{id}/comments";
+        public TraktCommentSortOrder Order { get; set; }
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
+        protected override string PathTemplate => "shows/{id}/comments/" + TraktEnumHelper.GetDescription(Order);
 
-		protected override bool SupportsPagination => true;
+        protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-	}
+        protected override bool SupportsPagination => true;
 
+    }
 }

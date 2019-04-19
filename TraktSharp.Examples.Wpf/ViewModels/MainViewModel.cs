@@ -27,12 +27,12 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			_view = view;
 
 			Client = new TraktClient();
-			AuthenticationModes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktAuthenticationMode)).Select(v => v.Value.Description));
-			ExtendedOptions = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktExtendedOption)).Select(v => v.Value.Label));
-			ReportingPeriods = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktReportingPeriod)).Select(v => v.Value.Label));
-			TestRequestTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
-			IdLookupTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktIdLookupType)).Select(v => v.Value.Label));
-			TextQueryTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktSearchItemType)).Select(v => v.Value.Label));
+			AuthenticationModes = new ObservableCollection<string>(TraktEnumHelper.GetEnumDescriptions(typeof(TraktAuthenticationMode)));
+			ExtendedOptions = new ObservableCollection<string>(TraktEnumHelper.GetEnumLabels(typeof(TraktExtendedOption)));
+			ReportingPeriods = new ObservableCollection<string>(TraktEnumHelper.GetEnumLabels(typeof(TraktReportingPeriod)));
+			TestRequestTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumDescriptions(typeof(TestRequests.TestRequestType)));
+			IdLookupTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumLabels(typeof(TraktIdLookupType)));
+			TextQueryTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumLabels(typeof(TraktSearchItemType)));
 			TryLoadState();
 			PropertyChanged += (sender, e) => TrySaveState();
 
@@ -173,7 +173,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public bool Authenticated => Client.Authentication.Authenticated;
 
-		public string LastRequest { get; private set; }
+    public string LastRequest { get; private set; }
 
 		public string LastResponse { get; private set; }
 
@@ -199,7 +199,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public bool IsSimpleAuthenticationMode => Client.Authentication.AuthenticationMode == TraktAuthenticationMode.Simple;
 
-		public ObservableCollection<string> ExtendedOptions { get; set; }
+    public ObservableCollection<string> ExtendedOptions { get; set; }
 
 		public ObservableCollection<string> ReportingPeriods { get; set; }
 
@@ -345,7 +345,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public object CanLogout => !string.IsNullOrEmpty(SimpleAccessToken);
 
-		public async void Login() {
+    public async void Login() {
 			SimpleAccessToken = string.Empty;
 			SimpleAccessToken = await Client.Authentication.LoginAsync(LoginUsernameOrEmail, Password);
 		}
@@ -388,7 +388,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		public object CanSearch => !string.IsNullOrEmpty(SearchText);
 
-		public void Closing() {
+    public void Closing() {
 			TrySaveState();
 		}
 

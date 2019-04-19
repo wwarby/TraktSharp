@@ -26,7 +26,7 @@ namespace TraktSharp.Factories {
 			}
 
 			if (personIdType == TraktTextPersonIdType.Auto) {
-				if (personId.StartsWith("nm", StringComparison.InvariantCultureIgnoreCase)) {
+				if (personId.StartsWith("nm", StringComparison.OrdinalIgnoreCase)) {
 					personIdType = TraktTextPersonIdType.Imdb;
 				} else {
 					throw new ArgumentException("Unable to detect id type", nameof(personIdType));

@@ -18,14 +18,14 @@ namespace TraktSharp.Modules {
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktMovie>> GetRecommendedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktRecommendationsMoviesRequest(Client) { Extended = extended });
 
-		/// <summary>Dismiss a movie from getting recommended in the future</summary>
+		/// <summary>Dismiss a movie to prevent it from being recommended in the future</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
 		public async Task DismissMovieRecommendationAsync(TraktMovie movie) {
 			await DismissMovieRecommendationAsync(movie.Ids.GetBestId());
 		}
 
-		/// <summary>Dismiss a movie from getting recommended in the future</summary>
+		/// <summary>Dismiss a movie to prevent it from being recommended in the future</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <returns>See summary</returns>
 		public async Task DismissMovieRecommendationAsync(string movieId) {
@@ -37,14 +37,14 @@ namespace TraktSharp.Modules {
 		/// <returns>See summary</returns>
 		public async Task<IEnumerable<TraktShow>> GetRecommendedShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktRecommendationsShowsRequest(Client) { Extended = extended });
 
-		/// <summary>Dismiss a show from getting recommended in the future</summary>
+		/// <summary>Dismiss a show to prevent it from being recommended in the future</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
 		public async Task DismissShowRecommendationAsync(TraktShow show) {
 			await DismissShowRecommendationAsync(show.Ids.GetBestId());
 		}
 
-		/// <summary>Dismiss a show from getting recommended in the future</summary>
+		/// <summary>Dismiss a show to prevent it from being recommended in the future</summary>
 		/// <param name="showId">The show ID</param>
 		/// <returns>See summary</returns>
 		public async Task DismissShowRecommendationAsync(string showId) {

@@ -435,6 +435,21 @@ namespace TraktSharp.Modules {
 			return null;
 		}
 
+		/// <summary>
+		/// Get items a user likes. This will return an array of standard media objects. You can optionally limit the type of results to return
+		/// </summary>
+		/// <param name="likeType">Filter by like type</param>
+		/// <param name="page">The page number</param>
+		/// <param name="limit">The number of records to show per page</param>
+		/// <param name="authenticate">If true, authentication headers will be sent with this request</param>
+		/// <returns>See summary</returns>
+		public async Task<IEnumerable<TraktLikeItem>> GetLikesAsync(TraktLikeType likeType = TraktLikeType.Unspecified, int page = 0, int limit = 10, bool authenticate = true) =>
+			await SendAsync(new TraktUsersLikesRequest(Client, likeType)
+			{
+				Authenticate = authenticate,
+				Pagination = new TraktPaginationOptions(page, limit)
+			});
+
 	}
 
 }

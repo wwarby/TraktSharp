@@ -16,7 +16,7 @@ namespace TraktSharp.Entities {
 		[JsonIgnore]
 		public TimeZoneInfo TimeZone => !string.IsNullOrEmpty(OlsonTimeZoneId) ? TraktTimeZoneHelper.FromOlsonTimeZoneId(OlsonTimeZoneId) : default;
 
-		/// <summary>A cover image for the user's account</summary>
+    /// <summary>A cover image for the user's account</summary>
 		[JsonProperty(PropertyName = "cover_image")]
 		public string CoverImage { get; set; }
 

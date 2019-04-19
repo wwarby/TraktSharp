@@ -107,7 +107,7 @@ namespace TraktSharp.Modules {
 		/// <returns>See summary</returns>
 		public async Task<TraktShow> GetShowAsync(TraktShow show, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await GetShowAsync(show.Ids.GetBestId(), extended);
 
-		/// <summary>Returns a single show's details</summary>
+		/// <summary>Returns the details for a single show</summary>
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
@@ -151,21 +151,23 @@ namespace TraktSharp.Modules {
 
 		/// <summary>Returns all top level comments for a show. Most recent comments returned first</summary>
 		/// <param name="show">The show</param>
+		/// <param name="order">The order in which to sort the results</param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(TraktShow show, int? page = null, int? limit = null) => await GetCommentsAsync(show.Ids.GetBestId(), page, limit);
+		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(TraktShow show, TraktCommentSortOrder order = TraktCommentSortOrder.Newest, int? page = null, int? limit = null) => await GetCommentsAsync(show.Ids.GetBestId(), order, page, limit);
 
 		/// <summary>Returns all top level comments for a show. Most recent comments returned first</summary>
 		/// <param name="showId">The show ID</param>
+		/// <param name="order">The order in which to sort the results</param>
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(string showId, int? page = null, int? limit = null) =>
-			await SendAsync(new TraktShowsCommentsRequest(Client) {
-				Id = showId,
-				Pagination = new TraktPaginationOptions(page, limit)
-			});
+		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(string showId, TraktCommentSortOrder order = TraktCommentSortOrder.Newest, int? page = null, int? limit = null) => await SendAsync(new TraktShowsCommentsRequest(Client) {
+			Id = showId,
+			Order = order,
+			Pagination = new TraktPaginationOptions(page, limit)
+		});
 
 		/// <summary>Returns collection progress for show including details on all seasons and episodes. The next_episode will be the next episode the user should collect, if there are no upcoming episodes it will be set to null.</summary>
 		/// <param name="show">The show</param>
@@ -177,11 +179,10 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktShowProgress> GetCollectionProgressAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
-			await SendAsync(new TraktShowsProgressCollectionRequest(Client) {
-				Id = showId,
-				Extended = extended
-			});
+		public async Task<TraktShowProgress> GetCollectionProgressAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsProgressCollectionRequest(Client) {
+			Id = showId,
+			Extended = extended
+		});
 
 		/// <summary>Returns watched progress for show including details on all seasons and episodes. The next_episode will be the next episode the user should watch, if there are no upcoming episodes it will be set to null.</summary>
 		/// <param name="show">The show</param>
@@ -193,11 +194,10 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktShowProgress> GetWatchedProgressAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
-			await SendAsync(new TraktShowsProgressWatchedRequest(Client) {
-				Id = showId,
-				Extended = extended
-			});
+		public async Task<TraktShowProgress> GetWatchedProgressAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsProgressWatchedRequest(Client) {
+			Id = showId,
+			Extended = extended
+		});
 
 		/// <summary>Returns all cast and crew for a show. Each cast member will have a character and a standard person object</summary>
 		/// <param name="show">The show</param>
@@ -209,11 +209,10 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
-			await SendAsync(new TraktShowsPeopleRequest(Client) {
-				Id = showId,
-				Extended = extended
-			});
+		public async Task<TraktCastAndCrew> GetCastAndCrewAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsPeopleRequest(Client) {
+			Id = showId,
+			Extended = extended
+		});
 
 		/// <summary>Returns rating (between 0 and 10) and distribution for a show</summary>
 		/// <param name="show">The show</param>
@@ -223,10 +222,9 @@ namespace TraktSharp.Modules {
 		/// <summary>Returns rating (between 0 and 10) and distribution for a show</summary>
 		/// <param name="showId">The show ID</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRatings> GetRatingsAsync(string showId) =>
-			await SendAsync(new TraktShowsRatingsRequest(Client) {
-				Id = showId
-			});
+		public async Task<TraktRatings> GetRatingsAsync(string showId) => await SendAsync(new TraktShowsRatingsRequest(Client) {
+			Id = showId
+		});
 
 		/// <summary>Returns related and similar shows</summary>
 		/// <param name="show">The show</param>
@@ -238,11 +236,10 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktShow>> GetRelatedShowsAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
-			await SendAsync(new TraktShowsRelatedRequest(Client) {
-				Id = showId,
-				Extended = extended
-			});
+		public async Task<IEnumerable<TraktShow>> GetRelatedShowsAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsRelatedRequest(Client) {
+			Id = showId,
+			Extended = extended
+		});
 
 		/// <summary>Returns lots of show stats including ratings breakdowns, scrobbles, checkins, collections, lists, and comments</summary>
 		/// <param name="show">The show</param>
@@ -267,12 +264,9 @@ namespace TraktSharp.Modules {
 		/// <param name="showId">The show ID</param>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktUser>> GetUsersWatchingShowAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) =>
-			await SendAsync(new TraktShowsWatchingRequest(Client) {
-				Id = showId,
-				Extended = extended
-			});
-
+		public async Task<IEnumerable<TraktUser>> GetUsersWatchingShowAsync(string showId, TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktShowsWatchingRequest(Client) {
+			Id = showId,
+			Extended = extended
+		});
 	}
-
 }

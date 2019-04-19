@@ -11,6 +11,6 @@ namespace TraktSharp.Request.Movies {
 
 		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-	}
+  }
 
 }

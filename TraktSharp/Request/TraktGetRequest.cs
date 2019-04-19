@@ -8,6 +8,6 @@ namespace TraktSharp.Request {
 
 		protected override HttpMethod Method => HttpMethod.Get;
 
-	}
+  }
 
 }
