@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using TraktSharp.Entities;
@@ -10,7 +9,8 @@ namespace TraktSharp {
 	/// <summary>Encapsulates functionality related to authentication</summary>
 	public class TraktAuthentication {
 
-		private const string _defaultRedirectUri = "app://authorized";
+		// Changed from "app://authorized" because CefSharp won't change address to a non-browsable URL
+		private const string _defaultRedirectUri = "http://dummy.traktsharp.com";
 
 		private const TraktAuthenticationMode _defaultAuthenticationMode = TraktAuthenticationMode.OAuth;
 
@@ -57,11 +57,13 @@ namespace TraktSharp {
 
 		/// <summary>The uri to which Trakt should redirect upon successful authentication</summary>
 		/// <remarks>
-		///     For desktop applications in which the authentication session is hosted in a <c>WebBrowser</c> control and the
-		///     redirection can be caught,
-		///     this can be changed to any string, but must match the value entered in your app settings. A good default value to
-		///     use is <c>app://authorized</c>.
-		///     For web applications, this must be a valid URL within your application.
+		///     For desktop applications in which the authentication session is hosted in a <c>WebBrowser</c> control or <c>CefSharp</c>
+		///     (Chromium-embedded framework) control and the redirection can be caught,
+		///     this can be changed to any string that the browser will redirect to, but must match the value entered in your app settings.
+		///     A good default value to use is <c>http://dummy.traktsharp.com</c>. This isn't a real URL and it doesn't need to be,
+		///     it just needs to have the form of a real URL so that the internal browser can try to redirect there.
+		///     For web applications, this must be a valid URL within your application. CefSharp is more strict than the WebBrowser control
+		///     and will not redirect to invalid URLs like <c>app://authorized</c>
 		/// </remarks>
 		public string OAuthRedirectUri { get; set; }
 

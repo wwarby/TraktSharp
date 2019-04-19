@@ -1,11 +1,13 @@
-﻿using System;
+﻿using CefSharp;
+using CefSharp.Wpf;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
 using TraktSharp.Examples.Wpf.Helpers;
@@ -45,6 +47,8 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		private string _testId;
 
 		private string _testUsername;
+
+		private bool _cefInitialized = false;
 
 		public MainViewModel() { }
 
@@ -356,9 +360,23 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		public async void Authorize() {
+
+			// Initialize CEF on first use
+			if (!_cefInitialized) {
+				var settings = new CefSettings();
+				Cef.Initialize(settings, false, browserProcessHandler: null);
+				_cefInitialized = true;
+			}
+
 			var authorizeViewModel = new AuthorizeViewModel(Client);
 			var window = new AuthorizeView(authorizeViewModel);
+
 			window.ShowDialog();
+
+			if (!authorizeViewModel.Completed) {
+				return;
+			}
+
 			NotifyPropertyChanged(this.GetMemberName(x => x.AuthorizationCode));
 			OAuthAccessToken = await Client.Authentication.GetOAuthAccessToken();
 		}
@@ -457,32 +475,32 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				FileSystemHelper.EnsureParentDirectoryExists(StateSerializationPath);
 				File.WriteAllText(StateSerializationPath,
 					JsonConvert.SerializeObject(new SavedState {
-							WindowHeight = _view.Height,
-							WindowWidth = _view.Width,
-							WindowLeft = _view.Left,
-							WindowTop = _view.Top,
-							WindowState = _view.WindowState,
-							OAuthAccessToken = OAuthAccessToken,
-							SimpleAccessToken = SimpleAccessToken,
-							UseSandpit = UseSandpit,
-							Username = Username,
-							ClientId = ClientId,
-							ClientSecret = ClientSecret,
-							LoginUsernameOrEmail = LoginUsernameOrEmail,
-							SelectedAuthenticationMode = SelectedAuthenticationMode,
-							SelectedMainTab = SelectedMainTab,
-							SelectedResponseTab = SelectedResponseTab,
-							SelectedExtendedOption = SelectedExtendedOption,
-							SelectedReportingPeriod = SelectedReportingPeriod,
-							SelectedTestRequestType = SelectedTestRequestType,
-							SelectedTextQueryType = SelectedTextQueryType,
-							SelectedIdLookupType = SelectedIdLookupType,
-							TestId = TestId,
-							TestUsername = TestUsername,
-							AuthenticateIfOptional = AuthenticateIfOptional,
-							IdLookup = IdLookup,
-							SearchText = SearchText
-						},
+						WindowHeight = _view.Height,
+						WindowWidth = _view.Width,
+						WindowLeft = _view.Left,
+						WindowTop = _view.Top,
+						WindowState = _view.WindowState,
+						OAuthAccessToken = OAuthAccessToken,
+						SimpleAccessToken = SimpleAccessToken,
+						UseSandpit = UseSandpit,
+						Username = Username,
+						ClientId = ClientId,
+						ClientSecret = ClientSecret,
+						LoginUsernameOrEmail = LoginUsernameOrEmail,
+						SelectedAuthenticationMode = SelectedAuthenticationMode,
+						SelectedMainTab = SelectedMainTab,
+						SelectedResponseTab = SelectedResponseTab,
+						SelectedExtendedOption = SelectedExtendedOption,
+						SelectedReportingPeriod = SelectedReportingPeriod,
+						SelectedTestRequestType = SelectedTestRequestType,
+						SelectedTextQueryType = SelectedTextQueryType,
+						SelectedIdLookupType = SelectedIdLookupType,
+						TestId = TestId,
+						TestUsername = TestUsername,
+						AuthenticateIfOptional = AuthenticateIfOptional,
+						IdLookup = IdLookup,
+						SearchText = SearchText
+					},
 						Formatting.Indented),
 					Encoding.UTF8);
 			} catch { }
@@ -546,7 +564,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 					new JsonSerializerSettings {
 						Formatting = Formatting.Indented,
 						ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-						ContractResolver = new OriginalPropertyNamesContractResolver {IgnoreSerializableInterface = true, IgnoreSerializableAttribute = true}
+						ContractResolver = new OriginalPropertyNamesContractResolver { IgnoreSerializableInterface = true, IgnoreSerializableAttribute = true }
 					});
 			} catch { }
 

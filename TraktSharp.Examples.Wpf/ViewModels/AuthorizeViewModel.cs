@@ -1,41 +1,41 @@
 ﻿using System;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Navigation;
-using Microsoft.Win32;
-using TraktSharp.Examples.Wpf.Views;
+using System.Diagnostics;
+using TraktSharp.Examples.Wpf.Interfaces;
 
 namespace TraktSharp.Examples.Wpf.ViewModels {
 
-	internal class AuthorizeViewModel : ViewModelBase {
+	internal class AuthorizeViewModel : ViewModelBase, ICloseable {
+
+		private string _address;
+
+		public bool Completed { get; private set; }
+
+		public event EventHandler<System.EventArgs> RequestClose;
 
 		internal AuthorizeViewModel(TraktClient traktClient) {
-			// Teach the WebBrowser control some manners
-			NativeMethods.DisableInternetExplorerClickSounds();
-
-			Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION",
-				$"{Assembly.GetExecutingAssembly().GetName().Name}.exe",
-				0,
-				RegistryValueKind.DWord);
-			Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION",
-				$"{Assembly.GetExecutingAssembly().GetName().Name}.vshost.exe",
-				0,
-				RegistryValueKind.DWord);
-
 			Client = traktClient;
+			Address = Client.Authentication.OAuthAuthorizationUri.AbsoluteUri;
 		}
 
 		internal TraktClient Client { get; }
 
-		internal void Navigating(AuthorizeView sender, NavigatingCancelEventArgs e) {
-			if (!e.Uri.AbsoluteUri.StartsWith(Client.Authentication.OAuthRedirectUri, StringComparison.CurrentCultureIgnoreCase)) {
-				return;
+		public string Address {
+			get => _address;
+			set {
+				Debug.WriteLine(value);
+				_address = value;
+				if (_address.StartsWith(Client.Authentication.OAuthRedirectUri, StringComparison.CurrentCultureIgnoreCase)) {
+					HandleCallback(value);
+				}
+				NotifyPropertyChanged();
 			}
+		}
 
-			Client.Authentication.ParseOAuthAuthorizationResponse(e.Uri);
-			e.Cancel = true;
-			sender.DialogResult = true;
-			sender.Close();
+		private void HandleCallback(string address) {
+			Client.Authentication.ParseOAuthAuthorizationResponse(address);
+			Completed = true;
+			var handler = RequestClose;
+			handler?.Invoke(this, new System.EventArgs());
 		}
 
 	}

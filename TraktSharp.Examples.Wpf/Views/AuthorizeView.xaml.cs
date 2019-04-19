@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Navigation;
+﻿using TraktSharp.Examples.Wpf.Interfaces;
 using TraktSharp.Examples.Wpf.ViewModels;
 
 namespace TraktSharp.Examples.Wpf.Views {
@@ -11,14 +9,16 @@ namespace TraktSharp.Examples.Wpf.Views {
 			InitializeComponent();
 			ViewModel = viewModel;
 			DataContext = ViewModel;
-			Load();
+			Loaded += (s, e) => {
+				if (DataContext is ICloseable closeable) {
+					closeable.RequestClose += (_, __) => Close();
+				}
+				AuthorizationBrowser.Focus();
+			};
 		}
 
+
 		private AuthorizeViewModel ViewModel { get; }
-
-		private void Load() { AuthorizeBrowser.Navigate(ViewModel.Client.Authentication.OAuthAuthorizationUri); }
-
-		private void AuthorizeBrowserNavigating(object sender, NavigatingCancelEventArgs e) { ViewModel.Navigating(this, e); }
 
 	}
 

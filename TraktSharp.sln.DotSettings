@@ -66,6 +66,7 @@
 <s:Boolean x:Key="/Default/UserDictionary/Words/=Checkin/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=checkins/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=clearart/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Closeable/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=Color/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=Consolas/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=csproj/@EntryIndexedValue">True</s:Boolean>
@@ -82,6 +83,7 @@
 <s:Boolean x:Key="/Default/UserDictionary/Words/=mimetype/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=mscorlib/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=msdata/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=MVVM/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=Nemeth/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=oauth/@EntryIndexedValue">True</s:Boolean>
 <s:Boolean x:Key="/Default/UserDictionary/Words/=Params/@EntryIndexedValue">True</s:Boolean>
