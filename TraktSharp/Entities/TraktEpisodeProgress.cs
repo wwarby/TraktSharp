@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
-	
+
 	/// <summary>Describes whether a particular episode is completed in the context of a collection or watched history</summary>
 	[Serializable]
 	public class TraktEpisodeProgress {

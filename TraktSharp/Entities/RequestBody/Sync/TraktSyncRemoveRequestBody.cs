@@ -21,9 +21,7 @@ namespace TraktSharp.Entities.RequestBody.Sync {
 		[JsonProperty(PropertyName = "episodes")]
 		public IEnumerable<TraktEpisode> Episodes { get; set; }
 
-		internal bool IsPostable() {
-			return (Movies != null && Movies.Any()) || (Shows != null && Shows.Any()) || (Episodes != null && Episodes.Any());
-		}
+		internal bool IsPostable() => (Movies != null && Movies.Any()) || (Shows != null && Shows.Any()) || (Episodes != null && Episodes.Any());
 
 	}
 

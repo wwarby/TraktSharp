@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-
 namespace TraktSharp.Enums {
 
 	/// <summary>Indicates the requirement for authentication on a request type</summary>

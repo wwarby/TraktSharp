@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Newtonsoft.Json;
 using TraktSharp.Enums;
 using TraktSharp.Helpers;
@@ -23,7 +22,7 @@ namespace TraktSharp.Entities.RequestBody.Users {
 		public TraktPrivacyOption Privacy { get; set; }
 
 		[JsonProperty(PropertyName = "privacy")]
-		private string PrivacyString { get { return TraktEnumHelper.GetDescription(Privacy); } }
+		private string PrivacyString => TraktEnumHelper.GetDescription(Privacy);
 
 		/// <summary>Should each item be numbered?</summary>
 		[JsonProperty(PropertyName = "display_numbers")]

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using TraktSharp.Modules;
 using TraktSharp.Request;
 
@@ -8,8 +6,6 @@ namespace TraktSharp {
 
 	/// <summary>A client providing all the consumable functionality of this library</summary>
 	public class TraktClient {
-
-		private readonly HttpMessageHandler _handler;
 
 		/// <summary>Executes immediately before an HTTP request is issued</summary>
 		public event BeforeRequestEventHandler BeforeRequest;
@@ -19,19 +15,19 @@ namespace TraktSharp {
 
 		/// <summary>Default constructor</summary>
 		/// <param name="handler">Used for unit testing to issue fake responses. Do not use otherwise.</param>
-		public TraktClient(HttpMessageHandler handler = null) { _handler = handler; }
+		public TraktClient(HttpMessageHandler handler = null) { HttpMessageHandler = handler; }
 
 		/// <summary> Used for unit testing to issue fake responses. Do not use otherwise.</summary>
-		public HttpMessageHandler HttpMessageHandler { get { return _handler; } }
+		public HttpMessageHandler HttpMessageHandler { get; }
 
 		private TraktConfiguration _configuration;
-		/// <summary>Configuation settings for the <see cref="TraktClient"/></summary>
+		/// <summary>Configuration settings for the <see cref="TraktClient"/></summary>
 		public TraktConfiguration Configuration {
 			get {
 				_configuration = _configuration ?? new TraktConfiguration(this);
 				return _configuration;
 			}
-			set { _configuration = value; }
+			set => _configuration = value;
 		}
 
 		private TraktAuthentication _authentication;
@@ -41,7 +37,7 @@ namespace TraktSharp {
 				_authentication = _authentication ?? new TraktAuthentication(this);
 				return _authentication;
 			}
-			set { _authentication = value; }
+			set => _authentication = value;
 		}
 
 		private TraktOAuthModule _oauth;
@@ -51,7 +47,7 @@ namespace TraktSharp {
 				_oauth = _oauth ?? (TraktOAuthModule)RegisterModule(new TraktOAuthModule(this));
 				return _oauth;
 			}
-			set { _oauth = value; }
+			set => _oauth = value;
 		}
 
 		private TraktAuthModule _auth;
@@ -61,7 +57,7 @@ namespace TraktSharp {
 				_auth = _auth ?? (TraktAuthModule)RegisterModule(new TraktAuthModule(this));
 				return _auth;
 			}
-			set { _auth = value; }
+			set => _auth = value;
 		}
 
 		private TraktCalendarsModule _calendars;
@@ -71,7 +67,7 @@ namespace TraktSharp {
 				_calendars = _calendars ?? (TraktCalendarsModule)RegisterModule(new TraktCalendarsModule(this));
 				return _calendars;
 			}
-			set { _calendars = value; }
+			set => _calendars = value;
 		}
 
 		private TraktCheckinModule _checkin;
@@ -81,7 +77,7 @@ namespace TraktSharp {
 				_checkin = _checkin ?? (TraktCheckinModule)RegisterModule(new TraktCheckinModule(this));
 				return _checkin;
 			}
-			set { _checkin = value; }
+			set => _checkin = value;
 		}
 
 		private TraktCommentsModule _comments;
@@ -91,7 +87,7 @@ namespace TraktSharp {
 				_comments = _comments ?? (TraktCommentsModule)RegisterModule(new TraktCommentsModule(this));
 				return _comments;
 			}
-			set { _comments = value; }
+			set => _comments = value;
 		}
 
 		private TraktGenresModule _genres;
@@ -101,7 +97,7 @@ namespace TraktSharp {
 				_genres = _genres ?? (TraktGenresModule)RegisterModule(new TraktGenresModule(this));
 				return _genres;
 			}
-			set { _genres = value; }
+			set => _genres = value;
 		}
 
 		private TraktMoviesModule _movies;
@@ -111,7 +107,7 @@ namespace TraktSharp {
 				_movies = _movies ?? (TraktMoviesModule)RegisterModule(new TraktMoviesModule(this));
 				return _movies;
 			}
-			set { _movies = value; }
+			set => _movies = value;
 		}
 
 		private TraktPeopleModule _people;
@@ -121,7 +117,7 @@ namespace TraktSharp {
 				_people = _people ?? (TraktPeopleModule)RegisterModule(new TraktPeopleModule(this));
 				return _people;
 			}
-			set { _people = value; }
+			set => _people = value;
 		}
 
 		private TraktRecommendationsModule _recommendations;
@@ -131,7 +127,7 @@ namespace TraktSharp {
 				_recommendations = _recommendations ?? (TraktRecommendationsModule)RegisterModule(new TraktRecommendationsModule(this));
 				return _recommendations;
 			}
-			set { _recommendations = value; }
+			set => _recommendations = value;
 		}
 
 		private TraktScrobbleModule _scrobble;
@@ -141,7 +137,7 @@ namespace TraktSharp {
 				_scrobble = _scrobble ?? (TraktScrobbleModule)RegisterModule(new TraktScrobbleModule(this));
 				return _scrobble;
 			}
-			set { _scrobble = value; }
+			set => _scrobble = value;
 		}
 
 		private TraktSearchModule _search;
@@ -151,7 +147,7 @@ namespace TraktSharp {
 				_search = _search ?? (TraktSearchModule)RegisterModule(new TraktSearchModule(this));
 				return _search;
 			}
-			set { _search = value; }
+			set => _search = value;
 		}
 
 		private TraktShowsModule _shows;
@@ -161,7 +157,7 @@ namespace TraktSharp {
 				_shows = _shows ?? (TraktShowsModule)RegisterModule(new TraktShowsModule(this));
 				return _shows;
 			}
-			set { _shows = value; }
+			set => _shows = value;
 		}
 
 		private TraktSeasonsModule _seasons;
@@ -171,7 +167,7 @@ namespace TraktSharp {
 				_seasons = _seasons ?? (TraktSeasonsModule)RegisterModule(new TraktSeasonsModule(this));
 				return _seasons;
 			}
-			set { _seasons = value; }
+			set => _seasons = value;
 		}
 
 		private TraktEpisodesModule _episodes;
@@ -181,7 +177,7 @@ namespace TraktSharp {
 				_episodes = _episodes ?? (TraktEpisodesModule)RegisterModule(new TraktEpisodesModule(this));
 				return _episodes;
 			}
-			set { _episodes = value; }
+			set => _episodes = value;
 		}
 
 		private TraktSyncModule _sync;
@@ -191,7 +187,7 @@ namespace TraktSharp {
 				_sync = _sync ?? (TraktSyncModule)RegisterModule(new TraktSyncModule(this));
 				return _sync;
 			}
-			set { _sync = value; }
+			set => _sync = value;
 		}
 
 		private TraktUsersModule _users;
@@ -201,15 +197,15 @@ namespace TraktSharp {
 				_users = _users ?? (TraktUsersModule)RegisterModule(new TraktUsersModule(this));
 				return _users;
 			}
-			set { _users = value; }
+			set => _users = value;
 		}
 
 		private ITraktModule RegisterModule(ITraktModule module) {
 			module.BeforeRequest += (sender, e) => {
-				if (BeforeRequest != null) { BeforeRequest(sender, e); }
+				BeforeRequest?.Invoke(sender, e);
 			};
 			module.AfterRequest += (sender, e) => {
-				if (AfterRequest != null) { AfterRequest(sender, e); }
+				AfterRequest?.Invoke(sender, e);
 			};
 			return module;
 		}

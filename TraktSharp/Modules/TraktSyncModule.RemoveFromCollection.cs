@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
@@ -17,17 +16,13 @@ namespace TraktSharp.Modules {
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionByMovieIdAsync(string movieId, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) {
-			return await RemoveFromCollectionAsync(TraktMovieFactory.FromId(movieId, movieIdType));
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionByMovieIdAsync(string movieId, TraktTextMovieIdType movieIdType = TraktTextMovieIdType.Auto) => await RemoveFromCollectionAsync(TraktMovieFactory.FromId(movieId, movieIdType));
 
 		/// <summary>Remove a movie from the user's collection by ID</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <param name="movieIdType">The movie ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionByMovieIdAsync(int movieId, TraktNumericMovieIdType movieIdType) {
-			return await RemoveFromCollectionAsync(TraktMovieFactory.FromId(movieId, movieIdType));
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionByMovieIdAsync(int movieId, TraktNumericMovieIdType movieIdType) => await RemoveFromCollectionAsync(TraktMovieFactory.FromId(movieId, movieIdType));
 
 		/// <summary>Remove a show from the user's collection by ID</summary>
 		/// <param name="showId">The show ID</param>
@@ -59,86 +54,68 @@ namespace TraktSharp.Modules {
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionByEpisodeIdAsync(string episodeId, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) {
-			return await RemoveFromCollectionAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionByEpisodeIdAsync(string episodeId, TraktTextEpisodeIdType episodeIdType = TraktTextEpisodeIdType.Auto) => await RemoveFromCollectionAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 
 		/// <summary>Remove an episode from the user's collection by ID</summary>
 		/// <param name="episodeId">The episode ID</param>
 		/// <param name="episodeIdType">The episode ID type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionByEpisodeIdAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType) {
-			return await RemoveFromCollectionAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionByEpisodeIdAsync(int episodeId, TraktNumericEpisodeIdType episodeIdType) => await RemoveFromCollectionAsync(TraktEpisodeFactory.FromId(episodeId, episodeIdType));
 
 		/// <summary>Remove a movie from the user's collection</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(TraktMovie movie) {
-			return await RemoveFromCollectionAsync(new List<TraktMovie> { movie }, null, null);
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(TraktMovie movie) => await RemoveFromCollectionAsync(new List<TraktMovie> { movie }, null, null);
 
 		/// <summary>Remove a show from the user's collection</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(TraktShow show) {
-			return await RemoveFromCollectionAsync(null, new List<TraktShow> { show }, null);
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(TraktShow show) => await RemoveFromCollectionAsync(null, new List<TraktShow> { show }, null);
 
 		/// <summary>Remove an episode from the user's collection</summary>
 		/// <param name="episode">The episode</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(TraktEpisode episode) {
-			return await RemoveFromCollectionAsync(null, null, new List<TraktEpisode> { episode });
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(TraktEpisode episode) => await RemoveFromCollectionAsync(null, null, new List<TraktEpisode> { episode });
 
 		/// <summary>Remove one or more movies from the user's collection</summary>
 		/// <param name="movies">A collection of movies</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<TraktMovie> movies) {
-			return await RemoveFromCollectionAsync(movies, null, null);
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<TraktMovie> movies) => await RemoveFromCollectionAsync(movies, null, null);
 
 		/// <summary>Remove one or more shows from the user's collection</summary>
 		/// <param name="shows">A collection of shows</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<TraktShow> shows) {
-			return await RemoveFromCollectionAsync(null, shows, null);
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<TraktShow> shows) => await RemoveFromCollectionAsync(null, shows, null);
 
 		/// <summary>Remove one or more episodes from the user's collection</summary>
 		/// <param name="episodes">A collection of episodes</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<TraktEpisode> episodes) {
-			return await RemoveFromCollectionAsync(null, null, episodes);
-		}
+		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<TraktEpisode> episodes) => await RemoveFromCollectionAsync(null, null, episodes);
 
 		/// <summary>Remove one or more items from the user's collection by IDs</summary>
 		/// <param name="movieIds">A collection of movie IDs</param>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="episodeIds">A collection of episode IDs</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<string> movieIds, IEnumerable<string> showIds, IEnumerable<string> episodeIds) {
-			return await RemoveFromCollectionAsync(
+		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<string> movieIds, IEnumerable<string> showIds, IEnumerable<string> episodeIds) =>
+			await RemoveFromCollectionAsync(
 				TraktMovieFactory.FromIds(movieIds),
 				TraktShowFactory.FromIds(showIds),
 				TraktEpisodeFactory.FromIds(episodeIds));
-		}
 
 		/// <summary>Remove one or more items from the user's collection</summary>
 		/// <param name="movies">A collection of movies</param>
 		/// <param name="shows">A collection of shows</param>
 		/// <param name="episodes">A collection of episodes</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<TraktMovie> movies, IEnumerable<TraktShow> shows, IEnumerable<TraktEpisode> episodes) {
-			return await SendAsync(new TraktSyncCollectionRemoveRequest(Client) {
+		public async Task<TraktRemoveResponse> RemoveFromCollectionAsync(IEnumerable<TraktMovie> movies, IEnumerable<TraktShow> shows, IEnumerable<TraktEpisode> episodes) =>
+			await SendAsync(new TraktSyncCollectionRemoveRequest(Client) {
 				RequestBody = new TraktSyncRemoveRequestBody {
 					Movies = movies,
 					Shows = shows,
 					Episodes = episodes
 				}
 			});
-		}
 
 	}
 

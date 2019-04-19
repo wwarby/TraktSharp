@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using TraktSharp.Entities;
 
 namespace TraktSharp.Request.Comments {
@@ -8,7 +7,7 @@ namespace TraktSharp.Request.Comments {
 
 		internal TraktCommentsReplyRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "comments/{id}/replies"; } }
+		protected override string PathTemplate => "comments/{id}/replies";
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

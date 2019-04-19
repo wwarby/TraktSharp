@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using TraktSharp.Entities.Response;
 using TraktSharp.Enums;
 
@@ -11,17 +9,16 @@ namespace TraktSharp.Request.Sync {
 
 		internal TraktSyncRatingsEpisodesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "sync/ratings/episodes/{rating}"; } }
+		protected override string PathTemplate => "sync/ratings/episodes/{rating}";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
 		internal TraktRating Rating { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			new Dictionary<string, string> {
 				{"rating", Rating != TraktRating.Unspecified ? ((int)Rating).ToString(CultureInfo.InvariantCulture) : string.Empty}
 			};
-		}
 
 	}
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using TraktSharp.Entities.Response;
 
 namespace TraktSharp.Request.Users {
@@ -9,7 +7,7 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersCollectionMoviesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/collection/movies"; } }
+		protected override string PathTemplate => "users/{username}/collection/movies";
 
 	}
 

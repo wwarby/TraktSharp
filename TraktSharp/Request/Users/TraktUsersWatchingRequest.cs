@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using TraktSharp.Entities.Response.Users;
+﻿using TraktSharp.Entities.Response.Users;
 
 namespace TraktSharp.Request.Users {
 
@@ -8,7 +6,7 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersWatchingRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/watching"; } }
+		protected override string PathTemplate => "users/{username}/watching";
 
 	}
 

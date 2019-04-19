@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
@@ -11,8 +10,8 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI to the full size image</summary>
 		[JsonIgnore]
 		public Uri Full {
-			get { return !string.IsNullOrEmpty(FullString) ? new Uri(FullString) : null; }
-			set { FullString = value.AbsoluteUri; }
+			get => !string.IsNullOrEmpty(FullString) ? new Uri(FullString) : null;
+			set => FullString = value.AbsoluteUri;
 		}
 
 		[JsonProperty(PropertyName = "full")]
@@ -21,8 +20,8 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI to the medium size image</summary>
 		[JsonIgnore]
 		public Uri Medium {
-			get { return !string.IsNullOrEmpty(MediumString) ? new Uri(MediumString) : null; }
-			set { MediumString = value.AbsoluteUri; }
+			get => !string.IsNullOrEmpty(MediumString) ? new Uri(MediumString) : null;
+			set => MediumString = value.AbsoluteUri;
 		}
 
 		[JsonProperty(PropertyName = "medium")]
@@ -31,13 +30,13 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI to the thumbnail size image</summary>
 		[JsonIgnore]
 		public Uri Thumb {
-			get { return !string.IsNullOrEmpty(ThumbString) ? new Uri(ThumbString) : null; }
-			set { ThumbString = value.AbsoluteUri; }
+			get => !string.IsNullOrEmpty(ThumbString) ? new Uri(ThumbString) : null;
+			set => ThumbString = value.AbsoluteUri;
 		}
 
 		[JsonProperty(PropertyName = "thumb")]
 		private string ThumbString { get; set; }
-		
+
 	}
 
 }

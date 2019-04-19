@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Navigation;
 using Microsoft.Win32;
@@ -15,14 +14,14 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			NativeMethods.DisableInternetExplorerClickSounds();
 
 			Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION",
-				string.Format("{0}.exe", Assembly.GetExecutingAssembly().GetName().Name), 0, RegistryValueKind.DWord);
+				$"{Assembly.GetExecutingAssembly().GetName().Name}.exe", 0, RegistryValueKind.DWord);
 			Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION",
-				string.Format("{0}.vshost.exe", Assembly.GetExecutingAssembly().GetName().Name), 0, RegistryValueKind.DWord);
+				$"{Assembly.GetExecutingAssembly().GetName().Name}.vshost.exe", 0, RegistryValueKind.DWord);
 
 			Client = traktClient;
 		}
 
-		internal TraktClient Client { get; private set; }
+		internal TraktClient Client { get; }
 
 		internal void Navigating(AuthorizeView sender, NavigatingCancelEventArgs e) {
 			if (!e.Uri.AbsoluteUri.StartsWith(Client.Authentication.OAuthRedirectUri, StringComparison.CurrentCultureIgnoreCase)) {

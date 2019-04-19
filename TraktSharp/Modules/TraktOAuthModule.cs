@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Entities.RequestBody.OAuth;
 using TraktSharp.Entities.Response.OAuth;
@@ -23,9 +21,7 @@ namespace TraktSharp.Modules {
 		/// <see cref="TraktAuthentication.CurrentOAuthAccessToken"/> during initialization.
 		/// </summary>
 		/// <returns>See summary</returns>
-		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync() {
-			return await GetOAuthTokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.OAuthRedirectUri, TraktOAuthTokenGrantType.AuthorizationCode);
-		}
+		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync() => await GetOAuthTokenAsync(Client.Authentication.AuthorizationCode, Client.Authentication.ClientId, Client.Authentication.ClientSecret, Client.Authentication.OAuthRedirectUri, TraktOAuthTokenGrantType.AuthorizationCode);
 
 		/// <summary>
 		/// Use the authorization code parameter sent back to <see cref="TraktAuthentication.OAuthRedirectUri"/> to get a <see cref="TraktOAuthAccessToken"/>
@@ -38,8 +34,8 @@ namespace TraktSharp.Modules {
 		/// <param name="redirectUri">The uri to which Trakt should redirect upon successful authentication. Refer to <see cref="TraktAuthentication.OAuthRedirectUri"/> for further details.</param>
 		/// <param name="grantType">The requested grant type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync(string code, string clientId, string clientSecret, string redirectUri, TraktOAuthTokenGrantType grantType) {
-			return await SendAsync(new TraktOAuthTokenRequest(Client) {
+		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync(string code, string clientId, string clientSecret, string redirectUri, TraktOAuthTokenGrantType grantType) =>
+			await SendAsync(new TraktOAuthTokenRequest(Client) {
 				RequestBody = new TraktOAuthTokenRequestBody {
 					Code = code,
 					ClientId = clientId,
@@ -48,7 +44,6 @@ namespace TraktSharp.Modules {
 					GrantType = TraktEnumHelper.GetDescription(grantType)
 				}
 			});
-		}
 
 	}
 

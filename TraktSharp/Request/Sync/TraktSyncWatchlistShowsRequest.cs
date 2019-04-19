@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using TraktSharp.Entities.Response;
 using TraktSharp.Enums;
 
@@ -10,9 +8,9 @@ namespace TraktSharp.Request.Sync {
 
 		internal TraktSyncWatchlistShowsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "sync/watchlist/shows"; } }
+		protected override string PathTemplate => "sync/watchlist/shows";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
 	}
 

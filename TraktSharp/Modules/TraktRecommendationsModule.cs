@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
@@ -18,18 +16,16 @@ namespace TraktSharp.Modules {
 		/// <summary>Personalized movie recommendations for a user. Results returned with the top recommendation first.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktMovie>> GetRecommendedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
-			return await SendAsync(new TraktRecommendationsMoviesRequest(Client) { Extended = extended });
-		}
+		public async Task<IEnumerable<TraktMovie>> GetRecommendedMoviesAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktRecommendationsMoviesRequest(Client) { Extended = extended });
 
-		/// <summary>Dismiss a movie from getting recommended anymore</summary>
+		/// <summary>Dismiss a movie from getting recommended in the future</summary>
 		/// <param name="movie">The movie</param>
 		/// <returns>See summary</returns>
 		public async Task DismissMovieRecommendationAsync(TraktMovie movie) {
 			await DismissMovieRecommendationAsync(movie.Ids.GetBestId());
 		}
 
-		/// <summary>Dismiss a movie from getting recommended anymore</summary>
+		/// <summary>Dismiss a movie from getting recommended in the future</summary>
 		/// <param name="movieId">The movie ID</param>
 		/// <returns>See summary</returns>
 		public async Task DismissMovieRecommendationAsync(string movieId) {
@@ -39,18 +35,16 @@ namespace TraktSharp.Modules {
 		/// <summary>Personalized show recommendations for a user. Results returned with the top recommendation first.</summary>
 		/// <param name="extended">Changes which properties are populated for standard media objects. By default, minimal data is returned. Change this if additional fields are required in the returned data.</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktShow>> GetRecommendedShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) {
-			return await SendAsync(new TraktRecommendationsShowsRequest(Client) { Extended = extended });
-		}
+		public async Task<IEnumerable<TraktShow>> GetRecommendedShowsAsync(TraktExtendedOption extended = TraktExtendedOption.Unspecified) => await SendAsync(new TraktRecommendationsShowsRequest(Client) { Extended = extended });
 
-		/// <summary>Dismiss a show from getting recommended anymore</summary>
+		/// <summary>Dismiss a show from getting recommended in the future</summary>
 		/// <param name="show">The show</param>
 		/// <returns>See summary</returns>
 		public async Task DismissShowRecommendationAsync(TraktShow show) {
 			await DismissShowRecommendationAsync(show.Ids.GetBestId());
 		}
 
-		/// <summary>Dismiss a show from getting recommended anymore</summary>
+		/// <summary>Dismiss a show from getting recommended in the future</summary>
 		/// <param name="showId">The show ID</param>
 		/// <returns>See summary</returns>
 		public async Task DismissShowRecommendationAsync(string showId) {

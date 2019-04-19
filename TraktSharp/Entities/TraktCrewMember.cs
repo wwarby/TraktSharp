@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
-	
+
 	/// <summary>A member of the crew for a movie or show</summary>
 	[Serializable]
 	public class TraktCrewMember {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using TraktSharp.Entities;
 
 namespace TraktSharp.Factories {
@@ -12,7 +11,7 @@ namespace TraktSharp.Factories {
 		/// <returns>See summary</returns>
 		public static TraktList FromId(string listId) {
 			if (string.IsNullOrEmpty(listId)) {
-				throw new ArgumentException("listId not set", "listId");
+				throw new ArgumentException("listId not set", nameof(listId));
 			}
 			var ret = new TraktList { Ids = new TraktListIds { Slug = listId } };
 			return ret;

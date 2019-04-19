@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using TraktSharp.Entities.RequestBody.OAuth;
 using TraktSharp.Entities.Response.OAuth;
 using TraktSharp.Enums;
@@ -10,9 +9,9 @@ namespace TraktSharp.Request.OAuth {
 
 		internal TraktOAuthTokenRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "oauth/token"; } }
+		protected override string PathTemplate => "oauth/token";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Forbidden; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Forbidden;
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

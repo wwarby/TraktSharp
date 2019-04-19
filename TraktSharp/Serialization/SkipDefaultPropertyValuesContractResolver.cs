@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Reflection;
 
 namespace TraktSharp.Serialization {
 
@@ -16,7 +14,7 @@ namespace TraktSharp.Serialization {
 			if (typeof(bool).IsAssignableFrom(property.PropertyType) || typeof(string).IsAssignableFrom(property.PropertyType)) {
 				property.ShouldSerialize = obj => {
 					var value = memberProp != null ? memberProp.GetValue(obj, null) : memberField != null ? memberField.GetValue(obj) : null;
-					if (value is bool) { return (bool)value; }
+					if (value is bool boolValue) { return boolValue; }
 					if (value is string) { return !string.IsNullOrWhiteSpace(value.ToString()); }
 					return true;
 				};

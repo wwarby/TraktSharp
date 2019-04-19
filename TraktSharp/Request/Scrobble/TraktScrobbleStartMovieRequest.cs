@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using TraktSharp.Entities.RequestBody.Scrobble;
 using TraktSharp.Entities.Response.Scrobble;
 
@@ -9,7 +8,7 @@ namespace TraktSharp.Request.Scrobble {
 
 		internal TraktScrobbleStartMovieRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "scrobble/start"; } }
+		protected override string PathTemplate => "scrobble/start";
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-
 namespace TraktSharp.Enums {
 
 	/// <summary>Options for the text person ID type on supporting request types</summary>

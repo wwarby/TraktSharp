@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using TraktSharp.Request;
 
 namespace TraktSharp.Modules {

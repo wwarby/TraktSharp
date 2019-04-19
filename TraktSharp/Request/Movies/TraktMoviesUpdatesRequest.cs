@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TraktSharp.Entities.Response.Movies;
 using TraktSharp.Enums;
 using TraktSharp.ExtensionMethods;
@@ -11,19 +10,18 @@ namespace TraktSharp.Request.Movies {
 
 		internal TraktMoviesUpdatesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/updates/{start_date}"; } }
+		protected override string PathTemplate => "movies/updates/{start_date}";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
-		protected override bool SupportsPagination { get { return true; } }
+		protected override bool SupportsPagination => true;
 
 		internal DateTime? StartDate { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			new Dictionary<string, string> {
 				{"start_date", StartDate.ToTraktApiFormat()}
 			};
-		}
 
 	}
 

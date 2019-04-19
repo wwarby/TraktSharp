@@ -1,13 +1,10 @@
-﻿using System;
-using System.Linq;
-
-namespace TraktSharp.Request.Checkin {
+﻿namespace TraktSharp.Request.Checkin {
 
 	internal class TraktCheckinDeleteRequest : TraktDeleteRequest {
 
 		internal TraktCheckinDeleteRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "checkin"; } }
+		protected override string PathTemplate => "checkin";
 
 	}
 

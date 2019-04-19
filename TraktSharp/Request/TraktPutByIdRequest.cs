@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace TraktSharp.Request {
 
@@ -10,11 +9,10 @@ namespace TraktSharp.Request {
 
 		internal string Id { get; set; }
 
-		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) {
-			return new Dictionary<string, string> {
+		protected override IEnumerable<KeyValuePair<string, string>> GetPathParameters(IEnumerable<KeyValuePair<string, string>> pathParameters) =>
+			new Dictionary<string, string> {
 				{"id", Id}
 			};
-		}
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

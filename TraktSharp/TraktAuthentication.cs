@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using TraktSharp.Entities;
@@ -19,21 +18,21 @@ namespace TraktSharp {
 		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
 		public TraktAuthentication(TraktClient client) {
 			Client = client;
-			AuthenticationMode =_defaultAuthenticationMode;
+			AuthenticationMode = _defaultAuthenticationMode;
 			AntiForgeryToken = Guid.NewGuid().ToString();
 			OAuthRedirectUri = _defaultRedirectUri;
 		}
 
 		/// <summary>The owning instance of <see cref="TraktClient"/></summary>
-		public TraktClient Client { get; private set; }
+		public TraktClient Client { get; }
 
 		/// <summary>The method of authentication to the Trakt API</summary>
 		public TraktAuthenticationMode AuthenticationMode { get; set; }
 
 		/// <summary>The current access token that will be used in all authenticated requests</summary>
 		public TraktOAuthAccessToken CurrentOAuthAccessToken {
-			get { return _currentOAuthAccessToken = _currentOAuthAccessToken ?? new TraktOAuthAccessToken(); } 
-			set { _currentOAuthAccessToken = value; }
+			get { return _currentOAuthAccessToken = _currentOAuthAccessToken ?? new TraktOAuthAccessToken(); }
+			set => _currentOAuthAccessToken = value;
 		}
 
 		/// <summary>The current access token that will be used in all authenticated requests</summary>
@@ -43,7 +42,7 @@ namespace TraktSharp {
 		public string AuthorizationCode { get; private set; }
 
 		/// <summary>A randomly generated anti-forgery token used in authentication requests</summary>
-		public string AntiForgeryToken { get; private set; }
+		public string AntiForgeryToken { get; }
 
 		/// <summary>Get this from your app settings</summary>
 		public string ClientId { get; set; }
@@ -66,12 +65,8 @@ namespace TraktSharp {
 		public string OAuthRedirectUri { get; set; }
 
 		/// <summary>Gets the url that users must be redirected to in order to provide their credentials for OAuth authentication</summary>
-		public Uri OAuthAuthorizationUri {
-			get {
-				return new Uri(string.Format("{0}/oauth/authorize?response_type=code&client_id={1}&redirect_uri={2}&state={3}&username={4}",
-					Client.Configuration.BaseUrl, ClientId, HttpUtility.UrlEncode(OAuthRedirectUri), AntiForgeryToken, Username));
-			}
-		}
+		public Uri OAuthAuthorizationUri =>
+			new Uri($"{Client.Configuration.BaseUrl}/oauth/authorize?response_type=code&client_id={ClientId}&redirect_uri={HttpUtility.UrlEncode(OAuthRedirectUri)}&state={AntiForgeryToken}&username={Username}");
 
 		/// <summary>Parses the uri that Trakt redirects to after successful OAuth authentication to extract the authorization code and check the anti-forgery token</summary>
 		/// <param name="uri">The uri that Trakt redirected the user to</param>
@@ -105,20 +100,20 @@ namespace TraktSharp {
 		/// <see cref="ClientSecret"/> and <see cref="OAuthRedirectUri"/>, and parse the result into <see cref="CurrentOAuthAccessToken"/></summary>
 		/// <returns><see cref="CurrentOAuthAccessToken"/></returns>
 		public async Task<TraktOAuthAccessToken> RefreshOAuthAccessToken() {
-			//TODO: OAuth refresh currently not working - it isn't clear from the docs exactly what values should be passed in. Reported to Trakt staff.
+			// TODO: OAuth refresh currently not working - it isn't clear from the docs exactly what values should be passed in. Reported to Trakt staff.
 			AuthenticationMode = TraktAuthenticationMode.OAuth;
 			var result = await Client.OAuth.GetOAuthTokenAsync(CurrentOAuthAccessToken.RefreshToken, ClientId, ClientSecret, OAuthRedirectUri, TraktOAuthTokenGrantType.RefreshToken);
 			CurrentOAuthAccessToken = new TraktOAuthAccessToken {
 				AccessToken = result.AccessToken,
 				AccessTokenExpires = DateTime.Now.AddSeconds(result.ExpiresIn),
 				AccessScope = result.Scope,
-				RefreshToken =  result.RefreshToken
+				RefreshToken = result.RefreshToken
 			};
 			return CurrentOAuthAccessToken;
 		}
 
 		/// <summary>
-		/// Log in to the Trakt API using a username/email and password. This is a special case where the application will is allowed to use a simpler token based authenticaion
+		/// Log in to the Trakt API using a username/email and password. This is a special case where the application will is allowed to use a simpler token based authentication
 		/// instead of OAuth. In order to fall under this special use case, you will need to contact the trakt staff and get a special allowance made.
 		/// </summary>
 		/// <param name="usernameOrEmail">The user's username or email address</param>

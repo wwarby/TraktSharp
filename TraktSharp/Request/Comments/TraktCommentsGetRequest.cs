@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using TraktSharp.Entities;
+﻿using TraktSharp.Entities;
 using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Comments {
@@ -9,9 +7,9 @@ namespace TraktSharp.Request.Comments {
 
 		internal TraktCommentsGetRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "comments/{id}"; } }
+		protected override string PathTemplate => "comments/{id}";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
 	}
 

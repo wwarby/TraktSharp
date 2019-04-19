@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿namespace TraktSharp {
 
-namespace TraktSharp {
-
-	/// <summary>Configuation settings for an instance of <see cref="TraktClient"/></summary>
+	/// <summary>Configuration settings for an instance of <see cref="TraktClient"/></summary>
 	public class TraktConfiguration {
 
 		/// <summary>Default constructor. Used internally by <see cref="TraktClient"/>.</summary>
@@ -13,7 +10,7 @@ namespace TraktSharp {
 		}
 
 		/// <summary>The owning instance of <see cref="TraktClient"/></summary>
-		public TraktClient Client { get; private set; }
+		public TraktClient Client { get; }
 
 		/// <summary>The version of the Trakt API to use in all requests</summary>
 		public decimal ApiVersion { get; set; }

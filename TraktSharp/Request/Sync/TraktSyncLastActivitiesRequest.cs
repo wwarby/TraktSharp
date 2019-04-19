@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using TraktSharp.Entities.Response.Sync;
+﻿using TraktSharp.Entities.Response.Sync;
 using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Sync {
@@ -9,9 +7,9 @@ namespace TraktSharp.Request.Sync {
 
 		internal TraktSyncLastActivitiesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "sync/last_activities"; } }
+		protected override string PathTemplate => "sync/last_activities";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
 	}
 

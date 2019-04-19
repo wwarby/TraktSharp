@@ -52,6 +52,11 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Response\Movies\TraktMoviesBoxOfficeResponseItem.cs" />
+    <Compile Include="Entities\Response\Movies\TraktMoviesEngagementResponseItem.cs" />
+    <Compile Include="Entities\Response\Movies\TraktMoviesAnticipatedResponseItem.cs" />
+    <Compile Include="Entities\Response\Shows\TraktShowsAnticipatedResponseItem.cs" />
+    <Compile Include="Entities\Response\Shows\TraktShowsEngagementResponseItem.cs" />
     <Compile Include="Enums\TraktAudioChannels.cs" />
     <Compile Include="Enums\TraktAudioFormat.cs" />
     <Compile Include="Enums\TraktEnumMemberInfo.cs" />
@@ -145,6 +150,7 @@
     <Compile Include="Entities\TraktConflictErrorResponse.cs" />
     <Compile Include="Entities\TraktPersonImages.cs" />
     <Compile Include="Entities\TraktMovieImages.cs" />
+    <Compile Include="Enums\TraktReportingPeriod.cs" />
     <Compile Include="Enums\TraktHistoryAction.cs" />
     <Compile Include="Enums\TraktAuthenticationMode.cs" />
     <Compile Include="Enums\TraktShowStatus.cs" />
@@ -239,6 +245,11 @@
     <Compile Include="Request\Calendars\TraktCalendarsShowsNewRequest.cs" />
     <Compile Include="Request\Calendars\TraktCalendarsMoviesRequest.cs" />
     <Compile Include="Request\ITraktRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesBoxOfficeRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesAnticipatedRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesPlayedRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesWatchedRequest.cs" />
+    <Compile Include="Request\Movies\TraktMoviesCollectedRequest.cs" />
     <Compile Include="Request\Scrobble\TraktScrobbleStopMovieRequest.cs" />
     <Compile Include="Request\Scrobble\TraktScrobbleStopEpisodeRequest.cs" />
     <Compile Include="Request\Scrobble\TraktScrobblePauseEpisodeRequest.cs" />
@@ -291,6 +302,10 @@
     <Compile Include="Request\Movies\TraktMoviesTrendingRequest.cs" />
     <Compile Include="Request\Movies\TraktMoviesUpdatesRequest.cs" />
     <Compile Include="Request\Movies\TraktMoviesWatchingRequest.cs" />
+    <Compile Include="Request\Shows\TraktShowsAnticipatedRequest.cs" />
+    <Compile Include="Request\Shows\TraktShowsPlayedRequest.cs" />
+    <Compile Include="Request\Shows\TraktShowsWatchedRequest.cs" />
+    <Compile Include="Request\Shows\TraktShowsCollectedRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsWatchingRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsRatingsRequest.cs" />
     <Compile Include="Request\Shows\TraktShowsRelatedRequest.cs" />

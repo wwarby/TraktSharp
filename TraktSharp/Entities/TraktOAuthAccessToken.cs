@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
@@ -22,7 +21,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>Tests if the token is valid</summary>
 		[JsonIgnore]
-		public bool IsValid { get { return !string.IsNullOrEmpty(AccessToken) && AccessTokenExpires >= DateTime.UtcNow; } }
+		public bool IsValid => !string.IsNullOrEmpty(AccessToken) && AccessTokenExpires >= DateTime.UtcNow;
 
 	}
 

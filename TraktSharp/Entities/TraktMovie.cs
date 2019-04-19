@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
@@ -49,8 +48,8 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI of a trailer for the movie</summary>
 		[JsonIgnore]
 		public Uri Trailer {
-			get { return !string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null; }
-			set { TrailerString = value.AbsoluteUri; }
+			get => !string.IsNullOrEmpty(TrailerString) ? new Uri(TrailerString) : null;
+			set => TrailerString = value.AbsoluteUri;
 		}
 
 		[JsonProperty(PropertyName = "trailer")]
@@ -59,8 +58,8 @@ namespace TraktSharp.Entities {
 		/// <summary>The URI of the movie's homepage</summary>
 		[JsonIgnore]
 		public Uri Homepage {
-			get { return !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null; }
-			set { HomepageString = value.AbsoluteUri; }
+			get => !string.IsNullOrEmpty(HomepageString) ? new Uri(HomepageString) : null;
+			set => HomepageString = value.AbsoluteUri;
 		}
 
 		[JsonProperty(PropertyName = "homepage")]
@@ -92,8 +91,7 @@ namespace TraktSharp.Entities {
 				foreach (var code in AvailableTranslationLanguageCodes) {
 					try {
 						ret.Add(new RegionInfo(code).DisplayName);
-					}
-					catch { }
+					} catch { }
 				}
 				return ret;
 			}
@@ -105,9 +103,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>Indicates if the instance contains the data required for it to be sent as part of a request body in a <c>POST</c> HTTP method</summary>
 		/// <returns><c>true</c> if the instance is in a fit state to be <c>POSTed</c>, otherwise <c>false</c></returns>
-		internal bool IsPostable() {
-			return (!string.IsNullOrEmpty(Title) && Year.HasValue) || (Ids != null && Ids.HasAnyValuesSet());
-		}
+		internal bool IsPostable() => (!string.IsNullOrEmpty(Title) && Year.HasValue) || (Ids != null && Ids.HasAnyValuesSet());
 
 	}
 

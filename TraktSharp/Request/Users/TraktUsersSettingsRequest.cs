@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using TraktSharp.Entities;
+﻿using TraktSharp.Entities;
 using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Users {
@@ -9,9 +7,9 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersSettingsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/settings"; } }
+		protected override string PathTemplate => "users/settings";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.Required; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.Required;
 
 	}
 

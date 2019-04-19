@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
@@ -16,13 +14,10 @@ namespace TraktSharp.Tests {
 		private readonly Dictionary<string, HttpResponseMessage> _fakeResponses = new Dictionary<string, HttpResponseMessage>();
 		private string _responseFilename = "";
 
-		private string ResponseFilePath {
-			get {
-				return !string.IsNullOrEmpty(_responseFilename)
-					? Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty, "Response", _responseFilename)
-					: string.Empty;
-			}
-		}
+		private string ResponseFilePath =>
+			!string.IsNullOrEmpty(_responseFilename)
+				? Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty, "Response", _responseFilename)
+				: string.Empty;
 
 		internal void AddFakeResponse(string url, HttpStatusCode statusCode, string responseFilename) {
 			_responseFilename = responseFilename;

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Navigation;
+﻿using System.Windows.Navigation;
 using TraktSharp.Examples.Wpf.ViewModels;
 
 namespace TraktSharp.Examples.Wpf.Views {
 
 	internal partial class AuthorizeView {
 
-		private AuthorizeViewModel ViewModel { get; set; }
+		private AuthorizeViewModel ViewModel { get; }
 
 		public AuthorizeView(AuthorizeViewModel viewModel) {
 			InitializeComponent();

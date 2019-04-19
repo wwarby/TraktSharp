@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace TraktSharp.Structs {
+﻿namespace TraktSharp.Structs {
 
 	/// <summary>Settings for pagination on supporting request types</summary>
 	public struct TraktPaginationOptions {

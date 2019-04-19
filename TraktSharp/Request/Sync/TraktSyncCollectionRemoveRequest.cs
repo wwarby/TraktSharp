@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using TraktSharp.Entities.RequestBody.Sync;
 using TraktSharp.Entities.Response;
 
@@ -9,7 +8,7 @@ namespace TraktSharp.Request.Sync {
 
 		internal TraktSyncCollectionRemoveRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "sync/collection/remove"; } }
+		protected override string PathTemplate => "sync/collection/remove";
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

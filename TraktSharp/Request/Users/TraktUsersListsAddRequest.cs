@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using TraktSharp.Entities;
 using TraktSharp.Entities.RequestBody.Users;
 
@@ -9,7 +8,7 @@ namespace TraktSharp.Request.Users {
 
 		internal TraktUsersListsAddRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/lists"; } }
+		protected override string PathTemplate => "users/{username}/lists";
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

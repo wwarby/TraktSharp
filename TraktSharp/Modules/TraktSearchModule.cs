@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
@@ -23,14 +21,13 @@ namespace TraktSharp.Modules {
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TraktSearchItemType queryType = TraktSearchItemType.Unspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified, int? page = null, int? limit = null) {
-			return await SendAsync(new TraktTextQueryRequest(Client) {
+		public async Task<IEnumerable<TraktSearchResult>> TextQueryAsync(string query, TraktSearchItemType queryType = TraktSearchItemType.Unspecified, TraktExtendedOption extended = TraktExtendedOption.Unspecified, int? page = null, int? limit = null) =>
+			await SendAsync(new TraktTextQueryRequest(Client) {
 				Query = query,
 				Type = queryType,
 				Extended = extended,
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
-		}
 
 		/// <summary>Lookup an item by using a trakt ID or other external ID. This is helpful to get an items info including the trakt ID.</summary>
 		/// <param name="id">The ID to search for</param>
@@ -39,14 +36,13 @@ namespace TraktSharp.Modules {
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktSearchResult>> IdLookupAsync(string id, TraktIdLookupType idType, TraktExtendedOption extended = TraktExtendedOption.Unspecified, int? page = null, int? limit = null) {
-			return await SendAsync(new TraktIdLookupRequest(Client) {
+		public async Task<IEnumerable<TraktSearchResult>> IdLookupAsync(string id, TraktIdLookupType idType, TraktExtendedOption extended = TraktExtendedOption.Unspecified, int? page = null, int? limit = null) =>
+			await SendAsync(new TraktIdLookupRequest(Client) {
 				IdType = idType,
 				Id = id,
 				Extended = extended,
 				Pagination = new TraktPaginationOptions(page, limit)
 			});
-		}
 
 	}
 

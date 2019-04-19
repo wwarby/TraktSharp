@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TraktSharp.Enums;
@@ -78,12 +77,22 @@ namespace TraktSharp.Examples.Wpf {
 			GenresGetGenresAsyncShows,
 
 			// Movies module
+			[Description("TraktClient.Movies.GetAnticipatedMoviesAsync()")]
+			MoviesGetAnticipatedMoviesAsync,
+			[Description("TraktClient.Movies.GetBoxOfficeMoviesAsync()")]
+			MoviesGetBoxOfficeMoviesAsync,
+			[Description("TraktClient.Movies.GetCollectedMoviesAsync()")]
+			MoviesGetCollectedMoviesAsync,
+			[Description("TraktClient.Movies.GetPlayedMoviesAsync()")]
+			MoviesGetPlayedMoviesAsync,
 			[Description("TraktClient.Movies.GetPopularMoviesAsync()")]
 			MoviesGetPopularMoviesAsync,
 			[Description("TraktClient.Movies.GetTrendingMoviesAsync()")]
 			MoviesGetTrendingMoviesAsync,
 			[Description("TraktClient.Movies.GetUpdatedMoviesAsync()")]
 			MoviesGetUpdatedMoviesAsync,
+			[Description("TraktClient.Movies.GetWatchedMoviesAsync()")]
+			MoviesGetWatchedMoviesAsync,
 			[Description("TraktClient.Movies.GetMovieAsync()")]
 			MoviesGetMovieAsync,
 			[Description("TraktClient.Movies.GetAliasesAsync()")]
@@ -150,12 +159,20 @@ namespace TraktSharp.Examples.Wpf {
 			SeasonsGetUsersWatchingSeasonAsync,
 
 			// Shows module
+			[Description("TraktClient.Shows.GetAnticipatedShowsAsync()")]
+			ShowsGetAnticipatedShowsAsync,
+			[Description("TraktClient.Shows.GetCollectedShowsAsync()")]
+			ShowsGetCollectedShowsAsync,
+			[Description("TraktClient.Shows.GetPlayedShowsAsync()")]
+			ShowsGetPlayedShowsAsync,
 			[Description("TraktClient.Shows.GetPopularShowsAsync()")]
 			ShowsGetPopularShowsAsync,
 			[Description("TraktClient.Shows.GetTrendingShowsAsync()")]
 			ShowsGetTrendingShowsAsync,
 			[Description("TraktClient.Shows.GetUpdatedShowsAsync()")]
 			ShowsGetUpdatedShowsAsync,
+			[Description("TraktClient.Shows.GetWatchedShowsAsync()")]
+			ShowsGetWatchedShowsAsync,
 			[Description("TraktClient.Shows.GetShowAsync()")]
 			ShowsGetShowAsync,
 			[Description("TraktClient.Shows.GetAliasesAsync()")]
@@ -297,7 +314,7 @@ namespace TraktSharp.Examples.Wpf {
 			UsersApproveFollowRequestAsync,
 			[Description("TraktClient.Users.DenyFollowRequestAsync()")]
 			UsersDenyFollowRequestAsync,
-			
+
 			[Description("TraktClient.Users.GetUserAsync()")]
 			UsersGetUserAsync,
 			[Description("TraktClient.Users.GetMoviesCollectionAsync()")]
@@ -311,7 +328,7 @@ namespace TraktSharp.Examples.Wpf {
 			UsersCreateListAsync,
 			[Description("TraktClient.Users.GetListAsync()")]
 			UsersGetListAsync,
-			
+
 			[Description("TraktClient.Users.AddToListByMovieIdAsync()")]
 			UsersAddToListByMovieIdAsync,
 			[Description("TraktClient.Users.AddToListByShowIdAsync()")]
@@ -330,7 +347,7 @@ namespace TraktSharp.Examples.Wpf {
 			UsersUpdateListAsync,
 			[Description("TraktClient.Users.DeleteListAsync()")]
 			UsersDeleteListAsync,
-			
+
 			[Description("TraktClient.Users.LikeListAsync()")]
 			UsersLikeListAsync,
 			[Description("TraktClient.Users.UnlikeListAsync()")]
@@ -386,11 +403,19 @@ namespace TraktSharp.Examples.Wpf {
 
 		}
 
-		public static async Task<object> ExecuteTestRequest(TraktClient client, TestRequestType requestType, TraktExtendedOption extended = TraktExtendedOption.Unspecified, string testId = null, string testUsername = null, bool authenticateIfOptional = true) {
+		public static async Task<object> ExecuteTestRequest(
+			TraktClient client,
+			TestRequestType requestType,
+			TraktExtendedOption extended = TraktExtendedOption.Unspecified,
+			TraktReportingPeriod period = TraktReportingPeriod.Unspecified,
+			string testId = null,
+			string testUsername = null,
+			bool authenticateIfOptional = true
+		) {
 
 			//Uncomment if required
 			var testIdInt = 0;
-			try { if (testId != null) { testIdInt = Int32.Parse(testId); } } catch {}
+			try { if (testId != null) { testIdInt = int.Parse(testId); } } catch { }
 
 			//Default to current user if no test username provided
 			if (testUsername == null) { testUsername = client.Authentication.Username ?? string.Empty; }
@@ -464,12 +489,22 @@ namespace TraktSharp.Examples.Wpf {
 					return await client.Genres.GetGenresAsync(TraktGenreTypeOptions.Shows);
 
 				// Movies module
+				case TestRequestType.MoviesGetAnticipatedMoviesAsync:
+					return await client.Movies.GetAnticipatedMoviesAsync(extended);
+				case TestRequestType.MoviesGetBoxOfficeMoviesAsync:
+					return await client.Movies.GetBoxOfficeMoviesAsync(extended);
+				case TestRequestType.MoviesGetCollectedMoviesAsync:
+					return await client.Movies.GetCollectedMoviesAsync(period, extended);
+				case TestRequestType.MoviesGetPlayedMoviesAsync:
+					return await client.Movies.GetPlayedMoviesAsync(period, extended);
 				case TestRequestType.MoviesGetPopularMoviesAsync:
 					return await client.Movies.GetPopularMoviesAsync(extended);
 				case TestRequestType.MoviesGetTrendingMoviesAsync:
 					return await client.Movies.GetTrendingMoviesAsync(extended);
 				case TestRequestType.MoviesGetUpdatedMoviesAsync:
 					return await client.Movies.GetUpdatedMoviesAsync(DateTime.Now.AddMonths(-1), extended);
+				case TestRequestType.MoviesGetWatchedMoviesAsync:
+					return await client.Movies.GetWatchedMoviesAsync(period, extended);
 				case TestRequestType.MoviesGetMovieAsync:
 					return await client.Movies.GetMovieAsync(testId ?? "tt0120591", extended);
 				case TestRequestType.MoviesGetAliasesAsync:
@@ -538,12 +573,20 @@ namespace TraktSharp.Examples.Wpf {
 					return await client.Seasons.GetUsersWatchingSeasonAsync(testId ?? "breaking-bad", 1);
 
 				// Shows module
+				case TestRequestType.ShowsGetAnticipatedShowsAsync:
+					return await client.Shows.GetAnticipatedShowsAsync(extended);
+				case TestRequestType.ShowsGetCollectedShowsAsync:
+					return await client.Shows.GetCollectedShowsAsync(period, extended);
+				case TestRequestType.ShowsGetPlayedShowsAsync:
+					return await client.Shows.GetPlayedShowsAsync(period, extended);
 				case TestRequestType.ShowsGetPopularShowsAsync:
 					return await client.Shows.GetPopularShowsAsync(extended);
 				case TestRequestType.ShowsGetTrendingShowsAsync:
 					return await client.Shows.GetTrendingShowsAsync(extended);
 				case TestRequestType.ShowsGetUpdatedShowsAsync:
 					return await client.Shows.GetUpdatedShowsAsync(DateTime.Now.AddMonths(-1), extended);
+				case TestRequestType.ShowsGetWatchedShowsAsync:
+					return await client.Shows.GetWatchedShowsAsync(period, extended);
 				case TestRequestType.ShowsGetShowAsync:
 					return await client.Shows.GetShowAsync(testId ?? "breaking-bad", extended);
 				case TestRequestType.ShowsGetAliasesAsync:
@@ -684,14 +727,14 @@ namespace TraktSharp.Examples.Wpf {
 				case TestRequestType.UsersDenyFollowRequestAsync:
 					await client.Users.DenyFollowRequestAsync(testIdInt);
 					return null;
-				
+
 				case TestRequestType.UsersGetUserAsync:
 					return await client.Users.GetUserAsync(testUsername, extended, authenticateIfOptional);
 				case TestRequestType.UsersGetMoviesCollectionAsync:
 					return await client.Users.GetMoviesCollectionAsync(testUsername, extended, authenticateIfOptional);
 				case TestRequestType.UsersGetShowsCollectionAsync:
 					return await client.Users.GetShowsCollectionAsync(testUsername, extended, authenticateIfOptional);
-				
+
 				case TestRequestType.UsersGetListsAsync:
 					return await client.Users.GetListsAsync(testUsername, authenticateIfOptional);
 				case TestRequestType.UsersCreateListAsync:
@@ -727,7 +770,7 @@ namespace TraktSharp.Examples.Wpf {
 					return null;
 				case TestRequestType.UsersGetListItemsAsync:
 					return await client.Users.GetListItemsAsync(testId, extended, testUsername, authenticateIfOptional);
-				
+
 				case TestRequestType.UsersFollowAsync:
 					return await client.Users.FollowAsync(testUsername, extended);
 				case TestRequestType.UsersUnfollowAsync:
@@ -777,8 +820,8 @@ namespace TraktSharp.Examples.Wpf {
 
 				// Invalid request type
 				default:
-					throw new ArgumentOutOfRangeException("requestType",
-						string.Format("A test case has not been implemented for the requested method type: {0}", TraktEnumHelper.GetDescription(requestType)));
+					throw new ArgumentOutOfRangeException(nameof(requestType),
+						$"A test case has not been implemented for the requested method type: {TraktEnumHelper.GetDescription(requestType)}");
 			}
 
 		}

@@ -29,13 +29,12 @@ namespace TraktSharp.Entities.RequestBody.Users {
 		[JsonProperty(PropertyName = "people")]
 		public IEnumerable<TraktPerson> People { get; set; }
 
-		internal bool IsPostable() {
-			return (Movies != null && Movies.Any())
-				|| (Shows != null && Shows.Any()) 
-				|| (Seasons != null && Seasons.Any()) 
-				|| (Episodes != null && Episodes.Any())
-				|| (People != null && People.Any());
-		}
+		internal bool IsPostable() =>
+			(Movies != null && Movies.Any())
+			|| (Shows != null && Shows.Any())
+			|| (Seasons != null && Seasons.Any())
+			|| (Episodes != null && Episodes.Any())
+			|| (People != null && People.Any());
 
 	}
 

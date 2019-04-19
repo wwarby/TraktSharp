@@ -13,7 +13,7 @@ namespace TraktSharp.Factories {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktShow FromId(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) { return FromId<TraktShow>(showId, showIdType); }
+		public static TraktShow FromId(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) => FromId<TraktShow>(showId, showIdType);
 
 		/// <summary>Create an instance of a <see cref="TraktShow"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
@@ -22,7 +22,7 @@ namespace TraktSharp.Factories {
 		/// <returns>See summary</returns>
 		public static T FromId<T>(string showId, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) where T : TraktShow {
 			if (string.IsNullOrEmpty(showId)) {
-				throw new ArgumentException("showId not set", "showId");
+				throw new ArgumentException("showId not set", nameof(showId));
 			}
 
 			if (showIdType == TraktTextShowIdType.Auto) {
@@ -40,7 +40,7 @@ namespace TraktSharp.Factories {
 					ret.Ids.Imdb = showId;
 					break;
 				default:
-					throw new ArgumentOutOfRangeException("showIdType");
+					throw new ArgumentOutOfRangeException(nameof(showIdType));
 			}
 
 			return ret;
@@ -50,7 +50,7 @@ namespace TraktSharp.Factories {
 		/// <param name="showId">The show ID</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktShow FromId(int showId, TraktNumericShowIdType showIdType) { return FromId<TraktShow>(showId, showIdType); }
+		public static TraktShow FromId(int showId, TraktNumericShowIdType showIdType) => FromId<TraktShow>(showId, showIdType);
 
 		/// <summary>Create an instance of a <see cref="TraktShow"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
@@ -75,7 +75,7 @@ namespace TraktSharp.Factories {
 					ret.Ids.TvRage = showId;
 					break;
 				default:
-					throw new ArgumentOutOfRangeException("showIdType");
+					throw new ArgumentOutOfRangeException(nameof(showIdType));
 			}
 
 			return ret;
@@ -85,7 +85,7 @@ namespace TraktSharp.Factories {
 		/// <param name="showTitle">The show title</param>
 		/// <param name="showYear">The show release year (first season)</param>
 		/// <returns>See summary</returns>
-		public static TraktShow FromTitleAndYear(string showTitle, int? showYear = null) { return FromTitleAndYear<TraktShow>(showTitle, showYear); }
+		public static TraktShow FromTitleAndYear(string showTitle, int? showYear = null) => FromTitleAndYear<TraktShow>(showTitle, showYear);
 
 		/// <summary>Create an instance of a <see cref="TraktShow"/> subclass from a title and year</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
@@ -94,7 +94,7 @@ namespace TraktSharp.Factories {
 		/// <returns>See summary</returns>
 		public static T FromTitleAndYear<T>(string showTitle, int? showYear = null) where T : TraktShow {
 			if (string.IsNullOrEmpty(showTitle)) {
-				throw new ArgumentException("showTitle not set", "showTitle");
+				throw new ArgumentException("showTitle not set", nameof(showTitle));
 			}
 			var ret = Activator.CreateInstance<T>();
 			ret.Title = showTitle;
@@ -102,38 +102,38 @@ namespace TraktSharp.Factories {
 			return ret;
 		}
 
-		/// <summary>Create an collection of <see cref="TraktShow"/> instances from a collecion of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktShow"/> instances from a collection of IDs</summary>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
 		public static IEnumerable<TraktShow> FromIds(IEnumerable<string> showIds, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) {
-			return showIds == null ? null : showIds.Select(showId => FromId<TraktShow>(showId, showIdType));
+			return showIds?.Select(showId => FromId<TraktShow>(showId, showIdType));
 		}
 
-		/// <summary>Create an collection of <see cref="TraktShow"/> subclass instances from a collecion of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktShow"/> subclass instances from a collection of IDs</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
 		public static IEnumerable<T> FromIds<T>(IEnumerable<string> showIds, TraktTextShowIdType showIdType = TraktTextShowIdType.Auto) where T : TraktShow {
-			return showIds == null ? null : showIds.Select(showId => FromId<T>(showId, showIdType));
+			return showIds?.Select(showId => FromId<T>(showId, showIdType));
 		}
 
-		/// <summary>Create an collection of <see cref="TraktShow"/> instances from a collecion of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktShow"/> instances from a collection of IDs</summary>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
 		public static IEnumerable<TraktShow> FromIds(IEnumerable<int> showIds, TraktNumericShowIdType showIdType) {
-			return showIds == null ? null : showIds.Select(showId => FromId<TraktShow>(showId, showIdType));
+			return showIds?.Select(showId => FromId<TraktShow>(showId, showIdType));
 		}
 
-		/// <summary>Create an collection of <see cref="TraktShow"/> subclass instances from a collecion of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktShow"/> subclass instances from a collection of IDs</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktMovie"/> to be created</typeparam>
 		/// <param name="showIds">A collection of show IDs</param>
 		/// <param name="showIdType">The show ID type</param>
 		/// <returns>See summary</returns>
 		public static IEnumerable<T> FromIds<T>(IEnumerable<int> showIds, TraktNumericShowIdType showIdType) where T : TraktShow {
-			return showIds == null ? null : showIds.Select(showId => FromId<T>(showId, showIdType));
+			return showIds?.Select(showId => FromId<T>(showId, showIdType));
 		}
 
 	}

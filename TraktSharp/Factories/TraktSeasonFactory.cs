@@ -13,7 +13,7 @@ namespace TraktSharp.Factories {
 		/// <param name="seasonId">The season ID</param>
 		/// <param name="seasonIdType">The season ID type</param>
 		/// <returns>See summary</returns>
-		public static TraktSeason FromId(int seasonId, TraktNumericSeasonIdType seasonIdType) { return FromId<TraktSeason>(seasonId, seasonIdType); }
+		public static TraktSeason FromId(int seasonId, TraktNumericSeasonIdType seasonIdType) => FromId<TraktSeason>(seasonId, seasonIdType);
 
 		/// <summary>Create an instance of a <see cref="TraktSeason"/> subclass from an ID</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktSeason"/> to be created</typeparam>
@@ -35,27 +35,27 @@ namespace TraktSharp.Factories {
 					ret.Ids.TvRage = seasonId;
 					break;
 				default:
-					throw new ArgumentOutOfRangeException("seasonIdType");
+					throw new ArgumentOutOfRangeException(nameof(seasonIdType));
 			}
 
 			return ret;
 		}
 
-		/// <summary>Create an collection of <see cref="TraktSeason"/> instances from a collecion of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktSeason"/> instances from a collection of IDs</summary>
 		/// <param name="seasonIds">A collection of season IDs</param>
 		/// <param name="seasonIdType">The season ID type</param>
 		/// <returns>See summary</returns>
 		public static IEnumerable<TraktSeason> FromIds(IEnumerable<int> seasonIds, TraktNumericSeasonIdType seasonIdType) {
-			return seasonIds == null ? null : seasonIds.Select(seasonId => FromId<TraktSeason>(seasonId, seasonIdType));
+			return seasonIds?.Select(seasonId => FromId<TraktSeason>(seasonId, seasonIdType));
 		}
 
-		/// <summary>Create an collection of <see cref="TraktSeason"/> subclass instances from a collecion of IDs</summary>
+		/// <summary>Create an collection of <see cref="TraktSeason"/> subclass instances from a collection of IDs</summary>
 		/// <typeparam name="T">A subclass of <see cref="TraktSeason"/> to be created</typeparam>
 		/// <param name="seasonIds">A collection of season IDs</param>
 		/// <param name="seasonIdType">The season ID type</param>
 		/// <returns>See summary</returns>
 		public static IEnumerable<T> FromIds<T>(IEnumerable<int> seasonIds, TraktNumericSeasonIdType seasonIdType) where T : TraktSeason {
-			return seasonIds == null ? null : seasonIds.Select(seasonId => FromId<T>(seasonId, seasonIdType));
+			return seasonIds?.Select(seasonId => FromId<T>(seasonId, seasonIdType));
 		}
 
 	}

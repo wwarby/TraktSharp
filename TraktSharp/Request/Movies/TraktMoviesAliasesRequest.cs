@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using TraktSharp.Entities.Response.Movies;
 using TraktSharp.Enums;
 
@@ -10,9 +8,9 @@ namespace TraktSharp.Request.Movies {
 
 		internal TraktMoviesAliasesRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/{id}/aliases"; } }
+		protected override string PathTemplate => "movies/{id}/aliases";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
 	}
 

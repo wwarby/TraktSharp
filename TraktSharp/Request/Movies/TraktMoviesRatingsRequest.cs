@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using TraktSharp.Entities;
+﻿using TraktSharp.Entities;
 using TraktSharp.Enums;
 
 namespace TraktSharp.Request.Movies {
@@ -9,9 +7,9 @@ namespace TraktSharp.Request.Movies {
 
 		internal TraktMoviesRatingsRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "movies/{id}/ratings"; } }
+		protected override string PathTemplate => "movies/{id}/ratings";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
 	}
 

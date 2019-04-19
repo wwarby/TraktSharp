@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -44,10 +43,10 @@ namespace TraktSharp.Tests.Request {
 		protected HttpStatusCode FakeResponseCode { get; set; }
 
 		/// <summary>The fake response handler</summary>
-		protected FakeResponseHandler FakeResponseHandler { get; private set; }
+		protected FakeResponseHandler FakeResponseHandler { get; }
 
 		/// <summary>The client</summary>
-		protected TraktClient Client { get; private set; }
+		protected TraktClient Client { get; }
 
 		/// <summary>The most recently sent HTTP request</summary>
 		protected HttpRequestMessage LastRequest { get; set; }

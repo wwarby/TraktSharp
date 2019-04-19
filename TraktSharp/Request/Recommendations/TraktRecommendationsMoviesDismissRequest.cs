@@ -1,13 +1,10 @@
-﻿using System;
-using System.Linq;
-
-namespace TraktSharp.Request.Recommendations {
+﻿namespace TraktSharp.Request.Recommendations {
 
 	internal class TraktRecommendationsMoviesDismissRequest : TraktDeleteByIdRequest {
 
 		internal TraktRecommendationsMoviesDismissRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "recommendations/movies/{id}"; } }
+		protected override string PathTemplate => "recommendations/movies/{id}";
 
 	}
 

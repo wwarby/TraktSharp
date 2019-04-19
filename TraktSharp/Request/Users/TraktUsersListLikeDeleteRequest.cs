@@ -1,13 +1,10 @@
-﻿using System;
-using System.Linq;
-
-namespace TraktSharp.Request.Users {
+﻿namespace TraktSharp.Request.Users {
 
 	internal class TraktUsersListLikeDeleteRequest : TraktDeleteByUsernameAndIdRequest {
 
 		internal TraktUsersListLikeDeleteRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "users/{username}/lists/{id}/like"; } }
+		protected override string PathTemplate => "users/{username}/lists/{id}/like";
 
 	}
 

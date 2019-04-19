@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using TraktSharp.Entities;
 
@@ -31,6 +30,8 @@ namespace TraktSharp.Examples.Wpf {
 		public int SelectedResponseTab { get; set; }
 
 		public string SelectedExtendedOption { get; set; }
+
+		public string SelectedReportingPeriod { get; set; }
 
 		public string SelectedTextQueryType { get; set; }
 

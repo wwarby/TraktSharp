@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace TraktSharp.Entities {
@@ -27,9 +26,7 @@ namespace TraktSharp.Entities {
 
 		/// <summary>Tests if at least one of the IDs for this item has been set</summary>
 		/// <returns><c>true</c> if one or more of the IDs for this item has a non-default value, otherwise <c>false</c></returns>
-		public bool HasAnyValuesSet() {
-			return Trakt > 0 || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb > 0;
-		}
+		public bool HasAnyValuesSet() => Trakt > 0 || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb > 0;
 
 		/// <summary>Get the most reliable ID from those that have been set for this item, for use in methods where any ID type can be passed</summary>
 		/// <returns>The ID as a string</returns>

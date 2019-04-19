@@ -22,9 +22,7 @@ namespace TraktSharp.Helpers {
 		/// <summary>Get the text label for the specified enumeration value</summary>
 		/// <param name="value">The enumeration value</param>
 		/// <returns>The text label</returns>
-		public static string GetLabel(Enum value) {
-			return value.ToString();
-		}
+		public static string GetLabel(Enum value) => value.ToString();
 
 		/// <summary>Gets metadata about the members of an enumeration</summary>
 		/// <param name="type">The enumeration type</param>
@@ -42,7 +40,7 @@ namespace TraktSharp.Helpers {
 		/// <typeparam name="T">The enumeration type</typeparam>
 		/// <param name="value">The enumeration member value</param>
 		/// <returns>An instance of the specified enumeration type, or throws an exception if <paramref name="value"/> is not a valid value for the specified enumeration type</returns>
-		public static T FromInt<T>(int value) { return (T)Enum.Parse(typeof(T), value.ToString(CultureInfo.InvariantCulture)); }
+		public static T FromInt<T>(int value) => (T)Enum.Parse(typeof(T), value.ToString(CultureInfo.InvariantCulture));
 
 		/// <summary>Parses an integer to a specified enumeration type, allowing silent fallback to a default value of parsing fails</summary>
 		/// <typeparam name="T">The enumeration type</typeparam>
@@ -61,7 +59,7 @@ namespace TraktSharp.Helpers {
 		/// <typeparam name="T">The enumeration type</typeparam>
 		/// <param name="value">The text label value</param>
 		/// <returns>An instance of the specified enumeration type, or throws an exception if <paramref name="value"/> is not a valid text label for the specified enumeration type</returns>
-		public static T FromLabel<T>(string value) { return (T)Enum.Parse(typeof(T), value, true); }
+		public static T FromLabel<T>(string value) => (T)Enum.Parse(typeof(T), value, true);
 
 		/// <summary>Parses a text label to a specified enumeration type, allowing silent fallback to a default value of parsing fails</summary>
 		/// <typeparam name="T">The enumeration type</typeparam>

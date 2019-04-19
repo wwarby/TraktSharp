@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
 using TraktSharp.Examples.Wpf.Helpers;
@@ -29,6 +29,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			Client = new TraktClient();
 			AuthenticationModes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktAuthenticationMode)).Select(v => v.Value.Description));
 			ExtendedOptions = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktExtendedOption)).Select(v => v.Value.Label));
+			ReportingPeriods = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktReportingPeriod)).Select(v => v.Value.Label));
 			TestRequestTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TestRequests.TestRequestType)).Select(v => v.Value.Description));
 			IdLookupTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktIdLookupType)).Select(v => v.Value.Label));
 			TextQueryTypes = new ObservableCollection<string>(TraktEnumHelper.GetEnumMembers(typeof(TraktSearchItemType)).Select(v => v.Value.Label));
@@ -47,8 +48,8 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				NotifyPropertyChanged(this.GetMemberName(x => x.LastReturnedValue));
 
 				var sb = new StringBuilder();
-				sb.AppendLine(string.Format("{0} {1} HTTP/{2}", e.Request.Method.ToString().ToUpper(), e.Request.RequestUri.AbsoluteUri, e.Request.Version));
-				e.Request.Headers.Select(h => string.Format("{0}: {1}", h.Key, string.Join(",", h.Value))).ToList().ForEach(l => sb.AppendLine(l));
+				sb.AppendLine($"{e.Request.Method.ToString().ToUpper()} {e.Request.RequestUri.AbsoluteUri} HTTP/{e.Request.Version}");
+				e.Request.Headers.Select(h => $"{h.Key}: {string.Join(",", h.Value)}").ToList().ForEach(l => sb.AppendLine(l));
 				sb.AppendLine();
 				sb.AppendLine(e.RequestBody);
 				LastRequest = sb.ToString();
@@ -62,9 +63,9 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				var status = "UNKNOWN STATUS";
 				try {
 					status = e.Response.Headers.First(h => h.Key.Equals("Status", StringComparison.InvariantCultureIgnoreCase)).Value.First().ToUpper();
-				} catch {}
-				sb.AppendLine(string.Format("HTTP/{0} {1}", e.Response.Version, status));
-				e.Response.Headers.Select(h => string.Format("{0}: {1}", h.Key, string.Join(",", h.Value))).ToList().ForEach(l => sb.AppendLine(l));
+				} catch { }
+				sb.AppendLine($"HTTP/{e.Response.Version} {status}");
+				e.Response.Headers.Select(h => $"{h.Key}: {string.Join(",", h.Value)}").ToList().ForEach(l => sb.AppendLine(l));
 				sb.AppendLine();
 				sb.AppendLine(e.ResponseText);
 				LastResponse = sb.ToString();
@@ -77,7 +78,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		}
 
-		private TraktClient Client { get; set; }
+		private TraktClient Client { get; }
 
 		public string WindowTitle {
 			get {
@@ -91,7 +92,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		public bool UseSandpit {
-			get { return Client.Configuration.UseSandpit; }
+			get => Client.Configuration.UseSandpit;
 			set {
 				Client.Configuration.UseSandpit = value;
 				NotifyPropertyChanged();
@@ -99,7 +100,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		public string Username {
-			get { return Client.Authentication.Username; }
+			get => Client.Authentication.Username;
 			set {
 				Client.Authentication.Username = value;
 				NotifyPropertyChanged();
@@ -107,7 +108,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		public string ClientId {
-			get { return Client.Authentication.ClientId; }
+			get => Client.Authentication.ClientId;
 			set {
 				Client.Authentication.ClientId = value;
 				NotifyPropertyChanged();
@@ -116,7 +117,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		public string ClientSecret {
-			get { return Client.Authentication.ClientSecret; }
+			get => Client.Authentication.ClientSecret;
 			set {
 				Client.Authentication.ClientSecret = value;
 				NotifyPropertyChanged();
@@ -124,12 +125,10 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		public string AuthorizationCode {
-			get { return Client.Authentication.AuthorizationCode; }
-		}
+		public string AuthorizationCode => Client.Authentication.AuthorizationCode;
 
 		public TraktOAuthAccessToken OAuthAccessToken {
-			get { return Client.Authentication.CurrentOAuthAccessToken; }
+			get => Client.Authentication.CurrentOAuthAccessToken;
 			set {
 				Client.Authentication.CurrentOAuthAccessToken = value;
 				NotifyPropertyChanged();
@@ -141,7 +140,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		public string LoginUsernameOrEmail {
-			get { return Client.Authentication.LoginUsernameOrEmail; }
+			get => Client.Authentication.LoginUsernameOrEmail;
 			set {
 				Client.Authentication.LoginUsernameOrEmail = value;
 				NotifyPropertyChanged();
@@ -153,7 +152,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private string _password;
 		public string Password {
-			get { return _password; }
+			get => _password;
 			set {
 				_password = value;
 				NotifyPropertyChanged();
@@ -162,7 +161,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		}
 
 		public string SimpleAccessToken {
-			get { return Client.Authentication.CurrentSimpleAccessToken; }
+			get => Client.Authentication.CurrentSimpleAccessToken;
 			set {
 				Client.Authentication.CurrentSimpleAccessToken = value;
 				NotifyPropertyChanged();
@@ -172,7 +171,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		public bool Authenticated { get { return Client.Authentication.Authenticated; } }
+		public bool Authenticated => Client.Authentication.Authenticated;
 
 		public string LastRequest { get; private set; }
 
@@ -185,7 +184,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		public ObservableCollection<string> AuthenticationModes { get; set; }
 
 		public string SelectedAuthenticationMode {
-			get { return TraktEnumHelper.GetLabel(Client.Authentication.AuthenticationMode); }
+			get => TraktEnumHelper.GetLabel(Client.Authentication.AuthenticationMode);
 			set {
 				Client.Authentication.AuthenticationMode = TraktEnumHelper.FromLabel<TraktAuthenticationMode>(value);
 				NotifyPropertyChanged();
@@ -196,17 +195,28 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			}
 		}
 
-		public bool IsOAuthAuthenticationMode { get { return Client.Authentication.AuthenticationMode == TraktAuthenticationMode.OAuth; } }
+		public bool IsOAuthAuthenticationMode => Client.Authentication.AuthenticationMode == TraktAuthenticationMode.OAuth;
 
-		public bool IsSimpleAuthenticationMode { get { return Client.Authentication.AuthenticationMode == TraktAuthenticationMode.Simple; } }
+		public bool IsSimpleAuthenticationMode => Client.Authentication.AuthenticationMode == TraktAuthenticationMode.Simple;
 
 		public ObservableCollection<string> ExtendedOptions { get; set; }
 
+		public ObservableCollection<string> ReportingPeriods { get; set; }
+
 		private TraktExtendedOption _selectedExtendedOption;
 		public string SelectedExtendedOption {
-			get { return TraktEnumHelper.GetLabel(_selectedExtendedOption); }
+			get => TraktEnumHelper.GetLabel(_selectedExtendedOption);
 			set {
 				_selectedExtendedOption = TraktEnumHelper.FromLabel<TraktExtendedOption>(value);
+				NotifyPropertyChanged();
+			}
+		}
+
+		private TraktReportingPeriod _selectedReportingPeriod;
+		public string SelectedReportingPeriod {
+			get => TraktEnumHelper.GetLabel(_selectedReportingPeriod);
+			set {
+				_selectedReportingPeriod = TraktEnumHelper.FromLabel<TraktReportingPeriod>(value);
 				NotifyPropertyChanged();
 			}
 		}
@@ -215,7 +225,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private TestRequests.TestRequestType _selectedTestRequestType;
 		public string SelectedTestRequestType {
-			get { return TraktEnumHelper.GetDescription(_selectedTestRequestType); }
+			get => TraktEnumHelper.GetDescription(_selectedTestRequestType);
 			set {
 				_selectedTestRequestType = TraktEnumHelper.FromDescription<TestRequests.TestRequestType>(value);
 				NotifyPropertyChanged();
@@ -226,7 +236,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private TraktSearchItemType _selectedTextQueryType;
 		public string SelectedTextQueryType {
-			get { return TraktEnumHelper.GetLabel(_selectedTextQueryType); }
+			get => TraktEnumHelper.GetLabel(_selectedTextQueryType);
 			set {
 				_selectedTextQueryType = TraktEnumHelper.FromLabel<TraktSearchItemType>(value);
 				NotifyPropertyChanged();
@@ -237,7 +247,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private TraktIdLookupType _selectedIdLookupType;
 		public string SelectedIdLookupType {
-			get { return TraktEnumHelper.GetLabel(_selectedIdLookupType); }
+			get => TraktEnumHelper.GetLabel(_selectedIdLookupType);
 			set {
 				_selectedIdLookupType = TraktEnumHelper.FromLabel<TraktIdLookupType>(value);
 				NotifyPropertyChanged();
@@ -246,7 +256,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private int _selectedMainTab;
 		public int SelectedMainTab {
-			get { return _selectedMainTab; }
+			get => _selectedMainTab;
 			set {
 				_selectedMainTab = value;
 				NotifyPropertyChanged();
@@ -255,7 +265,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private int _selectedResponseTab;
 		public int SelectedResponseTab {
-			get { return _selectedResponseTab; }
+			get => _selectedResponseTab;
 			set {
 				_selectedResponseTab = value;
 				NotifyPropertyChanged();
@@ -264,7 +274,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private string _searchText;
 		public string SearchText {
-			get { return _searchText; }
+			get => _searchText;
 			set {
 				_searchText = value;
 				NotifyPropertyChanged();
@@ -274,7 +284,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private bool _idLookup;
 		public bool IdLookup {
-			get { return _idLookup; }
+			get => _idLookup;
 			set {
 				_idLookup = value;
 				NotifyPropertyChanged();
@@ -284,7 +294,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private string _testId;
 		public string TestId {
-			get { return _testId; }
+			get => _testId;
 			set {
 				_testId = value;
 				NotifyPropertyChanged();
@@ -293,7 +303,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private string _testUsername;
 		public string TestUsername {
-			get { return _testUsername; }
+			get => _testUsername;
 			set {
 				_testUsername = value;
 				NotifyPropertyChanged();
@@ -302,7 +312,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private bool _authenticateIfOptional;
 		public bool AuthenticateIfOptional {
-			get { return _authenticateIfOptional; }
+			get => _authenticateIfOptional;
 			set {
 				_authenticateIfOptional = value;
 				NotifyPropertyChanged();
@@ -325,25 +335,15 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			Client.Authentication.OAuthLogout();
 		}
 
-		public object CanAuthorize {
-			get { return !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret); }
-		}
+		public object CanAuthorize => !string.IsNullOrEmpty(ClientId) && !string.IsNullOrEmpty(ClientSecret);
 
-		public object CanRefreshAccessToken {
-			get { return OAuthAccessToken != null && OAuthAccessToken.IsValid; }
-		}
+		public object CanRefreshAccessToken => OAuthAccessToken != null && OAuthAccessToken.IsValid;
 
-		public object CanDiscardAccessToken {
-			get { return OAuthAccessToken != null && OAuthAccessToken.IsValid; }
-		}
+		public object CanDiscardAccessToken => OAuthAccessToken != null && OAuthAccessToken.IsValid;
 
-		public object CanLogin {
-			get { return !string.IsNullOrEmpty(LoginUsernameOrEmail) && !string.IsNullOrEmpty(Password); }
-		}
+		public object CanLogin => !string.IsNullOrEmpty(LoginUsernameOrEmail) && !string.IsNullOrEmpty(Password);
 
-		public object CanLogout {
-			get { return !string.IsNullOrEmpty(SimpleAccessToken); }
-		}
+		public object CanLogout => !string.IsNullOrEmpty(SimpleAccessToken);
 
 		public async void Login() {
 			SimpleAccessToken = string.Empty;
@@ -358,12 +358,14 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		public async void TestRequest() {
 			object result;
 			try {
-				result = await TestRequests.ExecuteTestRequest(Client, 
-															  _selectedTestRequestType,
-															  _selectedExtendedOption,
-															  !string.IsNullOrEmpty(TestId) ? TestId : null,
-															  !string.IsNullOrEmpty(TestUsername) ? TestUsername : null, 
-															  AuthenticateIfOptional);
+				result = await TestRequests.ExecuteTestRequest(
+					Client,
+				  _selectedTestRequestType,
+				  _selectedExtendedOption,
+				  TraktEnumHelper.FromLabel<TraktReportingPeriod>(SelectedReportingPeriod),
+				  !string.IsNullOrEmpty(TestId) ? TestId : null,
+				  !string.IsNullOrEmpty(TestUsername) ? TestUsername : null,
+				  AuthenticateIfOptional);
 			} catch (Exception ex) {
 				result = ex;
 			}
@@ -384,9 +386,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 			UpdateLastReturnValue(result);
 		}
 
-		public object CanSearch {
-			get { return !string.IsNullOrEmpty(SearchText); }
-		}
+		public object CanSearch => !string.IsNullOrEmpty(SearchText);
 
 		public void Closing() {
 			TrySaveState();
@@ -395,7 +395,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 		public static string StateSerializationPath {
 			get {
 				var assemblyPath = Assembly.GetExecutingAssembly().Location;
-				return Path.Combine(Path.GetDirectoryName(assemblyPath) ?? string.Empty, string.Format("{0}.state", Path.GetFileNameWithoutExtension(assemblyPath)));
+				return Path.Combine(Path.GetDirectoryName(assemblyPath) ?? string.Empty, $"{Path.GetFileNameWithoutExtension(assemblyPath)}.state");
 			}
 		}
 
@@ -420,6 +420,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 				SelectedMainTab = result.SelectedMainTab;
 				SelectedResponseTab = result.SelectedResponseTab;
 				SelectedExtendedOption = result.SelectedExtendedOption;
+				SelectedReportingPeriod = result.SelectedReportingPeriod;
 				SelectedTextQueryType = result.SelectedTextQueryType;
 				SelectedIdLookupType = result.SelectedIdLookupType;
 				SelectedTestRequestType = result.SelectedTestRequestType;
@@ -451,6 +452,7 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 					SelectedMainTab = SelectedMainTab,
 					SelectedResponseTab = SelectedResponseTab,
 					SelectedExtendedOption = SelectedExtendedOption,
+					SelectedReportingPeriod = SelectedReportingPeriod,
 					SelectedTestRequestType = SelectedTestRequestType,
 					SelectedTextQueryType = SelectedTextQueryType,
 					SelectedIdLookupType = SelectedIdLookupType,
@@ -487,26 +489,23 @@ namespace TraktSharp.Examples.Wpf.ViewModels {
 
 		private string PrettyPrint(object obj) {
 			try {
-				var ex = obj as Exception;
-				if (ex != null) {
+				if (obj is Exception ex) {
 					var sb = new StringBuilder();
-					sb.AppendLine(string.Format("Message: {0}", ex.Message));
-					sb.AppendLine(string.Format("Source: {0}", ex.Source));
-					var traktEx = ex as TraktException;
-					if (traktEx != null) {
-						sb.AppendLine(string.Format("Trakt Error Type: {0}", traktEx.TraktErrorType));
-						var traktConflictEx = ex as TraktConflictException;
-						if (traktConflictEx != null) {
-							sb.AppendLine(string.Format("Expires At: {0}", traktConflictEx.ExpiresAt));
+					sb.AppendLine($"Message: {ex.Message}");
+					sb.AppendLine($"Source: {ex.Source}");
+					if (ex is TraktException traktEx) {
+						sb.AppendLine($"Trakt Error Type: {traktEx.TraktErrorType}");
+						if (ex is TraktConflictException traktConflictEx) {
+							sb.AppendLine($"Expires At: {traktConflictEx.ExpiresAt}");
 						}
 					}
 					sb.AppendLine();
-					sb.AppendLine(string.Format("Stack Trace:\r\n\r\n{0}", ex.StackTrace));
+					sb.AppendLine($"Stack Trace:\r\n\r\n{ex.StackTrace}");
 					if (ex.InnerException != null) {
-						sb.AppendLine(string.Format("Inner Exception Message: {0}", ex.InnerException.Message));
-						sb.AppendLine(string.Format("Inner Exception Source: {0}", ex.InnerException.Source));
+						sb.AppendLine($"Inner Exception Message: {ex.InnerException.Message}");
+						sb.AppendLine($"Inner Exception Source: {ex.InnerException.Source}");
 						sb.AppendLine();
-						sb.AppendLine(string.Format("Inner Exception Stack Trace:\r\n\r\n{0}", ex.InnerException.StackTrace));
+						sb.AppendLine($"Inner Exception Stack Trace:\r\n\r\n{ex.InnerException.StackTrace}");
 					}
 					return sb.ToString();
 				}

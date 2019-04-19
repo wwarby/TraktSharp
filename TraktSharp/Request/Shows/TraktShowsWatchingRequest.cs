@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using TraktSharp.Entities;
 using TraktSharp.Enums;
 
@@ -10,9 +8,9 @@ namespace TraktSharp.Request.Shows {
 
 		internal TraktShowsWatchingRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "shows/{id}/watching"; } }
+		protected override string PathTemplate => "shows/{id}/watching";
 
-		protected override TraktAuthenticationRequirement AuthenticationRequirement { get { return TraktAuthenticationRequirement.NotRequired; } }
+		protected override TraktAuthenticationRequirement AuthenticationRequirement => TraktAuthenticationRequirement.NotRequired;
 
 	}
 

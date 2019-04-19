@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TraktSharp.Request;
 
 namespace TraktSharp.Modules {
@@ -19,7 +17,7 @@ namespace TraktSharp.Modules {
 		protected TraktModuleBase(TraktClient client) { Client = client; }
 
 		/// <summary>The owning instance of <see cref="TraktClient"/></summary>
-		public TraktClient Client { get; private set; }
+		public TraktClient Client { get; }
 
 		/// <summary>Send the HTTP request</summary>
 		/// <typeparam name="T">The return type for the request</typeparam>

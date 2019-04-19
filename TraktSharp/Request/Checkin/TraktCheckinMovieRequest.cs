@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using TraktSharp.Entities.RequestBody.Checkin;
 using TraktSharp.Entities.Response.Checkin;
 
@@ -9,7 +8,7 @@ namespace TraktSharp.Request.Checkin {
 
 		internal TraktCheckinMovieRequest(TraktClient client) : base(client) { }
 
-		protected override string PathTemplate { get { return "checkin"; } }
+		protected override string PathTemplate => "checkin";
 
 		protected override void ValidateParameters() {
 			base.ValidateParameters();

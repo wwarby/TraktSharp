@@ -1,6 +1,4 @@
-using System;
 using System.ComponentModel;
-using System.Linq;
 
 namespace TraktSharp.Enums {
 
@@ -17,7 +15,7 @@ namespace TraktSharp.Enums {
 		Checkin,
 		/// <summary>Scrobble</summary>
 		[Description("scrobble")]
-		Scrobble,
+		Scrobble
 	}
 
 }
