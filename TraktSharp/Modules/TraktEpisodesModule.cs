@@ -8,12 +8,12 @@ using TraktSharp.Structs;
 
 namespace TraktSharp.Modules {
 
-    /// <summary>Provides API methods in the Episodes namespace</summary>
-    public class TraktEpisodesModule : TraktModuleBase {
+	/// <summary>Provides API methods in the Episodes namespace</summary>
+	public class TraktEpisodesModule : TraktModuleBase {
 
-        /// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
-        /// <param name="client">The owning instance of <see cref="TraktClient"/></param>
-        public TraktEpisodesModule(TraktClient client) : base(client) { }
+		/// <summary>Default constructor for the module. Used internally by <see cref="TraktClient"/>.</summary>
+		/// <param name="client">The owning instance of <see cref="TraktClient"/></param>
+		public TraktEpisodesModule(TraktClient client) : base(client) { }
 
 		/// <summary>Returns a single episode's details. All date and times are in UTC and were calculated using the episode's air_date and show's country and air_time.</summary>
 		/// <param name="show">The show</param>
@@ -43,7 +43,8 @@ namespace TraktSharp.Modules {
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(TraktShow show, TraktEpisode episode, int? page = null, int? limit = null) => await GetCommentsAsync(show.Ids.GetBestId(), episode.SeasonNumber.GetValueOrDefault(), episode.EpisodeNumber.GetValueOrDefault(), page, limit);
+		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(TraktShow show, TraktEpisode episode, TraktCommentSortOrder order = TraktCommentSortOrder.Newest, int? page = null, int? limit = null)
+			=> await GetCommentsAsync(show.Ids.GetBestId(), episode.SeasonNumber.GetValueOrDefault(), episode.EpisodeNumber.GetValueOrDefault(), order, page, limit);
 
 		/// <summary>Returns all top level comments for an episode. Most recent comments returned first.</summary>
 		/// <param name="showId">The show ID</param>
@@ -53,7 +54,7 @@ namespace TraktSharp.Modules {
 		/// <param name="page">The page number</param>
 		/// <param name="limit">The number of records to show per page</param>
 		/// <returns>See summary</returns>
-		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(string showId, int seasonNumber, int episodeNumber, int? page = null, int? limit = null) =>
+		public async Task<IEnumerable<TraktComment>> GetCommentsAsync(string showId, int seasonNumber, int episodeNumber, TraktCommentSortOrder order = TraktCommentSortOrder.Newest, int? page = null, int? limit = null) =>
 			await SendAsync(new TraktEpisodesCommentsRequest(Client) {
 				Id = showId,
 				Season = seasonNumber,

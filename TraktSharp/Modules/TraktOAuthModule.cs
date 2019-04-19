@@ -74,9 +74,10 @@ namespace TraktSharp.Modules {
 		/// <param name="redirectUri">The uri to which Trakt should redirect upon successful authentication. Refer to <see cref="TraktAuthentication.OAuthRedirectUri"/> for further details.</param>
 		/// <param name="grantType">The requested grant type</param>
 		/// <returns>See summary</returns>
-		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync(string code, string clientId, string clientSecret, string redirectUri, TraktOAuthTokenGrantType grantType) =>
-			await SendAsync(new TraktOAuthTokenRequest(Client) {
-				RequestBody = new TraktOAuthTokenRequestBody {
+		public async Task<TraktOAuthTokenResponse> GetOAuthTokenAsync(string code, string clientId, string clientSecret, string redirectUri, TraktOAuthTokenGrantType grantType) {
+			TraktOAuthTokenRequestBody body;
+			if (grantType == TraktOAuthTokenGrantType.AuthorizationCode) {
+				body = new TraktOAuthTokenRequestBody {
 					Code = code,
 					ClientId = clientId,
 					ClientSecret = clientSecret,
@@ -96,6 +97,7 @@ namespace TraktSharp.Modules {
 			return await SendAsync(new TraktOAuthTokenRequest(Client) {
 				RequestBody = body
 			});
+		}
 
 	}
 }
